@@ -1,0 +1,122 @@
+<Ui>
+	<Script file="ui.lua"/>
+
+	<Frame name="ManuscriptHeaderTemplate" virtual="true">
+		<Size x="625" y="24" />
+		<Layers>
+			<Layer level="BACKGROUND">
+				<Texture atlas="collections-slotheader" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+			</Layer>
+			<Layer level="OVERLAY">
+				<FontString parentKey="text" inherits="Fancy16Font" justifyH="CENTER" justifyV="MIDDLE">
+					<Color r="0.47" g="0.44" b="0.28"/>
+					<Shadow>
+						<Offset>
+							<AbsDimension x="1" y="-1"/>
+						</Offset>
+						<Color r="0.0" g="0.0" b="0.0"/>
+					</Shadow>
+				</FontString>
+			</Layer>
+		</Layers>
+	</Frame>
+
+	<CheckButton name="ManuscriptSpellButtonTemplate" inherits="CollectionsSpellButtonTemplate" hidden="true" motionScriptsWhileDisabled="true" virtual="true">
+		<Layers>
+			<Layer level="OVERLAY" textureSubLevel="2">
+				<Texture parentKey="bling" file="interface\cooldown\star4" alphaMode="ADD" alpha="0">
+					<Size x="70" y="70"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<Color r="0.31373" g="0.627451" b="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		
+		<Scripts>
+			<OnLoad>
+				CollectionsSpellButton_OnLoad(self, ManuscriptsJournal_UpdateButton)
+			</OnLoad>
+
+			<OnClick>
+				ManuscriptsJournalSpellButton_OnClick(self, button);
+			</OnClick>
+
+			<OnShow>
+				CollectionsSpellButton_OnShow(self);
+			</OnShow>
+			
+			<OnHide>
+				CollectionsSpellButton_OnHide(self);
+				self:UnregisterEvent("HEIRLOOMS_UPDATED");
+			</OnHide>
+
+			<OnEnter function="ManuscriptsJournalSpellButton_OnEnter"/>
+		</Scripts>
+	</CheckButton>
+	
+	<Frame name="ManuscriptsJournal" parent="CollectionsJournal" mixin="ManuscriptsMixin" setAllPoints="true" hidden="true">
+		<Frames>
+			<StatusBar parentKey="progressBar" inherits="CollectionsProgressBarTemplate" />
+
+			<EditBox name="$parentSearchBox" parentKey="SearchBox" inherits="SearchBoxTemplate" letters="40">
+				<Size x="115" y="20"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-107" y="-35"/>
+				</Anchors>
+				<Scripts>
+					<OnTextChanged function="ManuscriptsJournalSearchBox_OnTextChanged"/>
+				</Scripts>
+			</EditBox>
+
+			<DropDownToggleButton parentKey="FilterButton" inherits="UIResettableDropdownButtonTemplate" text="FILTER">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-12" y="-34"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad inherit="prepend">
+						self:SetResetFunction(function() self:GetParent():ResetFilters() end);
+					</OnLoad>
+					<OnMouseDown inherit="prepend">
+						local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+                        LibDD:ToggleDropDownMenu(1, nil, self:GetParent().filterDropDown, self, 74, 15);
+					</OnMouseDown>
+				</Scripts>
+			</DropDownToggleButton>
+
+			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
+				<Layers>
+					<Layer level="BORDER" textureSubLevel="1">
+						<Texture parentKey="watermark" atlas="collections-watermark-heirloom" useAtlasSize="true">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-33" y="17"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<Frame parentKey="PagingFrame" inherits="CollectionsPagingFrameTemplate">
+				<Anchors>
+					<Anchor point="BOTTOM" x="21" y="43"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+                local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+                self.filterDropDown = LibDD:Create_UIDropDownMenu(self:GetName().."FilterDropDown", self)
+                ManuscriptsJournalCollectedFilterDropDown_OnLoad(self.filterDropDown)
+				self:OnLoad();
+			</OnLoad>
+			<OnEvent function="ManuscriptsJournal_OnEvent"/>
+			<OnShow function="ManuscriptsJournal_OnShow"/>
+			<OnMouseWheel function="ManuscriptsJournal_OnMouseWheel"/>
+		</Scripts>
+	</Frame>
+</Ui>

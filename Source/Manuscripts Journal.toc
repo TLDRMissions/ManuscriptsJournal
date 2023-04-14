@@ -1,0 +1,24 @@
+## Interface: 100007
+## Title: Manuscripts Journal
+## Version: 10.0-001
+## Notes: Adds a Manuscripts tab to the Collections Journal
+## Author: Teelo
+## X-Curse-Project-ID: 850505
+## Dependencies: Blizzard_Collections
+
+libs\LibStub\LibStub.lua
+libs\AceLocale-3.0\AceLocale-3.0.xml
+libs\LibUIDropDownMenu\LibUIDropDownMenu.xml
+libs\SecureTabs-2.0\SecureTabs-2.0.lua
+
+Locales\enus.lua
+
+FilterDropDown.lua
+
+enums.lua
+
+db\init.lua
+db\CliffsideWylderdrake.lua
+db\final.lua
+
+ui.xml

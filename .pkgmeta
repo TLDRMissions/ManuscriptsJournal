@@ -1,0 +1,8 @@
+package-as: ManuscriptsJournal
+
+move-folders:
+ ManuscriptsJournal/Source: ManuscriptsJournal
+
+ignore:
+ - LICENCE.md
+ - README.md
