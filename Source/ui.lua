@@ -166,6 +166,8 @@ do
         elseif source == addon.Enum.Sources.Hunt then
         elseif source == addon.Enum.Sources.Vendor then
             GameTooltip:AddDoubleLine(db.vendorName, C_Map.GetAreaInfo(db.zoneID))
+        elseif source == addon.Enum.Sources.Raid then
+            GameTooltip:AddLine(db.bossName)
         elseif source ~= nil then
             print(source)
         end
@@ -372,8 +374,9 @@ local START_OFFSET_Y = -25;
 local VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET = 0;
 
 local DRAKE_SORT_ORDER = {
-	addon.Enum.Drakes.CliffsideWylderdrake,
+    addon.Enum.Drakes.RenewedProtoDrake,
     addon.Enum.Drakes.HighlandDrake,
+    addon.Enum.Drakes.CliffsideWylderdrake,
 }
 
 local NEW_ROW_OPCODE = -1; -- Used to indicate that the layout should move to the next row

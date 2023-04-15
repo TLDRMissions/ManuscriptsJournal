@@ -4,7 +4,8 @@
 ## Notes: Adds a Manuscripts tab to the Collections Journal
 ## Author: Teelo
 ## X-Curse-Project-ID: 850505
-## Dependencies: Blizzard_Collections
+## LoadOnDemand: 1
+## LoadWith: Blizzard_Collections
 
 libs\LibStub\LibStub.lua
 libs\AceLocale-3.0\AceLocale-3.0.xml
@@ -18,6 +19,7 @@ FilterDropDown.lua
 enums.lua
 
 db\init.lua
+db\RenewedProtoDrake.lua
 db\CliffsideWylderdrake.lua
 db\HighlandDrake.lua
 db\final.lua

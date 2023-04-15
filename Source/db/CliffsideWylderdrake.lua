@@ -342,7 +342,7 @@ local manuscripts = {
         itemID = 196979,
         questID = 69179,
         source = sources.Container,
-        containerID = 204359,
+        containerID = 199192,
     },
     {
         name = "Cliffside Wylderdrake: Finned Tail",
@@ -394,7 +394,7 @@ local manuscripts = {
         itemID = 196971,
         questID = 69171,
         source = sources.Container,
-        containerID = 204359, 
+        containerID = 199192, 
     },
     {
         name = "Cliffside Wylderdrake: Gold and White Armor",
@@ -456,7 +456,7 @@ local manuscripts = {
         itemID = 197017,
         questID = 69217,
         source = sources.Container,
-        containerID = 204359, 
+        containerID = 199192, 
     },
     {
         name = "Cliffside Wylderdrake: Small Head Spikes",

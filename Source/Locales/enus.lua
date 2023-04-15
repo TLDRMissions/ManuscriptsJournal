@@ -12,6 +12,7 @@ L["Various in:"] = true
 
 L["Friend"] = true
 L["True Friend"] = true
+L["Maximum"] = true
 L["High"] = true
 L["Medium"] = true
 L["Low"] = true
@@ -105,8 +106,38 @@ L["Harkyn Grymstone"] = true
 L["Umbrelskul"] = true
 L["Various"] = true
 L["Kraxxus"] = true
-
-
+L["Erkhart Stormvein"] = true
+L["Firava the Rekindler"] = true
+L["Summoned Destroyer"] = true
+L["Bisquius"] = true
+L["Qalashi War Mammoth"] = true
+L["Battlehorn Pyrhus"] = true
+L["Lookout Mordren"] = true
+L["Worldcarver A'tir"] = true
+L["Mokshoi"] = true
+L["Smogswog the Firebreather"] = true
+L["Death's Shadow"] = true
+L["Gamgus"] = true
+L["Galnmor"] = true
+L["Infernum"] = true
+L["Kain Firebrand"] = true
+L["Zenet Avis"] = true
+L["Prozela Galeshot"] = true
+L["Ty'foon the Ascended"] = true
+L["Terillod the Devout"] = true
+L["Mikrin of the Raging Winds"] = true
+L["Tempestrian"] = true
+L["Gaelzion"] = true
+L["Pipspark Thundersnap"] = true
+L["Karantun"] = true
+L["Voraazka"] = true
+            
+L["Elemental Storms"] = true
 
 L["Primal Tsunami"] = true
 L["Echo of Doragosa"] = true
+L["Warlord Sargha"] = true
+L["Decatriarch Wratheye"] = true
+L["Raszageth the Storm-Eater"] = true
+
+L["Obsidian Grand Cache"] = true

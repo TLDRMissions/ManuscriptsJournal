@@ -6,6 +6,8 @@ addon.Enum = {}
 addon.Enum.Drakes = {}
 addon.Enum.Drakes.CliffsideWylderdrake = 1
 addon.Enum.Drakes.HighlandDrake = 2
+addon.Enum.Drakes.RenewedProtoDrake = 3
+addon.Enum.Drakes.WindborneVelocidrake = 4
 
 addon.Enum.Sources = {}
 addon.Enum.Sources.Rare = 1
@@ -18,6 +20,7 @@ addon.Enum.Sources.Hunt = 7
 addon.Enum.Sources.Container = 8
 addon.Enum.Sources.Quest = 9
 addon.Enum.Sources.Vendor = 10
+addon.Enum.Sources.Raid = 11
 
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1
@@ -25,8 +28,24 @@ addon.Enum.Zones.ws = 2
 
 addon.Strings = {}
 addon.Strings.Drakes = {}
-addon.Strings.Drakes[1] = L["Cliffside Wylderdrake"]
-addon.Strings.Drakes[2] = L["Highland Drake"]
+do
+    local item1 = Item:CreateFromItemID(194521)
+    item1:ContinueOnItemLoad(function()
+        addon.Strings.Drakes[1] = item1:GetItemName() 
+    end)
+    local item2 = Item:CreateFromItemID(194705)
+    item2:ContinueOnItemLoad(function()
+        addon.Strings.Drakes[2] = item2:GetItemName() 
+    end)
+    local item3 = Item:CreateFromItemID(194034)
+    item3:ContinueOnItemLoad(function()
+        addon.Strings.Drakes[3] = item3:GetItemName() 
+    end)
+    local item4 = Item:CreateFromItemID(194549)
+    item4:ContinueOnItemLoad(function()
+        addon.Strings.Drakes[4] = item4:GetItemName() 
+    end)
+end
 
 addon.Strings.Sources = {}
 addon.Strings.Sources[1] = L["Rare Spawns"]
@@ -39,6 +58,7 @@ addon.Strings.Sources[7] = L["Grand Hunts"]
 addon.Strings.Sources[8] = AUCTION_CATEGORY_CONTAINERS
 addon.Strings.Sources[9] = BATTLE_PET_SOURCE_2
 addon.Strings.Sources[10] = BATTLE_PET_SOURCE_3
+addon.Strings.Sources[11] = CALENDAR_TYPE_RAID
 
 addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645)
