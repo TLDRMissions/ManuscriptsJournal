@@ -13,9 +13,11 @@ L["Various in:"] = true
 L["Friend"] = true
 L["True Friend"] = true
 L["High"] = true
+L["Medium"] = true
 L["Low"] = true
 
 L["Cliffside Wylderdrake"] = true
+L["Highland Drake"] = true
 
 L["Gethdazr"] = true
 L["Corrupted Proto-Dragon"] = true
@@ -72,6 +74,39 @@ L["Snufflegust"] = true
 L["Astray Splasher"] = true
 L["Seereel, the Spring"] = true	
 L["Spellwrought Snowman"] = true
+L["Seeker Teryx"] = true
+L["Salkii"] = true
+L["Disoriented Watcher"] = true
+L["Forgotten Creation"] = true
+L["Ancient Protector"] = true
+L["Broodweaver Araznae"] = true
+L["Phenran"] = true
+L["Unstable Arcanogolem"] = true
+L["Srivantor"] = true
+L["Oshigol"] = true
+L["Magmaton"] = true
+L["Mahg the Trampler"] = true
+L["Spellforged Brute"] = true
+L["Skag the Thrower"] = true
+L["Tenmod"] = true
+L["Honmor"] = true
+L["Liskheszaera"] = true
+L["Trilvarus Loreweaver"] = true
+L["Motivator Krathos"] = true
+L["Grand Artificer Zeerak"] = true
+L["Gnarls"] = true
+L["Azra's Prized Peony"] = true
+L["Morlash"] = true
+L["Spellforged Destroyer"] = true
+L["Arkhuu"] = true
+L["Overseer Stonetongue"] = true
+L["Overloading Defense Matrix"] = true
+L["Harkyn Grymstone"] = true
+L["Umbrelskul"] = true
+L["Various"] = true
+L["Kraxxus"] = true
+
 
 
 L["Primal Tsunami"] = true
+L["Echo of Doragosa"] = true

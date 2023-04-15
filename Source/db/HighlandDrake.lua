@@ -3,7 +3,6 @@ local addonName, addon = ...
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName) 
 
 local sources = addon.Enum.Sources
-local zones = addon.Enum.Zones
 
 local manuscripts = {
     {

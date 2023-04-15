@@ -19,6 +19,7 @@ enums.lua
 
 db\init.lua
 db\CliffsideWylderdrake.lua
+db\HighlandDrake.lua
 db\final.lua
 
 ui.xml

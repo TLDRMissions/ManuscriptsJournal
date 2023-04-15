@@ -5,18 +5,22 @@ local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 local collectedManuscriptFilter = true
 local uncollectedManuscriptFilter = true
 local unusableManuscriptFilter = false
+local searchText = ""
+local sourceFilter = {}
 
 local function SetManuscriptSourceFilter(source, checked)
-    print(source, checked)
+    sourceFilter[source] = checked
 end
 
 local function GetManuscriptSourceFilter(source)
-    print("NYI")
-    return true
+    if sourceFilter[source] == nil then return true end
+    return sourceFilter[source]
 end
 
 local function SetAllSourceFilters(checked)
-
+    for i = 1, 99 do
+        sourceFilter[i] = checked
+    end
 end
 
 local function SetDefaultFilters()
@@ -156,6 +160,14 @@ do
             if link then
                 GameTooltip:AddLine(link)
             end
+        elseif source == addon.Enum.Sources.Quest then
+            GameTooltip:AddLine(C_QuestLog.GetTitleForQuestID(db.sourceQuestID))
+        elseif source == addon.Enum.Sources.Inscription then
+        elseif source == addon.Enum.Sources.Hunt then
+        elseif source == addon.Enum.Sources.Vendor then
+            GameTooltip:AddDoubleLine(db.vendorName, C_Map.GetAreaInfo(db.zoneID))
+        elseif source ~= nil then
+            print(source)
         end
         
         GameTooltip:Show()
@@ -194,7 +206,11 @@ function ManuscriptsMixin:OnLoad()
     local tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
     tab:SetText(L["ADDON_NAME"])
     tab.frame = self
-    tab.OnSelect = function() CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID()) end
+    tab.OnSelect = function()
+        CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
+        CollectionsJournalTitleText:SetText(L["ADDON_NAME"])
+        HeirloomsJournalClassDropDown:Hide()
+    end
     self.Tab = tab
     
 	--self:RegisterEvent("HEIRLOOMS_UPDATED");
@@ -280,6 +296,28 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
         if manuscriptData.source and (not collected) and uncollectedManuscriptFilter then include = true end
         if unusableManuscriptFilter and (not manuscriptData.source) then include = true end
         
+        if include and (searchText ~= "") then
+            include = false
+            local name = GetItemInfo(manuscriptData.itemID)
+            local source = addon.Strings.Sources[manuscriptData.source]
+            
+            if name and string.lower(name):find(searchText) then
+                include = true
+            elseif source and string.lower(source):find(searchText) then
+                include = true
+            elseif manuscriptData.rareNames then
+                for _, name in pairs(manuscriptData.rareNames) do
+                    if string.lower(name):find(searchText) then
+                        include = true
+                    end
+                end
+            end
+        end
+        
+        if include and (not GetManuscriptSourceFilter(manuscriptData.source)) then
+            include = false
+        end
+        
         if include then
     		local itemID = manuscriptData.itemID
     		
@@ -335,6 +373,7 @@ local VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET = 0;
 
 local DRAKE_SORT_ORDER = {
 	addon.Enum.Drakes.CliffsideWylderdrake,
+    addon.Enum.Drakes.HighlandDrake,
 }
 
 local NEW_ROW_OPCODE = -1; -- Used to indicate that the layout should move to the next row
@@ -629,6 +668,6 @@ end
 
 function ManuscriptsJournalSearchBox_OnTextChanged(self)
 	SearchBoxTemplate_OnTextChanged(self);
-	--C_Heirloom.SetSearch(self:GetText());
+	searchText = self:GetText()
 	ManuscriptsJournal:FullRefreshIfVisible();
 end
