@@ -211,7 +211,9 @@ function ManuscriptsMixin:OnLoad()
     tab:SetText(L["ADDON_NAME"])
     tab.frame = self
     tab.OnSelect = function()
-        CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
+        if not InCombatLockdown() then
+            CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
+        end
         CollectionsJournalTitleText:SetText(L["ADDON_NAME"])
         HeirloomsJournalClassDropDown:Hide()
     end
