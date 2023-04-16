@@ -1,7 +1,7 @@
-package-as: Manuscripts Journal
+package-as: ManuscriptsJournal
 
 move-folders:
- ManuscriptsJournal/Source: Manuscripts Journal
+ ManuscriptsJournal/Source: ManuscriptsJournal
 
 ignore:
  - LICENCE.md
