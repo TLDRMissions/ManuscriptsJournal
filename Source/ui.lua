@@ -116,12 +116,12 @@ do
     		ManuscriptsJournal_UpdateButton(self);
     	end
         
-        GameTooltip:AddLine(" ")
-        
-        local source = addon.itemIDToDB[self.itemID].source
-        GameTooltip:AddDoubleLine(L["Source:"], addon.Strings.Sources[source], 1, 1, 1, 1, 1, 1)
-
         local db = addon.itemIDToDB[self.itemID]
+        local source = db.source
+        if source == nil then return end
+        
+        GameTooltip:AddLine(" ")
+        GameTooltip:AddDoubleLine(L["Source:"], addon.Strings.Sources[source], 1, 1, 1, 1, 1, 1)
             
         if source == addon.Enum.Sources.Rare then
             if db.rareNames then
@@ -170,7 +170,7 @@ do
             GameTooltip:AddLine(db.bossName)
         elseif source == addon.Enum.Sources.Chest then
             GameTooltip:AddLine(db.chestName)
-        elseif source ~= nil then
+        else
             print(source)
         end
         
@@ -298,9 +298,9 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
         local collected = C_QuestLog.IsQuestFlaggedCompleted(manuscriptData.questID)
         
         local include = false
-        if manuscriptData.source and collected and collectedManuscriptFilter then include = true end
+        if collected and collectedManuscriptFilter then include = true end
         if manuscriptData.source and (not collected) and uncollectedManuscriptFilter then include = true end
-        if unusableManuscriptFilter and (not manuscriptData.source) then include = true end
+        if (not collected) and unusableManuscriptFilter and (not manuscriptData.source) then include = true end
         
         if include and (searchText ~= "") then
             include = false
