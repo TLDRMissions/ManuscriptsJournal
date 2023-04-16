@@ -21,6 +21,7 @@ addon.Enum.Sources.Container = 8
 addon.Enum.Sources.Quest = 9
 addon.Enum.Sources.Vendor = 10
 addon.Enum.Sources.Raid = 11
+addon.Enum.Sources.Chest = 12
 
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1
@@ -59,6 +60,7 @@ addon.Strings.Sources[8] = AUCTION_CATEGORY_CONTAINERS
 addon.Strings.Sources[9] = BATTLE_PET_SOURCE_2
 addon.Strings.Sources[10] = BATTLE_PET_SOURCE_3
 addon.Strings.Sources[11] = CALENDAR_TYPE_RAID
+addon.Strings.Sources[12] = ITEM_CONTAINER
 
 addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645)

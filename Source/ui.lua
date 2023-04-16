@@ -168,6 +168,8 @@ do
             GameTooltip:AddDoubleLine(db.vendorName, C_Map.GetAreaInfo(db.zoneID))
         elseif source == addon.Enum.Sources.Raid then
             GameTooltip:AddLine(db.bossName)
+        elseif source == addon.Enum.Sources.Chest then
+            GameTooltip:AddLine(db.chestName)
         elseif source ~= nil then
             print(source)
         end
@@ -375,6 +377,7 @@ local VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET = 0;
 
 local DRAKE_SORT_ORDER = {
     addon.Enum.Drakes.RenewedProtoDrake,
+    addon.Enum.Drakes.WindborneVelocidrake,
     addon.Enum.Drakes.HighlandDrake,
     addon.Enum.Drakes.CliffsideWylderdrake,
 }

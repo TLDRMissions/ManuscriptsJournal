@@ -542,7 +542,6 @@ local manuscripts = {
 }
 
 for k, v in pairs(manuscripts) do
-    v.iconID = 254299
     v.category = addon.Enum.Drakes.CliffsideWylderdrake
     table.insert(addon.db, v)
 end

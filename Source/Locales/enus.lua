@@ -9,6 +9,7 @@ L["Source:"] = true
 L["Grand Hunts"] = true
 L["Required Rank:"] = true
 L["Various in:"] = true
+L["Various"] = true
 
 L["Friend"] = true
 L["True Friend"] = true
@@ -19,6 +20,9 @@ L["Low"] = true
 
 L["Cliffside Wylderdrake"] = true
 L["Highland Drake"] = true
+
+L["Kraxxus"] = true
+L["Meiz"] = true
 
 L["Gethdazr"] = true
 L["Corrupted Proto-Dragon"] = true
@@ -104,8 +108,6 @@ L["Overseer Stonetongue"] = true
 L["Overloading Defense Matrix"] = true
 L["Harkyn Grymstone"] = true
 L["Umbrelskul"] = true
-L["Various"] = true
-L["Kraxxus"] = true
 L["Erkhart Stormvein"] = true
 L["Firava the Rekindler"] = true
 L["Summoned Destroyer"] = true
@@ -131,6 +133,13 @@ L["Gaelzion"] = true
 L["Pipspark Thundersnap"] = true
 L["Karantun"] = true
 L["Voraazka"] = true
+L["Wyrmslayer Angvardi"] = true
+L["Ookbeard"] = true
+L["Volcanakk"] = true
+L["Lady Shaz'ra"] = true
+L["Blue Terror"] = true
+L["Pyrachniss"] = true
+L["Shardwing"] = true
             
 L["Elemental Storms"] = true
 
@@ -139,5 +148,8 @@ L["Echo of Doragosa"] = true
 L["Warlord Sargha"] = true
 L["Decatriarch Wratheye"] = true
 L["Raszageth the Storm-Eater"] = true
+L["Balakar Khan"] = true
 
 L["Obsidian Grand Cache"] = true
+L["Forgotten Dragon Treasure"] = true
+L["Decay Tainted Chest"] = true
