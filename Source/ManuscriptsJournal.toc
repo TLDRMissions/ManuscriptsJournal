@@ -13,6 +13,7 @@ libs\LibUIDropDownMenu\LibUIDropDownMenu.xml
 libs\SecureTabs-2.0\SecureTabs-2.0.lua
 
 Locales\enus.lua
+Locales\ruRU.lua
 
 FilterDropDown.lua
 
