@@ -149,7 +149,7 @@ do
                 GameTooltip:AddDoubleLine(L["Required Rank:"], db.friendshipRank)
             end
         elseif source == addon.Enum.Sources.Renown then
-            GameTooltip:AddDoubleLine(GetFactionInfoByID(db.renownFaction), "Rank: "..db.renownRank)
+            GameTooltip:AddDoubleLine(GetFactionInfoByID(db.renownFaction), RANK_COLON.." "..db.renownRank)
         elseif source == addon.Enum.Sources.Achievement then
             local _, name = GetAchievementInfo(db.achievementID)
             GameTooltip:AddLine(name)
