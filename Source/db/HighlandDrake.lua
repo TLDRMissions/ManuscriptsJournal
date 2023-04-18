@@ -227,6 +227,7 @@ local manuscripts = {
         source = sources.Renown,
         renownFaction = 2511,
         renownRank = 13,
+        bugged = true,
     },
     {
         name = "Highland Drake: Large Spotted Pattern",

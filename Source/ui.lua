@@ -174,6 +174,10 @@ do
             print(source)
         end
         
+        if db.bugged and (not C_QuestLog.IsQuestFlaggedCompleted(db.questID)) then
+            GameTooltip:AddLine(L["Bugged"], 1, 0, 0)
+        end
+        
         GameTooltip:Show()
     end
 end

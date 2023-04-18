@@ -10,6 +10,7 @@ L["Grand Hunts"] = true
 L["Required Rank:"] = true
 L["Various in:"] = true
 L["Various"] = true
+L["Bugged"] = "Due to a bug, this may be unobtainable."
 
 L["Friend"] = true
 L["True Friend"] = true
