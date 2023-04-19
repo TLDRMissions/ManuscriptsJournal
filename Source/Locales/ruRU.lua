@@ -12,6 +12,7 @@ L["Grand Hunts"] = "Великая охота"
 L["Required Rank:"] = "Ранг:"
 L["Various in:"] = "Различные в:"
 L["Various"] = "Различный"
+L["Bugged"] = "Из-за ошибки это может быть недоступно."
 
 L["Friend"] = "Друг"
 L["True Friend"] = "Настоящий друг"
