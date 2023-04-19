@@ -539,6 +539,16 @@ local manuscripts = {
         itemID = 197120,
         questID = 69321,
     },
+    {
+        name = "Highland Drake: Helm",
+        itemID = 197119,
+        questID = 69320,
+    },
+    {
+        name = "Highland Drake: Armor",
+        itemID = 197099,
+        questID = 69300,
+    },
 }
 
 for k, v in pairs(manuscripts) do
