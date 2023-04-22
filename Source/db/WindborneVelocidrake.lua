@@ -72,7 +72,7 @@ local manuscripts = {
         questID = 69829,
         source = sources.Dungeon,
         bossName = L["Balakar Khan"],
-        zoneID = 13982,
+        zoneID = 14478,
     },
     {
         name = "Windborne Velocidrake: Club Tail",
@@ -113,7 +113,7 @@ local manuscripts = {
         questID = 69846,
         source = sources.Dungeon,
         bossName = L["Balakar Khan"],
-        zoneID = 13982,
+        zoneID = 14478,
     },
     {
         name = "Windborne Velocidrake: Heavy Scales",
