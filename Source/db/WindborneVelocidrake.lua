@@ -216,6 +216,7 @@ local manuscripts = {
         questID = 69802,
         source = sources.Chest,
         chestName = L["Decay Tainted Chest"],
+        zoneID = 13991,
     },
     {
         name = "Windborne Velocidrake: Black Scales",
