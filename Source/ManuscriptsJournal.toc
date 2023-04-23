@@ -1,9 +1,9 @@
 ## Interface: 100007
 ## Title: Manuscripts Journal
-## Title-ruRU: Журнал Манускриптов для Драконов
+## Title-ruRU: Журнал Манускриптов
 ## Version: 10.0-005
 ## Notes: Adds a Manuscripts tab to the Collections Journal
-## Notes-ruRU: Добавляет вкладку Манускрипты в журнал коллекций
+## Notes-ruRU: Манускрипты наблюдения за драконами
 ## Author: Teelo
 ## X-Curse-Project-ID: 850505
 ## LoadOnDemand: 1
