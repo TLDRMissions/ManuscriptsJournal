@@ -228,40 +228,14 @@ function ManuscriptsMixin:OnLoad()
         CollectionsJournalTitleText:SetText(L["ADDON_NAME"])
         HeirloomsJournalClassDropDown:Hide()
     end
+    tab.OnDeselect = function()
+        HeirloomsJournalClassDropDown:Show()
+    end
     self.Tab = tab
     
 	--self:RegisterEvent("HEIRLOOMS_UPDATED");
 	--self:RegisterEvent("HEIRLOOM_UPGRADE_TARGETING_CHANGED");
 end
-
---[[
-function ManuscriptsMixin:OnManuscriptsUpdated(itemID, updateReason, ...)
-	if itemID then
-		-- Single item update
-		local requiresFullUpdate = false;
-		if updateReason == "NEW" then
-			local wasHidden = ...;
-
-			self.newHeirlooms[itemID] = true;
-			if self.itemIDsInCurrentLayout[itemID] then
-				self.numKnownHeirlooms = self.numKnownHeirlooms + 1;
-				self:UpdateProgressBar();
-			end
-
-			requiresFullUpdate = wasHidden;
-		end
-
-		if requiresFullUpdate then
-			self:FullRefreshIfVisible();
-		else
-			self:RefreshViewIfVisible();
-		end
-	else
-		-- Full update
-		self:FullRefreshIfVisible();
-	end
-end
-]]
 
 function ManuscriptsMixin:ClearNewStatus(itemID)
 	if self.newManuscripts[itemID] then
