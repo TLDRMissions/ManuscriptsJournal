@@ -14,7 +14,7 @@ end
 
 local function GetManuscriptSourceFilter(source)
     if source == nil then
-        return sourceFilter[addon.Enum.Sources.Unknown]
+        return (sourceFilter[addon.Enum.Sources.Unknown] ~= false) -- treat 'nil' as 'true' for initial values
     end
     if sourceFilter[source] == nil then return true end
     return sourceFilter[source]
