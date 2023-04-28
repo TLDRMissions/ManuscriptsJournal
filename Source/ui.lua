@@ -292,13 +292,13 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
             local name = GetItemInfo(manuscriptData.itemID)
             local source = addon.Strings.Sources[manuscriptData.source]
             
-            if name and string.lower(name):find(searchText) then
+            if name and string.lower(name):find(string.lower(searchText)) then
                 include = true
-            elseif source and string.lower(source):find(searchText) then
+            elseif source and string.lower(source):find(string.lower(searchText)) then
                 include = true
             elseif manuscriptData.rareNames then
                 for _, name in pairs(manuscriptData.rareNames) do
-                    if string.lower(name):find(searchText) then
+                    if string.lower(name):find(string.lower(searchText)) then
                         include = true
                     end
                 end
