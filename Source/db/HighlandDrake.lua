@@ -548,6 +548,9 @@ local manuscripts = {
         name = "Highland Drake: Armor",
         itemID = 197099,
         questID = 69300,
+        source = sources.Renown,
+        renownFaction = 2510,
+        renownRank = 26,
     },
 }
 

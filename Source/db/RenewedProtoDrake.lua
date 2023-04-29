@@ -176,6 +176,9 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Armor",
         itemID = 197357,
         questID = 69558,
+        source = sources.Renown,
+        renownFaction = 2510,
+        renownRank = 26,
     },
     {
         name = "Renewed Proto-Drake: White Scales",

@@ -415,6 +415,9 @@ local manuscripts = {
         name = "Windborne Velocidrake: Armor",
         itemID = 197588,
         questID = 69792,
+        source = sources.Renown,
+        renownFaction = 2510,
+        renownRank = 26,
     },
     {
         name = "Windborne Velocidrake: Bronze Scales",

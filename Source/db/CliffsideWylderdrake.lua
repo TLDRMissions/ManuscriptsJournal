@@ -548,6 +548,9 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Armor",
         itemID = 196961,
         questID = 69161,
+        source = sources.Renown,
+        renownFaction = 2510,
+        renownRank = 26,
     }    
 }
 
