@@ -1,7 +1,7 @@
 ## Interface: 100007
 ## Title: Manuscripts Journal
 ## Title-ruRU: Журнал Манускриптов для Драконов
-## Version: 10.0-008
+## Version: 10.0-009
 ## Notes: Adds a Manuscripts tab to the Collections Journal
 ## Notes-ruRU: Добавляет вкладку Манускрипты в журнал коллекций
 ## Author: Teelo
@@ -29,3 +29,5 @@ db\WindborneVelocidrake.lua
 db\final.lua
 
 ui.xml
+
+bindings.lua

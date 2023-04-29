@@ -204,6 +204,7 @@ do
 	end
 end
 
+local tab
 function ManuscriptsMixin:OnLoad()
 	self.newManuscripts = {}
 
@@ -218,7 +219,7 @@ function ManuscriptsMixin:OnLoad()
 
 	self:FullRefreshIfVisible();
 
-    local tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
+    tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
     tab:SetText(L["ADDON_NAME"])
     tab.frame = self
     tab.OnSelect = function()
@@ -235,6 +236,10 @@ function ManuscriptsMixin:OnLoad()
     
 	--self:RegisterEvent("HEIRLOOMS_UPDATED");
 	--self:RegisterEvent("HEIRLOOM_UPGRADE_TARGETING_CHANGED");
+end
+
+function ManuscriptsMixin:OnKeybinding()
+    LibStub('SecureTabs-2.0'):Select(tab)
 end
 
 function ManuscriptsMixin:ClearNewStatus(itemID)

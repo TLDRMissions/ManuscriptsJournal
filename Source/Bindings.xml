@@ -1,0 +1,8 @@
+<Bindings>
+	<Binding name="MANUSCRIPTSJOURNAL_TOGGLE" header="MANUSCRIPTSJOURNAL" category="BINDING_HEADER_INTERFACE">
+		if not InCombatLockdown() then
+            ToggleCollectionsJournal()
+            ManuscriptsJournal:OnKeybinding()
+        end
+	</Binding>
+</Bindings>
