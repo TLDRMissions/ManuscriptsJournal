@@ -318,7 +318,7 @@ local manuscripts = {
         itemID = 197007,
         questID = 69207,
         source = sources.Dungeon,
-        bossName = "Primal Tsunami",
+        bossName = L["Primal Tsunami"],
         zoneID = 14082,
     },
     {

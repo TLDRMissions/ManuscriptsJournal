@@ -1,13 +1,14 @@
-## Interface: 100007
+## Interface: 100100
 ## Title: Manuscripts Journal
 ## Title-ruRU: Журнал Манускриптов для Драконов
-## Version: 10.0-009
+## Version: 10.1-001
 ## Notes: Adds a Manuscripts tab to the Collections Journal
 ## Notes-ruRU: Добавляет вкладку Манускрипты в журнал коллекций
 ## Author: Teelo
 ## X-Curse-Project-ID: 850505
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_Collections
+## IconTexture: 254291
 
 libs\LibStub\LibStub.lua
 libs\AceLocale-3.0\AceLocale-3.0.xml
@@ -26,6 +27,7 @@ db\RenewedProtoDrake.lua
 db\CliffsideWylderdrake.lua
 db\HighlandDrake.lua
 db\WindborneVelocidrake.lua
+db\10-1.lua
 db\final.lua
 
 ui.xml
