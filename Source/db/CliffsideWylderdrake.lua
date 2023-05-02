@@ -459,12 +459,6 @@ local manuscripts = {
         containerID = 199192, 
     },
     {
-        name = "Cliffside Wylderdrake: Small Head Spikes",
-        itemID = 196978,
-        questID = 69178,
-        --source = sources., 
-    },
-    {
         name = "Cliffside Wylderdrake: Sleek Horns",
         itemID = 196993,
         questID = 69193,
@@ -486,12 +480,6 @@ local manuscripts = {
             L["Voll"],
             L["Captain Lancer"],
         }, 
-    },
-    {
-        name = "Cliffside Wylderdrake: Spiked Club Tail",
-        itemID = 197021,
-        questID = 69221,
-        --source = sources., 
     },
     {
         name = "Cliffside Wylderdrake: Bronze and Teal Armor",

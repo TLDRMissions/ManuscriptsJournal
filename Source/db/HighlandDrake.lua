@@ -500,19 +500,9 @@ local manuscripts = {
         achievementID = 15923,
     },
     {
-        name = "Highland Drake: Bronze and Green Armor",
-        itemID = 197156,
-        questID = 69357,
-    },
-    {
         name = "Highland Drake: Embodiment of the Crimson Gladiator",
         itemID = 201792,
         questID = 72371,
-    },
-    {
-        name = "Highland Drake: Spiked Head",
-        itemID = 197109,
-        questID = 69310,
     },
     {
         name = "Highland Drake: Tapered Chin",
@@ -533,11 +523,6 @@ local manuscripts = {
         name = "Highland Drake: Spiked Legs",
         itemID = 197134,
         questID = 69335,
-    },
-    {
-        name = "Highland Drake: Ornate Helm",
-        itemID = 197120,
-        questID = 69321,
     },
     {
         name = "Highland Drake: Helm",

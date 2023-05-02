@@ -168,11 +168,6 @@ local manuscripts = {
         questID = 73057,
     },
     {
-        name = "Renewed Proto-Drake: Plated Jaw",
-        itemID = 202275,
-        questID = 73059,
-    },
-    {
         name = "Renewed Proto-Drake: Armor",
         itemID = 197357,
         questID = 69558,
@@ -209,11 +204,6 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Black and Red Armor",
         itemID = 197348,
         questID = 69549,
-    },
-    {
-        name = "Renewed Proto-Drake: Short Spiked Crest",
-        itemID = 197364,
-        questID = 69565,
     },
     {
         name = "Renewed Proto-Drake: Bronze and Pink Armor",

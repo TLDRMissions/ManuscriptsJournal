@@ -8,6 +8,7 @@ addon.Enum.Drakes.CliffsideWylderdrake = 1
 addon.Enum.Drakes.HighlandDrake = 2
 addon.Enum.Drakes.RenewedProtoDrake = 3
 addon.Enum.Drakes.WindborneVelocidrake = 4
+addon.Enum.Drakes.WindingSlitherdrake = 5
 
 addon.Enum.Sources = {}
 addon.Enum.Sources.Rare = 1
@@ -46,6 +47,10 @@ do
     local item4 = Item:CreateFromItemID(194549)
     item4:ContinueOnItemLoad(function()
         addon.Strings.Drakes[4] = item4:GetItemName() 
+    end)
+    local item5 = Item:CreateFromItemID(204361)
+    item5:ContinueOnItemLoad(function()
+        addon.Strings.Drakes[5] = item5:GetItemName()
     end)
 end
 
