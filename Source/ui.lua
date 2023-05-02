@@ -368,6 +368,7 @@ local START_OFFSET_Y = -25;
 local VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET = 0;
 
 local DRAKE_SORT_ORDER = {
+    addon.Enum.Drakes.WindingSlitherdrake,
     addon.Enum.Drakes.RenewedProtoDrake,
     addon.Enum.Drakes.WindborneVelocidrake,
     addon.Enum.Drakes.HighlandDrake,
