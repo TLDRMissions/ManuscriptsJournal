@@ -16,11 +16,11 @@ local manuscripts = {
 		itemID = 203338,
 		questID = 73829,
 	},
-	{
-		name = "Winding Slitherdrake: Armor",
-		itemID = 203305,
-		questID = 73793,
-	},
+	--{
+	--	name = "Winding Slitherdrake: Armor",
+	--	itemID = 203305,
+	--	questID = 73793,
+	--},
 	{
 		name = "Winding Slitherdrake: Blonde Hair",
 		itemID = 203322,
@@ -383,6 +383,7 @@ local manuscripts = {
 		itemID = 203355,
 		questID = 73846,
 	},
+}
 
 for k, v in pairs(manuscripts) do
     v.category = addon.Enum.Drakes.WindingSlitherdrake

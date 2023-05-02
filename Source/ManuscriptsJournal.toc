@@ -27,6 +27,7 @@ db\RenewedProtoDrake.lua
 db\CliffsideWylderdrake.lua
 db\HighlandDrake.lua
 db\WindborneVelocidrake.lua
+db\WindingSlitherdrake.lua
 db\10-1.lua
 db\final.lua
 
