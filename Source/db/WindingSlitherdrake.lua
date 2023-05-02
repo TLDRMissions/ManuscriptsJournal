@@ -54,6 +54,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Cluster Chin Horn",
 		itemID = 203312,
 		questID = 73800,
+        source = sources.Vendor,
+        vendorName = L["Ponzo"],
 	},
 	{
 		name = "Winding Slitherdrake: Cluster Horns",
@@ -79,6 +81,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Curled Nose",
 		itemID = 203346,
 		questID = 73837,
+        source = sources.Vendor,
+        vendorName = L["Ponzo"],
 	},
 	{
 		name = "Winding Slitherdrake: Curved Chin Horn",
@@ -136,6 +140,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Hairy Brow",
 		itemID = 203308,
 		questID = 73796,
+        source = sources.Vendor,
+        vendorName = L["Ponzo"],
 	},
 	{
 		name = "Winding Slitherdrake: Hairy Chin",

@@ -2,6 +2,7 @@ local addonName, addon = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true)
 if not L then return end
 
+-- Misc strings
 L["MANUSCRIPTS_PROGRESS_FORMAT"] = "%d/%d"
 L["Rare Spawns"] = true
 L["ADDON_NAME"] = "Manuscripts"
@@ -12,6 +13,7 @@ L["Various in:"] = true
 L["Various"] = true
 L["Bugged"] = "Due to a bug, this may be unobtainable."
 
+-- Reputation and Friendship ranks
 L["Friend"] = true
 L["True Friend"] = true
 L["Maximum"] = true
@@ -19,12 +21,12 @@ L["High"] = true
 L["Medium"] = true
 L["Low"] = true
 
-L["Cliffside Wylderdrake"] = true
-L["Highland Drake"] = true
-
+-- Vendors
 L["Kraxxus"] = true
 L["Meiz"] = true
+L["Ponzo"] = true
 
+-- Rare spawns
 L["Gethdazr"] = true
 L["Corrupted Proto-Dragon"] = true
 L["Diluu"] = true
