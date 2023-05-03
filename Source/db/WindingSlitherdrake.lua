@@ -386,6 +386,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: White Horns",
 		itemID = 203328,
 		questID = 73816,
+        source = sources.Rare,
+        rareName = L["Invoq"],
 	},
 	{
 		name = "Winding Slitherdrake: White Scales",

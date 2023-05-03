@@ -153,6 +153,7 @@ L["Flowfy"] = true
 L["Karokta"] = true
 L["Kob'rok"] = true
 L["Viridian King"] = true
+L["Invoq"] = true
 
 -- bosses
 L["Primal Tsunami"] = true
