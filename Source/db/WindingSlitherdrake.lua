@@ -56,6 +56,7 @@ local manuscripts = {
 		questID = 73800,
         source = sources.Vendor,
         vendorName = L["Ponzo"],
+        zoneID = 14022,
 	},
 	{
 		name = "Winding Slitherdrake: Cluster Horns",
@@ -83,6 +84,7 @@ local manuscripts = {
 		questID = 73837,
         source = sources.Vendor,
         vendorName = L["Ponzo"],
+        zoneID = 14022,
 	},
 	{
 		name = "Winding Slitherdrake: Curved Chin Horn",
@@ -142,6 +144,7 @@ local manuscripts = {
 		questID = 73796,
         source = sources.Vendor,
         vendorName = L["Ponzo"],
+        zoneID = 14022,
 	},
 	{
 		name = "Winding Slitherdrake: Hairy Chin",
