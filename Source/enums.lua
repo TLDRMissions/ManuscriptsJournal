@@ -28,6 +28,7 @@ addon.Enum.Sources.Unknown = 13
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1
 addon.Enum.Zones.ws = 2
+addon.Enum.Zones.zara = 3
 
 addon.Strings = {}
 addon.Strings.Drakes = {}
@@ -72,3 +73,4 @@ addon.Strings.Sources[13] = COMBATLOG_FILTER_STRING_UNKNOWN_UNITS
 addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645)
 addon.Strings.Zones[2] = C_Map.GetAreaInfo(13644)
+addon.Strings.Zones[3] = C_Map.GetAreaInfo(14022)

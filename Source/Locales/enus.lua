@@ -146,6 +146,15 @@ L["Shardwing"] = true
             
 L["Elemental Storms"] = true
 
+-- 10.1 rare spawns
+L["Alcanon"] = true
+L["Colossian"] = true
+L["Flowfy"] = true
+L["Karokta"] = true
+L["Kob'rok"] = true
+L["Viridian King"] = true
+
+-- bosses
 L["Primal Tsunami"] = true
 L["Echo of Doragosa"] = true
 L["Warlord Sargha"] = true
@@ -153,6 +162,7 @@ L["Decatriarch Wratheye"] = true
 L["Raszageth the Storm-Eater"] = true
 L["Balakar Khan"] = true
 
+-- containers
 L["Obsidian Grand Cache"] = true
 L["Forgotten Dragon Treasure"] = true
 L["Decay Tainted Chest"] = true

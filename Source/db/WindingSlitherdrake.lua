@@ -234,6 +234,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Long Chin Horn",
 		itemID = 203309,
 		questID = 73797,
+        source = sources.Rare,
+        rareZone = zones.zara,
 	},
 	{
 		name = "Winding Slitherdrake: Long Jaw Horns",
@@ -252,6 +254,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Plated Brow",
 		itemID = 203307,
 		questID = 73795,
+        source = sources.Rare,
+        rareName = L["Alcanon"],
 	},
 	{
 		name = "Winding Slitherdrake: Pointed Nose",
@@ -320,6 +324,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Small Finned Tail",
 		itemID = 203358,
 		questID = 73850,
+        source = sources.Rare,
+        rareName = L["Karokta"],
 	},
 	{
 		name = "Winding Slitherdrake: Small Finned Throat",
@@ -351,6 +357,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Split Jaw Horns",
 		itemID = 203345,
 		questID = 73836,
+        source = sources.Rare,
+        rareName = L["Viridian King"],
 	},
 	{
 		name = "Winding Slitherdrake: Swept Horns",

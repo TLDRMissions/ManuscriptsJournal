@@ -19,7 +19,8 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Spiked Club Tail",
         itemID = 197021,
         questID = 69221,
-        --source = sources., 
+        source = sources.Rare,
+        rareName = L["Kob'rok"], 
     },
     {
         category = drakes.HighlandDrake,
@@ -41,12 +42,16 @@ local manuscripts = {
         name = "Highland Drake: Spiked Head",
         itemID = 197109,
         questID = 69310,
+        source = sources.Rare,
+        rareName = L["Flowfy"],
     },
     {
         category = drakes.RenewedProtoDrake,
         name = "Renewed Proto-Drake: Short Spiked Crest",
         itemID = 197364,
         questID = 69565,
+        source = sources.Rare,
+        rareName = L["Colossian"],
     },
     {
         category = drakes.RenewedProtoDrake,
