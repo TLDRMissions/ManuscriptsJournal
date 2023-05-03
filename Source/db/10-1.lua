@@ -58,6 +58,9 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Plated Jaw",
         itemID = 202275,
         questID = 73059,
+        source = sources.Chest,
+        chestName = L["Waterlogged Bundle"], -- needs confirmation
+        zoneID = 14022,
     },
 }
 

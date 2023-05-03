@@ -75,11 +75,15 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Curled Cheek Horn",
 		itemID = 203321,
 		questID = 73809,
+        source = sources.Rare,
+        rareName = L["Skornak"],
 	},
 	{
 		name = "Winding Slitherdrake: Curled Horns",
 		itemID = 203334,
 		questID = 73824,
+        source = sources.Rare,
+        rareName = L["General Zskorro"],
 	},
 	{
 		name = "Winding Slitherdrake: Curled Nose",
@@ -112,6 +116,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Ears",
 		itemID = 203320,
 		questID = 73808,
+        source = sources.Rare,
+        rareName = L["Dinn"],
 	},
 	{
 		name = "Winding Slitherdrake: Finned Cheek",
@@ -222,6 +228,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Large Finned Throat",
 		itemID = 203363,
 		questID = 73855,
+        source = sources.Rare,
+        rareName = L["Emberdusk"],
 	},
 	{
 		name = "Winding Slitherdrake: Large Spiked Nose",

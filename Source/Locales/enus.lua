@@ -154,6 +154,10 @@ L["Karokta"] = true
 L["Kob'rok"] = true
 L["Viridian King"] = true
 L["Invoq"] = true
+L["Emberdusk"] = true
+L["Skornak"] = true
+L["Dinn"] = true
+L["General Zskorro"] = true
 
 -- bosses
 L["Primal Tsunami"] = true
@@ -167,3 +171,4 @@ L["Balakar Khan"] = true
 L["Obsidian Grand Cache"] = true
 L["Forgotten Dragon Treasure"] = true
 L["Decay Tainted Chest"] = true
+L["Waterlogged Bundle"] = true
