@@ -36,7 +36,7 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Blue Scales",
 		itemID = 203350,
 		questID = 73841,
-        source = source.Renown,
+        source = sources.Renown,
         renownFaction = 2511,
         renownRank = 19, -- needs confirmation
 	},
