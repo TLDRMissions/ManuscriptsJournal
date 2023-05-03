@@ -158,11 +158,6 @@ local manuscripts = {
         },
     },
     {
-        name = "Renewed Proto-Drake: Pronged Tail",
-        itemID = 202280,
-        questID = 73060,
-    },
-    {
         name = "Renewed Proto-Drake: Bruiser Horns",
         itemID = 202277,
         questID = 73057,

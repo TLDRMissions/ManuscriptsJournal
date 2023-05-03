@@ -62,6 +62,13 @@ local manuscripts = {
         chestName = L["Waterlogged Bundle"], -- needs confirmation
         zoneID = 14022,
     },
+    {
+        name = "Renewed Proto-Drake: Pronged Tail",
+        itemID = 202280,
+        questID = 73060,
+        source = sources.Container,
+        containerID = 205226,
+    },
 }
 
 for k, v in pairs(manuscripts) do

@@ -333,6 +333,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Small Finned Crest",
 		itemID = 203317,
 		questID = 73805,
+        source = sources.Container,
+        containerID = 205226,
 	},
 	{
 		name = "Winding Slitherdrake: Small Finned Tail",
