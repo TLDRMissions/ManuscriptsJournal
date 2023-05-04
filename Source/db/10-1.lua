@@ -63,6 +63,7 @@ local manuscripts = {
         zoneID = 14022,
     },
     {
+        category = drakes.RenewedProtoDrake,
         name = "Renewed Proto-Drake: Pronged Tail",
         itemID = 202280,
         questID = 73060,
@@ -70,6 +71,7 @@ local manuscripts = {
         containerID = 205226,
     },
     {
+        category = drakes.RenewedProtoDrake,
         name = "Renewed Proto-Drake: Brown Hair",
         itemID = 197369,
         questID = 69570,
