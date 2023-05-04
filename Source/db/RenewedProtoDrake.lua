@@ -218,11 +218,6 @@ local manuscripts = {
         bossName = L["Raszageth the Storm-Eater"],
     },
     {
-        name = "Renewed Proto-Drake: Brown Hair",
-        itemID = 197369,
-        questID = 69570,
-    },
-    {
         name = "Renewed Proto-Drake: Antlers",
         itemID = 202278,
         questID = 73058,

@@ -69,6 +69,14 @@ local manuscripts = {
         source = sources.Container,
         containerID = 205226,
     },
+    {
+        name = "Renewed Proto-Drake: Brown Hair",
+        itemID = 197369,
+        questID = 69570,
+        source = sources.Renown,
+        renownFaction = 2507,
+        renownRank = "22",
+    },
 }
 
 for k, v in pairs(manuscripts) do
