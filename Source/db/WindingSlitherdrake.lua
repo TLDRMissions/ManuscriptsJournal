@@ -38,7 +38,7 @@ local manuscripts = {
 		questID = 73841,
         source = sources.Renown,
         renownFaction = 2511,
-        renownRank = "??", -- needs confirmation
+        renownRank = "19",
 	},
 	{
 		name = "Winding Slitherdrake: Bronze Scales",
@@ -46,7 +46,7 @@ local manuscripts = {
 		questID = 73842,
         source = sources.Renown,
         renownFaction = 2510,
-        renownRank = "??", -- needs confirmation
+        renownRank = "21",
 	},
 	{
 		name = "Winding Slitherdrake: Brown Hair",
@@ -151,7 +151,7 @@ local manuscripts = {
 		questID = 73843,
         source = sources.Renown,
         renownFaction = 2503,
-        renownRank = "??", -- needs confirmation
+        renownRank = "19",
 	},
 	{
 		name = "Winding Slitherdrake: Hairy Brow",
@@ -303,7 +303,7 @@ local manuscripts = {
 		questID = 73844,
         source = sources.Renown,
         renownFaction = 2507,
-        renownRank = "??", -- needs confirmation
+        renownRank = "22",
 	},
 	{
 		name = "Winding Slitherdrake: Tan Horns",
