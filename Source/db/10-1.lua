@@ -77,7 +77,7 @@ local manuscripts = {
         questID = 69570,
         source = sources.Renown,
         renownFaction = 2507,
-        renownRank = "22",
+        renownRank = "9",
     },
 }
 
