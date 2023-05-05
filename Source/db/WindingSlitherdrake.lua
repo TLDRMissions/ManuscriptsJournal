@@ -172,6 +172,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Hairy Crest",
 		itemID = 203318,
 		questID = 73806,
+        source = sources.Rare,
+        rareName = L["Spinmarrow"],
 	},
 	{
 		name = "Winding Slitherdrake: Hairy Jaw",
