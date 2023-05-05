@@ -158,6 +158,7 @@ L["Emberdusk"] = true
 L["Skornak"] = true
 L["Dinn"] = true
 L["General Zskorro"] = true
+L["Subterrax"] = true
 
 -- bosses
 L["Primal Tsunami"] = true

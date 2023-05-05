@@ -15,6 +15,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Antler Horns",
 		itemID = 203338,
 		questID = 73829,
+        source = sources.Rare,
+        rareName = L["Subterrax"],
 	},
 	--{
 	--	name = "Winding Slitherdrake: Armor",
