@@ -223,7 +223,7 @@ local manuscripts = {
     {
         name = "Highland Drake: Thorn Horns",
         itemID = 197123,
-        questID = 69316,
+        questID = 69324,
         source = sources.Renown,
         renownFaction = 2511,
         renownRank = 13,
