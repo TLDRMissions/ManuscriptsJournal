@@ -505,11 +505,6 @@ local manuscripts = {
         questID = 72371,
     },
     {
-        name = "Highland Drake: Tapered Chin",
-        itemID = 197104,
-        questID = 69305,
-    },
-    {
         name = "Highland Drake: White Scales",
         itemID = 197146,
         questID = 69347,

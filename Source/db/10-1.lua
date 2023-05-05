@@ -79,6 +79,13 @@ local manuscripts = {
         renownFaction = 2507,
         renownRank = "9",
     },
+    {
+        name = "Highland Drake: Tapered Chin",
+        itemID = 197104,
+        questID = 69305,
+        source = sources.Container,
+        containerID = 205226,
+    },
 }
 
 for k, v in pairs(manuscripts) do
