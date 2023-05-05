@@ -59,7 +59,7 @@ local manuscripts = {
         itemID = 202275,
         questID = 73059,
         source = sources.Chest,
-        chestName = L["Waterlogged Bundle"], -- needs confirmation
+        chestName = CLUB_FINDER_ANY_FLAG,
         zoneID = 14022,
     },
     {
