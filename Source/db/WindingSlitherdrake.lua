@@ -205,6 +205,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Heavy Scales",
         itemID = 205341,
         questID = 75743,
+        source = sources.Rare,
+        rareName = L["Kapraku"],
     },
     {
         name = "Winding Slitherdrake: Helm",
