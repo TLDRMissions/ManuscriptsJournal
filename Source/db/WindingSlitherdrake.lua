@@ -297,11 +297,15 @@ local manuscripts = {
         name = "Winding Slitherdrake: Red and Gold Armor",
         itemID = 203303,
         questID = 73791,
+        source = sources.Achievement,
+        achievementID = 17487,
     },
     {
         name = "Winding Slitherdrake: Red Hair",
         itemID = 203325,
         questID = 73813,
+        source = sources.Achievement,
+        achievementID = 17484,
     },
     {
         name = "Winding Slitherdrake: Red Scales",
