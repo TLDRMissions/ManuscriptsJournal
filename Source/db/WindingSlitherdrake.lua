@@ -263,7 +263,7 @@ local manuscripts = {
         itemID = 203309,
         questID = 73797,
         source = sources.Rare,
-        rareZone = zones.zara,
+        rareName = L["Goopal"],
     },
     {
         name = "Winding Slitherdrake: Long Jaw Horns",

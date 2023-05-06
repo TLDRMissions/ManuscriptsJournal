@@ -162,6 +162,7 @@ L["Subterrax"] = true
 L["Spinmarrow"] = true
 L["Kapraku"] = true
 L["Magtembo"] = true
+L["Goopal"] = true
 
 -- bosses
 L["Primal Tsunami"] = true
