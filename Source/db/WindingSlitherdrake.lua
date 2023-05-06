@@ -222,6 +222,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Impaler Horns",
         itemID = 203339,
         questID = 73830,
+        source = sources.Rare,
+        rareName = L["Magtembo"],
     },
     {
         name = "Winding Slitherdrake: Large Finned Crest",

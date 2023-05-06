@@ -161,6 +161,7 @@ L["General Zskorro"] = true
 L["Subterrax"] = true
 L["Spinmarrow"] = true
 L["Kapraku"] = true
+L["Magtembo"] = true
 
 -- bosses
 L["Primal Tsunami"] = true
