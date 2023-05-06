@@ -70,6 +70,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Cluster Horns",
         itemID = 203331,
         questID = 73820,
+        source = sources.Rare,
+        rareName = L["Professor Gastrinax"],
     },
     {
         name = "Winding Slitherdrake: Cluster Jaw Horns",

@@ -163,6 +163,7 @@ L["Spinmarrow"] = true
 L["Kapraku"] = true
 L["Magtembo"] = true
 L["Goopal"] = true
+L["Professor Gastrinax"] = true
 
 -- bosses
 L["Primal Tsunami"] = true
