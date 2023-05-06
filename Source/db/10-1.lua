@@ -80,6 +80,7 @@ local manuscripts = {
         renownRank = "9",
     },
     {
+        category = drakes.HighlandDrake,
         name = "Highland Drake: Tapered Chin",
         itemID = 197104,
         questID = 69305,
