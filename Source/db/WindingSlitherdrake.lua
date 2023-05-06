@@ -285,6 +285,8 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Pointed Nose",
 		itemID = 203348,
 		questID = 73839,
+        source = sources.Container,
+        containerID = 205226,
 	},
 	{
 		name = "Winding Slitherdrake: Purple and Silver Armor",
