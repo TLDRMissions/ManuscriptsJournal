@@ -135,6 +135,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Finned Tip Tail",
         itemID = 203361,
         questID = 73853,
+        source = sources.Container,
+        containerID = 205226,
     },
     {
         name = "Winding Slitherdrake: Grand Chin Thorn",
@@ -338,6 +340,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Triple Jaw Horns",
         itemID = 203342,
         questID = 73833,
+        source = sources.Container,
+        containerID = 205226,
     },
     {
         name = "Winding Slitherdrake: Shark Finned Tail",

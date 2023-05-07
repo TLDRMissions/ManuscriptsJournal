@@ -12,7 +12,8 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Small Head Spikes",
         itemID = 196978,
         questID = 69178,
-        --source = sources., 
+        source = sources.Container,
+        containerID = 205226,
     },
     {
         category = drakes.CliffsideWylderdrake,
@@ -86,6 +87,14 @@ local manuscripts = {
         questID = 69305,
         source = sources.Container,
         containerID = 205226,
+    },
+    {
+        category = drakes.CliffsideWylderdrake,
+        name = "Cliffside Wylderdrake: Split Horns",
+        itemID = 196997,
+        questID = 69197,
+        source = sources.Container,
+        containerID = 205226, 
     },
 }
 

@@ -425,12 +425,6 @@ local manuscripts = {
         --source = sources., 
     },
     {
-        name = "Cliffside Wylderdrake: Split Horns",
-        itemID = 196997,
-        questID = 69197,
-        --source = sources., 
-    },
-    {
         name = "Cliffside Wylderdrake: Blunt Spiked Tail",
         itemID = 197019,
         questID = 69219,
