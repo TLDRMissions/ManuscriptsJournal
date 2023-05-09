@@ -214,8 +214,22 @@ function ManuscriptsMixin:OnLoad()
 	self.manuscriptLayoutData = {};
 	self.itemIDsInCurrentLayout = {};
 
-	self.numKnownManuscripts = 0;
-	self.numPossibleManuscripts = 0;
+	if not self.numKnownManuscripts then self.numKnownManuscripts = {} end
+    if not self.numPossibleManuscripts then self.numPossibleManuscripts = {} end
+    for i = 1, 5 do
+        self.numKnownManuscripts[i] = 0
+        self.numPossibleManuscripts[i] = 0
+        
+        self["mount"..i.."Bar"]:SetScript("OnEnter", function()
+            GameTooltip:SetOwner(self["mount"..i.."Bar"], "ANCHOR_BOTTOM")
+            GameTooltip:AddLine(addon.Strings.Drakes[i])
+            GameTooltip:Show()
+        end)
+        
+        self["mount"..i.."Bar"]:SetScript("OnLeave", function()
+            GameTooltip:Hide()
+        end)
+    end
 
 	self:FullRefreshIfVisible();
 
@@ -228,9 +242,13 @@ function ManuscriptsMixin:OnLoad()
         end
         CollectionsJournalTitleText:SetText(L["ADDON_NAME"])
         HeirloomsJournalClassDropDown:Hide()
+        HeirloomsJournal.progressBar:Hide()
+        HeirloomsJournal.SearchBox:Hide()
     end
     tab.OnDeselect = function()
         HeirloomsJournalClassDropDown:Show()
+        HeirloomsJournal.progressBar:Show()
+        HeirloomsJournal.SearchBox:Show()
     end
     self.Tab = tab
     
@@ -272,8 +290,10 @@ function ManuscriptsMixin:RebuildLayoutData()
 	self.manuscriptLayoutData = {};
 	self.itemIDsInCurrentLayout = {};
 
-	self.numKnownManuscripts = 0;
-	self.numPossibleManuscripts = 0;
+	for i = 1, 5 do
+        self.numKnownManuscripts[i] = 0
+        self.numPossibleManuscripts[i] = 0
+    end
 
 	local equipBuckets = self:SortManuscriptsIntoEquipmentBuckets();
 	self:SortEquipBucketsIntoPages(equipBuckets);
@@ -326,9 +346,9 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
     			table.insert(equipBuckets[category], itemID)
 
                 if collected then
-    				self.numKnownManuscripts = self.numKnownManuscripts + 1
+    				self.numKnownManuscripts[category] = self.numKnownManuscripts[category] + 1
     			end
-    			self.numPossibleManuscripts = self.numPossibleManuscripts + 1
+    			self.numPossibleManuscripts[category] = self.numPossibleManuscripts[category] + 1
 
     			self.itemIDsInCurrentLayout[itemID] = true;
     		end
@@ -570,11 +590,20 @@ function ManuscriptsMixin:UpdateButton(button)
 end
 
 function ManuscriptsMixin:UpdateProgressBar()
-	local maxProgress, currentProgress = self.numPossibleManuscripts, self.numKnownManuscripts;
+	local maxProgress, currentProgress = 0, 0
+    
+    for i = 1, 5 do
+        maxProgress = maxProgress + self.numPossibleManuscripts[i]
+        currentProgress = currentProgress + self.numKnownManuscripts[i]
+        self["mount"..i.."Bar"]:SetMinMaxValues(0, self.numPossibleManuscripts[i])
+        self["mount"..i.."Bar"]:SetValue(self.numKnownManuscripts[i])
+        self["mount"..i.."Bar"].text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], self.numKnownManuscripts[i], self.numPossibleManuscripts[i])
+    end
 	self.progressBar:SetMinMaxValues(0, maxProgress);
 	self.progressBar:SetValue(currentProgress);
-
 	self.progressBar.text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], currentProgress, maxProgress);
+    
+    
 end
 
 function ManuscriptsMixin:OnPageChanged(userAction)
