@@ -103,6 +103,20 @@ local manuscripts = {
         questID = 69549,
         source = sources.Fyrakk,
     },
+    {
+        category = drakes.WindborneVelocidrake,
+        name = "Windborne Velocidrake: Bronze and Green Armor",
+        itemID = 197577,
+        questID = 69781,
+        source = sources.Fyrakk,
+    },
+    {
+        category = drakes.RenewedProtoDrake,
+        name = "Renewed Proto-Drake: Bronze and Pink Armor",
+        itemID = 197353,
+        questID = 69554,
+        source = sources.Fyrakk,
+    },
 }
 
 for k, v in pairs(manuscripts) do

@@ -195,11 +195,7 @@ local manuscripts = {
         itemID = 197354,
         questID = 69555,
     },
-    {
-        name = "Renewed Proto-Drake: Bronze and Pink Armor",
-        itemID = 197353,
-        questID = 69554,
-    },
+
     {
         name = "Renewed Proto-Drake: Green Hair",
         itemID = 197371,

@@ -353,11 +353,7 @@ local manuscripts = {
         reputation = 2526,
         reputationRank = 6,
     },
-    {
-        name = "Windborne Velocidrake: Bronze and Green Armor",
-        itemID = 197577,
-        questID = 69781,
-    },
+
     {
         name = "Windborne Velocidrake: Hairy Head",
         itemID = 197591,
