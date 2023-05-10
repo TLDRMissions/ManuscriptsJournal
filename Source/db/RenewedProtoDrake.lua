@@ -196,11 +196,6 @@ local manuscripts = {
         questID = 69555,
     },
     {
-        name = "Renewed Proto-Drake: Black and Red Armor",
-        itemID = 197348,
-        questID = 69549,
-    },
-    {
         name = "Renewed Proto-Drake: Bronze and Pink Armor",
         itemID = 197353,
         questID = 69554,
