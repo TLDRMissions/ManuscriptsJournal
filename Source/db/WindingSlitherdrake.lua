@@ -409,6 +409,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Swept Horns",
         itemID = 203330,
         questID = 73818,
+        source = sources.Quest,
+        sourceQuestID = 74562,
     },
     {
         name = "Winding Slitherdrake: White and Gold Armor",
