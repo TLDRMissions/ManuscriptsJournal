@@ -150,6 +150,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Green and Bronze Armor",
         itemID = 203299,
         questID = 73787,
+        source = sources.Fyrakk,
     },
     {
         name = "Winding Slitherdrake: Green Scales",

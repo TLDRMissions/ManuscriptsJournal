@@ -177,6 +177,7 @@ do
             else
                 GameTooltip:AddLine(db.chestName)
             end
+        elseif source == addon.Enum.Sources.Fyrakk then
         else
             print(source)
         end
