@@ -117,6 +117,13 @@ local manuscripts = {
         questID = 69554,
         source = sources.Fyrakk,
     },
+    {
+        category = drakes.RewnewedProtoDrake,
+        name = "Renewed Proto-Drake: Bruiser Horns",
+        itemID = 202277,
+        questID = 73057,
+        source = sources.Fyrakk,
+    },
 }
 
 for k, v in pairs(manuscripts) do

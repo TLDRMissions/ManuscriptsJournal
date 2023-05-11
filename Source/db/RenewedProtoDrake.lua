@@ -158,11 +158,6 @@ local manuscripts = {
         },
     },
     {
-        name = "Renewed Proto-Drake: Bruiser Horns",
-        itemID = 202277,
-        questID = 73057,
-    },
-    {
         name = "Renewed Proto-Drake: Armor",
         itemID = 197357,
         questID = 69558,
