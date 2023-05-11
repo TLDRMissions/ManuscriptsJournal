@@ -476,12 +476,6 @@ local manuscripts = {
         }, 
     },
     {
-        name = "Cliffside Wylderdrake: Bronze and Teal Armor",
-        itemID = 196965,
-        questID = 69165,
-        --source = sources., 
-    },
-    {
         name = "Cliffside Wylderdrake: Finned Cheek",
         itemID = 197001,
         questID = 69201,

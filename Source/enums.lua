@@ -31,6 +31,10 @@ addon.Enum.Zones.ohn = 1
 addon.Enum.Zones.ws = 2
 addon.Enum.Zones.zara = 3
 
+addon.Enum.Fyrakk = {}
+addon.Enum.Fyrakk.Boss = 1
+addon.Enum.Fyrakk.Chest = 2
+
 addon.Strings = {}
 addon.Strings.Drakes = {}
 do
@@ -76,3 +80,11 @@ addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645)
 addon.Strings.Zones[2] = C_Map.GetAreaInfo(13644)
 addon.Strings.Zones[3] = C_Map.GetAreaInfo(14022)
+
+addon.Strings.Fyrakk = {}
+addon.Strings.Fyrakk[1] = {
+    enUS = "Disciples of Fyrakk",
+}
+addon.Strings.Fyrakk[2] = {
+    enUS = "Secured Shipment",
+}

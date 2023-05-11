@@ -151,6 +151,7 @@ local manuscripts = {
         itemID = 203299,
         questID = 73787,
         source = sources.Fyrakk,
+        fyrakkType = addon.Enum.Fyrakk.Chest,
     },
     {
         name = "Winding Slitherdrake: Green Scales",

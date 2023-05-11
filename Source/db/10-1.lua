@@ -28,6 +28,8 @@ local manuscripts = {
         name = "Highland Drake: Bronze and Green Armor",
         itemID = 197156,
         questID = 69357,
+        source = sources.Fyrakk,
+        fyrakkType = addon.Enum.Fyrakk.Chest,
     },
     {
         category = drakes.HighlandDrake,
@@ -102,6 +104,7 @@ local manuscripts = {
         itemID = 197348,
         questID = 69549,
         source = sources.Fyrakk,
+        fyrakkType = addon.Enum.Fyrakk.Boss,
     },
     {
         category = drakes.WindborneVelocidrake,
@@ -109,6 +112,7 @@ local manuscripts = {
         itemID = 197577,
         questID = 69781,
         source = sources.Fyrakk,
+        fyrakkType = addon.Enum.Fyrakk.Chest,
     },
     {
         category = drakes.RenewedProtoDrake,
@@ -116,13 +120,23 @@ local manuscripts = {
         itemID = 197353,
         questID = 69554,
         source = sources.Fyrakk,
+        fyrakkType = addon.Enum.Fyrakk.Chest,
     },
     {
-        category = drakes.RewnewedProtoDrake,
+        category = drakes.RenewedProtoDrake,
         name = "Renewed Proto-Drake: Bruiser Horns",
         itemID = 202277,
         questID = 73057,
         source = sources.Fyrakk,
+        fyrakkType = addon.Enum.Fyrakk.Boss,
+    },
+    {
+        category = drakes.CliffsideWylderdrake,
+        name = "Cliffside Wylderdrake: Bronze and Teal Armor",
+        itemID = 196965,
+        questID = 69165,
+        source = sources.Fyrakk,
+        fyrakkType = addon.Enum.Fyrakk.Chest, 
     },
 }
 

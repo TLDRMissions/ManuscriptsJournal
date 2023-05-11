@@ -8,6 +8,14 @@ local unusableManuscriptFilter = false
 local searchText = ""
 local sourceFilter = {}
 
+local DRAKE_SORT_ORDER = {
+    addon.Enum.Drakes.WindingSlitherdrake,
+    addon.Enum.Drakes.RenewedProtoDrake,
+    addon.Enum.Drakes.WindborneVelocidrake,
+    addon.Enum.Drakes.HighlandDrake,
+    addon.Enum.Drakes.CliffsideWylderdrake,
+}
+
 local function SetManuscriptSourceFilter(source, checked)
     sourceFilter[source] = checked
 end
@@ -178,6 +186,9 @@ do
                 GameTooltip:AddLine(db.chestName)
             end
         elseif source == addon.Enum.Sources.Fyrakk then
+            if db.fyrakkType then
+                GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType].enUS)
+            end
         else
             print(source)
         end
@@ -218,12 +229,13 @@ function ManuscriptsMixin:OnLoad()
 	if not self.numKnownManuscripts then self.numKnownManuscripts = {} end
     if not self.numPossibleManuscripts then self.numPossibleManuscripts = {} end
     for i = 1, 5 do
+        local drake = DRAKE_SORT_ORDER[i]
         self.numKnownManuscripts[i] = 0
         self.numPossibleManuscripts[i] = 0
         
         self["mount"..i.."Bar"]:SetScript("OnEnter", function()
             GameTooltip:SetOwner(self["mount"..i.."Bar"], "ANCHOR_BOTTOM")
-            GameTooltip:AddLine(addon.Strings.Drakes[i])
+            GameTooltip:AddLine(addon.Strings.Drakes[drake])
             GameTooltip:Show()
         end)
         
@@ -387,14 +399,6 @@ local START_OFFSET_Y = -25;
 
 -- Additional Y offset of a page when the view mode is in "all classes"
 local VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET = 0;
-
-local DRAKE_SORT_ORDER = {
-    addon.Enum.Drakes.WindingSlitherdrake,
-    addon.Enum.Drakes.RenewedProtoDrake,
-    addon.Enum.Drakes.WindborneVelocidrake,
-    addon.Enum.Drakes.HighlandDrake,
-    addon.Enum.Drakes.CliffsideWylderdrake,
-}
 
 local NEW_ROW_OPCODE = -1; -- Used to indicate that the layout should move to the next row
 
@@ -594,11 +598,12 @@ function ManuscriptsMixin:UpdateProgressBar()
 	local maxProgress, currentProgress = 0, 0
     
     for i = 1, 5 do
-        maxProgress = maxProgress + self.numPossibleManuscripts[i]
-        currentProgress = currentProgress + self.numKnownManuscripts[i]
-        self["mount"..i.."Bar"]:SetMinMaxValues(0, self.numPossibleManuscripts[i])
-        self["mount"..i.."Bar"]:SetValue(self.numKnownManuscripts[i])
-        self["mount"..i.."Bar"].text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], self.numKnownManuscripts[i], self.numPossibleManuscripts[i])
+        local drake = DRAKE_SORT_ORDER[i]
+        maxProgress = maxProgress + self.numPossibleManuscripts[drake]
+        currentProgress = currentProgress + self.numKnownManuscripts[drake]
+        self["mount"..i.."Bar"]:SetMinMaxValues(0, self.numPossibleManuscripts[drake])
+        self["mount"..i.."Bar"]:SetValue(self.numKnownManuscripts[drake])
+        self["mount"..i.."Bar"].text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], self.numKnownManuscripts[drake], self.numPossibleManuscripts[drake])
     end
 	self.progressBar:SetMinMaxValues(0, maxProgress);
 	self.progressBar:SetValue(currentProgress);
