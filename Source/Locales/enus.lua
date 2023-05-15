@@ -178,3 +178,4 @@ L["Obsidian Grand Cache"] = true
 L["Forgotten Dragon Treasure"] = true
 L["Decay Tainted Chest"] = true
 L["Waterlogged Bundle"] = true
+L["Smelly Trash Pile"] = true

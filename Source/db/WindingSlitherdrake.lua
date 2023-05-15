@@ -389,6 +389,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Spiked Chin",
         itemID = 203313,
         questID = 73801,
+        source = sources.Chest,
+        chestName = L["Smelly Trash Pile"],
     },
     {
         name = "Winding Slitherdrake: Spiked Horns",
