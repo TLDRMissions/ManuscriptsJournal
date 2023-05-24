@@ -515,11 +515,6 @@ local manuscripts = {
         questID = 69296,
     },
     {
-        name = "Highland Drake: Spiked Legs",
-        itemID = 197134,
-        questID = 69335,
-    },
-    {
         name = "Highland Drake: Helm",
         itemID = 197119,
         questID = 69320,

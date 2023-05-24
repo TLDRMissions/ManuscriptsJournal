@@ -138,6 +138,14 @@ local manuscripts = {
         source = sources.Fyrakk,
         fyrakkType = addon.Enum.Fyrakk.Chest, 
     },
+    {
+        category = drakes.HighlandDrake,
+        name = "Highland Drake: Spiked Legs",
+        itemID = 197134,
+        questID = 69335,
+        source = sources.Quest,
+        sourceQuestID = 72950,
+    },
 }
 
 for k, v in pairs(manuscripts) do
