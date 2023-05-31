@@ -202,6 +202,10 @@ do
 end
 
 function ManuscriptsJournalSpellButton_OnClick(self, button)
+	if IsModifiedClick() then
+		local _, itemLink = GetItemInfo(self.itemID)
+		HandleModifiedItemClick(itemLink)
+	end
 end
 
 do
