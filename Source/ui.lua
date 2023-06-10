@@ -266,11 +266,13 @@ function ManuscriptsMixin:OnLoad()
         HeirloomsJournalClassDropDown:Hide()
         HeirloomsJournal.progressBar:Hide()
         HeirloomsJournal.SearchBox:Hide()
+        HeirloomsJournal.FilterButton:Hide()
     end
     tab.OnDeselect = function()
         HeirloomsJournalClassDropDown:Show()
         HeirloomsJournal.progressBar:Show()
         HeirloomsJournal.SearchBox:Show()
+        HeirloomsJournal.FilterButton:Show()
     end
     self.Tab = tab
     
