@@ -198,6 +198,11 @@ do
         end
         
         GameTooltip:Show()
+        addon.journalTooltipShown = true
+    end
+    
+    function ManuscriptsJournalSpellButton_OnExit()
+        addon.journalTooltipShown = false
     end
 end
 

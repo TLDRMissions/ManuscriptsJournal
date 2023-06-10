@@ -186,6 +186,7 @@
 			</OnHide>
 
 			<OnEnter function="ManuscriptsJournalSpellButton_OnEnter"/>
+            <OnLeave inherit="prepend" function="ManuscriptsJournalSpellButton_OnExit" />
 		</Scripts>
 	</CheckButton>
 	

@@ -34,3 +34,5 @@ db\final.lua
 ui.xml
 
 bindings.lua
+
+gametooltiphooks.lua
