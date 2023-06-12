@@ -102,18 +102,27 @@ end
 do
     local function add(list)
         local left
-        local r, g = 1, 0
+        local r, g, b = 1, 0, 0
         for _, name in ipairs(list) do
             if left then
-                GameTooltip:AddDoubleLine(left, name, r, g, 0, g, r, 0)
+                local r1, g1, b1, r2, g2, b2 = r, g, b, r, g, b
+                if (r==0) and (g==0) and (b==1) then
+                    r1, g1, b1 = 1, 1, 0
+                elseif (r==0) and (g==1) and (b==0) then
+                    r2, g2, b2 = 1, 0, 1
+                end
+                GameTooltip:AddDoubleLine(left, name, r1, g1, b1, b2, r2, g2)
                 left = nil
-                r, g = g, r
+                r, g, b = g, b, r
             else
                 left = name
             end
         end
         if left then
-            GameTooltip:AddLine(left)
+            if (r==0) and (g==0) and (b==1) then
+                r, g, b = 1, 1, 0
+            end
+            GameTooltip:AddLine(left, r, g, b)
         end
     end
 
