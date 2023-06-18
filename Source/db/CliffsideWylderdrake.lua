@@ -515,11 +515,11 @@ local manuscripts = {
         renownFaction = 2510,
         renownRank = 9, 
     },
-    {
-        name = "Cliffside Wylderdrake: Helm",
-        itemID = 196990,
-        questID = 69190,
-    },
+    --{
+    --    name = "Cliffside Wylderdrake: Helm",
+    --    itemID = 196990,
+    --    questID = 69190,
+    --},
     {
         name = "Cliffside Wylderdrake: Armor",
         itemID = 196961,

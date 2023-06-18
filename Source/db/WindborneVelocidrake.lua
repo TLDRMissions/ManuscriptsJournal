@@ -430,11 +430,11 @@ local manuscripts = {
         source = sources.Achievement,
         achievementID = 15919,
     },
-    {
-        name = "Windborne Velocidrake: Helm",
-        itemID = 197600,
-        questID = 69804,
-    },
+    --{
+    --    name = "Windborne Velocidrake: Helm",
+    --    itemID = 197600,
+    --    questID = 69804,
+    --},
     {
         name = "Windborne Velocidrake: Spiked Tail",
         itemID = 197623,

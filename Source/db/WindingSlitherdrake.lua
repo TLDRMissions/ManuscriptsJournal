@@ -214,11 +214,11 @@ local manuscripts = {
         source = sources.Rare,
         rareName = L["Kapraku"],
     },
-    {
-        name = "Winding Slitherdrake: Helm",
-        itemID = 203326,
-        questID = 73814,
-    },
+    --{
+    --    name = "Winding Slitherdrake: Helm",
+    --    itemID = 203326,
+    --    questID = 73814,
+    --},
     {
         name = "Winding Slitherdrake: Horned Brow",
         itemID = 203306,
@@ -259,11 +259,11 @@ local manuscripts = {
         renownFaction = 2564,
         renownRank = 16,
     },
-    {
-        name = "Winding Slitherdrake: Light Blue and Copper Armor",
-        itemID = 203301,
-        questID = 73789,
-    },
+    --{
+    --    name = "Winding Slitherdrake: Light Blue and Copper Armor",
+    --    itemID = 203301,
+    --    questID = 73789,
+    --},
     {
         name = "Winding Slitherdrake: Long Chin Horn",
         itemID = 203309,
@@ -298,11 +298,11 @@ local manuscripts = {
         source = sources.Container,
         containerID = 205226,
     },
-    {
-        name = "Winding Slitherdrake: Purple and Silver Armor",
-        itemID = 203302,
-        questID = 73790,
-    },
+    --{
+    --    name = "Winding Slitherdrake: Purple and Silver Armor",
+    --    itemID = 203302,
+    --    questID = 73790,
+    --},
     {
         name = "Winding Slitherdrake: Red and Gold Armor",
         itemID = 203303,
@@ -416,11 +416,11 @@ local manuscripts = {
         source = sources.Quest,
         sourceQuestID = 74562,
     },
-    {
-        name = "Winding Slitherdrake: White and Gold Armor",
-        itemID = 203298,
-        questID = 73786,
-    },
+    --{
+    --    name = "Winding Slitherdrake: White and Gold Armor",
+    --    itemID = 203298,
+    --    questID = 73786,
+    --},
     {
         name = "Winding Slitherdrake: White Hair",
         itemID = 203324,

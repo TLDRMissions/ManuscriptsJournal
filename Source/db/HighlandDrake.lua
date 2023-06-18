@@ -514,11 +514,11 @@ local manuscripts = {
         itemID = 197095,
         questID = 69296,
     },
-    {
-        name = "Highland Drake: Helm",
-        itemID = 197119,
-        questID = 69320,
-    },
+    --{
+    --    name = "Highland Drake: Helm",
+    --    itemID = 197119,
+    --    questID = 69320,
+    --},
     {
         name = "Highland Drake: Armor",
         itemID = 197099,
