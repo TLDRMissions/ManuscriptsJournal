@@ -1,9 +1,8 @@
 local addonName, addon = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "ruRU")
 if not L then return end
-
 -- Russian translation by ZamestoTV
-
+-- Misc strings
 L["MANUSCRIPTS_PROGRESS_FORMAT"] = "%d/%d"
 L["Rare Spawns"] = "Редкий Монстр"
 L["ADDON_NAME"] = "Манускрипты"
@@ -14,6 +13,7 @@ L["Various in:"] = "Различные в:"
 L["Various"] = "Различный"
 L["Bugged"] = "Из-за ошибки это может быть недоступно."
 
+-- Reputation and Friendship ranks
 L["Friend"] = "Друг"
 L["True Friend"] = "Настоящий друг"
 L["Maximum"] = "Максимальный"
@@ -21,12 +21,12 @@ L["High"] = "Высокий"
 L["Medium"] = "Средний"
 L["Low"] = "Низкий"
 
-L["Cliffside Wylderdrake"] = "Горный вивернодракон"
-L["Highland Drake"] = "Дракон нагорья"
-
+-- Vendors
 L["Kraxxus"] = "Краксус"
 L["Meiz"] = "Мейз"
+L["Ponzo"] = "Понзо"
 
+-- Rare spawns
 L["Gethdazr"] = "Гетдазр"
 L["Corrupted Proto-Dragon"] = "Оскверненный протодракон"
 L["Diluu"] = "Дилуу"
@@ -146,6 +146,26 @@ L["Shardwing"] = "Шипокрыл"
             
 L["Elemental Storms"] = "Буря Стихии"
 
+-- 10.1 rare spawns
+L["Alcanon"] = "Алканон"
+L["Colossian"] = "Колоссиан"
+L["Flowfy"] = "Жарик"
+L["Karokta"] = "Карокта"
+L["Kob'rok"] = "Коб'рок"
+L["Viridian King"] = "Изумрудный король"
+L["Invoq"] = "Инвок"
+L["Emberdusk"] = "Углемрак"
+L["Skornak"] = "Скорнак"
+L["Dinn"] = "Динн"
+L["General Zskorro"] = "Генерал Зкорро"
+L["Subterrax"] = "Подземарк"
+L["Spinmarrow"] = "Костеплет"
+L["Kapraku"] = "Капраку"
+L["Magtembo"] = "Магтембо"
+L["Goopal"] = "Жижек"
+L["Professor Gastrinax"] = "Профессор Гастринакс"
+
+-- bosses
 L["Primal Tsunami"] = "Изначальное цунами"
 L["Echo of Doragosa"] = "Эхо Дорагосы"
 L["Warlord Sargha"] = "Полководец Сарга"
@@ -153,6 +173,9 @@ L["Decatriarch Wratheye"] = "Гниломаг Око Гнева"
 L["Raszageth the Storm-Eater"] = "Рашагет Пожирательница Бурь"
 L["Balakar Khan"] = "Хан Балакар"
 
+-- containers
 L["Obsidian Grand Cache"] = "Великий обсидиановый тайник"
 L["Forgotten Dragon Treasure"] = "Забытое сокровище драконов"
 L["Decay Tainted Chest"] = "Тронутый гнилью сундук"
+L["Waterlogged Bundle"] = "Промокшая котомка"
+L["Smelly Trash Pile"] = "Пахучая куча мусора"
