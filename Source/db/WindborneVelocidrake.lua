@@ -353,11 +353,7 @@ local manuscripts = {
         reputation = 2526,
         reputationRank = 6,
     },
-    {
-        name = "Windborne Velocidrake: Bronze and Green Armor",
-        itemID = 197577,
-        questID = 69781,
-    },
+
     {
         name = "Windborne Velocidrake: Hairy Head",
         itemID = 197591,
@@ -415,6 +411,9 @@ local manuscripts = {
         name = "Windborne Velocidrake: Armor",
         itemID = 197588,
         questID = 69792,
+        source = sources.Renown,
+        renownFaction = 2510,
+        renownRank = 26,
     },
     {
         name = "Windborne Velocidrake: Bronze Scales",
@@ -431,11 +430,11 @@ local manuscripts = {
         source = sources.Achievement,
         achievementID = 15919,
     },
-    {
-        name = "Windborne Velocidrake: Helm",
-        itemID = 197600,
-        questID = 69804,
-    },
+    --{
+    --    name = "Windborne Velocidrake: Helm",
+    --    itemID = 197600,
+    --    questID = 69804,
+    --},
     {
         name = "Windborne Velocidrake: Spiked Tail",
         itemID = 197623,

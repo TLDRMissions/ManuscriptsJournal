@@ -8,6 +8,7 @@ addon.Enum.Drakes.CliffsideWylderdrake = 1
 addon.Enum.Drakes.HighlandDrake = 2
 addon.Enum.Drakes.RenewedProtoDrake = 3
 addon.Enum.Drakes.WindborneVelocidrake = 4
+addon.Enum.Drakes.WindingSlitherdrake = 5
 
 addon.Enum.Sources = {}
 addon.Enum.Sources.Rare = 1
@@ -22,10 +23,17 @@ addon.Enum.Sources.Quest = 9
 addon.Enum.Sources.Vendor = 10
 addon.Enum.Sources.Raid = 11
 addon.Enum.Sources.Chest = 12
+addon.Enum.Sources.Unknown = 13
+addon.Enum.Sources.Fyrakk = 14
 
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1
 addon.Enum.Zones.ws = 2
+addon.Enum.Zones.zara = 3
+
+addon.Enum.Fyrakk = {}
+addon.Enum.Fyrakk.Boss = 1
+addon.Enum.Fyrakk.Chest = 2
 
 addon.Strings = {}
 addon.Strings.Drakes = {}
@@ -46,6 +54,10 @@ do
     item4:ContinueOnItemLoad(function()
         addon.Strings.Drakes[4] = item4:GetItemName() 
     end)
+    local item5 = Item:CreateFromItemID(204361)
+    item5:ContinueOnItemLoad(function()
+        addon.Strings.Drakes[5] = item5:GetItemName()
+    end)
 end
 
 addon.Strings.Sources = {}
@@ -61,7 +73,18 @@ addon.Strings.Sources[9] = BATTLE_PET_SOURCE_2
 addon.Strings.Sources[10] = BATTLE_PET_SOURCE_3
 addon.Strings.Sources[11] = CALENDAR_TYPE_RAID
 addon.Strings.Sources[12] = ITEM_CONTAINER
+addon.Strings.Sources[13] = COMBATLOG_FILTER_STRING_UNKNOWN_UNITS
+addon.Strings.Sources[14] = C_QuestLog.GetTitleForQuestID(75887)
 
 addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645)
 addon.Strings.Zones[2] = C_Map.GetAreaInfo(13644)
+addon.Strings.Zones[3] = C_Map.GetAreaInfo(14022)
+
+addon.Strings.Fyrakk = {}
+addon.Strings.Fyrakk[1] = {
+    enUS = "Disciples of Fyrakk",
+}
+addon.Strings.Fyrakk[2] = {
+    enUS = "Secured Shipment",
+}

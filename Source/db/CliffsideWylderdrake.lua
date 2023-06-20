@@ -318,7 +318,7 @@ local manuscripts = {
         itemID = 197007,
         questID = 69207,
         source = sources.Dungeon,
-        bossName = "Primal Tsunami",
+        bossName = L["Primal Tsunami"],
         zoneID = 14082,
     },
     {
@@ -425,12 +425,6 @@ local manuscripts = {
         --source = sources., 
     },
     {
-        name = "Cliffside Wylderdrake: Split Horns",
-        itemID = 196997,
-        questID = 69197,
-        --source = sources., 
-    },
-    {
         name = "Cliffside Wylderdrake: Blunt Spiked Tail",
         itemID = 197019,
         questID = 69219,
@@ -459,12 +453,6 @@ local manuscripts = {
         containerID = 199192, 
     },
     {
-        name = "Cliffside Wylderdrake: Small Head Spikes",
-        itemID = 196978,
-        questID = 69178,
-        --source = sources., 
-    },
-    {
         name = "Cliffside Wylderdrake: Sleek Horns",
         itemID = 196993,
         questID = 69193,
@@ -486,18 +474,6 @@ local manuscripts = {
             L["Voll"],
             L["Captain Lancer"],
         }, 
-    },
-    {
-        name = "Cliffside Wylderdrake: Spiked Club Tail",
-        itemID = 197021,
-        questID = 69221,
-        --source = sources., 
-    },
-    {
-        name = "Cliffside Wylderdrake: Bronze and Teal Armor",
-        itemID = 196965,
-        questID = 69165,
-        --source = sources., 
     },
     {
         name = "Cliffside Wylderdrake: Finned Cheek",
@@ -539,15 +515,18 @@ local manuscripts = {
         renownFaction = 2510,
         renownRank = 9, 
     },
-    {
-        name = "Cliffside Wylderdrake: Helm",
-        itemID = 196990,
-        questID = 69190,
-    },
+    --{
+    --    name = "Cliffside Wylderdrake: Helm",
+    --    itemID = 196990,
+    --    questID = 69190,
+    --},
     {
         name = "Cliffside Wylderdrake: Armor",
         itemID = 196961,
         questID = 69161,
+        source = sources.Renown,
+        renownFaction = 2510,
+        renownRank = 26,
     }    
 }
 

@@ -8,11 +8,22 @@ local unusableManuscriptFilter = false
 local searchText = ""
 local sourceFilter = {}
 
+local DRAKE_SORT_ORDER = {
+    addon.Enum.Drakes.WindingSlitherdrake,
+    addon.Enum.Drakes.RenewedProtoDrake,
+    addon.Enum.Drakes.WindborneVelocidrake,
+    addon.Enum.Drakes.HighlandDrake,
+    addon.Enum.Drakes.CliffsideWylderdrake,
+}
+
 local function SetManuscriptSourceFilter(source, checked)
     sourceFilter[source] = checked
 end
 
 local function GetManuscriptSourceFilter(source)
+    if source == nil then
+        return (sourceFilter[addon.Enum.Sources.Unknown] ~= false) -- treat 'nil' as 'true' for initial values
+    end
     if sourceFilter[source] == nil then return true end
     return sourceFilter[source]
 end
@@ -91,18 +102,27 @@ end
 do
     local function add(list)
         local left
-        local r, g = 1, 0
+        local r, g, b = 1, 0, 0
         for _, name in ipairs(list) do
             if left then
-                GameTooltip:AddDoubleLine(left, name, r, g, 0, g, r, 0)
+                local r1, g1, b1, r2, g2, b2 = r, g, b, r, g, b
+                if (r==0) and (g==0) and (b==1) then
+                    r1, g1, b1 = 1, 1, 0
+                elseif (r==0) and (g==1) and (b==0) then
+                    r2, g2, b2 = 1, 0, 1
+                end
+                GameTooltip:AddDoubleLine(left, name, r1, g1, b1, b2, r2, g2)
                 left = nil
-                r, g = g, r
+                r, g, b = g, b, r
             else
                 left = name
             end
         end
         if left then
-            GameTooltip:AddLine(left)
+            if (r==0) and (g==0) and (b==1) then
+                r, g, b = 1, 1, 0
+            end
+            GameTooltip:AddLine(left, r, g, b)
         end
     end
 
@@ -174,6 +194,10 @@ do
             else
                 GameTooltip:AddLine(db.chestName)
             end
+        elseif source == addon.Enum.Sources.Fyrakk then
+            if db.fyrakkType then
+                GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType].enUS)
+            end
         else
             print(source)
         end
@@ -183,10 +207,19 @@ do
         end
         
         GameTooltip:Show()
+        addon.journalTooltipShown = true
+    end
+    
+    function ManuscriptsJournalSpellButton_OnExit()
+        addon.journalTooltipShown = false
     end
 end
 
 function ManuscriptsJournalSpellButton_OnClick(self, button)
+	if IsModifiedClick() then
+		local _, itemLink = GetItemInfo(self.itemID)
+		HandleModifiedItemClick(itemLink)
+	end
 end
 
 do
@@ -201,6 +234,7 @@ do
 	end
 end
 
+local tab
 function ManuscriptsMixin:OnLoad()
 	self.newManuscripts = {}
 
@@ -210,12 +244,27 @@ function ManuscriptsMixin:OnLoad()
 	self.manuscriptLayoutData = {};
 	self.itemIDsInCurrentLayout = {};
 
-	self.numKnownManuscripts = 0;
-	self.numPossibleManuscripts = 0;
+	if not self.numKnownManuscripts then self.numKnownManuscripts = {} end
+    if not self.numPossibleManuscripts then self.numPossibleManuscripts = {} end
+    for i = 1, 5 do
+        local drake = DRAKE_SORT_ORDER[i]
+        self.numKnownManuscripts[i] = 0
+        self.numPossibleManuscripts[i] = 0
+        
+        self["mount"..i.."Bar"]:SetScript("OnEnter", function()
+            GameTooltip:SetOwner(self["mount"..i.."Bar"], "ANCHOR_BOTTOM")
+            GameTooltip:AddLine(addon.Strings.Drakes[drake])
+            GameTooltip:Show()
+        end)
+        
+        self["mount"..i.."Bar"]:SetScript("OnLeave", function()
+            GameTooltip:Hide()
+        end)
+    end
 
 	self:FullRefreshIfVisible();
 
-    local tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
+    tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
     tab:SetText(L["ADDON_NAME"])
     tab.frame = self
     tab.OnSelect = function()
@@ -224,6 +273,15 @@ function ManuscriptsMixin:OnLoad()
         end
         CollectionsJournalTitleText:SetText(L["ADDON_NAME"])
         HeirloomsJournalClassDropDown:Hide()
+        HeirloomsJournal.progressBar:Hide()
+        HeirloomsJournal.SearchBox:Hide()
+        HeirloomsJournal.FilterButton:Hide()
+    end
+    tab.OnDeselect = function()
+        HeirloomsJournalClassDropDown:Show()
+        HeirloomsJournal.progressBar:Show()
+        HeirloomsJournal.SearchBox:Show()
+        HeirloomsJournal.FilterButton:Show()
     end
     self.Tab = tab
     
@@ -231,34 +289,9 @@ function ManuscriptsMixin:OnLoad()
 	--self:RegisterEvent("HEIRLOOM_UPGRADE_TARGETING_CHANGED");
 end
 
---[[
-function ManuscriptsMixin:OnManuscriptsUpdated(itemID, updateReason, ...)
-	if itemID then
-		-- Single item update
-		local requiresFullUpdate = false;
-		if updateReason == "NEW" then
-			local wasHidden = ...;
-
-			self.newHeirlooms[itemID] = true;
-			if self.itemIDsInCurrentLayout[itemID] then
-				self.numKnownHeirlooms = self.numKnownHeirlooms + 1;
-				self:UpdateProgressBar();
-			end
-
-			requiresFullUpdate = wasHidden;
-		end
-
-		if requiresFullUpdate then
-			self:FullRefreshIfVisible();
-		else
-			self:RefreshViewIfVisible();
-		end
-	else
-		-- Full update
-		self:FullRefreshIfVisible();
-	end
+function ManuscriptsMixin:OnKeybinding()
+    LibStub('SecureTabs-2.0'):Select(tab)
 end
-]]
 
 function ManuscriptsMixin:ClearNewStatus(itemID)
 	if self.newManuscripts[itemID] then
@@ -290,8 +323,10 @@ function ManuscriptsMixin:RebuildLayoutData()
 	self.manuscriptLayoutData = {};
 	self.itemIDsInCurrentLayout = {};
 
-	self.numKnownManuscripts = 0;
-	self.numPossibleManuscripts = 0;
+	for i = 1, 5 do
+        self.numKnownManuscripts[i] = 0
+        self.numPossibleManuscripts[i] = 0
+    end
 
 	local equipBuckets = self:SortManuscriptsIntoEquipmentBuckets();
 	self:SortEquipBucketsIntoPages(equipBuckets);
@@ -315,13 +350,13 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
             local name = GetItemInfo(manuscriptData.itemID)
             local source = addon.Strings.Sources[manuscriptData.source]
             
-            if name and string.lower(name):find(searchText) then
+            if name and string.lower(name):find(string.lower(searchText)) then
                 include = true
-            elseif source and string.lower(source):find(searchText) then
+            elseif source and string.lower(source):find(string.lower(searchText)) then
                 include = true
             elseif manuscriptData.rareNames then
                 for _, name in pairs(manuscriptData.rareNames) do
-                    if string.lower(name):find(searchText) then
+                    if string.lower(name):find(string.lower(searchText)) then
                         include = true
                     end
                 end
@@ -344,9 +379,9 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
     			table.insert(equipBuckets[category], itemID)
 
                 if collected then
-    				self.numKnownManuscripts = self.numKnownManuscripts + 1
+    				self.numKnownManuscripts[category] = self.numKnownManuscripts[category] + 1
     			end
-    			self.numPossibleManuscripts = self.numPossibleManuscripts + 1
+    			self.numPossibleManuscripts[category] = self.numPossibleManuscripts[category] + 1
 
     			self.itemIDsInCurrentLayout[itemID] = true;
     		end
@@ -384,13 +419,6 @@ local START_OFFSET_Y = -25;
 
 -- Additional Y offset of a page when the view mode is in "all classes"
 local VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET = 0;
-
-local DRAKE_SORT_ORDER = {
-    addon.Enum.Drakes.RenewedProtoDrake,
-    addon.Enum.Drakes.WindborneVelocidrake,
-    addon.Enum.Drakes.HighlandDrake,
-    addon.Enum.Drakes.CliffsideWylderdrake,
-}
 
 local NEW_ROW_OPCODE = -1; -- Used to indicate that the layout should move to the next row
 
@@ -587,10 +615,19 @@ function ManuscriptsMixin:UpdateButton(button)
 end
 
 function ManuscriptsMixin:UpdateProgressBar()
-	local maxProgress, currentProgress = self.numPossibleManuscripts, self.numKnownManuscripts;
+	if #DRAKE_SORT_ORDER < 2 then return end
+    local maxProgress, currentProgress = 0, 0
+    
+    for i = 1, 5 do
+        local drake = DRAKE_SORT_ORDER[i]
+        maxProgress = maxProgress + self.numPossibleManuscripts[drake]
+        currentProgress = currentProgress + self.numKnownManuscripts[drake]
+        self["mount"..i.."Bar"]:SetMinMaxValues(0, self.numPossibleManuscripts[drake])
+        self["mount"..i.."Bar"]:SetValue(self.numKnownManuscripts[drake])
+        self["mount"..i.."Bar"].text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], self.numKnownManuscripts[drake], self.numPossibleManuscripts[drake])
+    end
 	self.progressBar:SetMinMaxValues(0, maxProgress);
 	self.progressBar:SetValue(currentProgress);
-
 	self.progressBar.text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], currentProgress, maxProgress);
 end
 
@@ -686,4 +723,22 @@ function ManuscriptsJournalSearchBox_OnTextChanged(self)
 	SearchBoxTemplate_OnTextChanged(self);
 	searchText = self:GetText()
 	ManuscriptsJournal:FullRefreshIfVisible();
+end
+
+function ManuscriptsJournalProgressBar_OnClick(self, barID)
+    DRAKE_SORT_ORDER = {
+        addon.Enum.Drakes.WindingSlitherdrake,
+        addon.Enum.Drakes.RenewedProtoDrake,
+        addon.Enum.Drakes.WindborneVelocidrake,
+        addon.Enum.Drakes.HighlandDrake,
+        addon.Enum.Drakes.CliffsideWylderdrake,
+    }
+    
+    if barID ~= 0 then
+        DRAKE_SORT_ORDER = {
+            DRAKE_SORT_ORDER[barID]
+        }
+    end
+    
+    ManuscriptsJournal:FullRefreshIfVisible()
 end

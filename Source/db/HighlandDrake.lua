@@ -223,7 +223,7 @@ local manuscripts = {
     {
         name = "Highland Drake: Thorn Horns",
         itemID = 197123,
-        questID = 69316,
+        questID = 69324,
         source = sources.Renown,
         renownFaction = 2511,
         renownRank = 13,
@@ -500,24 +500,9 @@ local manuscripts = {
         achievementID = 15923,
     },
     {
-        name = "Highland Drake: Bronze and Green Armor",
-        itemID = 197156,
-        questID = 69357,
-    },
-    {
         name = "Highland Drake: Embodiment of the Crimson Gladiator",
         itemID = 201792,
         questID = 72371,
-    },
-    {
-        name = "Highland Drake: Spiked Head",
-        itemID = 197109,
-        questID = 69310,
-    },
-    {
-        name = "Highland Drake: Tapered Chin",
-        itemID = 197104,
-        questID = 69305,
     },
     {
         name = "Highland Drake: White Scales",
@@ -529,25 +514,18 @@ local manuscripts = {
         itemID = 197095,
         questID = 69296,
     },
-    {
-        name = "Highland Drake: Spiked Legs",
-        itemID = 197134,
-        questID = 69335,
-    },
-    {
-        name = "Highland Drake: Ornate Helm",
-        itemID = 197120,
-        questID = 69321,
-    },
-    {
-        name = "Highland Drake: Helm",
-        itemID = 197119,
-        questID = 69320,
-    },
+    --{
+    --    name = "Highland Drake: Helm",
+    --    itemID = 197119,
+    --    questID = 69320,
+    --},
     {
         name = "Highland Drake: Armor",
         itemID = 197099,
         questID = 69300,
+        source = sources.Renown,
+        renownFaction = 2510,
+        renownRank = 26,
     },
 }
 

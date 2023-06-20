@@ -2,6 +2,7 @@ local addonName, addon = ...
 local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true)
 if not L then return end
 
+-- Misc strings
 L["MANUSCRIPTS_PROGRESS_FORMAT"] = "%d/%d"
 L["Rare Spawns"] = true
 L["ADDON_NAME"] = "Manuscripts"
@@ -12,6 +13,7 @@ L["Various in:"] = true
 L["Various"] = true
 L["Bugged"] = "Due to a bug, this may be unobtainable."
 
+-- Reputation and Friendship ranks
 L["Friend"] = true
 L["True Friend"] = true
 L["Maximum"] = true
@@ -19,12 +21,12 @@ L["High"] = true
 L["Medium"] = true
 L["Low"] = true
 
-L["Cliffside Wylderdrake"] = true
-L["Highland Drake"] = true
-
+-- Vendors
 L["Kraxxus"] = true
 L["Meiz"] = true
+L["Ponzo"] = true
 
+-- Rare spawns
 L["Gethdazr"] = true
 L["Corrupted Proto-Dragon"] = true
 L["Diluu"] = true
@@ -144,6 +146,26 @@ L["Shardwing"] = true
             
 L["Elemental Storms"] = true
 
+-- 10.1 rare spawns
+L["Alcanon"] = true
+L["Colossian"] = true
+L["Flowfy"] = true
+L["Karokta"] = true
+L["Kob'rok"] = true
+L["Viridian King"] = true
+L["Invoq"] = true
+L["Emberdusk"] = true
+L["Skornak"] = true
+L["Dinn"] = true
+L["General Zskorro"] = true
+L["Subterrax"] = true
+L["Spinmarrow"] = true
+L["Kapraku"] = true
+L["Magtembo"] = true
+L["Goopal"] = true
+L["Professor Gastrinax"] = true
+
+-- bosses
 L["Primal Tsunami"] = true
 L["Echo of Doragosa"] = true
 L["Warlord Sargha"] = true
@@ -151,6 +173,9 @@ L["Decatriarch Wratheye"] = true
 L["Raszageth the Storm-Eater"] = true
 L["Balakar Khan"] = true
 
+-- containers
 L["Obsidian Grand Cache"] = true
 L["Forgotten Dragon Treasure"] = true
 L["Decay Tainted Chest"] = true
+L["Waterlogged Bundle"] = true
+L["Smelly Trash Pile"] = true

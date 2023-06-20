@@ -158,35 +158,23 @@ local manuscripts = {
         },
     },
     {
-        name = "Renewed Proto-Drake: Pronged Tail",
-        itemID = 202280,
-        questID = 73060,
-    },
-    {
-        name = "Renewed Proto-Drake: Bruiser Horns",
-        itemID = 202277,
-        questID = 73057,
-    },
-    {
-        name = "Renewed Proto-Drake: Plated Jaw",
-        itemID = 202275,
-        questID = 73059,
-    },
-    {
         name = "Renewed Proto-Drake: Armor",
         itemID = 197357,
         questID = 69558,
+        source = sources.Renown,
+        renownFaction = 2510,
+        renownRank = 26,
     },
     {
         name = "Renewed Proto-Drake: White Scales",
         itemID = 197393,
         questID = 69594,
     },
-    {
-        name = "Renewed Proto-Drake: Helm",
-        itemID = 197373,
-        questID = 69574,
-    },
+    --{
+    --    name = "Renewed Proto-Drake: Helm",
+    --    itemID = 197373,
+    --    questID = 69574,
+    --},
     {
         name = "Renewed Proto-Drake: Gold and White Armor",
         itemID = 197349,
@@ -202,21 +190,7 @@ local manuscripts = {
         itemID = 197354,
         questID = 69555,
     },
-    {
-        name = "Renewed Proto-Drake: Black and Red Armor",
-        itemID = 197348,
-        questID = 69549,
-    },
-    {
-        name = "Renewed Proto-Drake: Short Spiked Crest",
-        itemID = 197364,
-        questID = 69565,
-    },
-    {
-        name = "Renewed Proto-Drake: Bronze and Pink Armor",
-        itemID = 197353,
-        questID = 69554,
-    },
+
     {
         name = "Renewed Proto-Drake: Green Hair",
         itemID = 197371,
@@ -228,11 +202,6 @@ local manuscripts = {
         questID = 72367,
         source = sources.Raid,
         bossName = L["Raszageth the Storm-Eater"],
-    },
-    {
-        name = "Renewed Proto-Drake: Brown Hair",
-        itemID = 197369,
-        questID = 69570,
     },
     {
         name = "Renewed Proto-Drake: Antlers",
