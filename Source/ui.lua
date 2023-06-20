@@ -725,15 +725,6 @@ function ManuscriptsJournalSearchBox_OnTextChanged(self)
 	ManuscriptsJournal:FullRefreshIfVisible();
 end
 
---[[]
-addon.Enum.Drakes = {}
-addon.Enum.Drakes.CliffsideWylderdrake = 1
-addon.Enum.Drakes.HighlandDrake = 2
-addon.Enum.Drakes.RenewedProtoDrake = 3
-addon.Enum.Drakes.WindborneVelocidrake = 4
-addon.Enum.Drakes.WindingSlitherdrake = 5
-]]
-
 function ManuscriptsJournalProgressBar_OnClick(self, barID)
     DRAKE_SORT_ORDER = {
         addon.Enum.Drakes.WindingSlitherdrake,
