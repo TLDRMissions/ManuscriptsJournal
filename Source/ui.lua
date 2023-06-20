@@ -615,7 +615,8 @@ function ManuscriptsMixin:UpdateButton(button)
 end
 
 function ManuscriptsMixin:UpdateProgressBar()
-	local maxProgress, currentProgress = 0, 0
+	if #DRAKE_SORT_ORDER < 2 then return end
+    local maxProgress, currentProgress = 0, 0
     
     for i = 1, 5 do
         local drake = DRAKE_SORT_ORDER[i]
@@ -628,8 +629,6 @@ function ManuscriptsMixin:UpdateProgressBar()
 	self.progressBar:SetMinMaxValues(0, maxProgress);
 	self.progressBar:SetValue(currentProgress);
 	self.progressBar.text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], currentProgress, maxProgress);
-    
-    
 end
 
 function ManuscriptsMixin:OnPageChanged(userAction)
@@ -724,4 +723,31 @@ function ManuscriptsJournalSearchBox_OnTextChanged(self)
 	SearchBoxTemplate_OnTextChanged(self);
 	searchText = self:GetText()
 	ManuscriptsJournal:FullRefreshIfVisible();
+end
+
+--[[]
+addon.Enum.Drakes = {}
+addon.Enum.Drakes.CliffsideWylderdrake = 1
+addon.Enum.Drakes.HighlandDrake = 2
+addon.Enum.Drakes.RenewedProtoDrake = 3
+addon.Enum.Drakes.WindborneVelocidrake = 4
+addon.Enum.Drakes.WindingSlitherdrake = 5
+]]
+
+function ManuscriptsJournalProgressBar_OnClick(self, barID)
+    DRAKE_SORT_ORDER = {
+        addon.Enum.Drakes.WindingSlitherdrake,
+        addon.Enum.Drakes.RenewedProtoDrake,
+        addon.Enum.Drakes.WindborneVelocidrake,
+        addon.Enum.Drakes.HighlandDrake,
+        addon.Enum.Drakes.CliffsideWylderdrake,
+    }
+    
+    if barID ~= 0 then
+        DRAKE_SORT_ORDER = {
+            DRAKE_SORT_ORDER[barID]
+        }
+    end
+    
+    ManuscriptsJournal:FullRefreshIfVisible()
 end
