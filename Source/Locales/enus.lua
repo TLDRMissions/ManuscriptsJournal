@@ -172,6 +172,7 @@ L["Warlord Sargha"] = true
 L["Decatriarch Wratheye"] = true
 L["Raszageth the Storm-Eater"] = true
 L["Balakar Khan"] = true
+L["Scalecommander Sarkareth"] = true
 
 -- containers
 L["Obsidian Grand Cache"] = true

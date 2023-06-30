@@ -146,6 +146,14 @@ local manuscripts = {
         source = sources.Quest,
         sourceQuestID = 72950,
     },
+    {
+        category = drakes.HighlandDrake,
+        name = "Highland Drake: Embodiment of the Hellforged",
+        itemID = 205876,
+        questID = 75967,
+        source = sources.Raid,
+        bossName = L["Scalecommander Sarkareth"],
+    },
 }
 
 for k, v in pairs(manuscripts) do
