@@ -154,6 +154,33 @@ local manuscripts = {
         source = sources.Raid,
         bossName = L["Scalecommander Sarkareth"],
     },
+    --
+    -- ADDED IN 10.1.5
+    --
+    {
+        category = drakes.RenewedProtoDrake,
+        name = "Renewed Proto-Drake: Infinite Scales",
+        itemID = 208104,
+        questID = 77255,
+    },
+    {
+        category = drakes.WindingSlitherdrake,
+        name = "Winding Slitherdrake: Infinite Scales",
+        itemID = 208106,
+        questID = 77259,
+    },
+    {
+        category = drakes.CliffsideWylderdrake,
+        name = "Cliffside Wylderdrake: Infinite Scales",
+        itemID = 208102,
+        questID = 77258,
+    },
+    {
+        category = drakes.WindborneVelocidrake,
+        name = "Windborne Velocidrake: Infinite Scales",
+        itemID = 208105,
+        questID = 77256,
+    },
 }
 
 for k, v in pairs(manuscripts) do
