@@ -1,7 +1,7 @@
 ## Interface: 100105
 ## Title: Manuscripts Journal
 ## Title-ruRU: Журнал Манускриптов
-## Version: 10.1-017
+## Version: 10.1-018
 ## Notes: Adds a Manuscripts tab to the Collections Journal
 ## Notes-ruRU: Манускрипты наблюдения за драконами
 ## Author: Teelo
