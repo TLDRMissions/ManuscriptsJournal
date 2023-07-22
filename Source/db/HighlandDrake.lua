@@ -154,7 +154,7 @@ local manuscripts = {
     {
         name = "Highland Drake: Thorned Jaw",
         itemID = 197115,
-        questID = 69324,
+        questID = 69316,
         source = sources.Rare,
         rareName = L["Shade of Grief"],
     },
