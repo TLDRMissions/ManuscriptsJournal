@@ -12,7 +12,7 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Small Head Spikes",
         itemID = 196978,
         questID = 69178,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     {
@@ -70,7 +70,7 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Pronged Tail",
         itemID = 202280,
         questID = 73060,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     {
@@ -87,7 +87,7 @@ local manuscripts = {
         name = "Highland Drake: Tapered Chin",
         itemID = 197104,
         questID = 69305,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     {
@@ -95,7 +95,7 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Split Horns",
         itemID = 196997,
         questID = 69197,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226, 
     },
     {
@@ -201,6 +201,15 @@ local manuscripts = {
         source = sources.Dungeon,
         bossName = L["Chrono-Lord Deios"],
         zoneID = 14514,
+    },
+    {
+        category = drakes.WindborneVelocidrake,
+        name = "Windborne Velocidrake: Teal Scales",
+        itemID = 197615,
+        questID = 69819,
+        source = sources.Vendor,
+        vendorName = L["Maztha"],
+        zoneID = 13862,
     },
 }
 

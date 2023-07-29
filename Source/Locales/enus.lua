@@ -12,6 +12,9 @@ L["Required Rank:"] = true
 L["Various in:"] = true
 L["Various"] = true
 L["Bugged"] = "Due to a bug, this may be unobtainable."
+L["Dragon Racing Container"] = "Dragon Racing "..AUCTION_CATEGORY_CONTAINERS
+L["Dragon Racing Achievement"] = "Dragon Racing "..BATTLE_PET_SOURCE_6
+L["Treasure Chest"] = "Chest"
 
 -- Reputation and Friendship ranks
 L["Friend"] = true
@@ -25,6 +28,7 @@ L["Low"] = true
 L["Kraxxus"] = true
 L["Meiz"] = true
 L["Ponzo"] = true
+L["Maztha"] = true
 
 -- Rare spawns
 L["Gethdazr"] = true
@@ -58,7 +62,6 @@ L["Gorjo the Crab Shackler"] = true
 L["Skewersnout"] = true
 L["Swog'ranka"] = true
 L["Massive Magmashell"] = true
-L["Lord Epochbrgl"] = true
 L["Loot Specialist"] = true
 L["Fisherman Tinnak"] = true
 L["Forgotten Gryphon"] = true
@@ -69,11 +72,8 @@ L["Scav Notail"] = true
 L["Dragonhunter Igordan"] = true	
 L["Rohzor Forgesmash"] = true
 L["Cauldronbearer Blakor"] = true
-L["Rasnar the War Ender"] = true	
-L["Groth"] = true	
-L["Snee"] = true	
+L["Rasnar the War Ender"] = true			
 L["Dragonhunter Gorund"] = true	
-L["Voll"] = true
 L["Captain Lancer"] = true
 L["Anhydros the Tidetaker"] = true
 L["Gushgut the Beaksinker"] = true
@@ -119,7 +119,7 @@ L["Qalashi War Mammoth"] = true
 L["Battlehorn Pyrhus"] = true
 L["Lookout Mordren"] = true
 L["Worldcarver A'tir"] = true
-L["Mokshoi"] = true
+L["Moskhoi"] = true
 L["Smogswog the Firebreather"] = true
 L["Death's Shadow"] = true
 L["Gamgus"] = true
@@ -178,6 +178,9 @@ L["Chrono-Lord Deios"] = true
 -- containers
 L["Obsidian Grand Cache"] = true
 L["Forgotten Dragon Treasure"] = true
-L["Decay Tainted Chest"] = true
 L["Waterlogged Bundle"] = true
 L["Smelly Trash Pile"] = true
+
+-- Fyrakk
+L["Disciples of Fyrakk"] = true
+L["Secured Shipment"] = true

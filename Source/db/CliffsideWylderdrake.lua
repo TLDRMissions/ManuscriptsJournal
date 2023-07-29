@@ -126,7 +126,7 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Gold and Orange Armor",
         itemID = 196966,
         questID = 69166,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 15937,
     },
     {
@@ -288,7 +288,7 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Flared Cheek",
         itemID = 197002,
         questID = 69202,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 204359,
     },
     {
@@ -341,7 +341,7 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Curled Head Horns",
         itemID = 196979,
         questID = 69179,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 199192,
     },
     {
@@ -378,7 +378,7 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Blonde Hair",
         itemID = 196987,
         questID = 69187,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 15926,
     },
     {
@@ -393,7 +393,7 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Spiked Brow",
         itemID = 196971,
         questID = 69171,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 199192, 
     },
     {
@@ -449,7 +449,7 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Large Tail Spikes",
         itemID = 197017,
         questID = 69217,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 199192, 
     },
     {
@@ -468,10 +468,8 @@ local manuscripts = {
             L["Rohzor Forgesmash"],
             L["Cauldronbearer Blakor"],
             L["Rasnar the War Ender"],	
-            L["Groth"],	
-            L["Snee"],	
+            L["Harkyn Grymstone"],		
             L["Dragonhunter Gorund"],	
-            L["Voll"],
             L["Captain Lancer"],
         }, 
     },

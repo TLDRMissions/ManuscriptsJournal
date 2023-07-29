@@ -10,6 +10,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Embodiment of the Obsidian Gladiator",
         itemID = 205865,
         questID = 75941,
+        source = sources.Achievement,
+        achievementID = 17740, -- Season 2
     },
     {
         name = "Winding Slitherdrake: Antler Horns",
@@ -135,7 +137,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Finned Tip Tail",
         itemID = 203361,
         questID = 73853,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     {
@@ -197,7 +199,7 @@ local manuscripts = {
     {
         name = "Winding Slitherdrake: Hairy Throat",
         itemID = 203365,
-        questID = 73854,
+        questID = 73857,
         source = sources.Renown,
         renownFaction = 2564,
         renownRank = 16,
@@ -295,7 +297,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Pointed Nose",
         itemID = 203348,
         questID = 73839,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     --{
@@ -307,14 +309,14 @@ local manuscripts = {
         name = "Winding Slitherdrake: Red and Gold Armor",
         itemID = 203303,
         questID = 73791,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 17487,
     },
     {
         name = "Winding Slitherdrake: Red Hair",
         itemID = 203325,
         questID = 73813,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 17484,
     },
     {
@@ -342,7 +344,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Triple Jaw Horns",
         itemID = 203342,
         questID = 73833,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     {
@@ -364,7 +366,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Small Finned Crest",
         itemID = 203317,
         questID = 73805,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     {

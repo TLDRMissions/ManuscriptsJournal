@@ -170,12 +170,12 @@ do
             end
         elseif source == addon.Enum.Sources.Renown then
             GameTooltip:AddDoubleLine(GetFactionInfoByID(db.renownFaction), RANK_COLON.." "..db.renownRank)
-        elseif source == addon.Enum.Sources.Achievement then
+        elseif (source == addon.Enum.Sources.Achievement) or (source == addon.Enum.Sources.DragonRacingAchievement) then
             local _, name = GetAchievementInfo(db.achievementID)
             GameTooltip:AddLine(name)
         elseif source == addon.Enum.Sources.Dungeon then
             GameTooltip:AddDoubleLine(db.bossName, C_Map.GetAreaInfo(db.zoneID))
-        elseif source == addon.Enum.Sources.Container then
+        elseif (source == addon.Enum.Sources.Container) or (source == addon.Enum.Sources.DragonRacingContainer) then
             local name, link = GetItemInfo(db.containerID)
             if link then
                 GameTooltip:AddLine(link)
@@ -196,7 +196,7 @@ do
             end
         elseif source == addon.Enum.Sources.Fyrakk then
             if db.fyrakkType then
-                GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType].enUS)
+                GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType])
             end
         else
             print(source)
