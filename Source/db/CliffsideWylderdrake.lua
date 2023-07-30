@@ -182,7 +182,7 @@ local manuscripts = {
         rareNames = {
             L["Klozicc the Ascended"],
             L["Beogoka"],
-            L["Gutrot Slime"],
+            L["Notfar the Unbearable"],
             L["Graniteclaw"],
         },
     },
