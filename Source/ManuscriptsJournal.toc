@@ -3,7 +3,7 @@
 ## Title-ruRU: Журнал Манускриптов
 ## Title-zhCN: 观龙者手稿大全
 ## Title-zhTW: 飛龍觀察者手稿大全
-## Version: 10.1-020
+## Version: 10.1-021
 ## Notes: Adds a Manuscripts tab to the Collections Journal
 ## Notes-ruRU: Манускрипты наблюдения за драконами
 ## Notes-zhCN: 在藏品中添加观龙者手稿的标签页。
@@ -13,6 +13,7 @@
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_Collections
 ## IconTexture: 254291
+## SavedVariables: ManuscriptsJournalExportDB
 
 libs\LibStub\LibStub.lua
 libs\AceLocale-3.0\AceLocale-3.0.xml
@@ -43,3 +44,5 @@ ui.xml
 bindings.lua
 
 gametooltiphooks.lua
+
+export.lua
