@@ -13,5 +13,9 @@ local function exportDB()
     end
 end
 
-exportDB()
-C_Timer.After(20, exportDB)
+EventUtil.ContinueOnAddOnLoaded(addonName, function()
+    local loaded, finished = IsAddOnLoaded(addonName)
+    if not finished then return end
+    
+    exportDB()
+end)

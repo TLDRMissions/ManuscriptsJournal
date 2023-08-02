@@ -15,6 +15,7 @@ L["Bugged"] = "Due to a bug, this may be unobtainable."
 L["Dragon Racing Container"] = "Dragon Racing "..AUCTION_CATEGORY_CONTAINERS
 L["Dragon Racing Achievement"] = "Dragon Racing "..BATTLE_PET_SOURCE_6
 L["Treasure Chest"] = "Chest"
+L["PvP Seasonal"] = true
 
 -- Reputation and Friendship ranks
 L["Friend"] = true
