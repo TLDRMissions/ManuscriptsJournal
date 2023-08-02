@@ -503,8 +503,9 @@ local manuscripts = {
         name = "Highland Drake: Embodiment of the Crimson Gladiator",
         itemID = 201792,
         questID = 72371,
-        source = sources.Achievement,
+        source = sources.PvPSeason,
         achievementID = 15957, -- Season 1
+        unobtainable = true,
     },
     {
         name = "Highland Drake: White Scales",

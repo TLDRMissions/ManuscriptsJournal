@@ -10,7 +10,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Embodiment of the Obsidian Gladiator",
         itemID = 205865,
         questID = 75941,
-        source = sources.Achievement,
+        source = sources.PvPSeason,
         achievementID = 17740, -- Season 2
     },
     {
