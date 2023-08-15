@@ -29,6 +29,9 @@ local manuscripts = {
         name = "Winding Slitherdrake: Blonde Hair",
         itemID = 203322,
         questID = 73810,
+        source = sources.Vendor,
+        vendorName = L["Maztha"],
+        zoneID = 13862,
     },
     {
         name = "Winding Slitherdrake: Blue and Silver Armor",
@@ -120,6 +123,9 @@ local manuscripts = {
         name = "Winding Slitherdrake: Curved Nose Horn",
         itemID = 203349,
         questID = 73840,
+        source = sources.Vendor,
+        vendorName = L["Maztha"],
+        zoneID = 13862,
     },
     {
         name = "Winding Slitherdrake: Ears",
