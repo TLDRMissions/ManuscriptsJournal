@@ -14,7 +14,13 @@ local DRAKE_SORT_ORDER = {
     addon.Enum.Drakes.WindborneVelocidrake,
     addon.Enum.Drakes.HighlandDrake,
     addon.Enum.Drakes.CliffsideWylderdrake,
+    addon.Enum.Drakes.All,
 }
+
+local NUM_DRAKES = 0
+for _ in pairs(addon.Enum.Drakes) do
+    NUM_DRAKES = NUM_DRAKES + 1
+end
 
 local function SetManuscriptSourceFilter(source, checked)
     sourceFilter[source] = checked
@@ -202,6 +208,7 @@ do
             if db.fyrakkType then
                 GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType])
             end
+        elseif source == addon.Enum.Sources.WorldEvent then
         else
             print(source)
         end
@@ -250,20 +257,22 @@ function ManuscriptsMixin:OnLoad()
 
 	if not self.numKnownManuscripts then self.numKnownManuscripts = {} end
     if not self.numPossibleManuscripts then self.numPossibleManuscripts = {} end
-    for i = 1, 5 do
-        local drake = DRAKE_SORT_ORDER[i]
-        self.numKnownManuscripts[i] = 0
-        self.numPossibleManuscripts[i] = 0
-        
-        self["mount"..i.."Bar"]:SetScript("OnEnter", function()
-            GameTooltip:SetOwner(self["mount"..i.."Bar"], "ANCHOR_BOTTOM")
-            GameTooltip:AddLine(addon.Strings.Drakes[drake])
-            GameTooltip:Show()
-        end)
-        
-        self["mount"..i.."Bar"]:SetScript("OnLeave", function()
-            GameTooltip:Hide()
-        end)
+    for i = 1, NUM_DRAKES do
+        if i ~= addon.Enum.Drakes.All then
+            local drake = DRAKE_SORT_ORDER[i]
+            self.numKnownManuscripts[i] = 0
+            self.numPossibleManuscripts[i] = 0
+            
+            self["mount"..i.."Bar"]:SetScript("OnEnter", function()
+                GameTooltip:SetOwner(self["mount"..i.."Bar"], "ANCHOR_BOTTOM")
+                GameTooltip:AddLine(addon.Strings.Drakes[drake])
+                GameTooltip:Show()
+            end)
+            
+            self["mount"..i.."Bar"]:SetScript("OnLeave", function()
+                GameTooltip:Hide()
+            end)
+        end
     end
 
 	self:FullRefreshIfVisible();
@@ -327,7 +336,7 @@ function ManuscriptsMixin:RebuildLayoutData()
 	self.manuscriptLayoutData = {};
 	self.itemIDsInCurrentLayout = {};
 
-	for i = 1, 5 do
+    for i = 1, NUM_DRAKES do
         self.numKnownManuscripts[i] = 0
         self.numPossibleManuscripts[i] = 0
     end
@@ -383,7 +392,7 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
     			table.insert(equipBuckets[category], itemID)
 
                 if collected then
-    				self.numKnownManuscripts[category] = self.numKnownManuscripts[category] + 1
+                    self.numKnownManuscripts[category] = self.numKnownManuscripts[category] + 1
     			end
     			self.numPossibleManuscripts[category] = self.numPossibleManuscripts[category] + 1
 
@@ -739,6 +748,7 @@ function ManuscriptsJournalProgressBar_OnClick(self, barID)
         addon.Enum.Drakes.WindborneVelocidrake,
         addon.Enum.Drakes.HighlandDrake,
         addon.Enum.Drakes.CliffsideWylderdrake,
+        addon.Enum.Drakes.All,
     }
     
     if barID ~= 0 then

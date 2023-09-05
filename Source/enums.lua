@@ -9,6 +9,7 @@ addon.Enum.Drakes.HighlandDrake = 2
 addon.Enum.Drakes.RenewedProtoDrake = 3
 addon.Enum.Drakes.WindborneVelocidrake = 4
 addon.Enum.Drakes.WindingSlitherdrake = 5
+addon.Enum.Drakes.All = 6
 
 addon.Enum.Sources = {}
 addon.Enum.Sources.Rare = 1
@@ -28,6 +29,7 @@ addon.Enum.Sources.Fyrakk = 12
 addon.Enum.Sources.DragonRacingContainer = 13
 addon.Enum.Sources.DragonRacingAchievement = 14
 addon.Enum.Sources.PvPSeason = 15
+addon.Enum.Sources.WorldEvent = 16
 
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1
@@ -62,6 +64,7 @@ do
         addon.Strings.Drakes[5] = item5:GetItemName()
     end)
 end
+addon.Strings.Drakes[6] = ACHIEVEMENTFRAME_FILTER_ALL
 
 addon.Strings.Sources = {}
 addon.Strings.Sources[1] = L["Rare Spawns"]
@@ -81,6 +84,7 @@ addon.Strings.Sources[12] = C_QuestLog.GetTitleForQuestID(75887)
 addon.Strings.Sources[13] = L["Dragon Racing Container"]
 addon.Strings.Sources[14] = L["Dragon Racing Achievement"]
 addon.Strings.Sources[15] = L["PvP Seasonal"]
+addon.Strings.Sources[16] = BATTLE_PET_SOURCE_7
 
 addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645) -- Ohn'aran
