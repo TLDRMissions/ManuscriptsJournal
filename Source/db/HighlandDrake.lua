@@ -507,16 +507,6 @@ local manuscripts = {
         achievementID = 15957, -- Season 1
         unobtainable = true,
     },
-    {
-        name = "Highland Drake: White Scales",
-        itemID = 197146,
-        questID = 69347,
-    },
-    {
-        name = "Highland Drake: Gold and White Armor",
-        itemID = 197095,
-        questID = 69296,
-    },
     --{
     --    name = "Highland Drake: Helm",
     --    itemID = 197119,

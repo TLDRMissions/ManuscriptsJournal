@@ -165,21 +165,11 @@ local manuscripts = {
         renownFaction = 2510,
         renownRank = 26,
     },
-    {
-        name = "Renewed Proto-Drake: White Scales",
-        itemID = 197393,
-        questID = 69594,
-    },
     --{
     --    name = "Renewed Proto-Drake: Helm",
     --    itemID = 197373,
     --    questID = 69574,
     --},
-    {
-        name = "Renewed Proto-Drake: Gold and White Armor",
-        itemID = 197349,
-        questID = 69550,
-    },
     {
         name = "Renewed Proto-Drake: Hairy Back",
         itemID = 197356,
@@ -190,7 +180,6 @@ local manuscripts = {
         itemID = 197354,
         questID = 69555,
     },
-
     {
         name = "Renewed Proto-Drake: Green Hair",
         itemID = 197371,

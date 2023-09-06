@@ -176,16 +176,6 @@ local manuscripts = {
         sourceQuestID = 66009,
     },
     {
-        name = "Windborne Velocidrake: White Scales",
-        itemID = 197616,
-        questID = 69820,
-    },
-    {
-        name = "Windborne Velocidrake: White and Pink Armor",
-        itemID = 197582,
-        questID = 69786,
-    },
-    {
         name = "Windborne Velocidrake: Maned Back",
         itemID = 197585,
         questID = 69789,

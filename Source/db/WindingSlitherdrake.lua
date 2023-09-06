@@ -135,11 +135,6 @@ local manuscripts = {
         rareName = L["Dinn"],
     },
     {
-        name = "Winding Slitherdrake: Finned Cheek",
-        itemID = 203319,
-        questID = 73807,
-    },
-    {
         name = "Winding Slitherdrake: Finned Tip Tail",
         itemID = 203361,
         questID = 73853,
@@ -228,11 +223,6 @@ local manuscripts = {
     --    questID = 73814,
     --},
     {
-        name = "Winding Slitherdrake: Horned Brow",
-        itemID = 203306,
-        questID = 73794,
-    },
-    {
         name = "Winding Slitherdrake: Impaler Horns",
         itemID = 203339,
         questID = 73830,
@@ -286,11 +276,6 @@ local manuscripts = {
         source = sources.Renown,
         renownFaction = 2564,
         renownRank = 13,
-    },
-    {
-        name = "Winding Slitherdrake: Paired Horns",
-        itemID = 203336,
-        questID = 73826,
     },
     {
         name = "Winding Slitherdrake: Plated Brow",
@@ -352,11 +337,6 @@ local manuscripts = {
         questID = 73833,
         source = sources.DragonRacingContainer,
         containerID = 205226,
-    },
-    {
-        name = "Winding Slitherdrake: Shark Finned Tail",
-        itemID = 203359,
-        questID = 73851,
     },
     {
         name = "Winding Slitherdrake: Short Horns",
@@ -424,11 +404,6 @@ local manuscripts = {
         source = sources.Quest,
         sourceQuestID = 74562,
     },
-    --{
-    --    name = "Winding Slitherdrake: White and Gold Armor",
-    --    itemID = 203298,
-    --    questID = 73786,
-    --},
     {
         name = "Winding Slitherdrake: White Hair",
         itemID = 203324,
@@ -443,20 +418,10 @@ local manuscripts = {
         rareName = L["Invoq"],
     },
     {
-        name = "Winding Slitherdrake: White Scales",
-        itemID = 203354,
-        questID = 73845,
-    },
-    {
         name = "Winding Slitherdrake: Yellow and Silver Armor",
         itemID = 203304,
         questID = 73792,
         source = sources.Inscription,
-    },
-    {
-        name = "Winding Slitherdrake: Yellow Scales",
-        itemID = 203355,
-        questID = 73846,
     },
 }
 

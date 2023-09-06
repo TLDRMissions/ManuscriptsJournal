@@ -397,12 +397,6 @@ local manuscripts = {
         containerID = 199192, 
     },
     {
-        name = "Cliffside Wylderdrake: Gold and White Armor",
-        itemID = 196967,
-        questID = 69167,
-        --source = sources., 
-    },
-    {
         name = "Cliffside Wylderdrake: White Hair",
         itemID = 196989,
         questID = 69189,
@@ -438,12 +432,6 @@ local manuscripts = {
         source = sources.Reputation,
         reputation = 2550,
         friendshipRank = L["Low"], 
-    },
-    {
-        name = "Cliffside Wylderdrake: White Scales",
-        itemID = 197014,
-        questID = 69214,
-        --source = sources., 
     },
     {
         name = "Cliffside Wylderdrake: Large Tail Spikes",
