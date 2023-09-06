@@ -215,7 +215,7 @@ local manuscripts = {
         category = drakes.All,
         name = "Dragon Isles Drakes: Gilded Armor",
         itemID = 208200,
-        questID = 197349,
+        questID = 69550,
         source = sources.Quest,
         sourceQuestID = 75638,
     },
