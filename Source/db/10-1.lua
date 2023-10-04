@@ -248,8 +248,6 @@ local manuscripts = {
         name = "Winding Slitherdrake: Finned Cheek",
         itemID = 203319,
         questID = 73807,
-        source = sources.Unknown,
-        zoneID = 13862,
     },
     {
         category = drakes.WindingSlitherdrake,
