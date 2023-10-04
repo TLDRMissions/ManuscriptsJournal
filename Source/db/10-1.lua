@@ -248,8 +248,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Finned Cheek",
         itemID = 203319,
         questID = 73807,
-        source = sources.Vendor,
-        vendorName = L["Maztha"],
+        source = sources.Unknown,
         zoneID = 13862,
     },
     {
