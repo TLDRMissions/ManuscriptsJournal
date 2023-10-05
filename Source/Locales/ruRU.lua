@@ -12,6 +12,10 @@ L["Required Rank:"] = "Ранг:"
 L["Various in:"] = "Различные в:"
 L["Various"] = "Различный"
 L["Bugged"] = "Из-за ошибки это может быть недоступно."
+L["Dragon Racing Container"] = "Драконьи гонки "..AUCTION_CATEGORY_CONTAINERS
+L["Dragon Racing Achievement"] = "Драконьи гонки "..BATTLE_PET_SOURCE_6
+L["Treasure Chest"] = "Сундук"
+L["PvP Seasonal"] = "PvP сезонный"
 
 -- Reputation and Friendship ranks
 L["Friend"] = "Друг"
@@ -25,6 +29,7 @@ L["Low"] = "Низкий"
 L["Kraxxus"] = "Краксус"
 L["Meiz"] = "Мейз"
 L["Ponzo"] = "Понзо"
+L["Maztha"] = "Мазта"
 
 -- Rare spawns
 L["Gethdazr"] = "Гетдазр"
@@ -168,6 +173,8 @@ L["Warlord Sargha"] = "Полководец Сарга"
 L["Decatriarch Wratheye"] = "Гниломаг Око Гнева"
 L["Raszageth the Storm-Eater"] = "Рашагет Пожирательница Бурь"
 L["Balakar Khan"] = "Хан Балакар"
+L["Scalecommander Sarkareth"] = "Дракомандир Саркарет"
+L["Chrono-Lord Deios"] = "Хронолорд Дейос"
 
 -- containers
 L["Obsidian Grand Cache"] = "Великий обсидиановый тайник"
@@ -175,3 +182,7 @@ L["Forgotten Dragon Treasure"] = "Забытое сокровище дракон
 L["Decay Tainted Chest"] = "Тронутый гнилью сундук"
 L["Waterlogged Bundle"] = "Промокшая котомка"
 L["Smelly Trash Pile"] = "Пахучая куча мусора"
+
+-- Fyrakk
+L["Disciples of Fyrakk"] = "Ученик Фиракка"
+L["Secured Shipment"] = "Защищенные ресурсы"
