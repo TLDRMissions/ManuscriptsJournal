@@ -12,6 +12,7 @@ local manuscripts = {
         questID = 75941,
         source = sources.PvPSeason,
         achievementID = 17740, -- Season 2
+        unobtainable = true,
     },
     {
         name = "Winding Slitherdrake: Antler Horns",

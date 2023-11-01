@@ -14,6 +14,8 @@ local DRAKE_SORT_ORDER = {
     addon.Enum.Drakes.WindborneVelocidrake,
     addon.Enum.Drakes.HighlandDrake,
     addon.Enum.Drakes.CliffsideWylderdrake,
+    addon.Enum.Drakes.GrottoNetherwingDrake,
+    addon.Enum.Drakes.FlourishingWhimsydrake,
     addon.Enum.Drakes.All,
 }
 
@@ -209,6 +211,7 @@ do
                 GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType])
             end
         elseif source == addon.Enum.Sources.WorldEvent then
+        elseif source == addon.Enum.Sources.Superbloom then
         else
             print(source)
         end
@@ -631,7 +634,7 @@ function ManuscriptsMixin:UpdateProgressBar()
 	if #DRAKE_SORT_ORDER < 2 then return end
     local maxProgress, currentProgress = 0, 0
     
-    for i = 1, 5 do
+    for i = 1, NUM_DRAKES-1 do
         local drake = DRAKE_SORT_ORDER[i]
         maxProgress = maxProgress + self.numPossibleManuscripts[drake]
         currentProgress = currentProgress + self.numKnownManuscripts[drake]
