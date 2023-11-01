@@ -9,22 +9,27 @@ addon.Enum.Drakes.HighlandDrake = 2
 addon.Enum.Drakes.RenewedProtoDrake = 3
 addon.Enum.Drakes.WindborneVelocidrake = 4
 addon.Enum.Drakes.WindingSlitherdrake = 5
+addon.Enum.Drakes.All = 6
 
 addon.Enum.Sources = {}
 addon.Enum.Sources.Rare = 1
 addon.Enum.Sources.Reputation = 2
 addon.Enum.Sources.Renown = 3
-addon.Enum.Sources.Achievement = 4
-addon.Enum.Sources.Inscription = 5
-addon.Enum.Sources.Dungeon = 6
-addon.Enum.Sources.Hunt = 7
-addon.Enum.Sources.Container = 8
-addon.Enum.Sources.Quest = 9
-addon.Enum.Sources.Vendor = 10
-addon.Enum.Sources.Raid = 11
-addon.Enum.Sources.Chest = 12
-addon.Enum.Sources.Unknown = 13
-addon.Enum.Sources.Fyrakk = 14
+--addon.Enum.Sources.Achievement = 4
+addon.Enum.Sources.Inscription = 4
+addon.Enum.Sources.Dungeon = 5
+addon.Enum.Sources.Hunt = 6
+--addon.Enum.Sources.Container = 8
+addon.Enum.Sources.Quest = 7
+addon.Enum.Sources.Vendor = 8
+addon.Enum.Sources.Raid = 9
+addon.Enum.Sources.Chest = 10
+addon.Enum.Sources.Unknown = 11
+addon.Enum.Sources.Fyrakk = 12
+addon.Enum.Sources.DragonRacingContainer = 13
+addon.Enum.Sources.DragonRacingAchievement = 14
+addon.Enum.Sources.PvPSeason = 15
+addon.Enum.Sources.WorldEvent = 16
 
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1
@@ -59,32 +64,38 @@ do
         addon.Strings.Drakes[5] = item5:GetItemName()
     end)
 end
+addon.Strings.Drakes[6] = ACHIEVEMENTFRAME_FILTER_ALL
 
 addon.Strings.Sources = {}
 addon.Strings.Sources[1] = L["Rare Spawns"]
 addon.Strings.Sources[2] = REPUTATION
 addon.Strings.Sources[3] = COVENANT_SANCTUM_TAB_RENOWN
-addon.Strings.Sources[4] = BATTLE_PET_SOURCE_6
-addon.Strings.Sources[5] = INSCRIPTION
-addon.Strings.Sources[6] = TRACKER_HEADER_DUNGEON
-addon.Strings.Sources[7] = L["Grand Hunts"]
-addon.Strings.Sources[8] = AUCTION_CATEGORY_CONTAINERS
-addon.Strings.Sources[9] = BATTLE_PET_SOURCE_2
-addon.Strings.Sources[10] = BATTLE_PET_SOURCE_3
-addon.Strings.Sources[11] = CALENDAR_TYPE_RAID
-addon.Strings.Sources[12] = ITEM_CONTAINER
-addon.Strings.Sources[13] = COMBATLOG_FILTER_STRING_UNKNOWN_UNITS
-addon.Strings.Sources[14] = C_QuestLog.GetTitleForQuestID(75887)
+--addon.Strings.Sources[4] = BATTLE_PET_SOURCE_6
+addon.Strings.Sources[4] = INSCRIPTION
+addon.Strings.Sources[5] = TRACKER_HEADER_DUNGEON
+addon.Strings.Sources[6] = L["Grand Hunts"]
+--addon.Strings.Sources[8] = AUCTION_CATEGORY_CONTAINERS
+addon.Strings.Sources[7] = BATTLE_PET_SOURCE_2
+addon.Strings.Sources[8] = BATTLE_PET_SOURCE_3
+addon.Strings.Sources[9] = CALENDAR_TYPE_RAID
+addon.Strings.Sources[10] = L["Treasure Chest"]
+addon.Strings.Sources[11] = COMBATLOG_FILTER_STRING_UNKNOWN_UNITS
+addon.Strings.Sources[12] = C_QuestLog.GetTitleForQuestID(75887)
+addon.Strings.Sources[13] = L["Dragon Racing Container"]
+addon.Strings.Sources[14] = L["Dragon Racing Achievement"]
+addon.Strings.Sources[15] = L["PvP Seasonal"]
+addon.Strings.Sources[16] = BATTLE_PET_SOURCE_7
 
 addon.Strings.Zones = {}
-addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645)
-addon.Strings.Zones[2] = C_Map.GetAreaInfo(13644)
-addon.Strings.Zones[3] = C_Map.GetAreaInfo(14022)
+addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645) -- Ohn'aran
+addon.Strings.Zones[2] = C_Map.GetAreaInfo(13644) -- Waking Shores
+addon.Strings.Zones[3] = C_Map.GetAreaInfo(14022) -- Zaralek
+addon.Strings.Zones[4] = C_Map.GetAreaInfo(13646) -- The Azure Span
+addon.Strings.Zones[5] = C_Map.GetAreaInfo(13647) -- Thaldraszus
+addon.Strings.Zones[6] = C_Map.GetAreaInfo(13862) -- Valdrakken
+addon.Strings.Zones[7] = C_Map.GetAreaInfo(14433) -- The Forbidden Reach
+addon.Strings.Zones[8] = C_Map.GetAreaInfo(13642) -- Dragon Isles
 
 addon.Strings.Fyrakk = {}
-addon.Strings.Fyrakk[1] = {
-    enUS = "Disciples of Fyrakk",
-}
-addon.Strings.Fyrakk[2] = {
-    enUS = "Secured Shipment",
-}
+addon.Strings.Fyrakk[1] = L["Disciples of Fyrakk"]
+addon.Strings.Fyrakk[2] = L["Secured Shipment"]

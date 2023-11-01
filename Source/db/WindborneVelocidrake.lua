@@ -176,21 +176,6 @@ local manuscripts = {
         sourceQuestID = 66009,
     },
     {
-        name = "Windborne Velocidrake: White Scales",
-        itemID = 197616,
-        questID = 69820,
-    },
-    {
-        name = "Windborne Velocidrake: Teal Scales",
-        itemID = 197615,
-        questID = 69819,
-    },
-    {
-        name = "Windborne Velocidrake: White and Pink Armor",
-        itemID = 197582,
-        questID = 69786,
-    },
-    {
         name = "Windborne Velocidrake: Maned Back",
         itemID = 197585,
         questID = 69789,
@@ -214,8 +199,8 @@ local manuscripts = {
         name = "Windborne Velocidrake: Gray Hair",
         itemID = 197598,
         questID = 69802,
-        source = sources.Chest,
-        chestName = L["Decay Tainted Chest"],
+        source = sources.Dungeon,
+        chestName = L["Decatriarch Wratheye"],
         zoneID = 13991,
     },
     {
@@ -319,7 +304,7 @@ local manuscripts = {
         name = "Windborne Velocidrake: Gold and Red Armor",
         itemID = 197580,
         questID = 69784,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 15931,
     },
     {
@@ -342,7 +327,7 @@ local manuscripts = {
         name = "Windborne Velocidrake: Hooked Snout",
         itemID = 197619,
         questID = 69823,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 199192,
     },
     {
@@ -381,7 +366,7 @@ local manuscripts = {
         name = "Windborne Velocidrake: Small Ears",
         itemID = 197594,
         questID = 69798,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 204359,
     },
     {
@@ -404,7 +389,7 @@ local manuscripts = {
         name = "Windborne Velocidrake: Curled Horns",
         itemID = 197605,
         questID = 69809,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 199192,
     },
     {
@@ -427,7 +412,7 @@ local manuscripts = {
         name = "Windborne Velocidrake: Red Hair",
         itemID = 197599,
         questID = 69803,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 15919,
     },
     --{

@@ -1,14 +1,20 @@
-## Interface: 100105
+## Interface: 100107
 ## Title: Manuscripts Journal
 ## Title-ruRU: Журнал Манускриптов
-## Version: 10.1-017
+## Title-zhCN: 观龙者手稿大全
+## Title-zhTW: 飛龍觀察者手稿大全
+## Version: @project-version@
 ## Notes: Adds a Manuscripts tab to the Collections Journal
 ## Notes-ruRU: Манускрипты наблюдения за драконами
+## Notes-zhCN: 在藏品中添加观龙者手稿的标签页。
+## Notes-zhTW: 在收藏中添加飛龍觀察者手稿的標簽頁面。
 ## Author: Teelo
 ## X-Curse-Project-ID: 850505
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_Collections
 ## IconTexture: 254291
+## SavedVariables: ManuscriptsJournalExportDB
+## SavedVariables: ManuscriptsJournalFiltersDB
 
 libs\LibStub\LibStub.lua
 libs\AceLocale-3.0\AceLocale-3.0.xml
@@ -18,6 +24,8 @@ libs\SecureTabs-2.0\SecureTabs-2.0.lua
 Locales\enus.lua
 Locales\esES.lua
 Locales\ruRU.lua
+Locales\zhCN.lua
+Locales\zhTW.lua
 
 FilterDropDown.lua
 
@@ -37,3 +45,5 @@ ui.xml
 bindings.lua
 
 gametooltiphooks.lua
+
+export.lua

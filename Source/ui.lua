@@ -14,7 +14,13 @@ local DRAKE_SORT_ORDER = {
     addon.Enum.Drakes.WindborneVelocidrake,
     addon.Enum.Drakes.HighlandDrake,
     addon.Enum.Drakes.CliffsideWylderdrake,
+    addon.Enum.Drakes.All,
 }
+
+local NUM_DRAKES = 0
+for _ in pairs(addon.Enum.Drakes) do
+    NUM_DRAKES = NUM_DRAKES + 1
+end
 
 local function SetManuscriptSourceFilter(source, checked)
     sourceFilter[source] = checked
@@ -38,6 +44,10 @@ local function SetDefaultFilters()
     collectedManuscriptFilter = true
     uncollectedManuscriptFilter = true
     unusableManuscriptFilter = false
+    ManuscriptsJournalFiltersDB.collected = true
+    ManuscriptsJournalFiltersDB.uncollected = true
+    ManuscriptsJournalFiltersDB.unusable = false
+    SetAllSourceFilters(true)
 end
 
 local function IsUsingDefaultFilters()
@@ -170,12 +180,12 @@ do
             end
         elseif source == addon.Enum.Sources.Renown then
             GameTooltip:AddDoubleLine(GetFactionInfoByID(db.renownFaction), RANK_COLON.." "..db.renownRank)
-        elseif source == addon.Enum.Sources.Achievement then
+        elseif (source == addon.Enum.Sources.Achievement) or (source == addon.Enum.Sources.DragonRacingAchievement) or (source == addon.Enum.Sources.PvPSeason) then
             local _, name = GetAchievementInfo(db.achievementID)
             GameTooltip:AddLine(name)
         elseif source == addon.Enum.Sources.Dungeon then
             GameTooltip:AddDoubleLine(db.bossName, C_Map.GetAreaInfo(db.zoneID))
-        elseif source == addon.Enum.Sources.Container then
+        elseif (source == addon.Enum.Sources.Container) or (source == addon.Enum.Sources.DragonRacingContainer) then
             local name, link = GetItemInfo(db.containerID)
             if link then
                 GameTooltip:AddLine(link)
@@ -196,8 +206,9 @@ do
             end
         elseif source == addon.Enum.Sources.Fyrakk then
             if db.fyrakkType then
-                GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType].enUS)
+                GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType])
             end
+        elseif source == addon.Enum.Sources.WorldEvent then
         else
             print(source)
         end
@@ -246,20 +257,22 @@ function ManuscriptsMixin:OnLoad()
 
 	if not self.numKnownManuscripts then self.numKnownManuscripts = {} end
     if not self.numPossibleManuscripts then self.numPossibleManuscripts = {} end
-    for i = 1, 5 do
-        local drake = DRAKE_SORT_ORDER[i]
-        self.numKnownManuscripts[i] = 0
-        self.numPossibleManuscripts[i] = 0
-        
-        self["mount"..i.."Bar"]:SetScript("OnEnter", function()
-            GameTooltip:SetOwner(self["mount"..i.."Bar"], "ANCHOR_BOTTOM")
-            GameTooltip:AddLine(addon.Strings.Drakes[drake])
-            GameTooltip:Show()
-        end)
-        
-        self["mount"..i.."Bar"]:SetScript("OnLeave", function()
-            GameTooltip:Hide()
-        end)
+    for i = 1, NUM_DRAKES do
+        if i ~= addon.Enum.Drakes.All then
+            local drake = DRAKE_SORT_ORDER[i]
+            self.numKnownManuscripts[i] = 0
+            self.numPossibleManuscripts[i] = 0
+            
+            self["mount"..i.."Bar"]:SetScript("OnEnter", function()
+                GameTooltip:SetOwner(self["mount"..i.."Bar"], "ANCHOR_BOTTOM")
+                GameTooltip:AddLine(addon.Strings.Drakes[drake])
+                GameTooltip:Show()
+            end)
+            
+            self["mount"..i.."Bar"]:SetScript("OnLeave", function()
+                GameTooltip:Hide()
+            end)
+        end
     end
 
 	self:FullRefreshIfVisible();
@@ -323,7 +336,7 @@ function ManuscriptsMixin:RebuildLayoutData()
 	self.manuscriptLayoutData = {};
 	self.itemIDsInCurrentLayout = {};
 
-	for i = 1, 5 do
+    for i = 1, NUM_DRAKES do
         self.numKnownManuscripts[i] = 0
         self.numPossibleManuscripts[i] = 0
     end
@@ -342,8 +355,8 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
         
         local include = false
         if collected and collectedManuscriptFilter then include = true end
-        if manuscriptData.source and (not collected) and uncollectedManuscriptFilter then include = true end
-        if (not collected) and unusableManuscriptFilter and (not manuscriptData.source) then include = true end
+        if manuscriptData.source and (not collected) and (not manuscriptData.unobtainable) and uncollectedManuscriptFilter then include = true end
+        if (not collected) and unusableManuscriptFilter and ((not manuscriptData.source) or manuscriptData.unobtainable) then include = true end
         
         if include and (searchText ~= "") then
             include = false
@@ -379,7 +392,7 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
     			table.insert(equipBuckets[category], itemID)
 
                 if collected then
-    				self.numKnownManuscripts[category] = self.numKnownManuscripts[category] + 1
+                    self.numKnownManuscripts[category] = self.numKnownManuscripts[category] + 1
     			end
     			self.numPossibleManuscripts[category] = self.numPossibleManuscripts[category] + 1
 
@@ -641,18 +654,21 @@ end
 function ManuscriptsMixin:SetCollectedManuscriptFilter(checked)
     assert(type(checked) == "boolean")
 	collectedManuscriptFilter = checked
+    ManuscriptsJournalFiltersDB.collected = checked
 	self:FullRefreshIfVisible();
 end
 
 function ManuscriptsMixin:SetUncollectedManuscriptFilter(checked)
     assert(type(checked) == "boolean")
     uncollectedManuscriptFilter = checked
+    ManuscriptsJournalFiltersDB.uncollected = checked
 	self:FullRefreshIfVisible();
 end
 
 function ManuscriptsMixin:SetUnusableManuscriptFilter(checked)
     assert(type(checked) == "boolean")
     unusableManuscriptFilter = checked
+    ManuscriptsJournalFiltersDB.unusable = checked
     self:FullRefreshIfVisible()
 end
 
@@ -732,6 +748,7 @@ function ManuscriptsJournalProgressBar_OnClick(self, barID)
         addon.Enum.Drakes.WindborneVelocidrake,
         addon.Enum.Drakes.HighlandDrake,
         addon.Enum.Drakes.CliffsideWylderdrake,
+        addon.Enum.Drakes.All,
     }
     
     if barID ~= 0 then
@@ -742,3 +759,23 @@ function ManuscriptsJournalProgressBar_OnClick(self, barID)
     
     ManuscriptsJournal:FullRefreshIfVisible()
 end
+
+EventUtil.ContinueOnAddOnLoaded(addonName, function()
+    local loaded, finished = IsAddOnLoaded(addonName)
+    if not finished then return end
+    
+    -- defaults
+    if not ManuscriptsJournalFiltersDB then ManuscriptsJournalFiltersDB = {} end
+    
+    if ManuscriptsJournalFiltersDB.collected == nil then ManuscriptsJournalFiltersDB.collected = true end
+    collectedManuscriptFilter = ManuscriptsJournalFiltersDB.collected
+    
+    if ManuscriptsJournalFiltersDB.uncollected == nil then ManuscriptsJournalFiltersDB.uncollected = true end
+    uncollectedManuscriptFilter = ManuscriptsJournalFiltersDB.uncollected
+
+    if ManuscriptsJournalFiltersDB.unusable == nil then ManuscriptsJournalFiltersDB.unusable = false end
+    unusableManuscriptFilter = ManuscriptsJournalFiltersDB.unusable
+
+    if ManuscriptsJournalFiltersDB.sourceFilter == nil then ManuscriptsJournalFiltersDB.sourceFilter = {} end
+    sourceFilter = ManuscriptsJournalFiltersDB.sourceFilter
+end)

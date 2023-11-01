@@ -95,7 +95,7 @@ local manuscripts = {
             L["Battlehorn Pyrhus"],
             L["Lookout Mordren"],
             L["Worldcarver A'tir"],
-            L["Mokshoi"],
+            L["Moskhoi"],
             L["Smogswog the Firebreather"],
             L["Death's Shadow"],
             L["Gamgus"],
@@ -165,21 +165,11 @@ local manuscripts = {
         renownFaction = 2510,
         renownRank = 26,
     },
-    {
-        name = "Renewed Proto-Drake: White Scales",
-        itemID = 197393,
-        questID = 69594,
-    },
     --{
     --    name = "Renewed Proto-Drake: Helm",
     --    itemID = 197373,
     --    questID = 69574,
     --},
-    {
-        name = "Renewed Proto-Drake: Gold and White Armor",
-        itemID = 197349,
-        questID = 69550,
-    },
     {
         name = "Renewed Proto-Drake: Hairy Back",
         itemID = 197356,
@@ -190,7 +180,6 @@ local manuscripts = {
         itemID = 197354,
         questID = 69555,
     },
-
     {
         name = "Renewed Proto-Drake: Green Hair",
         itemID = 197371,
@@ -264,7 +253,7 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Gold and Red Armor",
         itemID = 197351,
         questID = 69552,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 15928,
     },
     {
@@ -393,7 +382,7 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Plated Brow",
         itemID = 202274,
         questID = 73055,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 204359,
     },
     {
@@ -416,7 +405,7 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Red Hair",
         itemID = 197370,
         questID = 69571,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 15916,
     },
     {
@@ -431,7 +420,7 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Dual Horned Crest",
         itemID = 197366,
         questID = 69567,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 199192,
     },
     {
@@ -445,7 +434,7 @@ local manuscripts = {
         name = "Renewed Proto-Drake: Thin Spined Jaw",
         itemID = 197387,
         questID = 69588,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 199192,
     },
     {

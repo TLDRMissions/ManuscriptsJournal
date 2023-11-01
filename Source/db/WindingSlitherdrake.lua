@@ -10,6 +10,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Embodiment of the Obsidian Gladiator",
         itemID = 205865,
         questID = 75941,
+        source = sources.PvPSeason,
+        achievementID = 17740, -- Season 2
     },
     {
         name = "Winding Slitherdrake: Antler Horns",
@@ -27,6 +29,9 @@ local manuscripts = {
         name = "Winding Slitherdrake: Blonde Hair",
         itemID = 203322,
         questID = 73810,
+        source = sources.Vendor,
+        vendorName = L["Maztha"],
+        zoneID = 13862,
     },
     {
         name = "Winding Slitherdrake: Blue and Silver Armor",
@@ -118,6 +123,9 @@ local manuscripts = {
         name = "Winding Slitherdrake: Curved Nose Horn",
         itemID = 203349,
         questID = 73840,
+        source = sources.Vendor,
+        vendorName = L["Maztha"],
+        zoneID = 13862,
     },
     {
         name = "Winding Slitherdrake: Ears",
@@ -127,15 +135,10 @@ local manuscripts = {
         rareName = L["Dinn"],
     },
     {
-        name = "Winding Slitherdrake: Finned Cheek",
-        itemID = 203319,
-        questID = 73807,
-    },
-    {
         name = "Winding Slitherdrake: Finned Tip Tail",
         itemID = 203361,
         questID = 73853,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     {
@@ -197,7 +200,7 @@ local manuscripts = {
     {
         name = "Winding Slitherdrake: Hairy Throat",
         itemID = 203365,
-        questID = 73854,
+        questID = 73857,
         source = sources.Renown,
         renownFaction = 2564,
         renownRank = 16,
@@ -219,11 +222,6 @@ local manuscripts = {
     --    itemID = 203326,
     --    questID = 73814,
     --},
-    {
-        name = "Winding Slitherdrake: Horned Brow",
-        itemID = 203306,
-        questID = 73794,
-    },
     {
         name = "Winding Slitherdrake: Impaler Horns",
         itemID = 203339,
@@ -280,11 +278,6 @@ local manuscripts = {
         renownRank = 13,
     },
     {
-        name = "Winding Slitherdrake: Paired Horns",
-        itemID = 203336,
-        questID = 73826,
-    },
-    {
         name = "Winding Slitherdrake: Plated Brow",
         itemID = 203307,
         questID = 73795,
@@ -295,7 +288,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Pointed Nose",
         itemID = 203348,
         questID = 73839,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     --{
@@ -307,14 +300,14 @@ local manuscripts = {
         name = "Winding Slitherdrake: Red and Gold Armor",
         itemID = 203303,
         questID = 73791,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 17487,
     },
     {
         name = "Winding Slitherdrake: Red Hair",
         itemID = 203325,
         questID = 73813,
-        source = sources.Achievement,
+        source = sources.DragonRacingAchievement,
         achievementID = 17484,
     },
     {
@@ -342,13 +335,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Triple Jaw Horns",
         itemID = 203342,
         questID = 73833,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
-    },
-    {
-        name = "Winding Slitherdrake: Shark Finned Tail",
-        itemID = 203359,
-        questID = 73851,
     },
     {
         name = "Winding Slitherdrake: Short Horns",
@@ -364,7 +352,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Small Finned Crest",
         itemID = 203317,
         questID = 73805,
-        source = sources.Container,
+        source = sources.DragonRacingContainer,
         containerID = 205226,
     },
     {
@@ -416,11 +404,6 @@ local manuscripts = {
         source = sources.Quest,
         sourceQuestID = 74562,
     },
-    --{
-    --    name = "Winding Slitherdrake: White and Gold Armor",
-    --    itemID = 203298,
-    --    questID = 73786,
-    --},
     {
         name = "Winding Slitherdrake: White Hair",
         itemID = 203324,
@@ -435,20 +418,10 @@ local manuscripts = {
         rareName = L["Invoq"],
     },
     {
-        name = "Winding Slitherdrake: White Scales",
-        itemID = 203354,
-        questID = 73845,
-    },
-    {
         name = "Winding Slitherdrake: Yellow and Silver Armor",
         itemID = 203304,
         questID = 73792,
         source = sources.Inscription,
-    },
-    {
-        name = "Winding Slitherdrake: Yellow Scales",
-        itemID = 203355,
-        questID = 73846,
     },
 }
 
