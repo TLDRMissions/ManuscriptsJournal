@@ -389,7 +389,6 @@
                 ManuscriptsJournalCollectedFilterDropDown_OnLoad(self.filterDropDown)
 				self:OnLoad();
 			</OnLoad>
-			<OnEvent function="ManuscriptsJournal_OnEvent"/>
 			<OnShow function="ManuscriptsJournal_OnShow"/>
 			<OnMouseWheel function="ManuscriptsJournal_OnMouseWheel"/>
 		</Scripts>
