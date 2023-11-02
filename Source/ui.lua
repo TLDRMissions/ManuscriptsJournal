@@ -83,18 +83,6 @@ local VIEW_MODE_CLASS = 2; -- Only shows items valid for the selected class/spec
 
 ManuscriptsMixin = {}
 
-function ManuscriptsJournal_OnEvent(self, event, ...)
-	--[[
-    if event == "HEIRLOOMS_UPDATED" then
-		self:OnHeirloomsUpdated(...);
-	elseif event == "HEIRLOOM_UPGRADE_TARGETING_CHANGED" then
-		local isPendingHeirloomUpgrade = ...;
-		self:SetFindClosestUpgradeablePage(isPendingHeirloomUpgrade);
-		self:RefreshViewIfVisible();
-	end
-    ]]
-end
-
 function ManuscriptsJournal_OnShow(self)
 	CollectionsJournal:SetPortraitToAsset("Interface\\Icons\\Inv_glyph_minordruid");
 
@@ -283,6 +271,7 @@ function ManuscriptsMixin:OnLoad()
     tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
     tab:SetText(L["ADDON_NAME"])
     tab.frame = self
+    local selected
     tab.OnSelect = function()
         if not InCombatLockdown() then
             CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
@@ -300,9 +289,6 @@ function ManuscriptsMixin:OnLoad()
         HeirloomsJournal.FilterButton:Show()
     end
     self.Tab = tab
-    
-	--self:RegisterEvent("HEIRLOOMS_UPDATED");
-	--self:RegisterEvent("HEIRLOOM_UPGRADE_TARGETING_CHANGED");
 end
 
 function ManuscriptsMixin:OnKeybinding()
