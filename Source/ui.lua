@@ -767,4 +767,10 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
 
     if ManuscriptsJournalFiltersDB.sourceFilter == nil then ManuscriptsJournalFiltersDB.sourceFilter = {} end
     sourceFilter = ManuscriptsJournalFiltersDB.sourceFilter
+    
+    C_Timer.After(5, function()
+        -- these are sometimes not available yet on login, so lets query them again
+        addon.Strings.Sources[13] = C_QuestLog.GetTitleForQuestID(75887)
+        addon.Strings.Sources[18] = C_QuestLog.GetTitleForQuestID(78203)
+    end)
 end)
