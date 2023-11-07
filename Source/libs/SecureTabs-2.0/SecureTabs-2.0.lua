@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with SecureTabs. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib, old = LibStub:NewLibrary('SecureTabs-2.0', 7)
+local Lib, old = LibStub:NewLibrary('SecureTabs-2.0', 8)
 if not Lib then
 	return
 elseif not old then
@@ -28,7 +28,7 @@ end
 
 Lib.tabs = Lib.tabs or {}
 Lib.covers = Lib.covers or {}
-Lib.template = PanelTabButtonMixin and 'PanelTabButtonTemplate' or 'CharacterFrameTabButtonTemplate'
+Lib.template = WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and 'PanelTabButtonTemplate' or 'CharacterFrameTabButtonTemplate'
 
 
 --[[ Main API ]]--

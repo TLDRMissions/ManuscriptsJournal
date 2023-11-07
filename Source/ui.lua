@@ -14,6 +14,8 @@ local DRAKE_SORT_ORDER = {
     addon.Enum.Drakes.WindborneVelocidrake,
     addon.Enum.Drakes.HighlandDrake,
     addon.Enum.Drakes.CliffsideWylderdrake,
+    addon.Enum.Drakes.GrottoNetherwingDrake,
+    addon.Enum.Drakes.FlourishingWhimsydrake,
     addon.Enum.Drakes.All,
 }
 
@@ -80,18 +82,6 @@ local VIEW_MODE_FULL = 1; -- Shows everything and isn't filtered by class/spec
 local VIEW_MODE_CLASS = 2; -- Only shows items valid for the selected class/spec
 
 ManuscriptsMixin = {}
-
-function ManuscriptsJournal_OnEvent(self, event, ...)
-	--[[
-    if event == "HEIRLOOMS_UPDATED" then
-		self:OnHeirloomsUpdated(...);
-	elseif event == "HEIRLOOM_UPGRADE_TARGETING_CHANGED" then
-		local isPendingHeirloomUpgrade = ...;
-		self:SetFindClosestUpgradeablePage(isPendingHeirloomUpgrade);
-		self:RefreshViewIfVisible();
-	end
-    ]]
-end
 
 function ManuscriptsJournal_OnShow(self)
 	CollectionsJournal:SetPortraitToAsset("Interface\\Icons\\Inv_glyph_minordruid");
@@ -209,6 +199,7 @@ do
                 GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType])
             end
         elseif source == addon.Enum.Sources.WorldEvent then
+        elseif source == addon.Enum.Sources.Superbloom then
         else
             print(source)
         end
@@ -280,6 +271,7 @@ function ManuscriptsMixin:OnLoad()
     tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
     tab:SetText(L["ADDON_NAME"])
     tab.frame = self
+    local selected
     tab.OnSelect = function()
         if not InCombatLockdown() then
             CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
@@ -297,9 +289,6 @@ function ManuscriptsMixin:OnLoad()
         HeirloomsJournal.FilterButton:Show()
     end
     self.Tab = tab
-    
-	--self:RegisterEvent("HEIRLOOMS_UPDATED");
-	--self:RegisterEvent("HEIRLOOM_UPGRADE_TARGETING_CHANGED");
 end
 
 function ManuscriptsMixin:OnKeybinding()
@@ -631,7 +620,7 @@ function ManuscriptsMixin:UpdateProgressBar()
 	if #DRAKE_SORT_ORDER < 2 then return end
     local maxProgress, currentProgress = 0, 0
     
-    for i = 1, 5 do
+    for i = 1, NUM_DRAKES-1 do
         local drake = DRAKE_SORT_ORDER[i]
         maxProgress = maxProgress + self.numPossibleManuscripts[drake]
         currentProgress = currentProgress + self.numKnownManuscripts[drake]
@@ -778,4 +767,10 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
 
     if ManuscriptsJournalFiltersDB.sourceFilter == nil then ManuscriptsJournalFiltersDB.sourceFilter = {} end
     sourceFilter = ManuscriptsJournalFiltersDB.sourceFilter
+    
+    C_Timer.After(5, function()
+        -- these are sometimes not available yet on login, so lets query them again
+        addon.Strings.Sources[13] = C_QuestLog.GetTitleForQuestID(75887)
+        addon.Strings.Sources[18] = C_QuestLog.GetTitleForQuestID(78203)
+    end)
 end)

@@ -175,12 +175,14 @@ L["Raszageth the Storm-Eater"] = true
 L["Balakar Khan"] = true
 L["Scalecommander Sarkareth"] = true
 L["Chrono-Lord Deios"] = true
+L["Fyrakk"] = true
 
 -- containers
 L["Obsidian Grand Cache"] = true
 L["Forgotten Dragon Treasure"] = true
 L["Waterlogged Bundle"] = true
 L["Smelly Trash Pile"] = true
+L["Somnut"] = true
 
 -- Fyrakk
 L["Disciples of Fyrakk"] = true
