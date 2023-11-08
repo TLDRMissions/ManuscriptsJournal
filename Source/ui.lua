@@ -737,6 +737,8 @@ function ManuscriptsJournalProgressBar_OnClick(self, barID)
         addon.Enum.Drakes.WindborneVelocidrake,
         addon.Enum.Drakes.HighlandDrake,
         addon.Enum.Drakes.CliffsideWylderdrake,
+        addon.Enum.Drakes.GrottoNetherwingDrake,
+        addon.Enum.Drakes.FlourishingWhimsydrake,
         addon.Enum.Drakes.All,
     }
     
