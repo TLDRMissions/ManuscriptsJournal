@@ -44,7 +44,7 @@ local manuscripts = {
 		itemID = 210064,
         questID = 78216,
         source = sources.PvPSeason,
-        achievementID = 17740, -- Season 3
+        achievementID = 19091, -- Season 3
 	},
 	{
 		category = drakes.WindingSlitherdrake,
