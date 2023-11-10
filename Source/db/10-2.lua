@@ -89,24 +89,28 @@ local manuscripts = {
 	},
     {
         name = "Renewed Proto-Drake: Green Hair",
+	category = drakes.RenewedProtoDrake,
         itemID = 197371,
         questID = 69572,
         source = sources.Superbloom,
     },
     {
         name = "Winding Slitherdrake: Heavy Horns",
+	category = drakes.WindingSlitherdrake,
         itemID = 203329,
         questID = 73817,
         source = sources.Superbloom,
     },
     {
         name = "Winding Slitherdrake: Single Jaw Horn",
+	category = drakes.WindingSlitherdrake,
         itemID = 203344,
         questID = 73835,
         source = sources.Superbloom,
     },
     {
         name = "Winding Slitherdrake: Short Horns",
+	category = drakes.WindingSlitherdrake,
         itemID = 203333,
         questID = 73822,
         source = sources.DragonRacingContainer,
