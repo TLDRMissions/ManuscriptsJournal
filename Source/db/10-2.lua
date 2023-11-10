@@ -35,8 +35,7 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Cluster Jaw Horns ",
 		itemID = 203340,
         questID = 73831,
-        source = sources.Container,
-        containerID = 211413,
+        source = sources.Superbloom,
 	},
     {
 		category = drakes.WindingSlitherdrake,
@@ -85,7 +84,34 @@ local manuscripts = {
 		name = "Winding Slitherdrake: Thorn Horns",
 		itemID = 203337,
         questID = 73827,
+        source = sources.DragonRacingContainer,
+        containerID = 210549,
 	},
+    {
+        name = "Renewed Proto-Drake: Green Hair",
+        itemID = 197371,
+        questID = 69572,
+        source = sources.Superbloom,
+    },
+    {
+        name = "Winding Slitherdrake: Heavy Horns",
+        itemID = 203329,
+        questID = 73817,
+        source = sources.Superbloom,
+    },
+    {
+        name = "Winding Slitherdrake: Single Jaw Horn",
+        itemID = 203344,
+        questID = 73835,
+        source = sources.Superbloom,
+    },
+    {
+        name = "Winding Slitherdrake: Short Horns",
+        itemID = 203333,
+        questID = 73822,
+        source = sources.DragonRacingContainer,
+        containerID = 210549,
+    },
 }
 
 for k, v in pairs(manuscripts) do

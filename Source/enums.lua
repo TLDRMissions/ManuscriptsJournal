@@ -17,7 +17,6 @@ addon.Enum.Sources = {}
 addon.Enum.Sources.Rare = 1
 addon.Enum.Sources.Reputation = 2
 addon.Enum.Sources.Renown = 3
---addon.Enum.Sources.Achievement = 4
 addon.Enum.Sources.Inscription = 4
 addon.Enum.Sources.Dungeon = 5
 addon.Enum.Sources.Hunt = 6
@@ -33,6 +32,7 @@ addon.Enum.Sources.DragonRacingAchievement = 15
 addon.Enum.Sources.PvPSeason = 16
 addon.Enum.Sources.WorldEvent = 17
 addon.Enum.Sources.Superbloom = 18
+addon.Enum.Sources.ZoneDrop = 19
 
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1
@@ -97,6 +97,7 @@ addon.Strings.Sources[15] = L["Dragon Racing Achievement"]
 addon.Strings.Sources[16] = L["PvP Seasonal"]
 addon.Strings.Sources[17] = BATTLE_PET_SOURCE_7
 addon.Strings.Sources[18] = C_QuestLog.GetTitleForQuestID(78203)
+addon.Strings.Sources[19] = BUG_CATEGORY2
 
 addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645) -- Ohn'aran

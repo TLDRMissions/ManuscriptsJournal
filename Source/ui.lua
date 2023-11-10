@@ -200,6 +200,8 @@ do
             end
         elseif source == addon.Enum.Sources.WorldEvent then
         elseif source == addon.Enum.Sources.Superbloom then
+        elseif source == addon.Enum.Sources.ZoneDrop then
+            GameTooltip:AddLine(C_Map.GetAreaInfo(db.zoneID))
         else
             print(source)
         end
@@ -770,9 +772,14 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
     if ManuscriptsJournalFiltersDB.sourceFilter == nil then ManuscriptsJournalFiltersDB.sourceFilter = {} end
     sourceFilter = ManuscriptsJournalFiltersDB.sourceFilter
     
-    C_Timer.After(5, function()
+    local ticker
+    ticker = C_Timer.NewTicker(5, function()
         -- these are sometimes not available yet on login, so lets query them again
         addon.Strings.Sources[13] = C_QuestLog.GetTitleForQuestID(75887)
         addon.Strings.Sources[18] = C_QuestLog.GetTitleForQuestID(78203)
+        
+        if addon.Strings.Sources[13] and addon.Strings.Sources[18] then
+            ticker:Cancel()
+        end
     end)
 end)

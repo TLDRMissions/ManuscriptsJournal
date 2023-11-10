@@ -80,11 +80,6 @@ local manuscripts = {
         rareName = L["Professor Gastrinax"],
     },
     {
-        name = "Winding Slitherdrake: Cluster Jaw Horns",
-        itemID = 203340,
-        questID = 73831,
-    },
-    {
         name = "Winding Slitherdrake: Curled Cheek Horn",
         itemID = 203321,
         questID = 73809,
@@ -177,6 +172,7 @@ local manuscripts = {
         name = "Winding Slitherdrake: Hairy Chin",
         itemID = 203311,
         questID = 73799,
+        source = sources.Inscription,
     },
     {
         name = "Winding Slitherdrake: Hairy Crest",
@@ -189,6 +185,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Hairy Jaw",
         itemID = 203343,
         questID = 73834,
+        source = sources.DragonRacingContainer,
+        containerID = 210549,
     },
     {
         name = "Winding Slitherdrake: Hairy Tail",
@@ -205,11 +203,6 @@ local manuscripts = {
         source = sources.Renown,
         renownFaction = 2564,
         renownRank = 16,
-    },
-    {
-        name = "Winding Slitherdrake: Heavy Horns",
-        itemID = 203329,
-        questID = 73817,
     },
     {
         name = "Winding Slitherdrake: Heavy Scales",
@@ -242,6 +235,8 @@ local manuscripts = {
         name = "Winding Slitherdrake: Large Finned Tail",
         itemID = 203360,
         questID = 73852,
+        source = sources.DragonRacingContainer,
+        containerID = 210549,
     },
     {
         name = "Winding Slitherdrake: Large Finned Throat",
@@ -328,26 +323,11 @@ local manuscripts = {
         renownRank = 5,
     },
     {
-        name = "Winding Slitherdrake: Thorn Horns",
-        itemID = 203337,
-        questID = 73827,
-    },
-    {
         name = "Winding Slitherdrake: Triple Jaw Horns",
         itemID = 203342,
         questID = 73833,
         source = sources.DragonRacingContainer,
         containerID = 205226,
-    },
-    {
-        name = "Winding Slitherdrake: Short Horns",
-        itemID = 203333,
-        questID = 73822,
-    },
-    {
-        name = "Winding Slitherdrake: Single Jaw Horn",
-        itemID = 203344,
-        questID = 73835,
     },
     {
         name = "Winding Slitherdrake: Small Finned Crest",
@@ -370,26 +350,11 @@ local manuscripts = {
         source = sources.Inscription,
     },
     {
-        name = "Winding Slitherdrake: Small Spiked Crest",
-        itemID = 203315,
-        questID = 73803,
-    },
-    {
         name = "Winding Slitherdrake: Spiked Chin",
         itemID = 203313,
         questID = 73801,
         source = sources.Chest,
         chestName = L["Smelly Trash Pile"],
-    },
-    {
-        name = "Winding Slitherdrake: Spiked Horns",
-        itemID = 203332,
-        questID = 73821,
-    },
-    {
-        name = "Winding Slitherdrake: Spiked Tail",
-        itemID = 203357,
-        questID = 73849,
     },
     {
         name = "Winding Slitherdrake: Split Jaw Horns",

@@ -181,11 +181,6 @@ local manuscripts = {
         questID = 69555,
     },
     {
-        name = "Renewed Proto-Drake: Green Hair",
-        itemID = 197371,
-        questID = 69572,
-    },
-    {
         name = "Renewed Proto-Drake: Embodiment of the Storm-Eater",
         itemID = 201790,
         questID = 72367,

@@ -183,6 +183,7 @@ L["Forgotten Dragon Treasure"] = true
 L["Waterlogged Bundle"] = true
 L["Smelly Trash Pile"] = true
 L["Somnut"] = true
+L["Dreamseed Cache"] = true
 
 -- Fyrakk
 L["Disciples of Fyrakk"] = true
