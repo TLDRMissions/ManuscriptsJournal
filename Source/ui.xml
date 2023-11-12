@@ -391,6 +391,7 @@
 			</OnLoad>
 			<OnShow function="ManuscriptsJournal_OnShow"/>
 			<OnMouseWheel function="ManuscriptsJournal_OnMouseWheel"/>
+            <OnEvent function="ManuscriptsJournal_OnEvent"/>
 		</Scripts>
 	</Frame>
 </Ui>

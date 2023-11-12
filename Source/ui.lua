@@ -7,6 +7,7 @@ local uncollectedManuscriptFilter = true
 local unusableManuscriptFilter = false
 local searchText = ""
 local sourceFilter = {}
+local selectedBarID
 
 local DRAKE_SORT_ORDER = {
     addon.Enum.Drakes.WindingSlitherdrake,
@@ -78,10 +79,13 @@ end
 
 -- adapted from Blizzard_Collections\Blizzard_HeirloomCollection
 
-local VIEW_MODE_FULL = 1; -- Shows everything and isn't filtered by class/spec
-local VIEW_MODE_CLASS = 2; -- Only shows items valid for the selected class/spec
-
 ManuscriptsMixin = {}
+
+function ManuscriptsJournal_OnEvent(self, event, ...)
+	if event == "UNIT_SPELLCAST_SUCCEEDED" then
+        self:OnManuscriptsUpdated(...)
+	end
+end
 
 function ManuscriptsJournal_OnShow(self)
 	CollectionsJournal:SetPortraitToAsset("Interface\\Icons\\Inv_glyph_minordruid");
@@ -291,6 +295,14 @@ function ManuscriptsMixin:OnLoad()
         HeirloomsJournal.FilterButton:Show()
     end
     self.Tab = tab
+    
+    self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+end
+
+function ManuscriptsMixin:OnManuscriptsUpdated(unitTarget, castGUID, spellID)
+	if unitTarget ~= "player" then return end
+    if not addon.manuscriptSpellIDs[spellID] then return end
+    C_Timer.After(2, function() self:FullRefreshIfVisible() end)
 end
 
 function ManuscriptsMixin:OnKeybinding()
@@ -619,7 +631,21 @@ function ManuscriptsMixin:UpdateButton(button)
 end
 
 function ManuscriptsMixin:UpdateProgressBar()
-	if #DRAKE_SORT_ORDER < 2 then return end
+	if #DRAKE_SORT_ORDER < 2 then
+        local drake = DRAKE_SORT_ORDER[1]
+        
+        local _, maxProgress = self.progressBar:GetMinMaxValues()
+        local currentProgress = self.progressBar:GetValue() + self.numKnownManuscripts[drake] - self["mount"..selectedBarID.."Bar"]:GetValue()
+        self.progressBar:SetValue(currentProgress)
+        self.progressBar.text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], currentProgress, maxProgress)
+        
+        _, maxProgress = self["mount"..selectedBarID.."Bar"]:GetMinMaxValues()
+        self["mount"..selectedBarID.."Bar"]:SetValue(self.numKnownManuscripts[drake])
+        self["mount"..selectedBarID.."Bar"].text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], self.numKnownManuscripts[drake], maxProgress)
+        
+        return
+    end
+
     local maxProgress, currentProgress = 0, 0
     
     for i = 1, NUM_DRAKES-1 do
@@ -750,6 +776,7 @@ function ManuscriptsJournalProgressBar_OnClick(self, barID)
         }
     end
     
+    selectedBarID = barID
     ManuscriptsJournal:FullRefreshIfVisible()
 end
 

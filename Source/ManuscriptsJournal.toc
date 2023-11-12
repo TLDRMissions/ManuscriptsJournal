@@ -31,6 +31,8 @@ FilterDropDown.lua
 
 enums.lua
 
+SpellIDs.lua
+
 db\init.lua
 db\RenewedProtoDrake.lua
 db\CliffsideWylderdrake.lua
