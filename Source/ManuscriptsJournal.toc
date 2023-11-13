@@ -43,6 +43,7 @@ db\WindborneVelocidrake.lua
 db\WindingSlitherdrake.lua
 db\10-1.lua
 db\10-2.lua
+db\Shapeshifts.lua
 db\final.lua
 
 ui.xml

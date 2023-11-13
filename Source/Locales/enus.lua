@@ -166,6 +166,12 @@ L["Magtembo"] = true
 L["Goopal"] = true
 L["Professor Gastrinax"] = true
 
+-- 10.2 rares
+L["Matriarch Keevah"] = true
+L["Ristar the Rabid"] = true
+L["Keen-eyed Cian"] = true
+L["Moragh the Slothful"] = true
+
 -- bosses
 L["Primal Tsunami"] = true
 L["Echo of Doragosa"] = true
@@ -176,6 +182,10 @@ L["Balakar Khan"] = true
 L["Scalecommander Sarkareth"] = true
 L["Chrono-Lord Deios"] = true
 L["Fyrakk"] = true
+L["Tindral Sageswift"] = true
+L["Aurostor, the Hibernating"] = true
+L["Talthonei Ashwhisper"] = true
+L["Mosa Umbramane"] = true
 
 -- containers
 L["Obsidian Grand Cache"] = true
@@ -184,6 +194,7 @@ L["Waterlogged Bundle"] = true
 L["Smelly Trash Pile"] = true
 L["Somnut"] = true
 L["Dreamseed Cache"] = true
+L["Pollenfused Bristlebruin Fur Sample"] = true
 
 -- Fyrakk
 L["Disciples of Fyrakk"] = true

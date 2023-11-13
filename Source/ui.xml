@@ -35,24 +35,6 @@
 				</FontString>
 			</Layer>
 
-			<Layer level="OVERLAY" textureSubLevel="2">
-				<FontString parentKey="new" inherits="GameFontHighlight" maxLines="1" justifyH="CENTER" text="NEW_CAPS" hidden="true">
-					<Anchors>
-						<Anchor point="CENTER" x="8" y="0" relativePoint="TOPLEFT"/>
-					</Anchors>
-					<Shadow>
-						<Color color="NEW_FEATURE_SHADOW_COLOR"/>
-					</Shadow>
-				</FontString>
-
-				<Texture parentKey="newGlow" atlas="collections-newglow" hidden="true">
-					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.new" x="-20" y="10"/>
-						<Anchor point="BOTTOMRIGHT" relativeKey="$parent.new" x="20" y="-10"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-
 			<Layer level="OVERLAY" textureSubLevel="1">
 				<Texture parentKey="slotFrameCollected" atlas="collections-itemborder-collected">
 					<Size x="56" y="56" />
@@ -182,13 +164,18 @@
 			
 			<OnHide>
 				CollectionsSpellButton_OnHide(self);
-				self:UnregisterEvent("HEIRLOOMS_UPDATED");
 			</OnHide>
 
 			<OnEnter function="ManuscriptsJournalSpellButton_OnEnter"/>
             <OnLeave inherit="prepend" function="ManuscriptsJournalSpellButton_OnExit" />
 		</Scripts>
 	</CheckButton>
+    
+    <CheckButton name="ShapeshiftSpellButtonTemplate" inherits="ManuscriptSpellButtonTemplate" hidden="true" motionScriptsWhileDisabled="true" virtual="true">
+        <Scripts>
+            <OnEnter function="ShapeshiftJournalSpellButton_OnEnter"/>
+        </Scripts>
+    </CheckButton>
     
     <StatusBar name="ManuscriptMountBarTemplate" virtual="true">
         <Size x="55" y="13"/>
@@ -387,6 +374,36 @@
                 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
                 self.filterDropDown = LibDD:Create_UIDropDownMenu(self:GetName().."FilterDropDown", self)
                 ManuscriptsJournalCollectedFilterDropDown_OnLoad(self.filterDropDown)
+				self:OnLoad();
+			</OnLoad>
+			<OnShow function="ManuscriptsJournal_OnShow"/>
+			<OnMouseWheel function="ManuscriptsJournal_OnMouseWheel"/>
+            <OnEvent function="ManuscriptsJournal_OnEvent"/>
+		</Scripts>
+	</Frame>
+    
+    <Frame name="ShapeshiftsJournal" parent="CollectionsJournal" mixin="ShapeshiftsMixin" setAllPoints="true" hidden="true">
+		<Frames>
+			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
+				<Layers>
+					<Layer level="BORDER" textureSubLevel="1">
+						<Texture parentKey="watermark" atlas="collections-watermark-heirloom" useAtlasSize="true">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-33" y="17"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<Frame parentKey="PagingFrame" inherits="CollectionsPagingFrameTemplate">
+				<Anchors>
+					<Anchor point="BOTTOM" x="21" y="43"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
 				self:OnLoad();
 			</OnLoad>
 			<OnShow function="ManuscriptsJournal_OnShow"/>

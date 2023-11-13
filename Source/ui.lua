@@ -5,7 +5,6 @@ local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 local collectedManuscriptFilter = true
 local uncollectedManuscriptFilter = true
 local unusableManuscriptFilter = false
-local searchText = ""
 local sourceFilter = {}
 local selectedBarID
 
@@ -79,7 +78,105 @@ end
 
 -- adapted from Blizzard_Collections\Blizzard_HeirloomCollection
 
-ManuscriptsMixin = {}
+local ParentMixin = {}
+
+local tab
+function ParentMixin:OnLoad()
+	self:FullRefreshIfVisible();
+
+    local temp = tab
+    tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
+    tab:SetText(self.tabName)
+    tab.frame = self
+    local selected
+    tab.OnSelect = function()
+        if not InCombatLockdown() then
+            CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
+        end
+        CollectionsJournalTitleText:SetText(self.tabName)
+        HeirloomsJournalClassDropDown:Hide()
+        HeirloomsJournal.progressBar:Hide()
+        HeirloomsJournal.SearchBox:Hide()
+        HeirloomsJournal.FilterButton:Hide()
+    end
+    tab.OnDeselect = function()
+        HeirloomsJournalClassDropDown:Show()
+        HeirloomsJournal.progressBar:Show()
+        HeirloomsJournal.SearchBox:Show()
+        HeirloomsJournal.FilterButton:Show()
+    end
+    self.Tab = tab
+    if temp then tab = temp end
+end
+
+function ParentMixin:AcquireFrame(framePool, numInUse, frameType, template)
+	if not framePool[numInUse] then
+		framePool[numInUse] = CreateFrame(frameType, nil, self.iconsFrame, template);
+	end
+	return framePool[numInUse];
+end
+
+function ParentMixin:RefreshView()
+	self.needsRefresh = false;
+
+	self:RebuildLayoutData();
+
+	self:LayoutCurrentPage();
+
+	if self.UpdateProgressBar then
+        self:UpdateProgressBar()
+    end
+end
+
+function ParentMixin:UpdateButton(button)
+	local data = addon.itemIDToDB[button.itemID]
+    local item = Item:CreateFromItemID(button.itemID)
+
+    item:ContinueOnItemLoad(function()
+    	local name = item:GetItemName() 
+    	local itemTexture = item:GetItemIcon()
+        
+        button.iconTexture:SetTexture(itemTexture);
+    	button.iconTextureUncollected:SetTexture(itemTexture);
+    	button.iconTextureUncollected:SetDesaturated(true);
+
+    	button.name:SetText(name);
+
+    	button.name:ClearAllPoints();
+    	local nameExtraYOffset = 0;
+
+    	button.name:SetPoint("LEFT", button, "RIGHT", 9, 3 + nameExtraYOffset);
+
+    	if C_QuestLog.IsQuestFlaggedCompleted(data.questID) then
+    		button.iconTexture:Show();
+    		button.iconTextureUncollected:Hide();
+    		button.name:SetTextColor(1, 0.82, 0, 1);
+    		button.name:SetShadowColor(0, 0, 0, 1);
+
+    		button.slotFrameCollected:Show();
+    		button.slotFrameUncollected:Hide();
+    		button.slotFrameUncollectedInnerGlow:Hide();
+    	else
+    		button.iconTexture:Hide();
+    		button.iconTextureUncollected:Show();
+    		button.name:SetTextColor(0.33, 0.27, 0.20, 1);
+    		button.name:SetShadowColor(0, 0, 0, 0.33);
+
+    		button.slotFrameCollected:Hide();
+    		button.slotFrameUncollected:Show();
+    		button.slotFrameUncollectedInnerGlow:Show();
+    	end
+    end)
+end
+
+function ParentMixin:OnPageChanged(userAction)
+	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
+	if userAction then
+		self:RefreshViewIfVisible();
+	end
+end
+
+ManuscriptsMixin = CreateFromMixins(ParentMixin)
 
 function ManuscriptsJournal_OnEvent(self, event, ...)
 	if event == "UNIT_SPELLCAST_SUCCEEDED" then
@@ -135,10 +232,6 @@ do
     	GameTooltip:SetItemByID(self.itemID);
 
     	self.UpdateTooltip = ManuscriptsJournalSpellButton_OnEnter;
-
-    	if self:GetParent():GetParent():ClearNewStatus(self.itemID) then
-    		ManuscriptsJournal_UpdateButton(self);
-    	end
         
         local db = addon.itemIDToDB[self.itemID]
         local source = db.source
@@ -242,9 +335,8 @@ do
 	end
 end
 
-local tab
 function ManuscriptsMixin:OnLoad()
-	self.newManuscripts = {}
+    self.searchText = ""
 
 	self.manuscriptEntryFrames = {};
 	self.manuscriptHeaderFrames = {};
@@ -271,32 +363,12 @@ function ManuscriptsMixin:OnLoad()
             end)
         end
     end
-
-	self:FullRefreshIfVisible();
-
-    tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
-    tab:SetText(L["ADDON_NAME"])
-    tab.frame = self
-    local selected
-    tab.OnSelect = function()
-        if not InCombatLockdown() then
-            CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
-        end
-        CollectionsJournalTitleText:SetText(L["ADDON_NAME"])
-        HeirloomsJournalClassDropDown:Hide()
-        HeirloomsJournal.progressBar:Hide()
-        HeirloomsJournal.SearchBox:Hide()
-        HeirloomsJournal.FilterButton:Hide()
-    end
-    tab.OnDeselect = function()
-        HeirloomsJournalClassDropDown:Show()
-        HeirloomsJournal.progressBar:Show()
-        HeirloomsJournal.SearchBox:Show()
-        HeirloomsJournal.FilterButton:Show()
-    end
-    self.Tab = tab
+    
+    self.tabName = L["ADDON_NAME"]
     
     self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+    
+    ParentMixin.OnLoad(self)
 end
 
 function ManuscriptsMixin:OnManuscriptsUpdated(unitTarget, castGUID, spellID)
@@ -307,14 +379,6 @@ end
 
 function ManuscriptsMixin:OnKeybinding()
     LibStub('SecureTabs-2.0'):Select(tab)
-end
-
-function ManuscriptsMixin:ClearNewStatus(itemID)
-	if self.newManuscripts[itemID] then
-		self.newManuscripts[itemID] = nil;
-		return true;
-	end
-	return false;
 end
 
 function ManuscriptsMixin:FullRefreshIfVisible()
@@ -361,18 +425,18 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
         if manuscriptData.source and (not collected) and (not manuscriptData.unobtainable) and uncollectedManuscriptFilter then include = true end
         if (not collected) and unusableManuscriptFilter and ((not manuscriptData.source) or manuscriptData.unobtainable) then include = true end
         
-        if include and (searchText ~= "") then
+        if include and (self.searchText ~= "") then
             include = false
             local name = GetItemInfo(manuscriptData.itemID)
             local source = addon.Strings.Sources[manuscriptData.source]
             
-            if name and string.lower(name):find(string.lower(searchText)) then
+            if name and string.lower(name):find(string.lower(self.searchText)) then
                 include = true
-            elseif source and string.lower(source):find(string.lower(searchText)) then
+            elseif source and string.lower(source):find(string.lower(self.searchText)) then
                 include = true
             elseif manuscriptData.rareNames then
                 for _, name in pairs(manuscriptData.rareNames) do
-                    if string.lower(name):find(string.lower(searchText)) then
+                    if string.lower(name):find(string.lower(self.searchText)) then
                         include = true
                     end
                 end
@@ -498,13 +562,6 @@ function ManuscriptsMixin:SortEquipBucketsIntoPages(equipBuckets)
 	table.insert(self.manuscriptLayoutData, currentPage);
 end
 
-function ManuscriptsMixin:AcquireFrame(framePool, numInUse, frameType, template)
-	if not framePool[numInUse] then
-		framePool[numInUse] = CreateFrame(frameType, nil, self.iconsFrame, template);
-	end
-	return framePool[numInUse];
-end
-
 local function ActivatePooledFrames(framePool, numEntriesInUse)
 	for i = 1, numEntriesInUse do
 		framePool[i]:Show();
@@ -575,61 +632,6 @@ function ManuscriptsMixin:LayoutCurrentPage()
 	ActivatePooledFrames(self.manuscriptHeaderFrames, numHeadersInUse);
 end
 
-function ManuscriptsMixin:RefreshView()
-	self.needsRefresh = false;
-
-	self:RebuildLayoutData();
-
-	self:LayoutCurrentPage();
-
-	self:UpdateProgressBar();
-end
-
-function ManuscriptsMixin:UpdateButton(button)
-	local manuscriptData = addon.itemIDToDB[button.itemID]
-    local item = Item:CreateFromItemID(button.itemID)
-
-    item:ContinueOnItemLoad(function()
-    	local name = item:GetItemName() 
-    	local itemTexture = item:GetItemIcon()
-        
-        button.iconTexture:SetTexture(itemTexture);
-    	button.iconTextureUncollected:SetTexture(itemTexture);
-    	button.iconTextureUncollected:SetDesaturated(true);
-
-    	button.name:SetText(name);
-
-    	local isNew = self.newManuscripts[button.itemID];
-    	button.new:SetShown(isNew);
-    	button.newGlow:SetShown(isNew);
-
-    	button.name:ClearAllPoints();
-    	local nameExtraYOffset = 0;
-
-    	button.name:SetPoint("LEFT", button, "RIGHT", 9, 3 + nameExtraYOffset);
-
-    	if C_QuestLog.IsQuestFlaggedCompleted(manuscriptData.questID) then
-    		button.iconTexture:Show();
-    		button.iconTextureUncollected:Hide();
-    		button.name:SetTextColor(1, 0.82, 0, 1);
-    		button.name:SetShadowColor(0, 0, 0, 1);
-
-    		button.slotFrameCollected:Show();
-    		button.slotFrameUncollected:Hide();
-    		button.slotFrameUncollectedInnerGlow:Hide();
-    	else
-    		button.iconTexture:Hide();
-    		button.iconTextureUncollected:Show();
-    		button.name:SetTextColor(0.33, 0.27, 0.20, 1);
-    		button.name:SetShadowColor(0, 0, 0, 0.33);
-
-    		button.slotFrameCollected:Hide();
-    		button.slotFrameUncollected:Show();
-    		button.slotFrameUncollectedInnerGlow:Show();
-    	end
-    end)
-end
-
 function ManuscriptsMixin:UpdateProgressBar()
 	if #DRAKE_SORT_ORDER < 2 then
         local drake = DRAKE_SORT_ORDER[1]
@@ -659,13 +661,6 @@ function ManuscriptsMixin:UpdateProgressBar()
 	self.progressBar:SetMinMaxValues(0, maxProgress);
 	self.progressBar:SetValue(currentProgress);
 	self.progressBar.text:SetFormattedText(L["MANUSCRIPTS_PROGRESS_FORMAT"], currentProgress, maxProgress);
-end
-
-function ManuscriptsMixin:OnPageChanged(userAction)
-	PlaySound(SOUNDKIT.IG_ABILITY_PAGE_TURN);
-	if userAction then
-		self:RefreshViewIfVisible();
-	end
 end
 
 function ManuscriptsMixin:SetCollectedManuscriptFilter(checked)
@@ -754,7 +749,7 @@ end
 
 function ManuscriptsJournalSearchBox_OnTextChanged(self)
 	SearchBoxTemplate_OnTextChanged(self);
-	searchText = self:GetText()
+	self:GetParent().searchText = self:GetText()
 	ManuscriptsJournal:FullRefreshIfVisible();
 end
 
@@ -810,3 +805,252 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
         end
     end)
 end)
+
+-- Druid Shapeshifts tab
+
+ShapeshiftsMixin = CreateFromMixins(ParentMixin)
+
+function ShapeshiftsMixin:OnLoad()
+    if select(2, UnitClass("player")) ~= "DRUID" then return end
+	self.shapeshiftEntryFrames = {};
+
+	self.shapeshiftLayoutData = {};
+	self.itemIDsInCurrentLayout = {};
+
+	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
+    if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
+    
+    self.tabName = TUTORIAL_TITLE61_DRUID
+    
+    self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
+    
+    ParentMixin.OnLoad(self)
+end
+
+function ShapeshiftsMixin:FullRefreshIfVisible()
+	self.needsDataRebuilt = true;
+	self:RefreshViewIfVisible();
+end
+
+function ShapeshiftsMixin:RefreshViewIfVisible()
+	if self:IsVisible() then
+		self:RefreshView();
+	else
+		self.needsRefresh = true;
+	end
+end
+
+function ShapeshiftsMixin:RebuildLayoutData()
+	if not self.needsDataRebuilt then
+		return;
+	end
+	self.needsDataRebuilt = false;
+
+	self.shapeshiftLayoutData = {};
+	self.itemIDsInCurrentLayout = {};
+
+    self.numKnownShapeshifts = 0
+    self.numPossibleShapeshifts = 0
+
+	local equipBuckets = self:SortShapeshiftsIntoEquipmentBuckets();
+	self:SortEquipBucketsIntoPages(equipBuckets);
+	self.PagingFrame:SetMaxPages(math.max(#self.shapeshiftLayoutData, 1));
+end
+
+function ShapeshiftsMixin:SortShapeshiftsIntoEquipmentBuckets()
+	-- Sort them into equipment buckets
+	local equipBuckets = {};
+    
+    for _, shapeshiftData in pairs(addon.ShapeshiftDB) do
+        local collected = C_QuestLog.IsQuestFlaggedCompleted(shapeshiftData.questID)
+        
+    	local itemID = shapeshiftData.itemID
+    		
+    	if not equipBuckets[1] then
+    		equipBuckets[1] = {}
+    	end
+
+    	table.insert(equipBuckets[1], itemID)
+
+        if collected then
+            self.numKnownShapeshifts = self.numKnownShapeshifts + 1
+    	end
+    	self.numPossibleShapeshifts = self.numPossibleShapeshifts + 1
+
+    	self.itemIDsInCurrentLayout[itemID] = true;
+	end
+
+	return equipBuckets;
+end
+
+function ShapeshiftsMixin:SortEquipBucketsIntoPages(equipBuckets)
+	if not next(equipBuckets) then
+		return;
+	end
+
+	local currentPage = {};
+	local pageHeight = VIEW_MODE_FULL_PAGE_HEIGHT
+	local heightLeft = pageHeight;
+	local widthLeft = PAGE_WIDTH;
+
+    local equipBucket = equipBuckets[1];
+
+    if equipBucket then
+  		widthLeft = PAGE_WIDTH;
+  		heightLeft = heightLeft - HEADER_HEIGHT;
+
+    	-- Add buttons
+    	for i, itemID in ipairs(equipBucket) do
+    		if widthLeft < BUTTON_WIDTH + BUTTON_PADDING_X then
+    			-- Not enough room for another entry, try going to a new row
+    			widthLeft = PAGE_WIDTH;
+
+    			if heightLeft < BUTTON_HEIGHT + BUTTON_PADDING_Y then
+    				-- Not enough room for another row of entries, move to next page
+    				table.insert(self.shapeshiftLayoutData, currentPage);
+
+    				heightLeft = pageHeight - HEADER_HEIGHT;
+    				currentPage = {};
+    			else
+    				-- Room for another row
+    				table.insert(currentPage, NEW_ROW_OPCODE);
+    				heightLeft = heightLeft - BUTTON_HEIGHT - BUTTON_PADDING_Y;
+    			end
+    		end
+
+    		widthLeft = widthLeft - BUTTON_WIDTH - BUTTON_PADDING_X;
+    		table.insert(currentPage, itemID);
+    	end
+    end
+
+	table.insert(self.shapeshiftLayoutData, currentPage);
+end
+
+function ShapeshiftsMixin:LayoutCurrentPage()
+	local pageLayoutData = self.shapeshiftLayoutData[self.PagingFrame:GetCurrentPage()];
+
+	local numEntriesInUse = 0;
+	local numHeadersInUse = 0;
+
+	if pageLayoutData then
+		local offsetX = START_OFFSET_X;
+		local offsetY = START_OFFSET_Y;
+		offsetY = offsetY + VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET;
+
+		for i, layoutData in ipairs(pageLayoutData) do
+			if layoutData == NEW_ROW_OPCODE then
+				assert(i ~= 1); -- Never want to start a new row first thing on a page, something is wrong with the page creator
+				offsetX = START_OFFSET_X;
+				offsetY = offsetY - BUTTON_HEIGHT - BUTTON_PADDING_Y;
+			elseif type(layoutData) == "string" then
+                print("error: header found when not expected")
+			else
+				-- Entry
+				numEntriesInUse = numEntriesInUse + 1;
+				local entry = self:AcquireFrame(self.shapeshiftEntryFrames, numEntriesInUse, "CHECKBUTTON", "ShapeshiftSpellButtonTemplate");
+				entry.itemID = layoutData;
+
+				if entry:IsVisible() then
+					-- If the button was already visible (going to a new page and being reused) we have to update the button immediately instead of deferring the update through the OnShown
+					self:UpdateButton(entry);
+				end
+
+				if i == 1 then
+					-- Continuation of a section from a previous page
+					-- Move everything down as if there was a header
+					offsetY = offsetY - HEADER_HEIGHT;
+				end
+
+				entry:SetPoint("TOPLEFT", self.iconsFrame, "TOPLEFT", offsetX, offsetY);
+
+				offsetX = offsetX + BUTTON_WIDTH + BUTTON_PADDING_X;
+			end
+		end
+	end
+
+	ActivatePooledFrames(self.shapeshiftEntryFrames, numEntriesInUse);
+end
+
+function ShapeshiftJournalSpellButton_OnEnter(self)
+	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+	GameTooltip:SetItemByID(self.itemID);
+
+	self.UpdateTooltip = ShapeshiftJournalSpellButton_OnEnter;
+    
+    local db = addon.itemIDToDB[self.itemID]
+    local source = db.source
+    if source == nil then return end
+    
+    GameTooltip:AddLine(" ")
+    GameTooltip:AddDoubleLine(L["Source:"], addon.Strings.Sources[source], 1, 1, 1, 1, 1, 1)
+        
+    if source == addon.Enum.Sources.Rare then
+        if db.rareNames then
+            add(db.rareNames)
+        elseif db.rareName then
+            GameTooltip:AddLine(db.rareName)
+        elseif db.rareZone then
+            GameTooltip:AddDoubleLine(L["Various in:"], addon.Strings.Zones[db.rareZone])
+        end
+    elseif source == addon.Enum.Sources.Reputation then
+        if db.reputations then
+            local reputations = {}
+            for _, reputationID in ipairs(db.reputations) do
+                local name = GetFactionInfoByID(reputationID)
+                table.insert(reputations, name)
+            end
+            add(reputations)
+        else
+            local name = GetFactionInfoByID(db.reputation)
+            GameTooltip:AddLine(name)
+        end
+        if db.reputationRank then
+            GameTooltip:AddDoubleLine(L["Required Rank:"], _G["FACTION_STANDING_LABEL"..db.reputationRank])
+        elseif db.friendshipRank then
+            GameTooltip:AddDoubleLine(L["Required Rank:"], db.friendshipRank)
+        end
+    elseif source == addon.Enum.Sources.Renown then
+        GameTooltip:AddDoubleLine(GetFactionInfoByID(db.renownFaction), RANK_COLON.." "..db.renownRank)
+    elseif (source == addon.Enum.Sources.Achievement) or (source == addon.Enum.Sources.DragonRacingAchievement) or (source == addon.Enum.Sources.PvPSeason) then
+        local _, name = GetAchievementInfo(db.achievementID)
+        GameTooltip:AddLine(name)
+    elseif source == addon.Enum.Sources.Dungeon then
+        GameTooltip:AddDoubleLine(db.bossName, C_Map.GetAreaInfo(db.zoneID))
+    elseif (source == addon.Enum.Sources.Container) or (source == addon.Enum.Sources.DragonRacingContainer) then
+        local name, link = GetItemInfo(db.containerID)
+        if link then
+            GameTooltip:AddLine(link)
+        end
+    elseif source == addon.Enum.Sources.Quest then
+        GameTooltip:AddLine(C_QuestLog.GetTitleForQuestID(db.sourceQuestID))
+    elseif source == addon.Enum.Sources.Inscription then
+    elseif source == addon.Enum.Sources.Hunt then
+    elseif source == addon.Enum.Sources.Vendor then
+        GameTooltip:AddDoubleLine(db.vendorName, C_Map.GetAreaInfo(db.zoneID))
+    elseif source == addon.Enum.Sources.Raid then
+        GameTooltip:AddLine(db.bossName)
+    elseif source == addon.Enum.Sources.Chest then
+        if db.zoneID then
+            GameTooltip:AddDoubleLine(db.chestName, C_Map.GetAreaInfo(db.zoneID))
+        else
+            GameTooltip:AddLine(db.chestName)
+        end
+    elseif source == addon.Enum.Sources.Fyrakk then
+        if db.fyrakkType then
+            GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType])
+        end
+    elseif source == addon.Enum.Sources.WorldEvent then
+    elseif source == addon.Enum.Sources.Superbloom then
+    elseif source == addon.Enum.Sources.ZoneDrop then
+        GameTooltip:AddLine(C_Map.GetAreaInfo(db.zoneID))
+    else
+        print(source)
+    end
+    
+    if db.bugged and (not C_QuestLog.IsQuestFlaggedCompleted(db.questID)) then
+        GameTooltip:AddLine(L["Bugged"], 1, 0, 0)
+    end
+    
+    GameTooltip:Show()
+    addon.journalTooltipShown = true
+end
