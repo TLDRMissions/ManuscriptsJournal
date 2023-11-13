@@ -1054,3 +1054,5 @@ function ShapeshiftJournalSpellButton_OnEnter(self)
     GameTooltip:Show()
     addon.journalTooltipShown = true
 end
+
+function ShapeshiftsMixin:OnManuscriptsUpdated() end
