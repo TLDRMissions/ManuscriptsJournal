@@ -820,7 +820,7 @@ function ShapeshiftsMixin:OnLoad()
 	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
     if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
     
-    self.tabName = TUTORIAL_TITLE61_DRUID
+    self.tabName = AUCTION_CATEGORY_GLYPHS
     
     self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
     
@@ -947,7 +947,7 @@ function ShapeshiftsMixin:LayoutCurrentPage()
 			else
 				-- Entry
 				numEntriesInUse = numEntriesInUse + 1;
-				local entry = self:AcquireFrame(self.shapeshiftEntryFrames, numEntriesInUse, "CHECKBUTTON", "ShapeshiftSpellButtonTemplate");
+				local entry = self:AcquireFrame(self.shapeshiftEntryFrames, numEntriesInUse, "CHECKBUTTON", "ManuscriptSpellButtonTemplate");
 				entry.itemID = layoutData;
 
 				if entry:IsVisible() then
@@ -969,90 +969,6 @@ function ShapeshiftsMixin:LayoutCurrentPage()
 	end
 
 	ActivatePooledFrames(self.shapeshiftEntryFrames, numEntriesInUse);
-end
-
-function ShapeshiftJournalSpellButton_OnEnter(self)
-	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-	GameTooltip:SetItemByID(self.itemID);
-
-	self.UpdateTooltip = ShapeshiftJournalSpellButton_OnEnter;
-    
-    local db = addon.itemIDToDB[self.itemID]
-    local source = db.source
-    if source == nil then return end
-    
-    GameTooltip:AddLine(" ")
-    GameTooltip:AddDoubleLine(L["Source:"], addon.Strings.Sources[source], 1, 1, 1, 1, 1, 1)
-        
-    if source == addon.Enum.Sources.Rare then
-        if db.rareNames then
-            add(db.rareNames)
-        elseif db.rareName then
-            GameTooltip:AddLine(db.rareName)
-        elseif db.rareZone then
-            GameTooltip:AddDoubleLine(L["Various in:"], addon.Strings.Zones[db.rareZone])
-        end
-    elseif source == addon.Enum.Sources.Reputation then
-        if db.reputations then
-            local reputations = {}
-            for _, reputationID in ipairs(db.reputations) do
-                local name = GetFactionInfoByID(reputationID)
-                table.insert(reputations, name)
-            end
-            add(reputations)
-        else
-            local name = GetFactionInfoByID(db.reputation)
-            GameTooltip:AddLine(name)
-        end
-        if db.reputationRank then
-            GameTooltip:AddDoubleLine(L["Required Rank:"], _G["FACTION_STANDING_LABEL"..db.reputationRank])
-        elseif db.friendshipRank then
-            GameTooltip:AddDoubleLine(L["Required Rank:"], db.friendshipRank)
-        end
-    elseif source == addon.Enum.Sources.Renown then
-        GameTooltip:AddDoubleLine(GetFactionInfoByID(db.renownFaction), RANK_COLON.." "..db.renownRank)
-    elseif (source == addon.Enum.Sources.Achievement) or (source == addon.Enum.Sources.DragonRacingAchievement) or (source == addon.Enum.Sources.PvPSeason) then
-        local _, name = GetAchievementInfo(db.achievementID)
-        GameTooltip:AddLine(name)
-    elseif source == addon.Enum.Sources.Dungeon then
-        GameTooltip:AddDoubleLine(db.bossName, C_Map.GetAreaInfo(db.zoneID))
-    elseif (source == addon.Enum.Sources.Container) or (source == addon.Enum.Sources.DragonRacingContainer) then
-        local name, link = GetItemInfo(db.containerID)
-        if link then
-            GameTooltip:AddLine(link)
-        end
-    elseif source == addon.Enum.Sources.Quest then
-        GameTooltip:AddLine(C_QuestLog.GetTitleForQuestID(db.sourceQuestID))
-    elseif source == addon.Enum.Sources.Inscription then
-    elseif source == addon.Enum.Sources.Hunt then
-    elseif source == addon.Enum.Sources.Vendor then
-        GameTooltip:AddDoubleLine(db.vendorName, C_Map.GetAreaInfo(db.zoneID))
-    elseif source == addon.Enum.Sources.Raid then
-        GameTooltip:AddLine(db.bossName)
-    elseif source == addon.Enum.Sources.Chest then
-        if db.zoneID then
-            GameTooltip:AddDoubleLine(db.chestName, C_Map.GetAreaInfo(db.zoneID))
-        else
-            GameTooltip:AddLine(db.chestName)
-        end
-    elseif source == addon.Enum.Sources.Fyrakk then
-        if db.fyrakkType then
-            GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType])
-        end
-    elseif source == addon.Enum.Sources.WorldEvent then
-    elseif source == addon.Enum.Sources.Superbloom then
-    elseif source == addon.Enum.Sources.ZoneDrop then
-        GameTooltip:AddLine(C_Map.GetAreaInfo(db.zoneID))
-    else
-        print(source)
-    end
-    
-    if db.bugged and (not C_QuestLog.IsQuestFlaggedCompleted(db.questID)) then
-        GameTooltip:AddLine(L["Bugged"], 1, 0, 0)
-    end
-    
-    GameTooltip:Show()
-    addon.journalTooltipShown = true
 end
 
 function ShapeshiftsMixin:OnManuscriptsUpdated() end

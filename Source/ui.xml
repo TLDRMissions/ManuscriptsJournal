@@ -171,12 +171,6 @@
 		</Scripts>
 	</CheckButton>
     
-    <CheckButton name="ShapeshiftSpellButtonTemplate" inherits="ManuscriptSpellButtonTemplate" hidden="true" motionScriptsWhileDisabled="true" virtual="true">
-        <Scripts>
-            <OnEnter function="ShapeshiftJournalSpellButton_OnEnter"/>
-        </Scripts>
-    </CheckButton>
-    
     <StatusBar name="ManuscriptMountBarTemplate" virtual="true">
         <Size x="55" y="13"/>
         <Layers>
