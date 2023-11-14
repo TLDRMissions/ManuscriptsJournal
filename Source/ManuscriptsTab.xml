@@ -1,0 +1,177 @@
+<Ui>
+	<Script file="ManuscriptsTab.lua"/>
+	
+	<Frame name="ManuscriptsJournal" parent="CollectionsJournal" mixin="ManuscriptsMixin" setAllPoints="true" hidden="true">
+		<Frames>
+            <StatusBar name="$parentProgressBar" parentKey="progressBar"> 
+                <Size x="408" y="18"/>
+        		<Anchors>
+        			<Anchor point="TOP" x="-83" y="-24"/>
+        		</Anchors>
+                <Layers>
+        			<Layer level="OVERLAY">
+                        <FontString parentKey="text" inherits="TextStatusBarText" justifyH="CENTER">
+        					<Size x="0" y="9" />
+        					<Anchors>
+        						<Anchor point="CENTER" y="1" />
+        					</Anchors>
+        				</FontString>
+        				<Texture parentKey="border" file="Interface\PaperDollInfoFrame\UI-Character-Skills-BarBorder">
+        					<Size x="430" y="37" />
+        					<Anchors>
+        						<Anchor point="LEFT" x="-12" y="0"/>
+        					</Anchors>
+        				</Texture>
+                    </Layer>
+                    <Layer level="BACKGROUND">
+        				<Texture>
+        					<Anchors>
+        						<Anchor point="TOPLEFT" x="-5" y="-1"/>
+        						<Anchor point="BOTTOMRIGHT" x="5" y="1"/>
+        					</Anchors>
+        					<Color r="0.0" g="0.0" b="0.0" a="1.0"/>
+        				</Texture>
+        			</Layer>
+                </Layers>
+                <BarTexture file="Interface\PaperDollInfoFrame\UI-Character-Skills-Bar"/>
+        		<BarColor r="0.03125" g="0.85" b="0.0" />
+                <Scripts>
+                    <OnMouseUp>
+                        ManuscriptsJournalProgressBar_OnClick(self, 0)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+            
+            <StatusBar parentKey="mount1Bar" name="$parentMount1Bar" inherits="ManuscriptMountBarTemplate">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativePoint="BOTTOMLEFT" relativeTo="$parentProgressBar" x="-7" y="-4"/>
+                </Anchors>
+                <Scripts>
+                    <OnMouseUp>
+                        ManuscriptsJournalProgressBar_OnClick(self, 1)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+            
+            <StatusBar parentKey="mount2Bar" name="$parentMount2Bar" inherits="ManuscriptMountBarTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentMount1Bar" x="6" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnMouseUp>
+                        ManuscriptsJournalProgressBar_OnClick(self, 2)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+
+            <StatusBar parentKey="mount3Bar" name="$parentMount3Bar" inherits="ManuscriptMountBarTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentMount2Bar" x="6" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnMouseUp>
+                        ManuscriptsJournalProgressBar_OnClick(self, 3)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+            
+            <StatusBar parentKey="mount4Bar" name="$parentMount4Bar" inherits="ManuscriptMountBarTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentMount3Bar" x="6" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnMouseUp>
+                        ManuscriptsJournalProgressBar_OnClick(self, 4)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+            
+            <StatusBar parentKey="mount5Bar" name="$parentMount5Bar" inherits="ManuscriptMountBarTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentMount4Bar" x="6" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnMouseUp>
+                        ManuscriptsJournalProgressBar_OnClick(self, 5)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+
+            <StatusBar parentKey="mount6Bar" name="$parentMount6Bar" inherits="ManuscriptMountBarTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentMount5Bar" x="6" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnMouseUp>
+                        ManuscriptsJournalProgressBar_OnClick(self, 6)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+            
+            <StatusBar parentKey="mount7Bar" name="$parentMount7Bar" inherits="ManuscriptMountBarTemplate">
+                <Anchors>
+                    <Anchor point="LEFT" relativePoint="RIGHT" relativeTo="$parentMount6Bar" x="6" y="0"/>
+                </Anchors>
+                <Scripts>
+                    <OnMouseUp>
+                        ManuscriptsJournalProgressBar_OnClick(self, 7)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+            
+			<EditBox name="$parentSearchBox" parentKey="SearchBox" inherits="SearchBoxTemplate" letters="40">
+				<Size x="115" y="20"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-103" y="-35"/>
+				</Anchors>
+				<Scripts>
+					<OnTextChanged function="ManuscriptsJournalSearchBox_OnTextChanged"/>
+				</Scripts>
+			</EditBox>
+
+			<DropDownToggleButton parentKey="FilterButton" inherits="UIResettableDropdownButtonTemplate" text="FILTER">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-10" y="-34"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad inherit="prepend">
+						self:SetResetFunction(function() self:GetParent():ResetFilters() end);
+					</OnLoad>
+					<OnMouseDown inherit="prepend">
+						local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+                        LibDD:ToggleDropDownMenu(1, nil, self:GetParent().filterDropDown, self, 74, 15);
+					</OnMouseDown>
+				</Scripts>
+			</DropDownToggleButton>
+
+			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
+				<Layers>
+					<Layer level="BORDER" textureSubLevel="1">
+						<Texture parentKey="watermark" atlas="collections-watermark-heirloom" useAtlasSize="true">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-33" y="17"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<Frame parentKey="PagingFrame" inherits="CollectionsPagingFrameTemplate">
+				<Anchors>
+					<Anchor point="BOTTOM" x="21" y="43"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+                local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+                self.filterDropDown = LibDD:Create_UIDropDownMenu(self:GetName().."FilterDropDown", self)
+                ManuscriptsJournalCollectedFilterDropDown_OnLoad(self.filterDropDown)
+				self:OnLoad();
+			</OnLoad>
+			<OnShow function="ManuscriptsJournal_OnShow"/>
+			<OnMouseWheel function="ManuscriptsJournal_OnMouseWheel"/>
+            <OnEvent function="ManuscriptsJournal_OnEvent"/>
+		</Scripts>
+	</Frame>
+</Ui>
