@@ -89,6 +89,8 @@ local manuscripts = {
 		name = "Flourishing Whimsydrake: Sunrise Scales",
 		itemID = 210480,
         questID = 78409,
+        source = sources.Raid,
+        bossName = L["Aurostor, the Hibernating"],
 	},
 }
 
