@@ -43,6 +43,13 @@ addon.Enum.Fyrakk = {}
 addon.Enum.Fyrakk.Boss = 1
 addon.Enum.Fyrakk.Chest = 2
 
+addon.Enum.SJ = {}
+addon.Enum.SJ.BUILD_9_0 = 37474
+addon.Enum.SJ.BUILD_9_0_5 = 37862
+addon.Enum.SJ.BUILD_9_1 = 39185
+addon.Enum.SJ.BUILD_9_1_5 = 40871
+addon.Enum.SJ.BUILD_9_2 = 42069
+
 addon.Strings = {}
 addon.Strings.Drakes = {}
 do

@@ -247,7 +247,18 @@
 		<CheckedTexture file="Interface\Buttons\CheckButtonHilight" alphaMode="ADD"/>
 	</CheckButton>
     
+    <CheckButton name="SoulshapeSpellButtonTemplate" inherits="ManuscriptSpellButtonTemplate" hidden="true" motionScriptsWhileDisabled="true" virtual="true">
+		<Scripts>
+			<OnClick>
+				SoulshapesJournalSpellButton_OnClick(self, button);
+			</OnClick>
+
+			<OnEnter function="SoulshapesJournalSpellButton_OnEnter"/>
+		</Scripts>
+	</CheckButton>
+    
     <Include file="ManuscriptsTab.xml"/>
     <Include file="ShapeshiftsTab.xml"/>
+    <Include file="SoulshapesTab.xml"/>
     <Include file="SideTabs.xml"/>
 </Ui>

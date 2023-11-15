@@ -13,8 +13,7 @@
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_Collections
 ## IconTexture: 254291
-## SavedVariables: ManuscriptsJournalExportDB
-## SavedVariables: ManuscriptsJournalFiltersDB
+## SavedVariables: ManuscriptsJournalExportDB, ManuscriptsJournalFiltersDB, SoulshapesJournalFiltersDB
 
 libs\LibStub\LibStub.lua
 libs\AceLocale-3.0\AceLocale-3.0.xml
@@ -26,6 +25,14 @@ Locales\esES.lua
 Locales\ruRU.lua
 Locales\zhCN.lua
 Locales\zhTW.lua
+
+Locales\Soulshapes\enUS.lua
+Locales\Soulshapes\deDE.lua
+Locales\Soulshapes\frFR.lua
+Locales\Soulshapes\koKR.lua
+Locales\Soulshapes\ruRU.lua
+Locales\Soulshapes\zhCN.lua
+Locales\Soulshapes\zhTW.lua
 
 FilterDropDown.lua
 
@@ -44,6 +51,7 @@ db\WindingSlitherdrake.lua
 db\10-1.lua
 db\10-2.lua
 db\Shapeshifts.lua
+db\Soulshapes.lua
 db\final.lua
 
 Templates.xml

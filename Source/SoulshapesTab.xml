@@ -1,0 +1,99 @@
+<Ui>
+	<Script file="SoulshapesTab.lua"/>
+	
+	<Frame name="SoulshapesJournal" parent="CollectionsJournal" mixin="SoulshapesMixin" setAllPoints="true" hidden="true">
+		<Frames>
+            <StatusBar name="$parentProgressBar" parentKey="progressBar"> 
+                <Size x="408" y="18"/>
+        		<Anchors>
+        			<Anchor point="TOP" x="-83" y="-24"/>
+        		</Anchors>
+                <Layers>
+        			<Layer level="OVERLAY">
+                        <FontString parentKey="text" inherits="TextStatusBarText" justifyH="CENTER">
+        					<Size x="0" y="9" />
+        					<Anchors>
+        						<Anchor point="CENTER" y="1" />
+        					</Anchors>
+        				</FontString>
+        				<Texture parentKey="border" file="Interface\PaperDollInfoFrame\UI-Character-Skills-BarBorder">
+        					<Size x="430" y="37" />
+        					<Anchors>
+        						<Anchor point="LEFT" x="-12" y="0"/>
+        					</Anchors>
+        				</Texture>
+                    </Layer>
+                    <Layer level="BACKGROUND">
+        				<Texture>
+        					<Anchors>
+        						<Anchor point="TOPLEFT" x="-5" y="-1"/>
+        						<Anchor point="BOTTOMRIGHT" x="5" y="1"/>
+        					</Anchors>
+        					<Color r="0.0" g="0.0" b="0.0" a="1.0"/>
+        				</Texture>
+        			</Layer>
+                </Layers>
+                <BarTexture file="Interface\PaperDollInfoFrame\UI-Character-Skills-Bar"/>
+        		<BarColor r="0.03125" g="0.85" b="0.0" />
+                <Scripts>
+                    <OnMouseUp>
+                        SoulshapesJournalProgressBar_OnClick(self, 0)
+                    </OnMouseUp>
+                </Scripts>
+            </StatusBar>
+            
+			<EditBox name="$parentSearchBox" parentKey="SearchBox" inherits="SearchBoxTemplate" letters="40">
+				<Size x="115" y="20"/>
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-103" y="-35"/>
+				</Anchors>
+				<Scripts>
+					<OnTextChanged function="SoulshapesJournalSearchBox_OnTextChanged"/>
+				</Scripts>
+			</EditBox>
+
+			<DropDownToggleButton parentKey="FilterButton" inherits="UIResettableDropdownButtonTemplate" text="FILTER">
+				<Anchors>
+					<Anchor point="TOPRIGHT" x="-10" y="-34"/>
+				</Anchors>
+				<Scripts>
+					<OnLoad inherit="prepend">
+						self:SetResetFunction(function() self:GetParent():ResetFilters() end);
+					</OnLoad>
+					<OnMouseDown inherit="prepend">
+						local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+                        LibDD:ToggleDropDownMenu(1, nil, self:GetParent().filterDropDown, self, 74, 15);
+					</OnMouseDown>
+				</Scripts>
+			</DropDownToggleButton>
+
+			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
+				<Layers>
+					<Layer level="BORDER" textureSubLevel="1">
+						<Texture parentKey="watermark" atlas="collections-watermark-heirloom" useAtlasSize="true">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-33" y="17"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<Frame parentKey="PagingFrame" inherits="CollectionsPagingFrameTemplate">
+				<Anchors>
+					<Anchor point="BOTTOM" x="21" y="43"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+                local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+                self.filterDropDown = LibDD:Create_UIDropDownMenu(self:GetName().."FilterDropDown", self)
+                SoulshapesJournalCollectedFilterDropDown_OnLoad(self.filterDropDown)
+				self:OnLoad();
+			</OnLoad>
+			<OnShow function="SoulshapesJournal_OnShow"/>
+			<OnMouseWheel function="SoulshapesJournal_OnMouseWheel"/>
+		</Scripts>
+	</Frame>
+</Ui>
