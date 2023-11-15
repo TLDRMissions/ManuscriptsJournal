@@ -34,6 +34,7 @@ function ParentMixin:OnLoad()
             ManuscriptsSkillLineTab2.tooltip = ShapeshiftsJournal.tabName
             ManuscriptsSkillLineTab2:Show()
             ManuscriptsSkillLineTab2:SetNormalTexture(136036)
+            ManuscriptsSkillLineTab2:SetChecked(false)
         end
     end
     tab.OnDeselect = function()
@@ -42,9 +43,17 @@ function ParentMixin:OnLoad()
         HeirloomsJournal.SearchBox:Show()
         HeirloomsJournal.FilterButton:Show()
         ManuscriptsSideTabsFrame:Hide()
+        ShapeshiftsJournal:Hide()
     end
     self.Tab = tab
 end
+
+hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
+    if tabID ~= CollectionsJournalTab4:GetID() then
+        ShapeshiftsJournal:Hide()
+        ManuscriptsSideTabsFrame:Hide()
+    end
+end)
 
 function ParentMixin:AcquireFrame(framePool, numInUse, frameType, template)
 	if not framePool[numInUse] then
