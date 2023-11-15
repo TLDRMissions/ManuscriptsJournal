@@ -1,0 +1,22 @@
+<Ui>
+	<!-- adapted from FrameXML\SpellBookFrame.xml -->
+    
+    <Frame name="ManuscriptsSideTabsFrame" hidden="true" parent="CollectionsJournal">
+		<Anchors>
+			<Anchor point="TOPLEFT" relativeTo="CollectionsJournal" relativePoint="TOPLEFT"/>
+			<Anchor point="BOTTOMRIGHT" relativeTo="CollectionsJournal" relativePoint="BOTTOMRIGHT"/>
+		</Anchors>
+		<Frames>
+			<CheckButton name="ManuscriptsSkillLineTab1" inherits="ManuscriptSkillLineTabTemplate" id="1">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativePoint="TOPRIGHT" x="0" y="-36"/>
+				</Anchors>
+			</CheckButton>
+			<CheckButton name="ManuscriptsSkillLineTab2" inherits="ManuscriptSkillLineTabTemplate" id="2">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="ManuscriptsSkillLineTab1" relativePoint="BOTTOMLEFT" x="0" y="-17"/>
+				</Anchors>
+			</CheckButton>
+        </Frames>
+    </Frame>
+</Ui>

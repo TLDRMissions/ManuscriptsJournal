@@ -9,12 +9,10 @@ local ParentMixin = addon.ParentMixin
 local tab
 function ParentMixin:OnLoad()
 	self:FullRefreshIfVisible();
+    if self ~= ManuscriptsJournal then return end
+    
+    tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal, self, self.tabName)
 
-    local temp = tab
-    tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal)
-    tab:SetText(self.tabName)
-    tab.frame = self
-    local selected
     tab.OnSelect = function()
         if not InCombatLockdown() then
             CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
@@ -24,15 +22,28 @@ function ParentMixin:OnLoad()
         HeirloomsJournal.progressBar:Hide()
         HeirloomsJournal.SearchBox:Hide()
         HeirloomsJournal.FilterButton:Hide()
+        
+        if select(2, UnitClass("player")) == "DRUID" then
+            ManuscriptsSideTabsFrame:Show()
+            
+            ManuscriptsSkillLineTab1.tooltip = self.tabName
+            ManuscriptsSkillLineTab1:Show()
+            ManuscriptsSkillLineTab1:SetNormalTexture(254288)
+            ManuscriptsSkillLineTab1:SetChecked(true)
+            
+            ManuscriptsSkillLineTab2.tooltip = ShapeshiftsJournal.tabName
+            ManuscriptsSkillLineTab2:Show()
+            ManuscriptsSkillLineTab2:SetNormalTexture(136036)
+        end
     end
     tab.OnDeselect = function()
         HeirloomsJournalClassDropDown:Show()
         HeirloomsJournal.progressBar:Show()
         HeirloomsJournal.SearchBox:Show()
         HeirloomsJournal.FilterButton:Show()
+        ManuscriptsSideTabsFrame:Hide()
     end
     self.Tab = tab
-    if temp then tab = temp end
 end
 
 function ParentMixin:AcquireFrame(framePool, numInUse, frameType, template)
@@ -144,4 +155,19 @@ function addon.ActivatePooledFrames(framePool, numEntriesInUse)
 	for i = numEntriesInUse + 1, #framePool do
 		framePool[i]:Hide();
 	end
+end
+
+function ManuscriptSkillLineTab_OnClick(self)
+    if self == ManuscriptsSkillLineTab1 then
+        ShapeshiftsJournal:Hide()
+        ManuscriptsJournal:Show()
+        self:SetChecked(true)
+        ManuscriptsSkillLineTab2:SetChecked(false)
+    elseif self == ManuscriptsSkillLineTab2 then
+        ShapeshiftsJournal:Show()
+        ShapeshiftsJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
+        ManuscriptsJournal:Hide()
+        self:SetChecked(true)
+        ManuscriptsSkillLineTab1:SetChecked(false)
+    end
 end

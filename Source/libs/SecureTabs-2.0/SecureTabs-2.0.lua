@@ -17,7 +17,7 @@ You should have received a copy of the GNU General Public License
 along with SecureTabs. If not, see <http://www.gnu.org/licenses/>.
 --]]
 
-local Lib, old = LibStub:NewLibrary('SecureTabs-2.0', 8)
+local Lib, old = LibStub:NewLibrary('SecureTabs-2.0', 9)
 if not Lib then
 	return
 elseif not old then
@@ -60,6 +60,14 @@ function Lib:Select(tab)
 	if tab.OnSelect then
 		tab:OnSelect()
 	end
+    
+    for _, tabs in pairs(Lib.tabs[tab:GetParent()]) do
+        if tabs ~= tab then
+            if tabs.OnDeselect then
+                tabs:OnDeselect()
+            end
+        end
+    end
 
 	PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
 	self:Update(tab:GetParent(), tab)
