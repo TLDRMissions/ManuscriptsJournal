@@ -169,12 +169,6 @@ local manuscripts = {
         zoneID = 14022,
     },
     {
-        name = "Winding Slitherdrake: Hairy Chin",
-        itemID = 203311,
-        questID = 73799,
-        source = sources.Inscription,
-    },
-    {
         name = "Winding Slitherdrake: Hairy Crest",
         itemID = 203318,
         questID = 73806,
