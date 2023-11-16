@@ -120,7 +120,17 @@ function ParentMixin:UpdateButton(button)
         	button.name:ClearAllPoints();
         	button.name:SetPoint("LEFT", button, "RIGHT", 9, 3);
 
-        	if C_QuestLog.IsQuestFlaggedCompleted(data.questID) then
+        	local collected = C_QuestLog.IsQuestFlaggedCompleted(data.questID)
+            if self == ShapeshiftsJournal then
+                if collected and ShapeshiftsJournalAccountWideDB then
+                    ShapeshiftsJournalAccountWideDB[data.questID] = collected
+                end
+                if (not collected) and ShapeshiftsJournalAccountWideDB and ShapeshiftsJournalAccountWideDB[data.questID] then
+                    collected = true
+                end
+            end
+            
+            if collected then
         		button.iconTexture:Show();
         		button.iconTextureUncollected:Hide();
         		button.name:SetTextColor(1, 0.82, 0, 1);

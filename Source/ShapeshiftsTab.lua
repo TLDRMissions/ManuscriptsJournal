@@ -50,6 +50,13 @@ function ShapeshiftsMixin:OnLoad()
     self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
     
     addon.ParentMixin.OnLoad(self)
+    
+    EventUtil.ContinueOnAddOnLoaded(addonName, function()
+        if not ShapeshiftsJournalAccountWideDB then
+            ShapeshiftsJournalAccountWideDB = {}
+        end
+        self:FullRefreshIfVisible()
+    end)
 end
 
 function ShapeshiftsMixin:FullRefreshIfVisible()
@@ -87,7 +94,11 @@ function ShapeshiftsMixin:SortShapeshiftsIntoEquipmentBuckets()
 	local equipBuckets = {};
     
     for _, shapeshiftData in pairs(addon.ShapeshiftDB) do
-        local collected = C_QuestLog.IsQuestFlaggedCompleted(shapeshiftData.questID)
+        local collected = ShapeshiftsJournalAccountWideDB[shapeshiftData.questID]
+        if not collected then
+            ShapeshiftsJournalAccountWideDB[shapeshiftData.questID] = C_QuestLog.IsQuestFlaggedCompleted(shapeshiftData.questID)
+            collected = ShapeshiftsJournalAccountWideDB[shapeshiftData.questID]
+        end
         
     	local itemID = shapeshiftData.itemID
     		
