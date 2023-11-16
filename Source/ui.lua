@@ -28,12 +28,6 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineTab1:SetChecked(selectedTab == 1)
         ManuscriptsSkillLineTab2:SetChecked(selectedTab == 2)
         ManuscriptsSkillLineTab3:SetChecked(selectedTab == 3)
-        ManuscriptsSkillLineTab1:Show()
-        ManuscriptsSkillLineTab3:Show()
-        
-        if select(2, UnitClass("player")) == "DRUID" then
-            ManuscriptsSkillLineTab2:Show()
-        end
         
         if selectedTab == 2 then
             RunNextFrame(function()
@@ -67,6 +61,17 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineTab1:SetNormalTexture(254288)
         ManuscriptsSkillLineTab2:SetNormalTexture(136036)
         ManuscriptsSkillLineTab3:SetNormalTexture(GetSpellTexture(310143))
+        
+        if select(2, UnitClass("player")) == "DRUID" then
+            ManuscriptsSkillLineTab1:Show()
+            ManuscriptsSkillLineTab2:Show()
+            ManuscriptsSkillLineTab3:SetPoint("TOPLEFT", ManuscriptsSkillLineTab2, "BOTTOMLEFT", 0, -17)
+        end
+        
+        if C_Covenants.GetActiveCovenantID() == 3 then
+            ManuscriptsSkillLineTab1:Show()
+            ManuscriptsSkillLineTab3:Show()
+        end
     end)
 end
 

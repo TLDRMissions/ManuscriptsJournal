@@ -19,7 +19,7 @@
 			</CheckButton>
             <CheckButton name="ManuscriptsSkillLineTab3" inherits="ManuscriptSkillLineTabTemplate" id="3">
 				<Anchors>
-					<Anchor point="TOPLEFT" relativeTo="ManuscriptsSkillLineTab2" relativePoint="BOTTOMLEFT" x="0" y="-17"/>
+					<Anchor point="TOPLEFT" relativeTo="ManuscriptsSkillLineTab1" relativePoint="BOTTOMLEFT" x="0" y="-17"/>
 				</Anchors>
 			</CheckButton>
         </Frames>
