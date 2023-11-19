@@ -211,9 +211,9 @@ function SoulshapesJournalSpellButton_OnEnter(self)
     if db.guide then
         local guide = db.guide
         if type(guide) == "table" and guide.text and guide.args and type(guide.args) == "table" and #guide.args > 0 then
-            GameTooltip:AddLine(string.format(guide.text, unpack(guide.args)))
+            GameTooltip:AddLine(string.format(guide.text, unpack(guide.args)), 1, 1, 1, true)
         else
-            GameTooltip:AddLine(guide)
+            GameTooltip:AddLine(guide, 1, 1, 1, true)
         end
     end
     
