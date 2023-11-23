@@ -581,3 +581,37 @@ function SoulshapesJournalProgressBar_OnClick(self, barID)
     selectedBarID = barID
     SoulshapesJournal:FullRefreshIfVisible()
 end
+
+function SoulshapesMixin:UpdateButton(button)
+    if button.soulshapeData then
+        local data = button.soulshapeData
+        button.iconTexture:SetTexture(data.icon)
+        button.iconTextureUncollected:SetTexture(data.icon)
+        button.iconTextureUncollected:SetDesaturated(true)
+        
+        button.name:SetText(data.name)
+        
+        button.name:ClearAllPoints()
+        button.name:SetPoint("LEFT", button, "RIGHT", 9, 3)
+        
+        if (not data.questID) or C_QuestLog.IsQuestFlaggedCompleted(data.questID) then
+            button.iconTexture:Show();
+      		button.iconTextureUncollected:Hide();
+      		button.name:SetTextColor(1, 0.82, 0, 1);
+      		button.name:SetShadowColor(0, 0, 0, 1);
+
+      		button.slotFrameCollected:Show();
+      		button.slotFrameUncollected:Hide();
+      		button.slotFrameUncollectedInnerGlow:Hide();
+      	else
+      		button.iconTexture:Hide();
+      		button.iconTextureUncollected:Show();
+      		button.name:SetTextColor(0.33, 0.27, 0.20, 1);
+      		button.name:SetShadowColor(0, 0, 0, 0.33);
+
+      		button.slotFrameCollected:Hide();
+      		button.slotFrameUncollected:Show();
+      		button.slotFrameUncollectedInnerGlow:Show();
+      	end
+    end
+end

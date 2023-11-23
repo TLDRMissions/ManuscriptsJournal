@@ -52,6 +52,7 @@ db\10-1.lua
 db\10-2.lua
 db\Shapeshifts.lua
 db\Soulshapes.lua
+db\HexTomes.lua
 db\final.lua
 
 Templates.xml

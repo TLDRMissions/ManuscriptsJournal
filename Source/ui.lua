@@ -25,9 +25,10 @@ function ParentMixin:OnLoad()
         HeirloomsJournal.FilterButton:Hide()
         
         ManuscriptsSideTabsFrame:Show()
-        ManuscriptsSkillLineTab1:SetChecked(selectedTab == 1)
-        ManuscriptsSkillLineTab2:SetChecked(selectedTab == 2)
-        ManuscriptsSkillLineTab3:SetChecked(selectedTab == 3)
+        ManuscriptsSkillLineManuscriptsTab:SetChecked(selectedTab == 1)
+        ManuscriptsSkillLineDruidTab:SetChecked(selectedTab == 2)
+        ManuscriptsSkillLineSoulshapesTab:SetChecked(selectedTab == 3)
+        ManuscriptsSkillLineShamanTab:SetChecked(selectedTab == 4)
         
         if selectedTab == 2 then
             RunNextFrame(function()
@@ -41,6 +42,12 @@ function ParentMixin:OnLoad()
             end)
             SoulshapesJournal:Show()
             SoulshapesJournal:EnableMouse(true)
+        elseif selectedTab == 4 then
+            RunNextFrame(function()
+                ManuscriptsJournal:Hide()
+            end)
+            HexTomesJournal:Show()
+            HexTomesJournal:EnableMouse(true)
         end
     end
     tab.OnDeselect = function()
@@ -51,26 +58,35 @@ function ParentMixin:OnLoad()
         ManuscriptsSideTabsFrame:Hide()
         ShapeshiftsJournal:Hide()
         SoulshapesJournal:Hide()
+        HexTomesJournal:Hide()
     end
     self.Tab = tab
     
     RunNextFrame(function()
-        ManuscriptsSkillLineTab1.tooltip = self.tabName
-        ManuscriptsSkillLineTab2.tooltip = ShapeshiftsJournal.tabName
-        ManuscriptsSkillLineTab3.tooltip = SoulshapesJournal.tabName
-        ManuscriptsSkillLineTab1:SetNormalTexture(254288)
-        ManuscriptsSkillLineTab2:SetNormalTexture(136036)
-        ManuscriptsSkillLineTab3:SetNormalTexture(GetSpellTexture(310143))
+        ManuscriptsSkillLineManuscriptsTab.tooltip = self.tabName
+        ManuscriptsSkillLineDruidTab.tooltip = ShapeshiftsJournal.tabName
+        ManuscriptsSkillLineSoulshapesTab.tooltip = SoulshapesJournal.tabName
+        ManuscriptsSkillLineShamanTab.tooltip = HexTomesJournal.tabName
         
-        if select(2, UnitClass("player")) == "DRUID" then
-            ManuscriptsSkillLineTab1:Show()
-            ManuscriptsSkillLineTab2:Show()
-            ManuscriptsSkillLineTab3:SetPoint("TOPLEFT", ManuscriptsSkillLineTab2, "BOTTOMLEFT", 0, -17)
+        ManuscriptsSkillLineManuscriptsTab:SetNormalTexture(254288)
+        ManuscriptsSkillLineDruidTab:SetNormalTexture(136036)
+        ManuscriptsSkillLineSoulshapesTab:SetNormalTexture(GetSpellTexture(310143))
+        ManuscriptsSkillLineShamanTab:SetNormalTexture(GetSpellTexture(51514))
+        
+        local class = select(2, UnitClass("player"))
+        if class == "DRUID" then
+            ManuscriptsSkillLineManuscriptsTab:Show()
+            ManuscriptsSkillLineDruidTab:Show()
+            ManuscriptsSkillLineSoulshapesTab:SetPoint("TOPLEFT", ManuscriptsSkillLineDruidTab, "BOTTOMLEFT", 0, -17)
+        elseif class == "SHAMAN" then
+            ManuscriptsSkillLineManuscriptsTab:Show()
+            ManuscriptsSkillLineShamanTab:Show()
+            ManuscriptsSkillLineSoulshapesTab:SetPoint("TOPLEFT", ManuscriptsSkillLineShamanTab, "BOTTOMLEFT", 0, -17)
         end
         
         if C_Covenants.GetActiveCovenantID() == 3 then
-            ManuscriptsSkillLineTab1:Show()
-            ManuscriptsSkillLineTab3:Show()
+            ManuscriptsSkillLineManuscriptsTab:Show()
+            ManuscriptsSkillLineSoulshapesTab:Show()
         end
     end)
 end
@@ -80,6 +96,7 @@ hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
         ShapeshiftsJournal:Hide()
         ManuscriptsSideTabsFrame:Hide()
         SoulshapesJournal:Hide()
+        HexTomesJournal:Hide()
     end
 end)
 
@@ -102,6 +119,10 @@ function ParentMixin:RefreshView()
     end
 end
 
+function ParentMixin:IsCollected(data)
+    return C_QuestLog.IsQuestFlaggedCompleted(data.questID)
+end
+
 function ParentMixin:UpdateButton(button)
     if button.itemID then
     	local data = addon.itemIDToDB[button.itemID]
@@ -120,15 +141,7 @@ function ParentMixin:UpdateButton(button)
         	button.name:ClearAllPoints();
         	button.name:SetPoint("LEFT", button, "RIGHT", 9, 3);
 
-        	local collected = C_QuestLog.IsQuestFlaggedCompleted(data.questID)
-            if self == ShapeshiftsJournal then
-                if collected and ShapeshiftsJournalAccountWideDB then
-                    ShapeshiftsJournalAccountWideDB[data.questID] = collected
-                end
-                if (not collected) and ShapeshiftsJournalAccountWideDB and ShapeshiftsJournalAccountWideDB[data.questID] then
-                    collected = true
-                end
-            end
+        	local collected = self:IsCollected(data)
             
             if collected then
         		button.iconTexture:Show();
@@ -150,36 +163,6 @@ function ParentMixin:UpdateButton(button)
         		button.slotFrameUncollectedInnerGlow:Show();
         	end
         end)
-    elseif button.soulshapeData then
-        local data = button.soulshapeData
-        button.iconTexture:SetTexture(data.icon)
-        button.iconTextureUncollected:SetTexture(data.icon)
-        button.iconTextureUncollected:SetDesaturated(true)
-        
-        button.name:SetText(data.name)
-        
-        button.name:ClearAllPoints()
-        button.name:SetPoint("LEFT", button, "RIGHT", 9, 3)
-        
-        if (not data.questID) or C_QuestLog.IsQuestFlaggedCompleted(data.questID) then
-            button.iconTexture:Show();
-      		button.iconTextureUncollected:Hide();
-      		button.name:SetTextColor(1, 0.82, 0, 1);
-      		button.name:SetShadowColor(0, 0, 0, 1);
-
-      		button.slotFrameCollected:Show();
-      		button.slotFrameUncollected:Hide();
-      		button.slotFrameUncollectedInnerGlow:Hide();
-      	else
-      		button.iconTexture:Hide();
-      		button.iconTextureUncollected:Show();
-      		button.name:SetTextColor(0.33, 0.27, 0.20, 1);
-      		button.name:SetShadowColor(0, 0, 0, 0.33);
-
-      		button.slotFrameCollected:Hide();
-      		button.slotFrameUncollected:Show();
-      		button.slotFrameUncollectedInnerGlow:Show();
-      	end
     end
 end
 
@@ -234,34 +217,36 @@ function addon.ActivatePooledFrames(framePool, numEntriesInUse)
 	end
 end
 
+local function deselectAndHideAll()
+    ManuscriptsSkillLineManuscriptsTab:SetChecked(false)
+    ManuscriptsSkillLineDruidTab:SetChecked(false)
+    ManuscriptsSkillLineSoulshapesTab:SetChecked(false)
+    ManuscriptsSkillLineShamanTab:SetChecked(false)
+
+    ManuscriptsJournal:Hide()
+    ShapeshiftsJournal:Hide()
+    SoulshapesJournal:Hide()
+    HexTomesJournal:Hide()
+end    
+
 function ManuscriptSkillLineTab_OnClick(self)
-    if self == ManuscriptsSkillLineTab1 then
-        ShapeshiftsJournal:Hide()
-        SoulshapesJournal:Hide()
+    deselectAndHideAll()
+    selectedTab = self:GetID()
+    self:SetChecked(true)
+    
+    if self == ManuscriptsSkillLineManuscriptsTab then
         ManuscriptsJournal:Show()
-        self:SetChecked(true)
-        ManuscriptsSkillLineTab2:SetChecked(false)
-        ManuscriptsSkillLineTab3:SetChecked(false)
-        selectedTab = 1
-    elseif self == ManuscriptsSkillLineTab2 then
+    elseif self == ManuscriptsSkillLineDruidTab then
         ShapeshiftsJournal:Show()
         ShapeshiftsJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
-        ManuscriptsJournal:Hide()
-        SoulshapesJournal:Hide()
-        self:SetChecked(true)
-        ManuscriptsSkillLineTab1:SetChecked(false)
-        ManuscriptsSkillLineTab3:SetChecked(false)
         ShapeshiftsJournal:EnableMouse(true)
-        selectedTab = 2
-    elseif self == ManuscriptsSkillLineTab3 then
+    elseif self == ManuscriptsSkillLineSoulshapesTab then
         SoulshapesJournal:Show()
         SoulshapesJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
-        ShapeshiftsJournal:Hide()
-        ManuscriptsJournal:Hide()
-        self:SetChecked(true)
-        ManuscriptsSkillLineTab1:SetChecked(false)
-        ManuscriptsSkillLineTab2:SetChecked(false)
         SoulshapesJournal:EnableMouse(true)
-        selectedTab = 3
+    elseif self == ManuscriptsSkillLineShamanTab then
+        HexTomesJournal:Show()
+        HexTomesJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
+        HexTomesJournal:EnableMouse(true)
     end
 end

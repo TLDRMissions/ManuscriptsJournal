@@ -224,6 +224,8 @@ local manuscripts = {
         name = "Dragon Isles Drakes: White Scales",
         itemID = 208550,
         questID = 69347,
+        source = sources.Quest,
+        sourceQuestID = 77342,
     },
     {
         category = drakes.WindingSlitherdrake,

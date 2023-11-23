@@ -206,3 +206,14 @@ function ShapeshiftsMixin:LayoutCurrentPage()
 
 	addon.ActivatePooledFrames(self.shapeshiftEntryFrames, numEntriesInUse);
 end
+
+function ShapeshiftsMixin:IsCollected(data)
+    local collected = C_QuestLog.IsQuestFlaggedCompleted(data.questID)
+    if collected and ShapeshiftsJournalAccountWideDB then
+        ShapeshiftsJournalAccountWideDB[data.questID] = collected
+    end
+    if (not collected) and ShapeshiftsJournalAccountWideDB and ShapeshiftsJournalAccountWideDB[data.questID] then
+        collected = true
+    end
+    return collected
+end

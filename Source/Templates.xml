@@ -260,5 +260,6 @@
     <Include file="ManuscriptsTab.xml"/>
     <Include file="ShapeshiftsTab.xml"/>
     <Include file="SoulshapesTab.xml"/>
+    <Include file="HexTomesTab.xml"/>
     <Include file="SideTabs.xml"/>
 </Ui>

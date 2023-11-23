@@ -30,8 +30,12 @@ L["Kraxxus"] = true
 L["Meiz"] = true
 L["Ponzo"] = true
 L["Maztha"] = true
+L["Cravitz Lorent"] = true
+L["Flamesmith Lanying"] = true
+
 
 -- Rare spawns
+L["Honey Smasher"] = true
 L["Gethdazr"] = true
 L["Corrupted Proto-Dragon"] = true
 L["Diluu"] = true
@@ -186,6 +190,8 @@ L["Tindral Sageswift"] = true
 L["Aurostor, the Hibernating"] = true
 L["Talthonei Ashwhisper"] = true
 L["Mosa Umbramane"] = true
+L["Nal'tira"] = true
+L["Rezan"] = true
 
 -- containers
 L["Obsidian Grand Cache"] = true
