@@ -17,6 +17,9 @@ function PolymorphsMixin:OnLoad()
     local spell = Spell:CreateFromSpellID(118)
     spell:ContinueOnSpellLoad(function()
     	self.tabName = spell:GetSpellName()
+        RunNextFrame(function()
+            ManuscriptsSkillLineMageTab.tooltip = self.tabName
+        end)
     end)
     
     addon.ParentMixin.OnLoad(self)
