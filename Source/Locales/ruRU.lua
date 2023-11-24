@@ -167,14 +167,7 @@ L["Goopal"] = "Жижек"
 L["Professor Gastrinax"] = "Профессор Гастринакс"
 
 -- bosses
-L["Primal Tsunami"] = "Изначальное цунами"
-L["Echo of Doragosa"] = "Эхо Дорагосы"
-L["Warlord Sargha"] = "Полководец Сарга"
-L["Decatriarch Wratheye"] = "Гниломаг Око Гнева"
-L["Raszageth the Storm-Eater"] = "Рашагет Пожирательница Бурь"
-L["Balakar Khan"] = "Хан Балакар"
-L["Scalecommander Sarkareth"] = "Дракомандир Саркарет"
-L["Chrono-Lord Deios"] = "Хронолорд Дейос"
+-- [Automatically datamined from Encounter Journal in enus.lua]
 
 -- containers
 L["Obsidian Grand Cache"] = "Великий обсидиановый тайник"

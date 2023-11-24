@@ -21,3 +21,7 @@ for _, polymorphData in pairs(addon.PolymorphTomesDB) do
         addon.itemIDToDB[-100] = polymorphData
     end
 end
+
+for _, grimoireData in pairs(addon.GrimoiresDB) do
+    addon.itemIDToDB[grimoireData.itemID] = grimoireData
+end

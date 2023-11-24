@@ -54,6 +54,7 @@ db\Shapeshifts.lua
 db\Soulshapes.lua
 db\HexTomes.lua
 db\PolymorphTomes.lua
+db\WarlockDemonTomes.lua
 db\final.lua
 
 Templates.xml

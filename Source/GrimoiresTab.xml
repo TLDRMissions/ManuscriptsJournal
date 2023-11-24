@@ -1,0 +1,33 @@
+<Ui>
+    <Script file="GrimoiresTab.lua"/>
+    
+    <Frame name="GrimoiresJournal" parent="CollectionsJournal" mixin="GrimoiresMixin" setAllPoints="true" hidden="true">
+		<Frames>
+			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
+				<Layers>
+					<Layer level="BORDER" textureSubLevel="1">
+						<Texture parentKey="watermark" atlas="collections-watermark-heirloom" useAtlasSize="true">
+							<Anchors>
+								<Anchor point="BOTTOMRIGHT" relativePoint="BOTTOMRIGHT" x="-33" y="17"/>
+							</Anchors>
+						</Texture>
+					</Layer>
+				</Layers>
+			</Frame>
+
+			<Frame parentKey="PagingFrame" inherits="CollectionsPagingFrameTemplate">
+				<Anchors>
+					<Anchor point="BOTTOM" x="21" y="43"/>
+				</Anchors>
+			</Frame>
+		</Frames>
+		<Scripts>
+			<OnLoad>
+				self:OnLoad();
+			</OnLoad>
+			<OnShow function="ManuscriptsJournal_OnShow"/>
+			<OnMouseWheel function="ManuscriptsJournal_OnMouseWheel"/>
+            <OnEvent function="ManuscriptsJournal_OnEvent"/>
+		</Scripts>
+	</Frame>
+</Ui>

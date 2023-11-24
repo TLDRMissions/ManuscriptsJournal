@@ -33,6 +33,7 @@ addon.Enum.Sources.PvPSeason = 16
 addon.Enum.Sources.WorldEvent = 17
 addon.Enum.Sources.Superbloom = 18
 addon.Enum.Sources.ZoneDrop = 19
+addon.Enum.Sources.Other = 20
 
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1

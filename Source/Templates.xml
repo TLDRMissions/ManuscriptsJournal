@@ -262,5 +262,6 @@
     <Include file="SoulshapesTab.xml"/>
     <Include file="HexTomesTab.xml"/>
     <Include file="PolymorphsTab.xml"/>
+    <Include file="GrimoiresTab.xml"/>
     <Include file="SideTabs.xml"/>
 </Ui>

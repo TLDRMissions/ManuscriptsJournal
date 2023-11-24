@@ -32,6 +32,7 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineSoulshapesTab:SetChecked(selectedTab == 3)
         ManuscriptsSkillLineShamanTab:SetChecked(selectedTab == 4)
         ManuscriptsSkillLineMageTab:SetChecked(selectedTab == 5)
+        ManuscriptsSkillLineWarlockTab:SetChecked(selectedTab == 6)
         
         if (selectedTab == 2) and (class == "DRUID") then
             RunNextFrame(function()
@@ -57,6 +58,12 @@ function ParentMixin:OnLoad()
             end)
             PolymorphsJournal:Show()
             PolymorphsJournal:EnableMouse(true)
+        elseif (selectedTab == 6) and (class == "WARLOCK") then
+            RunNextFrame(function()
+                ManuscriptsJournal:Hide()
+            end)
+            GrimoiresJournal:Show()
+            GrimoiresJournal:EnableMouse(true)
         end
     end
     tab.OnDeselect = function()
@@ -69,6 +76,7 @@ function ParentMixin:OnLoad()
         SoulshapesJournal:Hide()
         HexTomesJournal:Hide()
         PolymorphsJournal:Hide()
+        GrimoiresJournal:Hide()
     end
     self.Tab = tab
     
@@ -78,12 +86,14 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineSoulshapesTab.tooltip = SoulshapesJournal.tabName
         ManuscriptsSkillLineShamanTab.tooltip = HexTomesJournal.tabName
         ManuscriptsSkillLineMageTab.tooltip = PolymorphsJournal.tabName
+        ManuscriptsSkillLineWarlockTab.tooltip = GrimoiresJournal.tabName
         
         ManuscriptsSkillLineManuscriptsTab:SetNormalTexture(254288)
         ManuscriptsSkillLineDruidTab:SetNormalTexture(136036)
         ManuscriptsSkillLineSoulshapesTab:SetNormalTexture(GetSpellTexture(310143))
         ManuscriptsSkillLineShamanTab:SetNormalTexture(GetSpellTexture(51514))
         ManuscriptsSkillLineMageTab:SetNormalTexture(GetSpellTexture(118))
+        ManuscriptsSkillLineWarlockTab:SetNormalTexture(GetSpellTexture(688))
         
         if class == "DRUID" then
             ManuscriptsSkillLineManuscriptsTab:Show()
@@ -97,6 +107,10 @@ function ParentMixin:OnLoad()
             ManuscriptsSkillLineManuscriptsTab:Show()
             ManuscriptsSkillLineMageTab:Show()
             ManuscriptsSkillLineSoulshapesTab:SetPoint("TOPLEFT", ManuscriptsSkillLineMageTab, "BOTTOMLEFT", 0, -17)
+        elseif class == "WARLOCK" then
+            ManuscriptsSkillLineManuscriptsTab:Show()
+            ManuscriptsSkillLineWarlockTab:Show()
+            ManuscriptsSkillLineSoulshapesTab:SetPoint("TOPLEFT", ManuscriptsSkillLineWarlockTab, "BOTTOMLEFT", 0, -17)
         end
         
         if C_Covenants.GetActiveCovenantID() == 3 then
@@ -238,36 +252,38 @@ local function deselectAndHideAll()
     ManuscriptsSkillLineSoulshapesTab:SetChecked(false)
     ManuscriptsSkillLineShamanTab:SetChecked(false)
     ManuscriptsSkillLineMageTab:SetChecked(false)
+    ManuscriptsSkillLineWarlockTab:SetChecked(false)
 
     ManuscriptsJournal:Hide()
     ShapeshiftsJournal:Hide()
     SoulshapesJournal:Hide()
     HexTomesJournal:Hide()
     PolymorphsJournal:Hide()
+    GrimoiresJournal:Hide()
 end    
 
 function ManuscriptSkillLineTab_OnClick(self)
     deselectAndHideAll()
     selectedTab = self:GetID()
     self:SetChecked(true)
+    local page
     
     if self == ManuscriptsSkillLineManuscriptsTab then
         ManuscriptsJournal:Show()
+        return
     elseif self == ManuscriptsSkillLineDruidTab then
-        ShapeshiftsJournal:Show()
-        ShapeshiftsJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
-        ShapeshiftsJournal:EnableMouse(true)
+        page = ShapeshiftsJournal
     elseif self == ManuscriptsSkillLineSoulshapesTab then
-        SoulshapesJournal:Show()
-        SoulshapesJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
-        SoulshapesJournal:EnableMouse(true)
+        page = SoulshapesJournal
     elseif self == ManuscriptsSkillLineShamanTab then
-        HexTomesJournal:Show()
-        HexTomesJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
-        HexTomesJournal:EnableMouse(true)
+        page = HexTomesJournal
     elseif self == ManuscriptsSkillLineMageTab then
-        PolymorphsJournal:Show()
-        PolymorphsJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
-        PolymorphsJournal:EnableMouse(true)
+        page = PolymorphsJournal
+    elseif self == ManuscriptsSkillLineWarlockTab then
+        page = GrimoiresJournal
     end
+    
+    page:Show()
+    page:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
+    page:EnableMouse(true)
 end

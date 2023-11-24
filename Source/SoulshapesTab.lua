@@ -218,7 +218,6 @@ function SoulshapesJournalSpellButton_OnEnter(self)
     end
     
     GameTooltip:Show()
-    addon.journalTooltipShown = true
 end
 
 function SoulshapesJournalSpellButton_OnClick(self, button)

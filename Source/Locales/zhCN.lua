@@ -166,16 +166,7 @@ L["Goopal"] = "古帕尔"
 L["Professor Gastrinax"] = "加斯特里纳克斯教授"
 
 -- bosses
-L["Umbrelskul"] = "安布雷斯库"
-L["Erkhart Stormvein"] = "基拉卡与厄克哈特·风脉"
-L["Primal Tsunami"] = "原始海啸"
-L["Echo of Doragosa"] = "多拉苟萨的回响"
-L["Warlord Sargha"] = "督军莎尔佳"
-L["Decatriarch Wratheye"] = "腐朽主母怒眼"
-L["Raszageth the Storm-Eater"] = "莱萨杰丝<噬雷之龙>"
-L["Balakar Khan"] = "巴拉卡可汗"
-L["Scalecommander Sarkareth"] = "鳞长萨卡雷斯"
-L["Chrono-Lord Deios"] = "时空领主戴欧斯"
+-- [Automatically datamined from Encounter Journal in enus.lua]
 
 -- containers
 L["Obsidian Grand Cache"] = "辉煌的黑曜石宝箱"

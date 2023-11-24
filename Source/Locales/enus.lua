@@ -17,6 +17,11 @@ L["Dragon Racing Achievement"] = "Dragon Racing "..BATTLE_PET_SOURCE_6
 L["Treasure Chest"] = "Chest"
 L["PvP Seasonal"] = true
 
+L["Time Rifts"] = QuestUtils_GetQuestName(76984)
+QuestEventListener:AddCallback(76984, function()
+	L["Time Rifts"] = QuestUtils_GetQuestName(76984)
+end)
+
 -- Reputation and Friendship ranks
 L["Friend"] = true
 L["True Friend"] = true
@@ -33,6 +38,10 @@ L["Maztha"] = true
 L["Cravitz Lorent"] = true
 L["Flamesmith Lanying"] = true
 L["Endora Moorehead"] = true
+L["Imp Mother Dyala"] = true
+L["Vi'el"] = true
+L["Aridormi"] = true
+L["Cupri"] = true
 
 -- Rare spawns
 L["Honey Smasher"] = true
@@ -148,6 +157,7 @@ L["Lady Shaz'ra"] = true
 L["Blue Terror"] = true
 L["Pyrachniss"] = true
 L["Shardwing"] = true
+L["Matron Folnuna"] = true
             
 L["Elemental Storms"] = true
 
@@ -175,23 +185,27 @@ L["Matriarch Keevah"] = true
 L["Ristar the Rabid"] = true
 L["Keen-eyed Cian"] = true
 L["Moragh the Slothful"] = true
-
--- bosses
-L["Primal Tsunami"] = true
-L["Echo of Doragosa"] = true
-L["Warlord Sargha"] = true
-L["Decatriarch Wratheye"] = true
-L["Raszageth the Storm-Eater"] = true
-L["Balakar Khan"] = true
-L["Scalecommander Sarkareth"] = true
-L["Chrono-Lord Deios"] = true
-L["Fyrakk"] = true
-L["Tindral Sageswift"] = true
-L["Aurostor, the Hibernating"] = true
 L["Talthonei Ashwhisper"] = true
 L["Mosa Umbramane"] = true
-L["Nal'tira"] = true
-L["Rezan"] = true
+
+-- bosses
+L["Primal Tsunami"] = EJ_GetEncounterInfo(2511)
+L["Echo of Doragosa"] = EJ_GetEncounterInfo(2514)
+L["Warlord Sargha"] = EJ_GetEncounterInfo(2501)
+L["Decatriarch Wratheye"] = EJ_GetEncounterInfo(2474)
+L["Raszageth the Storm-Eater"] = EJ_GetEncounterInfo(2499)
+L["Balakar Khan"] = EJ_GetEncounterInfo(2477)
+L["Scalecommander Sarkareth"] = EJ_GetEncounterInfo(2520)
+L["Chrono-Lord Deios"] = EJ_GetEncounterInfo(2538)
+L["Fyrakk"] = EJ_GetEncounterInfo(2519)
+L["Tindral Sageswift"] = EJ_GetEncounterInfo(2565)
+L["Aurostor, the Hibernating"] = EJ_GetEncounterInfo(2562)
+L["Nal'tira"] = EJ_GetEncounterInfo(1500)
+L["Rezan"] = EJ_GetEncounterInfo(2083)
+
+-- dungeon / raid trash
+L["Pusillin"] = true
+L["Hellblaze Temptress"] = true
 
 -- containers
 L["Obsidian Grand Cache"] = true
@@ -201,7 +215,15 @@ L["Smelly Trash Pile"] = true
 L["Somnut"] = true
 L["Dreamseed Cache"] = true
 L["Pollenfused Bristlebruin Fur Sample"] = true
+L["Singed Grimoire"] = true
+L["Torn Page"] = true
 
 -- Fyrakk
-L["Disciples of Fyrakk"] = true
+L["Disciples of Fyrakk"] = QuestUtils_GetQuestName(74775).."; "..QuestUtils_GetQuestName(75239)
+QuestEventListener:AddCallback(74775, function()
+	L["Disciples of Fyrakk"] = QuestUtils_GetQuestName(74775).."; "..QuestUtils_GetQuestName(75239)
+end)
+QuestEventListener:AddCallback(75239, function()
+	L["Disciples of Fyrakk"] = QuestUtils_GetQuestName(74775).."; "..QuestUtils_GetQuestName(75239)
+end)
 L["Secured Shipment"] = true

@@ -147,7 +147,7 @@ do
         if source == nil then return end
         
         GameTooltip:AddLine(" ")
-        GameTooltip:AddDoubleLine(L["Source:"], addon.Strings.Sources[source], 1, 1, 1, 1, 1, 1)
+        GameTooltip:AddDoubleLine(L["Source:"], addon.Strings.Sources[source] or "", 1, 1, 1, 1, 1, 1)
             
         if source == addon.Enum.Sources.Rare then
             if db.rareNames then
@@ -211,6 +211,8 @@ do
         elseif source == addon.Enum.Sources.Superbloom then
         elseif source == addon.Enum.Sources.ZoneDrop then
             GameTooltip:AddLine(C_Map.GetAreaInfo(db.zoneID))
+        elseif source == addon.Enum.Sources.Other then
+            GameTooltip:AddLine(db.otherDescription)
         else
             print(source)
         end
