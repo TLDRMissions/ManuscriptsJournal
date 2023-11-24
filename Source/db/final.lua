@@ -13,3 +13,11 @@ end
 for _, hexTomeData in pairs(addon.HexTomesDB) do
     addon.itemIDToDB[hexTomeData.itemID] = hexTomeData
 end
+
+for _, polymorphData in pairs(addon.PolymorphTomesDB) do
+    if polymorphData.itemID then
+        addon.itemIDToDB[polymorphData.itemID] = polymorphData
+    else
+        addon.itemIDToDB[-100] = polymorphData
+    end
+end

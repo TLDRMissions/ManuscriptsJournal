@@ -32,7 +32,7 @@ L["Ponzo"] = true
 L["Maztha"] = true
 L["Cravitz Lorent"] = true
 L["Flamesmith Lanying"] = true
-
+L["Endora Moorehead"] = true
 
 -- Rare spawns
 L["Honey Smasher"] = true

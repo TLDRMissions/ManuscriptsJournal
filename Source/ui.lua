@@ -3,6 +3,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 -- adapted from Blizzard_Collections\Blizzard_HeirloomCollection
 
+local class = select(2, UnitClass("player"))
+
 addon.ParentMixin = {}
 local ParentMixin = addon.ParentMixin
 
@@ -29,8 +31,9 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineDruidTab:SetChecked(selectedTab == 2)
         ManuscriptsSkillLineSoulshapesTab:SetChecked(selectedTab == 3)
         ManuscriptsSkillLineShamanTab:SetChecked(selectedTab == 4)
+        ManuscriptsSkillLineMageTab:SetChecked(selectedTab == 5)
         
-        if selectedTab == 2 then
+        if (selectedTab == 2) and (class == "DRUID") then
             RunNextFrame(function()
                 ManuscriptsJournal:Hide()
             end)
@@ -42,12 +45,18 @@ function ParentMixin:OnLoad()
             end)
             SoulshapesJournal:Show()
             SoulshapesJournal:EnableMouse(true)
-        elseif selectedTab == 4 then
+        elseif (selectedTab == 4) and (class == "SHAMAN") then
             RunNextFrame(function()
                 ManuscriptsJournal:Hide()
             end)
             HexTomesJournal:Show()
             HexTomesJournal:EnableMouse(true)
+        elseif (selectedTab == 5) and (class == "MAGE") then
+            RunNextFrame(function()
+                ManuscriptsJournal:Hide()
+            end)
+            PolymorphsJournal:Show()
+            PolymorphsJournal:EnableMouse(true)
         end
     end
     tab.OnDeselect = function()
@@ -59,6 +68,7 @@ function ParentMixin:OnLoad()
         ShapeshiftsJournal:Hide()
         SoulshapesJournal:Hide()
         HexTomesJournal:Hide()
+        PolymorphsJournal:Hide()
     end
     self.Tab = tab
     
@@ -67,13 +77,14 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineDruidTab.tooltip = ShapeshiftsJournal.tabName
         ManuscriptsSkillLineSoulshapesTab.tooltip = SoulshapesJournal.tabName
         ManuscriptsSkillLineShamanTab.tooltip = HexTomesJournal.tabName
+        ManuscriptsSkillLineMageTab.tooltip = PolymorphsJournal.tabName
         
         ManuscriptsSkillLineManuscriptsTab:SetNormalTexture(254288)
         ManuscriptsSkillLineDruidTab:SetNormalTexture(136036)
         ManuscriptsSkillLineSoulshapesTab:SetNormalTexture(GetSpellTexture(310143))
         ManuscriptsSkillLineShamanTab:SetNormalTexture(GetSpellTexture(51514))
+        ManuscriptsSkillLineMageTab:SetNormalTexture(GetSpellTexture(118))
         
-        local class = select(2, UnitClass("player"))
         if class == "DRUID" then
             ManuscriptsSkillLineManuscriptsTab:Show()
             ManuscriptsSkillLineDruidTab:Show()
@@ -82,6 +93,10 @@ function ParentMixin:OnLoad()
             ManuscriptsSkillLineManuscriptsTab:Show()
             ManuscriptsSkillLineShamanTab:Show()
             ManuscriptsSkillLineSoulshapesTab:SetPoint("TOPLEFT", ManuscriptsSkillLineShamanTab, "BOTTOMLEFT", 0, -17)
+        elseif class == "MAGE" then
+            ManuscriptsSkillLineManuscriptsTab:Show()
+            ManuscriptsSkillLineMageTab:Show()
+            ManuscriptsSkillLineSoulshapesTab:SetPoint("TOPLEFT", ManuscriptsSkillLineMageTab, "BOTTOMLEFT", 0, -17)
         end
         
         if C_Covenants.GetActiveCovenantID() == 3 then
@@ -222,11 +237,13 @@ local function deselectAndHideAll()
     ManuscriptsSkillLineDruidTab:SetChecked(false)
     ManuscriptsSkillLineSoulshapesTab:SetChecked(false)
     ManuscriptsSkillLineShamanTab:SetChecked(false)
+    ManuscriptsSkillLineMageTab:SetChecked(false)
 
     ManuscriptsJournal:Hide()
     ShapeshiftsJournal:Hide()
     SoulshapesJournal:Hide()
     HexTomesJournal:Hide()
+    PolymorphsJournal:Hide()
 end    
 
 function ManuscriptSkillLineTab_OnClick(self)
@@ -248,5 +265,9 @@ function ManuscriptSkillLineTab_OnClick(self)
         HexTomesJournal:Show()
         HexTomesJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
         HexTomesJournal:EnableMouse(true)
+    elseif self == ManuscriptsSkillLineMageTab then
+        PolymorphsJournal:Show()
+        PolymorphsJournal:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
+        PolymorphsJournal:EnableMouse(true)
     end
 end

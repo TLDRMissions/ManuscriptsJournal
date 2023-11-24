@@ -132,11 +132,17 @@ do
 
     function ManuscriptsJournalSpellButton_OnEnter(self)
     	GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-    	GameTooltip:SetItemByID(self.itemID);
 
     	self.UpdateTooltip = ManuscriptsJournalSpellButton_OnEnter;
         
-        local db = addon.itemIDToDB[self.itemID]
+        local db
+        if self.itemID < 0 then
+            db = addon.itemIDToDB[self.itemID]
+            GameTooltip:SetSpellByID(db.spellID)
+        else
+            db = addon.itemIDToDB[self.itemID]
+            GameTooltip:SetItemByID(self.itemID)
+        end
         local source = db.source
         if source == nil then return end
         
@@ -199,6 +205,9 @@ do
                 GameTooltip:AddLine(addon.Strings.Fyrakk[db.fyrakkType])
             end
         elseif source == addon.Enum.Sources.WorldEvent then
+            if db.worldEventName then
+                GameTooltip:AddLine(db.worldEventName)
+            end
         elseif source == addon.Enum.Sources.Superbloom then
         elseif source == addon.Enum.Sources.ZoneDrop then
             GameTooltip:AddLine(C_Map.GetAreaInfo(db.zoneID))
