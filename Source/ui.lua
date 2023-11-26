@@ -27,12 +27,9 @@ function ParentMixin:OnLoad()
         HeirloomsJournal.FilterButton:Hide()
         
         ManuscriptsSideTabsFrame:Show()
-        ManuscriptsSkillLineManuscriptsTab:SetChecked(selectedTab == 1)
-        ManuscriptsSkillLineDruidTab:SetChecked(selectedTab == 2)
-        ManuscriptsSkillLineSoulshapesTab:SetChecked(selectedTab == 3)
-        ManuscriptsSkillLineShamanTab:SetChecked(selectedTab == 4)
-        ManuscriptsSkillLineMageTab:SetChecked(selectedTab == 5)
-        ManuscriptsSkillLineWarlockTab:SetChecked(selectedTab == 6)
+        for _, tab in pairs(self:GetAllTabs()) do
+            tab:SetChecked(selectedTab == tab:GetID())
+        end
         
         if (selectedTab == 2) and (class == "DRUID") then
             RunNextFrame(function()
@@ -67,6 +64,8 @@ function ParentMixin:OnLoad()
         end
     end
     tab.OnDeselect = function()
+        local selectedTabID = CollectionsJournal_GetTab(CollectionsJournal)
+        CollectionsJournalTitleText:SetText(_G["CollectionsJournalTab"..selectedTabID]:GetText())
         HeirloomsJournalClassDropDown:Show()
         HeirloomsJournal.progressBar:Show()
         HeirloomsJournal.SearchBox:Show()
@@ -247,43 +246,53 @@ function addon.ActivatePooledFrames(framePool, numEntriesInUse)
 end
 
 local function deselectAndHideAll()
-    ManuscriptsSkillLineManuscriptsTab:SetChecked(false)
-    ManuscriptsSkillLineDruidTab:SetChecked(false)
-    ManuscriptsSkillLineSoulshapesTab:SetChecked(false)
-    ManuscriptsSkillLineShamanTab:SetChecked(false)
-    ManuscriptsSkillLineMageTab:SetChecked(false)
-    ManuscriptsSkillLineWarlockTab:SetChecked(false)
-
-    ManuscriptsJournal:Hide()
-    ShapeshiftsJournal:Hide()
-    SoulshapesJournal:Hide()
-    HexTomesJournal:Hide()
-    PolymorphsJournal:Hide()
-    GrimoiresJournal:Hide()
+    for _, tab in pairs(ParentMixin:GetAllTabs()) do
+        tab:SetChecked(false)
+    end
+    for _, panel in pairs(ParentMixin:GetAllPanels()) do
+        panel:Hide()
+    end
 end    
 
 function ManuscriptSkillLineTab_OnClick(self)
     deselectAndHideAll()
     selectedTab = self:GetID()
     self:SetChecked(true)
-    local page
     
-    if self == ManuscriptsSkillLineManuscriptsTab then
-        ManuscriptsJournal:Show()
-        return
-    elseif self == ManuscriptsSkillLineDruidTab then
-        page = ShapeshiftsJournal
-    elseif self == ManuscriptsSkillLineSoulshapesTab then
-        page = SoulshapesJournal
-    elseif self == ManuscriptsSkillLineShamanTab then
-        page = HexTomesJournal
-    elseif self == ManuscriptsSkillLineMageTab then
-        page = PolymorphsJournal
-    elseif self == ManuscriptsSkillLineWarlockTab then
-        page = GrimoiresJournal
-    end
-    
+    local page = ParentMixin:GetPanelByTab(self)
     page:Show()
     page:SetFrameLevel(CollectionsJournal:GetFrameLevel() + 20)
     page:EnableMouse(true)
+end
+
+hooksecurefunc("ToggleCollectionsJournal", function(tab)
+    if tab ~= nil then return end
+    if not CollectionsJournal then return end
+    if not CollectionsJournal:IsShown() then return end
+    for _, panel in pairs(ParentMixin:GetAllPanels()) do
+        if panel:IsShown() then
+            CollectionsJournalTitleText:SetText(ManuscriptsJournal.tabName)
+            return
+        end
+    end
+end)
+
+function ParentMixin:GetAllPanels()
+    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal}
+end
+
+function ParentMixin:GetAllTabs()
+    return {ManuscriptsSkillLineManuscriptsTab, ManuscriptsSkillLineDruidTab, ManuscriptsSkillLineSoulshapesTab, ManuscriptsSkillLineShamanTab, ManuscriptsSkillLineMageTab, ManuscriptsSkillLineWarlockTab}
+end
+
+function ParentMixin:GetPanelByTab(tab)
+    local panels = {
+        [ManuscriptsSkillLineManuscriptsTab] = ManuscriptsJournal, 
+        [ManuscriptsSkillLineDruidTab] = ShapeshiftsJournal, 
+        [ManuscriptsSkillLineSoulshapesTab] = SoulshapesJournal, 
+        [ManuscriptsSkillLineShamanTab] = HexTomesJournal, 
+        [ManuscriptsSkillLineMageTab] = PolymorphsJournal, 
+        [ManuscriptsSkillLineWarlockTab] = GrimoiresJournal,
+    }
+    return panels[tab]
 end
