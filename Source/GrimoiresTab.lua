@@ -44,5 +44,5 @@ function GrimoiresMixin:SortShapeshiftsIntoEquipmentBuckets()
 end
 
 function GrimoiresMixin:IsCollected(data)
-    return IsSpellKnown(data.spellID)
+    return C_QuestLog.IsQuestFlaggedCompleted(data.questID)
 end
