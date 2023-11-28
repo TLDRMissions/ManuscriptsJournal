@@ -31,7 +31,6 @@ local manuscripts = {
         questID = 77130,
         source = sources.Chest,
         chestName = L["Dreamseed Cache"],
-        zoneID = 14529,
 	},
 	{
 		name = "Grotto Netherwing Drake: Cluster Spiked Crest",
@@ -46,7 +45,6 @@ local manuscripts = {
         questID = 77135,
         source = sources.Chest,
         chestName = L["Dreamseed Cache"],
-        zoneID = 14529,
 	},
 	{
 		name = "Grotto Netherwing Drake: Long Horns",
@@ -54,7 +52,6 @@ local manuscripts = {
         questID = 77143,
         source = sources.Chest,
         chestName = L["Dreamseed Cache"],
-        zoneID = 14529,
 	},
 	{
 		name = "Grotto Netherwing Drake: Outcast Pattern",
@@ -62,7 +59,6 @@ local manuscripts = {
         questID = 77140,
         source = sources.Chest,
         chestName = L["Dreamseed Cache"],
-        zoneID = 14529,
 	},
 	{
 		name = "Grotto Netherwing Drake: Short Horns",

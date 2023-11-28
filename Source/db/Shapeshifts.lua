@@ -37,7 +37,6 @@ addon.ShapeshiftDB = {
 		name = "Mark of the Auroral Dreamtalon",
         source = sources.Chest,
         chestName = L["Dreamseed Cache"],
-        zoneID = 14529,
 	},
 	{
 		itemID = 211080,
@@ -45,7 +44,6 @@ addon.ShapeshiftDB = {
 		name = "Mark of the Boreal Dreamtalon",
         source = sources.Chest,
         chestName = L["Dreamseed Cache"],
-        zoneID = 14529,
 	},
 	{
 		itemID = 210683,
@@ -116,7 +114,6 @@ addon.ShapeshiftDB = {
 		name = "Mark of the Snowy Umbraclaw",
         source = sources.Chest,
         chestName = L["Dreamseed Cache"],
-        zoneID = 14529,
 	},
 	{
 		itemID = 210684,
