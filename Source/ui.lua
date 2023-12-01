@@ -125,6 +125,8 @@ hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
         ManuscriptsSideTabsFrame:Hide()
         SoulshapesJournal:Hide()
         HexTomesJournal:Hide()
+        PolymorphsJournal:Hide()
+        GrimoiresJournal:Hide()
     end
 end)
 
