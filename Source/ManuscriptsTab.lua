@@ -244,7 +244,7 @@ do
 		end
 	end
 	function ManuscriptsJournalCollectedFilterDropDown_OnLoad(self)
-		UIDropDownMenu_Initialize(self, OpenCollectedFilterDropDown, "MENU");
+		LibDD:UIDropDownMenu_Initialize(self, OpenCollectedFilterDropDown, "MENU");
 		ManuscriptsJournal:UpdateResetFiltersButtonVisibility();
 	end
 end

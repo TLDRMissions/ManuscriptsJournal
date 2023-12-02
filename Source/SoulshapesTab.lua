@@ -234,7 +234,7 @@ do
 		end
 	end
 	function SoulshapesJournalCollectedFilterDropDown_OnLoad(self)
-		UIDropDownMenu_Initialize(self, OpenCollectedFilterDropDown, "MENU");
+		LibDD:UIDropDownMenu_Initialize(self, OpenCollectedFilterDropDown, "MENU");
 		SoulshapesJournal:UpdateResetFiltersButtonVisibility();
 	end
 end
