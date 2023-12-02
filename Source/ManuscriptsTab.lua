@@ -678,3 +678,22 @@ function ManuscriptsJournalProgressBar_OnClick(self, barID)
     selectedBarID = barID
     ManuscriptsJournal:FullRefreshIfVisible()
 end
+
+EventUtil.ContinueOnAddOnLoaded(addonName, function()
+    local loaded, finished = IsAddOnLoaded(addonName)
+    if not finished then return end
+    
+    if not ManuscriptsJournalFiltersDB then ManuscriptsJournalFiltersDB = {} end
+    
+    if ManuscriptsJournalFiltersDB.collected == nil then ManuscriptsJournalFiltersDB.collected = true end
+    collectedManuscriptFilter = ManuscriptsJournalFiltersDB.collected
+    
+    if ManuscriptsJournalFiltersDB.uncollected == nil then ManuscriptsJournalFiltersDB.uncollected = true end
+    uncollectedManuscriptFilter = ManuscriptsJournalFiltersDB.uncollected
+
+    if ManuscriptsJournalFiltersDB.unusable == nil then ManuscriptsJournalFiltersDB.unusable = false end
+    unusableManuscriptFilter = ManuscriptsJournalFiltersDB.unusable
+
+    if ManuscriptsJournalFiltersDB.sourceFilter == nil then ManuscriptsJournalFiltersDB.sourceFilter = {} end
+    sourceFilter = ManuscriptsJournalFiltersDB.sourceFilter
+end)

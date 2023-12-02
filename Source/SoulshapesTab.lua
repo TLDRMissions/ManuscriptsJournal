@@ -42,8 +42,8 @@ local function SetDefaultFilters()
     crittershapeSoulshapeFilter = true
     SoulshapesJournalFiltersDB.collected = true
     SoulshapesJournalFiltersDB.uncollected = true
-    SoulshapesJournalFiltersDB.soulshape = false
-    SoulshapesJournalFiltersDB.crittershape = false
+    SoulshapesJournalFiltersDB.soulshape = true
+    SoulshapesJournalFiltersDB.crittershape = true
     SetAllSourceFilters(true)
     SetAllAvailableFilters(true)
 end
@@ -482,7 +482,7 @@ end
 
 function SoulshapesMixin:SetCrittershapeSoulshapeFilter(checked)
     assert(type(checked) == "boolean")
-    critterSoulshapeFilter = checked
+    crittershapeSoulshapeFilter = checked
     SoulshapesJournalFiltersDB.crittershape = checked
     self:FullRefreshIfVisible()
 end
@@ -614,3 +614,22 @@ function SoulshapesMixin:UpdateButton(button)
       	end
     end
 end
+
+EventUtil.ContinueOnAddOnLoaded(addonName, function()
+    local loaded, finished = IsAddOnLoaded(addonName)
+    if not finished then return end
+    
+    if not SoulshapesJournalFiltersDB then SoulshapesJournalFiltersDB = {} end
+    
+    if SoulshapesJournalFiltersDB.collected == nil then SoulshapesJournalFiltersDB.collected = true end
+    collectedSoulshapeFilter = SoulshapesJournalFiltersDB.collected
+    
+    if SoulshapesJournalFiltersDB.uncollected == nil then SoulshapesJournalFiltersDB.uncollected = true end
+    uncollectedSoulshapeFilter = SoulshapesJournalFiltersDB.uncollected
+
+    if SoulshapesJournalFiltersDB.soulshape == nil then SoulshapesJournalFiltersDB.soulshape = true end
+    soulshapeSoulshapeFilter = SoulshapesJournalFiltersDB.soulshape
+
+    if SoulshapesJournalFiltersDB.crittershape == nil then SoulshapesJournalFiltersDB.crittershape = true end
+    crittershapeSoulshapeFilter = SoulshapesJournalFiltersDB.crittershape
+end)

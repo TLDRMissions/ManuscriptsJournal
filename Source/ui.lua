@@ -210,21 +210,6 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
     local loaded, finished = IsAddOnLoaded(addonName)
     if not finished then return end
     
-    -- defaults
-    if not ManuscriptsJournalFiltersDB then ManuscriptsJournalFiltersDB = {} end
-    
-    if ManuscriptsJournalFiltersDB.collected == nil then ManuscriptsJournalFiltersDB.collected = true end
-    collectedManuscriptFilter = ManuscriptsJournalFiltersDB.collected
-    
-    if ManuscriptsJournalFiltersDB.uncollected == nil then ManuscriptsJournalFiltersDB.uncollected = true end
-    uncollectedManuscriptFilter = ManuscriptsJournalFiltersDB.uncollected
-
-    if ManuscriptsJournalFiltersDB.unusable == nil then ManuscriptsJournalFiltersDB.unusable = false end
-    unusableManuscriptFilter = ManuscriptsJournalFiltersDB.unusable
-
-    if ManuscriptsJournalFiltersDB.sourceFilter == nil then ManuscriptsJournalFiltersDB.sourceFilter = {} end
-    sourceFilter = ManuscriptsJournalFiltersDB.sourceFilter
-    
     local ticker
     ticker = C_Timer.NewTicker(5, function()
         -- these are sometimes not available yet on login, so lets query them again
