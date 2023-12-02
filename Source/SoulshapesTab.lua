@@ -559,28 +559,6 @@ function SoulshapesJournalSearchBox_OnTextChanged(self)
 	SoulshapesJournal:FullRefreshIfVisible();
 end
 
-function SoulshapesJournalProgressBar_OnClick(self, barID)
-    DRAKE_SORT_ORDER = {
-        addon.Enum.Drakes.WindingSlitherdrake,
-        addon.Enum.Drakes.RenewedProtoDrake,
-        addon.Enum.Drakes.WindborneVelocidrake,
-        addon.Enum.Drakes.HighlandDrake,
-        addon.Enum.Drakes.CliffsideWylderdrake,
-        addon.Enum.Drakes.GrottoNetherwingDrake,
-        addon.Enum.Drakes.FlourishingWhimsydrake,
-        addon.Enum.Drakes.All,
-    }
-    
-    if barID ~= 0 then
-        DRAKE_SORT_ORDER = {
-            DRAKE_SORT_ORDER[barID]
-        }
-    end
-    
-    selectedBarID = barID
-    SoulshapesJournal:FullRefreshIfVisible()
-end
-
 function SoulshapesMixin:UpdateButton(button)
     if button.soulshapeData then
         local data = button.soulshapeData

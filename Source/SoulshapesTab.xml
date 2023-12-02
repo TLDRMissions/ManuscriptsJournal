@@ -35,11 +35,6 @@
                 </Layers>
                 <BarTexture file="Interface\PaperDollInfoFrame\UI-Character-Skills-Bar"/>
         		<BarColor r="0.03125" g="0.85" b="0.0" />
-                <Scripts>
-                    <OnMouseUp>
-                        SoulshapesJournalProgressBar_OnClick(self, 0)
-                    </OnMouseUp>
-                </Scripts>
             </StatusBar>
             
 			<EditBox name="$parentSearchBox" parentKey="SearchBox" inherits="SearchBoxTemplate" letters="40">

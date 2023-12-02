@@ -107,7 +107,7 @@ function FilterDropDownSystem.SetUpDropDownLevel(dropdown, filterSystem, level)
 			local set = function(_, _, _, value)
 						filterInfo.set(value);
 
-						-- Only one radio button should be turned on at a time, force a refresh so the others can turn themselves off 
+						-- Only one radio button should be turned on at a time, force a refresh so the others can turn themselves off
 						if not filterInfo.hideMenuOnClick then
 							LibDD:UIDropDownMenu_RefreshAll(L_UIDROPDOWNMENU_OPEN_MENU);
 						end
@@ -199,7 +199,7 @@ function FilterDropDownSystem.AddRadioButtonToFilterSystem(filterSystem, text, s
 	local setSelectedWrapper = function()
 		setSelected();
 
-		-- Only one radio button should be turned on at a time, force a refresh so the others can turn themselves off  
+		-- Only one radio button should be turned on at a time, force a refresh so the others can turn themselves off
 		if not hideMenuOnClick then
 			LibDD:UIDropDownMenu_RefreshAll(L_UIDROPDOWNMENU_OPEN_MENU);
 		end
