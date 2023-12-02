@@ -14,10 +14,19 @@ function HexTomesMixin:OnLoad()
 	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
     if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
     
-    local spell = Spell:CreateFromSpellID(51514)
-    spell:ContinueOnSpellLoad(function()
-    	self.tabName = spell:GetSpellName()
-    end)
+    -- Refer to comments in PolymorphsMixin:OnLoad
+    
+    local name = GetSpellInfo(51514)
+    self.tabName = name
+    if not name then
+        local ticker = C_Timer.NewTicker(1, function()
+            name = GetSpellInfo(51514)
+            if name then
+                self.tabName = name
+                ticker:Cancel()
+            end
+        end)
+    end
     
     addon.ParentMixin.OnLoad(self)
 end

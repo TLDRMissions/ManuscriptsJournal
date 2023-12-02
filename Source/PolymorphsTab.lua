@@ -1,6 +1,6 @@
 local addonName, addon = ...
 
--- Shaman Hex Tomes tab
+-- Mage Polymorph Tomes tab
 
 PolymorphsMixin = CreateFromMixins(ShapeshiftsMixin)
 
@@ -14,13 +14,23 @@ function PolymorphsMixin:OnLoad()
 	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
     if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
     
-    local spell = Spell:CreateFromSpellID(118)
-    spell:ContinueOnSpellLoad(function()
-    	self.tabName = spell:GetSpellName()
-        RunNextFrame(function()
-            ManuscriptsSkillLineMageTab.tooltip = self.tabName
+    -- Note: tried using Spell:CreateFromSpellID and Spell:ContinueOnSpellLoad
+    -- this led to taint issues with the spellbook frame
+    -- I guess this addon calling those functions tainted the whole chain
+    -- which the spellbook frame tried to use later on
+    -- Have to use the more... primitive version instead
+    
+    local name = GetSpellInfo(118)
+    self.tabName = name
+    if not name then
+        local ticker = C_Timer.NewTicker(1, function()
+            name = GetSpellInfo(118)
+            if name then
+                self.tabName = name
+                ticker:Cancel()
+            end
         end)
-    end)
+    end
     
     addon.ParentMixin.OnLoad(self)
 end
