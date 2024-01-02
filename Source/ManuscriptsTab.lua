@@ -292,7 +292,7 @@ function ManuscriptsMixin:OnManuscriptsUpdated(unitTarget, castGUID, spellID)
 end
 
 function ManuscriptsMixin:OnKeybinding()
-    LibStub('SecureTabs-2.0'):Select(tab)
+    LibStub('SecureTabs-2.0'):Select(ManuscriptsJournal.Tab)
 end
 
 function ManuscriptsMixin:FullRefreshIfVisible()
