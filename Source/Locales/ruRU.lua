@@ -30,6 +30,13 @@ L["Kraxxus"] = "Краксус"
 L["Meiz"] = "Мейз"
 L["Ponzo"] = "Понзо"
 L["Maztha"] = "Мазта"
+L["Cravitz Lorent"] = "Кравиц Лоран"
+L["Flamesmith Lanying"] = "Огненный кузнец Лань Цзинь"
+L["Endora Moorehead"] = "Эндора Мурхед"
+L["Imp Mother Dyala"] = "Мать бесов Дьяла"
+L["Vi'el"] = "Ви'ел"
+L["Aridormi"] = "Аридорми"
+L["Cupri"] = "Купри"
 
 -- Rare spawns
 L["Gethdazr"] = "Гетдазр"
@@ -55,7 +62,7 @@ L["High Shaman Rotknuckle"] = "Верховный шаман Гнилапа"
 L["Blightfur"] = "Гниломех"
 L["Klozicc the Ascended"] = "Клозикк Вознесенный"
 L["Beogoka"] = "Беогока"
---L["Notfar the Unbearable"] = ""
+L["Notfar the Unbearable"] = "Нотфар Невыносимый"
 L["Graniteclaw"] = "Гранитный Коготь"
 L["O'nank Shorescour"] = "О'нанк Пескорой"
 L["Brackle"] = "Бракл"
@@ -166,8 +173,20 @@ L["Magtembo"] = "Магтембо"
 L["Goopal"] = "Жижек"
 L["Professor Gastrinax"] = "Профессор Гастринакс"
 
+-- 10.2 rares
+L["Matriarch Keevah"] = "Матриарх Кива"
+L["Ristar the Rabid"] = "Ристар Бешеный"
+L["Keen-eyed Cian"] = "Зоркий Циан"
+L["Moragh the Slothful"] = "Морагх Ленивец"
+L["Talthonei Ashwhisper"] = "Талтоней Шепот Пепла"
+L["Mosa Umbramane"] = "Моза Темношкурый"
+
 -- bosses
 -- [Automatically datamined from Encounter Journal in enus.lua]
+
+-- dungeon / raid trash
+L["Pusillin"] = "Пузиллин"
+L["Hellblaze Temptress"] = "Искусительница адского огня"
 
 -- containers
 L["Obsidian Grand Cache"] = "Великий обсидиановый тайник"
@@ -175,6 +194,10 @@ L["Forgotten Dragon Treasure"] = "Забытое сокровище дракон
 L["Decay Tainted Chest"] = "Тронутый гнилью сундук"
 L["Waterlogged Bundle"] = "Промокшая котомка"
 L["Smelly Trash Pile"] = "Пахучая куча мусора"
+L["Somnut"] = "Снорех"
+L["Pollenfused Bristlebruin Fur Sample"] = "Образец шерсти опыленного лохматого косолапа"
+L["Singed Grimoire"] = "Обугленный гримуар"
+L["Torn Page"] = "Оторванная страница"
 
 -- Fyrakk
 L["Disciples of Fyrakk"] = "Ученик Фиракка"
