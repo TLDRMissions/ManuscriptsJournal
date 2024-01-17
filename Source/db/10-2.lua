@@ -116,6 +116,20 @@ local manuscripts = {
         source = sources.DragonRacingContainer,
         containerID = 210549,
     },
+    {
+        name = "Renewed Proto-Drake: Love Armor",
+        category = drakes.RenewedProtoDrake,
+        itemID = 211812,
+        questID = 79088,
+        source = sources.WorldEvent,
+    },
+    {
+        name = "Winding Slitherdrake: Lunar Festival Armor",
+        category = drakes.WindingSlitherdrake,
+        itemID = 211868,
+        questID = 79112,
+        source = sources.WorldEvent,
+    },
 }
 
 for k, v in pairs(manuscripts) do
