@@ -54,7 +54,14 @@ local function SetDefaultFilters()
 end
 
 local function IsUsingDefaultFilters()
-    return collectedManuscriptFilter and uncollectedManuscriptFilter and (not unusableManuscriptFilter)
+    if not (collectedManuscriptFilter and uncollectedManuscriptFilter and (not unusableManuscriptFilter)) then return false end
+    
+    for i = 1, 99 do
+        if not sourceFilter[i] then
+            return false
+        end
+    end
+    return true
 end
 
 local function GetCollectedManuscriptFilter()
@@ -615,7 +622,7 @@ function ManuscriptsMixin:ResetFilters()
 end
 
 function ManuscriptsMixin:UpdateResetFiltersButtonVisibility()
-	self.FilterButton.ResetButton:SetShown(not IsUsingDefaultFilters());
+    self.FilterButton.ResetButton:SetShown(not IsUsingDefaultFilters());
 end
 
 function ManuscriptsMixin:OpenCollectedFilterDropDown(level)
