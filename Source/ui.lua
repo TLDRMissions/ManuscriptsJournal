@@ -14,70 +14,89 @@ function ParentMixin:OnLoad()
 	self:FullRefreshIfVisible();
     if self ~= ManuscriptsJournal then return end
     
-    tab = LibStub('SecureTabs-2.0'):Add(CollectionsJournal, self, self.tabName)
-
-    tab.OnSelect = function()
-        if not InCombatLockdown() then
-            CollectionsJournal_SetTab(CollectionsJournal, CollectionsJournalTab4:GetID())
-        end
-        CollectionsJournalTitleText:SetText(self.tabName)
-        HeirloomsJournalClassDropDown:Hide()
-        HeirloomsJournal.progressBar:Hide()
-        HeirloomsJournal.SearchBox:Hide()
-        HeirloomsJournal.FilterButton:Hide()
+    local function runOutOfCombat()
+        ManuscriptsJournalInsecureTabButton = LibStub('SecureTabs-2.0'):Add(CollectionsJournal, self, self.tabName)
+        tab = ManuscriptsJournalInsecureTabButton
+        local secureTabButton = CreateFrame("Button", nil, nil, "SecureActionButtonTemplate")
+        secureTabButton:SetAttribute("type", "click")
+        secureTabButton:SetAttribute("clickbutton", CollectionsJournalTab4)
+        secureTabButton:SetPoint("TOPLEFT", tab, "TOPLEFT")
+        secureTabButton:SetPoint("BOTTOMRIGHT", tab, "BOTTOMRIGHT")
+        secureTabButton:RegisterForClicks("AnyDown")
         
-        ManuscriptsSideTabsFrame:Show()
-        for _, tab in pairs(self:GetAllTabs()) do
-            tab:SetChecked(selectedTab == tab:GetID())
-        end
+        secureTabButton:HookScript("OnClick", function()
+            tab:Click()
+        end)
+        tab:SetPassThroughButtons("LeftButton")
+        tab.Enable = nop
+        tab.Disable = nop
         
-        if (selectedTab == 2) and (class == "DRUID") then
-            RunNextFrame(function()
-                ManuscriptsJournal:Hide()
-            end)
-            ShapeshiftsJournal:Show()
-            ShapeshiftsJournal:EnableMouse(true)
-        elseif selectedTab == 3 then
-            RunNextFrame(function()
-                ManuscriptsJournal:Hide()
-            end)
-            SoulshapesJournal:Show()
-            SoulshapesJournal:EnableMouse(true)
-        elseif (selectedTab == 4) and (class == "SHAMAN") then
-            RunNextFrame(function()
-                ManuscriptsJournal:Hide()
-            end)
-            HexTomesJournal:Show()
-            HexTomesJournal:EnableMouse(true)
-        elseif (selectedTab == 5) and (class == "MAGE") then
-            RunNextFrame(function()
-                ManuscriptsJournal:Hide()
-            end)
-            PolymorphsJournal:Show()
-            PolymorphsJournal:EnableMouse(true)
-        elseif (selectedTab == 6) and (class == "WARLOCK") then
-            RunNextFrame(function()
-                ManuscriptsJournal:Hide()
-            end)
-            GrimoiresJournal:Show()
-            GrimoiresJournal:EnableMouse(true)
+        tab.OnSelect = function()
+            CollectionsJournalTitleText:SetText(self.tabName)
+            HeirloomsJournalClassDropDown:Hide()
+            HeirloomsJournal.progressBar:Hide()
+            HeirloomsJournal.SearchBox:Hide()
+            HeirloomsJournal.FilterButton:Hide()
+            
+            ManuscriptsSideTabsFrame:Show()
+            for _, tab in pairs(self:GetAllTabs()) do
+                tab:SetChecked(selectedTab == tab:GetID())
+            end
+            
+            if (selectedTab == 2) and (class == "DRUID") then
+                RunNextFrame(function()
+                    ManuscriptsJournal:Hide()
+                end)
+                ShapeshiftsJournal:Show()
+                ShapeshiftsJournal:EnableMouse(true)
+            elseif selectedTab == 3 then
+                RunNextFrame(function()
+                    ManuscriptsJournal:Hide()
+                end)
+                SoulshapesJournal:Show()
+                SoulshapesJournal:EnableMouse(true)
+            elseif (selectedTab == 4) and (class == "SHAMAN") then
+                RunNextFrame(function()
+                    ManuscriptsJournal:Hide()
+                end)
+                HexTomesJournal:Show()
+                HexTomesJournal:EnableMouse(true)
+            elseif (selectedTab == 5) and (class == "MAGE") then
+                RunNextFrame(function()
+                    ManuscriptsJournal:Hide()
+                end)
+                PolymorphsJournal:Show()
+                PolymorphsJournal:EnableMouse(true)
+            elseif (selectedTab == 6) and (class == "WARLOCK") then
+                RunNextFrame(function()
+                    ManuscriptsJournal:Hide()
+                end)
+                GrimoiresJournal:Show()
+                GrimoiresJournal:EnableMouse(true)
+            end
         end
+        tab.OnDeselect = function()
+            local selectedTabID = CollectionsJournal_GetTab(CollectionsJournal)
+            CollectionsJournalTitleText:SetText(_G["CollectionsJournalTab"..selectedTabID]:GetText())
+            HeirloomsJournalClassDropDown:Show()
+            HeirloomsJournal.progressBar:Show()
+            HeirloomsJournal.SearchBox:Show()
+            HeirloomsJournal.FilterButton:Show()
+            ManuscriptsSideTabsFrame:Hide()
+            ShapeshiftsJournal:Hide()
+            SoulshapesJournal:Hide()
+            HexTomesJournal:Hide()
+            PolymorphsJournal:Hide()
+            GrimoiresJournal:Hide()
+        end
+        self.Tab = tab
     end
-    tab.OnDeselect = function()
-        local selectedTabID = CollectionsJournal_GetTab(CollectionsJournal)
-        CollectionsJournalTitleText:SetText(_G["CollectionsJournalTab"..selectedTabID]:GetText())
-        HeirloomsJournalClassDropDown:Show()
-        HeirloomsJournal.progressBar:Show()
-        HeirloomsJournal.SearchBox:Show()
-        HeirloomsJournal.FilterButton:Show()
-        ManuscriptsSideTabsFrame:Hide()
-        ShapeshiftsJournal:Hide()
-        SoulshapesJournal:Hide()
-        HexTomesJournal:Hide()
-        PolymorphsJournal:Hide()
-        GrimoiresJournal:Hide()
+    
+    if InCombatLockdown() then
+        EventUtil.RegisterOnceFrameEventAndCallback("PLAYER_REGEN_ENABLED", runOutOfCombat)
+        return
     end
-    self.Tab = tab
+    runOutOfCombat()
     
     RunNextFrame(function()
         ManuscriptsSkillLineManuscriptsTab.tooltip = self.tabName
@@ -174,7 +193,12 @@ function ParentMixin:UpdateButton(button)
         	local collected = self:IsCollected(data)
             
             if collected then
-        		button.iconTexture:Show();
+        		if self == ManuscriptsJournal then
+                    if not ManuscriptsJorunal:GetCollectedManuscriptFilter() then
+                        self:FullRefreshIfVisible()
+                    end
+                end
+                button.iconTexture:Show();
         		button.iconTextureUncollected:Hide();
         		button.name:SetTextColor(1, 0.82, 0, 1);
         		button.name:SetShadowColor(0, 0, 0, 1);
