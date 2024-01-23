@@ -194,7 +194,7 @@ function ParentMixin:UpdateButton(button)
             
             if collected then
         		if self == ManuscriptsJournal then
-                    if not ManuscriptsJorunal:GetCollectedManuscriptFilter() then
+                    if not ManuscriptsJournal:GetCollectedManuscriptFilter() then
                         self:FullRefreshIfVisible()
                     end
                 end
