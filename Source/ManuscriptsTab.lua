@@ -580,6 +580,10 @@ function ManuscriptsMixin:SetCollectedManuscriptFilter(checked)
 	self:FullRefreshIfVisible();
 end
 
+function ManuscriptsMixin:GetCollectedManuscriptFilter()
+    return GetCollectedManuscriptFilter()
+end
+
 function ManuscriptsMixin:SetUncollectedManuscriptFilter(checked)
     assert(type(checked) == "boolean")
     uncollectedManuscriptFilter = checked
