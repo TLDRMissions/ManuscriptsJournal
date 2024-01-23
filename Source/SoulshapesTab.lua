@@ -49,7 +49,14 @@ local function SetDefaultFilters()
 end
 
 local function IsUsingDefaultFilters()
-    return collectedSoulshapeFilter and uncollectedSoulshapeFilter and soulshapeSoulshapeFilter and crittershapeSoulshapeFilter
+    if not (collectedSoulshapeFilter and uncollectedSoulshapeFilter and soulshapeSoulshapeFilter and crittershapeSoulshapeFilter) then return false end
+    
+    for i = 1, 99 do
+        if not sourceFilter[i] then
+            return false
+        end
+    end
+    return true
 end
 
 local function GetCollectedSoulshapeFilter()
