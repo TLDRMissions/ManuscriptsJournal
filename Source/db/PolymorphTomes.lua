@@ -45,11 +45,11 @@ addon.PolymorphTomesDB = {
 		name = "Tome of Polymorph: Monkey",
         -- Source: various monkeys around the world
 	},
-	{
-		itemID = 120139,
-		spellID = 161355,
-		name = "Tome of Polymorph: Penguin",
-	},
+	--{
+	--	itemID = 120139,
+	--	spellID = 161355,
+	--	name = "Tome of Polymorph: Penguin",
+	--},
 	{
 		itemID = 120137,
 		spellID = 161353,
