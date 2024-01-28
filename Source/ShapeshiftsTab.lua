@@ -40,7 +40,6 @@ function ShapeshiftsMixin:OnLoad()
 	self.shapeshiftEntryFrames = {};
 
 	self.shapeshiftLayoutData = {};
-	self.itemIDsInCurrentLayout = {};
 
 	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
     if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
@@ -79,7 +78,6 @@ function ShapeshiftsMixin:RebuildLayoutData()
 	self.needsDataRebuilt = false;
 
 	self.shapeshiftLayoutData = {};
-	self.itemIDsInCurrentLayout = {};
 
     self.numKnownShapeshifts = 0
     self.numPossibleShapeshifts = 0
@@ -99,21 +97,17 @@ function ShapeshiftsMixin:SortShapeshiftsIntoEquipmentBuckets()
             ShapeshiftsJournalAccountWideDB[shapeshiftData.questID] = C_QuestLog.IsQuestFlaggedCompleted(shapeshiftData.questID)
             collected = ShapeshiftsJournalAccountWideDB[shapeshiftData.questID]
         end
-        
-    	local itemID = shapeshiftData.itemID
     		
     	if not equipBuckets[1] then
     		equipBuckets[1] = {}
     	end
 
-    	table.insert(equipBuckets[1], itemID)
+    	table.insert(equipBuckets[1], shapeshiftData)
 
         if collected then
             self.numKnownShapeshifts = self.numKnownShapeshifts + 1
     	end
     	self.numPossibleShapeshifts = self.numPossibleShapeshifts + 1
-
-    	self.itemIDsInCurrentLayout[itemID] = true;
 	end
 
 	return equipBuckets;
@@ -184,7 +178,11 @@ function ShapeshiftsMixin:LayoutCurrentPage()
 				-- Entry
 				numEntriesInUse = numEntriesInUse + 1;
 				local entry = self:AcquireFrame(self.shapeshiftEntryFrames, numEntriesInUse, "CHECKBUTTON", "ManuscriptSpellButtonTemplate");
-				entry.itemID = layoutData;
+                if layoutData.itemID then
+                    entry.itemID = layoutData.itemID
+                else
+                    entry.spellID = layoutData.spellID
+                end
 
 				if entry:IsVisible() then
 					-- If the button was already visible (going to a new page and being reused) we have to update the button immediately instead of deferring the update through the OnShown

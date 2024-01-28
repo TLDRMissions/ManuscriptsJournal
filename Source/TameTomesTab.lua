@@ -1,11 +1,11 @@
 local addonName, addon = ...
 
--- Mage Polymorph Tomes tab
+-- Hunter Tame Tomes tab
 
-PolymorphsMixin = CreateFromMixins(ShapeshiftsMixin)
+TameTomesMixin = CreateFromMixins(ShapeshiftsMixin)
 
-function PolymorphsMixin:OnLoad()
-    if select(2, UnitClass("player")) ~= "MAGE" then return end
+function TameTomesMixin:OnLoad()
+    if select(2, UnitClass("player")) ~= "HUNTER" then return end
 	self.shapeshiftEntryFrames = {};
 
 	self.shapeshiftLayoutData = {};
@@ -13,17 +13,13 @@ function PolymorphsMixin:OnLoad()
 	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
     if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
     
-    -- Note: tried using Spell:CreateFromSpellID and Spell:ContinueOnSpellLoad
-    -- this led to taint issues with the spellbook frame
-    -- I guess this addon calling those functions tainted the whole chain
-    -- which the spellbook frame tried to use later on
-    -- Have to use the more... primitive version instead
+    -- Refer to comments in PolymorphsMixin:OnLoad
     
-    local name = GetSpellInfo(118)
+    local name = GetSpellInfo(1515)
     self.tabName = name
     if not name then
         local ticker = C_Timer.NewTicker(1, function()
-            name = GetSpellInfo(118)
+            name = GetSpellInfo(1515)
             if name then
                 self.tabName = name
                 ticker:Cancel()
@@ -34,16 +30,18 @@ function PolymorphsMixin:OnLoad()
     addon.ParentMixin.OnLoad(self)
 end
 
-function PolymorphsMixin:SortShapeshiftsIntoEquipmentBuckets()
+function TameTomesMixin:SortShapeshiftsIntoEquipmentBuckets()
 	-- Sort them into equipment buckets
 	local equipBuckets = {};
     
-    for _, shapeshiftData in pairs(addon.PolymorphTomesDB) do
+    for _, shapeshiftData in pairs(addon.TameTomesDB) do
+    	local itemID, spellID = shapeshiftData.itemID, shapeshiftData.spellID
+    		
     	if not equipBuckets[1] then
     		equipBuckets[1] = {}
     	end
 
-    	table.insert(equipBuckets[1], shapeshiftData)
+        table.insert(equipBuckets[1], shapeshiftData)
 
         if self:IsCollected(shapeshiftData) then
             self.numKnownShapeshifts = self.numKnownShapeshifts + 1
@@ -54,6 +52,10 @@ function PolymorphsMixin:SortShapeshiftsIntoEquipmentBuckets()
 	return equipBuckets;
 end
 
-function PolymorphsMixin:IsCollected(data)
-    return IsSpellKnown(data.spellID)
+function TameTomesMixin:IsCollected(data)
+    if data.questID then
+        return C_QuestLog.IsQuestFlaggedCompleted(data.questID)
+    else
+        return IsSpellKnown(data.spellID)
+    end
 end

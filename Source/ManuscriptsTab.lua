@@ -142,12 +142,12 @@ do
     	self.UpdateTooltip = ManuscriptsJournalSpellButton_OnEnter;
         
         local db
-        if self.itemID < 0 then
+        if self.itemID then
             db = addon.itemIDToDB[self.itemID]
-            GameTooltip:SetSpellByID(db.spellID)
+            GameTooltip:SetItemByID(db.itemID)
         else
-            db = addon.itemIDToDB[self.itemID]
-            GameTooltip:SetItemByID(self.itemID)
+            db = addon.spellIDToDB[self.spellID]
+            GameTooltip:SetSpellByID(db.spellID)
         end
         local source = db.source
         if source == nil then return end
@@ -262,7 +262,6 @@ function ManuscriptsMixin:OnLoad()
 	self.manuscriptHeaderFrames = {};
 
 	self.manuscriptLayoutData = {};
-	self.itemIDsInCurrentLayout = {};
 
 	if not self.numKnownManuscripts then self.numKnownManuscripts = {} end
     if not self.numPossibleManuscripts then self.numPossibleManuscripts = {} end
@@ -321,7 +320,6 @@ function ManuscriptsMixin:RebuildLayoutData()
 	self.needsDataRebuilt = false;
 
 	self.manuscriptLayoutData = {};
-	self.itemIDsInCurrentLayout = {};
 
     for i = 1, NUM_DRAKES do
         self.numKnownManuscripts[i] = 0
@@ -382,8 +380,6 @@ function ManuscriptsMixin:SortManuscriptsIntoEquipmentBuckets()
                     self.numKnownManuscripts[category] = self.numKnownManuscripts[category] + 1
     			end
     			self.numPossibleManuscripts[category] = self.numPossibleManuscripts[category] + 1
-
-    			self.itemIDsInCurrentLayout[itemID] = true;
     		end
         end
 	end
@@ -521,7 +517,7 @@ function ManuscriptsMixin:LayoutCurrentPage()
 				entry.itemID = layoutData;
 
 				if entry:IsVisible() then
-					-- If the button was already visible (going to a new page and being reused) we have to update the button immediately instead of deferring the update through the OnShown
+					-- If the button was already visible (going to a new page and being reused we have to update the button immediately instead of deferring the update through the OnShown
 					self:UpdateButton(entry);
 				end
 

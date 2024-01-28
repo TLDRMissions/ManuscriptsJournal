@@ -202,6 +202,7 @@ L["Tindral Sageswift"] = EJ_GetEncounterInfo(2565)
 L["Aurostor, the Hibernating"] = EJ_GetEncounterInfo(2562)
 L["Nal'tira"] = EJ_GetEncounterInfo(1500)
 L["Rezan"] = EJ_GetEncounterInfo(2083)
+L["Zul"] = EJ_GetEncounterInfo(2195)
 
 -- dungeon / raid trash
 L["Pusillin"] = true

@@ -9,7 +9,6 @@ function HexTomesMixin:OnLoad()
 	self.shapeshiftEntryFrames = {};
 
 	self.shapeshiftLayoutData = {};
-	self.itemIDsInCurrentLayout = {};
 
 	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
     if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
@@ -36,20 +35,16 @@ function HexTomesMixin:SortShapeshiftsIntoEquipmentBuckets()
 	local equipBuckets = {};
     
     for _, shapeshiftData in pairs(addon.HexTomesDB) do
-    	local itemID = shapeshiftData.itemID
-    		
     	if not equipBuckets[1] then
     		equipBuckets[1] = {}
     	end
 
-    	table.insert(equipBuckets[1], itemID)
+    	table.insert(equipBuckets[1], shapeshiftData)
 
         if self:IsCollected(shapeshiftData) then
             self.numKnownShapeshifts = self.numKnownShapeshifts + 1
     	end
     	self.numPossibleShapeshifts = self.numPossibleShapeshifts + 1
-
-    	self.itemIDsInCurrentLayout[itemID] = true;
 	end
 
 	return equipBuckets;

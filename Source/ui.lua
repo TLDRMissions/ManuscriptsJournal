@@ -73,6 +73,12 @@ function ParentMixin:OnLoad()
                 end)
                 GrimoiresJournal:Show()
                 GrimoiresJournal:EnableMouse(true)
+            elseif (selectedTab == 7) and (class == "HUNTER") then
+                RunNextFrame(function()
+                    ManuscriptsJournal:Hide()
+                end)
+                TameTomesJournal:Show()
+                TameTomesJournal:EnableMouse(true)
             end
         end
         tab.OnDeselect = function()
@@ -88,6 +94,7 @@ function ParentMixin:OnLoad()
             HexTomesJournal:Hide()
             PolymorphsJournal:Hide()
             GrimoiresJournal:Hide()
+            TameTomesJournal:Hide()
         end
         self.Tab = tab
     end
@@ -105,6 +112,7 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineShamanTab.tooltip = HexTomesJournal.tabName
         ManuscriptsSkillLineMageTab.tooltip = PolymorphsJournal.tabName
         ManuscriptsSkillLineWarlockTab.tooltip = GrimoiresJournal.tabName
+        ManuscriptsSkillLineHunterTab.tooltip = TameTomesJournal.tabName
         
         ManuscriptsSkillLineManuscriptsTab:SetNormalTexture(254288)
         ManuscriptsSkillLineDruidTab:SetNormalTexture(136036)
@@ -112,6 +120,7 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineShamanTab:SetNormalTexture(GetSpellTexture(51514))
         ManuscriptsSkillLineMageTab:SetNormalTexture(GetSpellTexture(118))
         ManuscriptsSkillLineWarlockTab:SetNormalTexture(GetSpellTexture(688))
+        ManuscriptsSkillLineHunterTab:SetNormalTexture(GetSpellTexture(1515))
         
         if class == "DRUID" then
             ManuscriptsSkillLineManuscriptsTab:Show()
@@ -129,6 +138,10 @@ function ParentMixin:OnLoad()
             ManuscriptsSkillLineManuscriptsTab:Show()
             ManuscriptsSkillLineWarlockTab:Show()
             ManuscriptsSkillLineSoulshapesTab:SetPoint("TOPLEFT", ManuscriptsSkillLineWarlockTab, "BOTTOMLEFT", 0, -17)
+        elseif class == "HUNTER" then
+            ManuscriptsSkillLineManuscriptsTab:Show()
+            ManuscriptsSkillLineHunterTab:Show()
+            ManuscriptsSkillLineSoulshapesTab:SetPoint("TOPLEFT", ManuscriptsSkillLineHunterTab, "BOTTOMLEFT", 0, -17)
         end
         
         if C_Covenants.GetActiveCovenantID() == 3 then
@@ -140,12 +153,10 @@ end
 
 hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
     if tabID ~= CollectionsJournalTab4:GetID() then
-        ShapeshiftsJournal:Hide()
         ManuscriptsSideTabsFrame:Hide()
-        SoulshapesJournal:Hide()
-        HexTomesJournal:Hide()
-        PolymorphsJournal:Hide()
-        GrimoiresJournal:Hide()
+        for _, journal in pairs(ParentMixin:GetAllPanels()) do
+            journal:Hide()
+        end
     end
 end)
 
@@ -173,50 +184,59 @@ function ParentMixin:IsCollected(data)
 end
 
 function ParentMixin:UpdateButton(button)
+    local data, name, texture
+    
+    local function runLater()
+        button.iconTexture:SetTexture(texture);
+    	button.iconTextureUncollected:SetTexture(texture);
+    	button.iconTextureUncollected:SetDesaturated(true);
+
+    	button.name:SetText(name);
+
+    	button.name:ClearAllPoints();
+    	button.name:SetPoint("LEFT", button, "RIGHT", 9, 3);
+
+        local collected = self:IsCollected(data)
+        
+        if collected then
+    		if self == ManuscriptsJournal then
+                if not ManuscriptsJournal:GetCollectedManuscriptFilter() then
+                    self:FullRefreshIfVisible()
+                end
+            end
+            button.iconTexture:Show();
+    		button.iconTextureUncollected:Hide();
+    		button.name:SetTextColor(1, 0.82, 0, 1);
+    		button.name:SetShadowColor(0, 0, 0, 1);
+
+    		button.slotFrameCollected:Show();
+    		button.slotFrameUncollected:Hide();
+    		button.slotFrameUncollectedInnerGlow:Hide();
+    	else
+    		button.iconTexture:Hide();
+    		button.iconTextureUncollected:Show();
+    		button.name:SetTextColor(0.33, 0.27, 0.20, 1);
+    		button.name:SetShadowColor(0, 0, 0, 0.33);
+
+    		button.slotFrameCollected:Hide();
+    		button.slotFrameUncollected:Show();
+    		button.slotFrameUncollectedInnerGlow:Show();
+    	end
+    end
+
     if button.itemID then
-    	local data = addon.itemIDToDB[button.itemID]
+    	data = addon.itemIDToDB[button.itemID]
         local item = Item:CreateFromItemID(button.itemID)
 
         item:ContinueOnItemLoad(function()
-        	local name = item:GetItemName() 
-        	local itemTexture = item:GetItemIcon()
-            
-            button.iconTexture:SetTexture(itemTexture);
-        	button.iconTextureUncollected:SetTexture(itemTexture);
-        	button.iconTextureUncollected:SetDesaturated(true);
-
-        	button.name:SetText(name);
-
-        	button.name:ClearAllPoints();
-        	button.name:SetPoint("LEFT", button, "RIGHT", 9, 3);
-
-        	local collected = self:IsCollected(data)
-            
-            if collected then
-        		if self == ManuscriptsJournal then
-                    if not ManuscriptsJournal:GetCollectedManuscriptFilter() then
-                        self:FullRefreshIfVisible()
-                    end
-                end
-                button.iconTexture:Show();
-        		button.iconTextureUncollected:Hide();
-        		button.name:SetTextColor(1, 0.82, 0, 1);
-        		button.name:SetShadowColor(0, 0, 0, 1);
-
-        		button.slotFrameCollected:Show();
-        		button.slotFrameUncollected:Hide();
-        		button.slotFrameUncollectedInnerGlow:Hide();
-        	else
-        		button.iconTexture:Hide();
-        		button.iconTextureUncollected:Show();
-        		button.name:SetTextColor(0.33, 0.27, 0.20, 1);
-        		button.name:SetShadowColor(0, 0, 0, 0.33);
-
-        		button.slotFrameCollected:Hide();
-        		button.slotFrameUncollected:Show();
-        		button.slotFrameUncollectedInnerGlow:Show();
-        	end
+        	name = item:GetItemName() 
+        	texture = item:GetItemIcon()
+            runLater()
         end)
+    elseif button.spellID then
+        data = addon.spellIDToDB[button.spellID]
+        name, _, texture = GetSpellInfo(button.spellID)
+        runLater()
     end
 end
 
@@ -289,11 +309,11 @@ hooksecurefunc("ToggleCollectionsJournal", function(tab)
 end)
 
 function ParentMixin:GetAllPanels()
-    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal}
+    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal, TameTomesJournal}
 end
 
 function ParentMixin:GetAllTabs()
-    return {ManuscriptsSkillLineManuscriptsTab, ManuscriptsSkillLineDruidTab, ManuscriptsSkillLineSoulshapesTab, ManuscriptsSkillLineShamanTab, ManuscriptsSkillLineMageTab, ManuscriptsSkillLineWarlockTab}
+    return {ManuscriptsSkillLineManuscriptsTab, ManuscriptsSkillLineDruidTab, ManuscriptsSkillLineSoulshapesTab, ManuscriptsSkillLineShamanTab, ManuscriptsSkillLineMageTab, ManuscriptsSkillLineWarlockTab, ManuscriptsSkillLineHunterTab}
 end
 
 function ParentMixin:GetPanelByTab(tab)
@@ -304,6 +324,7 @@ function ParentMixin:GetPanelByTab(tab)
         [ManuscriptsSkillLineShamanTab] = HexTomesJournal, 
         [ManuscriptsSkillLineMageTab] = PolymorphsJournal, 
         [ManuscriptsSkillLineWarlockTab] = GrimoiresJournal,
+        [ManuscriptsSkillLineHunterTab] = TameTomesJournal,
     }
     return panels[tab]
 end
