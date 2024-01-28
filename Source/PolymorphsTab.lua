@@ -55,5 +55,5 @@ function PolymorphsMixin:SortShapeshiftsIntoEquipmentBuckets()
 end
 
 function PolymorphsMixin:IsCollected(data)
-    return IsSpellKnown(data.spellID)
+    return IsPlayerSpell(data.spellID)
 end

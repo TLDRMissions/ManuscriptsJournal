@@ -56,6 +56,6 @@ function TameTomesMixin:IsCollected(data)
     if data.questID then
         return C_QuestLog.IsQuestFlaggedCompleted(data.questID)
     else
-        return IsSpellKnown(data.spellID)
+        return IsPlayerSpell(data.spellID)
     end
 end

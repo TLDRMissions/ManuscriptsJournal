@@ -51,5 +51,5 @@ function HexTomesMixin:SortShapeshiftsIntoEquipmentBuckets()
 end
 
 function HexTomesMixin:IsCollected(data)
-    return IsSpellKnown(data.spellID)
+    return IsPlayerSpell(data.spellID)
 end
