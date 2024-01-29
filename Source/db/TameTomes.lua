@@ -63,6 +63,7 @@ addon.TameTomesDB = {
 	},
     {
 		spellID = 390631,
+        questID = 66444,
 		name = "Ottuk Taming",
         source = sources.Quest,
         sourceQuestID = 66444,
