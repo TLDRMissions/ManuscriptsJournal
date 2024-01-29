@@ -17,7 +17,7 @@ function ParentMixin:OnLoad()
     local function runOutOfCombat()
         ManuscriptsJournalInsecureTabButton = LibStub('SecureTabs-2.0'):Add(CollectionsJournal, self, self.tabName)
         tab = ManuscriptsJournalInsecureTabButton
-        local secureTabButton = CreateFrame("Button", nil, nil, "SecureActionButtonTemplate")
+        local secureTabButton = CreateFrame("Button", nil, CollectionsJournal, "SecureActionButtonTemplate")
         secureTabButton:SetAttribute("type", "click")
         secureTabButton:SetAttribute("clickbutton", CollectionsJournalTab4)
         secureTabButton:SetPoint("TOPLEFT", tab, "TOPLEFT")
@@ -26,6 +26,9 @@ function ParentMixin:OnLoad()
         
         secureTabButton:HookScript("OnClick", function()
             tab:Click()
+            if selectedTab ~= 1 then
+                ManuscriptsJournal:Hide()
+            end
         end)
         tab:SetPassThroughButtons("LeftButton")
         tab.Enable = nop
