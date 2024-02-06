@@ -137,7 +137,7 @@ function ParentMixin:OnLoad()
 end
 
 hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
-    if tabID ~= CollectionsJournalTab4:GetID() then
+    if (tabID ~= CollectionsJournalTab4:GetID()) and not tContains(ParentMixin:GetAllPanels(), self.Tabs[tabID or 1].frame) then
         ManuscriptsSideTabsFrame:Hide()
         for _, journal in pairs(ParentMixin:GetAllPanels()) do
             journal:Hide()
