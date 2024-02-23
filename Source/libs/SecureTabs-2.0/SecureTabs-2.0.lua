@@ -39,7 +39,7 @@ function Lib:Add(panel, frame, label)
 	local anchor = id > 0 and 'SecureTab' .. (id-1) or 'Tab' .. panel.numTabs
 
 	local tab = CreateFrame('Button', '$parentSecureTab' .. id, panel, self.template)
-	tab:SetPoint('LEFT', panel:GetName() .. anchor, 'RIGHT', PanelTabButtonMixin and 3 or -16, 0)
+	tab:SetPoint('LEFT', panel:GetName() .. anchor, 'RIGHT', WOW_PROJECT_ID == WOW_PROJECT_MAINLINE and 3 or -16, 0)
 	tab:SetScript('OnClick', function(tab) self:Select(tab) end)
 	tab:SetText(label)
 	tab.frame = frame
@@ -113,7 +113,7 @@ function Lib:Update(panel, selection)
 					frame.CloseButton:SetScript('OnClick', function()
 						local original = frame:GetParent() and frame:GetParent().CloseButton
 						if original then
-							original:GetScript('OnClick')(original) -- make sure any additional behaviour is replicated
+							ExecuteFrameScript(original, 'OnClick') -- make sure any additional behaviour is replicated
 						end
 
 						HideUIPanel(frame) -- safest hiding method
