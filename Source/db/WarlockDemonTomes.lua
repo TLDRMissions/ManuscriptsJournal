@@ -11,6 +11,7 @@ addon.GrimoiresDB = {
         source = sources.Vendor,
         vendorName = L["Imp Mother Dyala"],
         zoneID = 7875,
+		category = "Imp",
 	},
 	{
 		itemID = 207295,
@@ -19,12 +20,14 @@ addon.GrimoiresDB = {
         source = sources.Vendor,
         vendorName = L["Vi'el"],
         zoneID = 618,
+		category = "Imp",
 	},
 	{
 		itemID = 129018,
 		questID = 76369,
 		name = "Grimoire of the Fel Imp",
         source = sources.Inscription,
+		category = "Imp",
 	},
 	{
 		itemID = 207297,
@@ -33,6 +36,7 @@ addon.GrimoiresDB = {
         source = sources.Dungeon,
         bossName = L["Pusillin"], -- Not listed as a boss in the EJ
         zoneID = 2557,
+		category = "Imp",
 	},
 	{
 		itemID = 207294,
@@ -40,6 +44,7 @@ addon.GrimoiresDB = {
 		name = "Grimoire of the Felfrost Imp",
         source = sources.ZoneDrop,
         zoneID = 5861,
+		category = "Imp",
 	},
 	{
 		itemID = 207114,
@@ -48,6 +53,7 @@ addon.GrimoiresDB = {
         source = sources.Vendor,
         vendorName = L["Aridormi"],
         zoneID = 7502,
+		category = "Imp",
 	},
 	{
 		itemID = 207111,
@@ -55,6 +61,8 @@ addon.GrimoiresDB = {
 		name = "Grimoire of the Hellfire Fel Imp",
         source = sources.Raid,
         bossName = EJ_GetEncounterInfo(1560), -- Terestian Illhoof
+		zoneID = 3457,
+		category = "Imp",
 	},
 	{
 		itemID = 207296,
@@ -63,6 +71,7 @@ addon.GrimoiresDB = {
         source = sources.Rare,
         rareName = L["Matron Folnuna"],
         zoneID = 8574,
+		category = "Imp",
 	},
 	{
 		itemID = 207113,
@@ -70,6 +79,7 @@ addon.GrimoiresDB = {
 		name = "Grimoire of the Trickster Fel Imp",
         source = sources.Other,
         otherDescription = L["Time Rifts"],
+		category = "Imp",
 	},
 	{
 		itemID = 207112,
@@ -78,12 +88,14 @@ addon.GrimoiresDB = {
         source = sources.Vendor,
         vendorName = L["Cupri"],
         zoneID = 3703,
+		category = "Imp",
 	},
 	{
 		itemID = 139311,
 		questID = 76375,
 		name = "Grimoire of the Voidlord",
         source = sources.Inscription,
+		category = "Voidwalker",
 	},
 	{
 		itemID = 147117,
@@ -92,18 +104,21 @@ addon.GrimoiresDB = {
         source = sources.Dungeon,
         bossName = L["Hellblaze Temptress"], -- Named Trash
         zoneID = 8527,
+		category = "Sayaad",
 	},
 	{
 		itemID = 147119,
 		questID = 76372,
 		name = "Grimoire of the Shadow Succubus",
         source = sources.Inscription,
+		category = "Sayaad",
 	},
 	{
 		itemID = 139310,
 		questID = 76373,
 		name = "Grimoire of the Shivarra",
         source = sources.Inscription,
+		category = "Sayaad",
 	},
 	{
 		itemID = 208051,
@@ -111,6 +126,8 @@ addon.GrimoiresDB = {
 		name = "Grimoire of the Antoran Felhunter",
         source = sources.Raid,
         bossName = EJ_GetEncounterInfo(1987), -- Felhounds of Sargeras
+		zoneID = 8638,
+		category = "Felhunter",
 	},
 	{
 		itemID = 208052,
@@ -118,6 +135,7 @@ addon.GrimoiresDB = {
 		name = "Grimoire of the Voracious Felmaw",
         source = sources.Other,
         otherDescription = L["Time Rifts"],
+		category = "Felhunter",
 	},
 	{
 		itemID = 208050,
@@ -126,6 +144,7 @@ addon.GrimoiresDB = {
         source = sources.Chest,
         chestName = L["Singed Grimoire"],
         zoneID = 8638,
+		category = "Felhunter",
 	},
 	{
 		itemID = 208048,
@@ -134,17 +153,155 @@ addon.GrimoiresDB = {
         source = sources.Chest,
         chestName = L["Torn Page"],
         zoneID = 8443,
+		category = "Felhunter",
 	},
 	{
 		itemID = 139315,
 		questID = 76376,
 		name = "Grimoire of the Wrathguard",
         source = sources.Inscription,
+		category = "Felguard",
 	},
 	{
 		itemID = 139314,
 		questID = 76370,
 		name = "Grimoire of the Abyssal",
         source = sources.Inscription,
+		category = "Infernal"
+	},
+	{
+		itemID = 213015,
+		questID = 79456,
+		name = "Grimoire of the Eredathian Darkglare",
+		source = sources.Dungeon,
+		bossName = EJ_GetEncounterInfo(1979), -- Zuraal the Ascended
+		zoneID = 8910,
+		category = "Darkglare",
+	},
+	{
+		itemID = 213017,
+		questID = 79458,
+		name = "Grimoire of the Riftsmolder Darkglare",
+		source = sources.Dungeon,
+		bossName = EJ_GetEncounterInfo(1838), -- Viz'aduum the Watcher
+		zoneID = 8443,
+		category = "Darkglare",
+	},
+	{
+		itemID = 213014,
+		questID = 79455,
+		name = "Grimoire of the Xorothian Darkglare",
+		source = sources.Raid,
+		bossName = EJ_GetEncounterInfo(1985), -- Portal Keeper Hasabel
+		zoneID = 8638,
+		category = "Darkglare",
+	},
+	{
+		itemID = 213016,
+		questID = 79457,
+		name = "Grimoire of the Abyssal Darkglare",
+		source = sources.Raid,
+		bossName = EJ_GetEncounterInfo(1861), -- Mistress Sassz'ine
+		zoneID = 8524,
+		category = "Darkglare",
+	},
+	{
+		itemID = 212989,
+		questID = 79446,
+		name = "Grimoire of the Mana-Gorged Observer",
+		source = sources.Chest,
+		chestName = "Carved Eye",
+		zoneID = 41, -- Deadwind Pass
+		category = "Darkglare",
+	},
+	{
+		itemID = 212995,
+		questID = 79450,
+		name = "Grimoire of the Whispering Observer",
+		source = sources.Chest,
+		chestName = "Carved Eye",
+		zoneID = 5695, -- Ahn'Quiraj - The Fallen Kingdom
+		category = "Darkglare",
+	},
+	{
+		itemID = 212993,
+		questID = 79449,
+		name = "Grimoire of the Plagued Observer",
+		source = sources.Chest,
+		chestName = "Carved Eye",
+		zoneID = 139, -- Eastern Plaguelands
+		category = "Darkglare",
+	},
+	{
+		itemID = 212991,
+		questID = 79447,
+		name = "Grimoire of the Dire Observer",
+		source = sources.Chest,
+		chestName = "Carved Eye",
+		zoneID = 357, -- Feralas
+		category = "Darkglare",
+	},
+	{
+		itemID = 212983,
+		questID = 79443,
+		name = "Grimoire of the Blasted Observer",
+		source = sources.Chest,
+		chestName = "Carved Eye",
+		zoneID = 4, -- Blasted Lands
+		category = "Darkglare",
+	},
+	{
+		itemID = 212984,
+		questID = 79444,
+		name = "Grimoire of the Zealous Observer",
+		source = sources.Chest,
+		chestName = "Carved Eye",
+		zoneID = 14045, -- Tirisfal Glades
+		category = "Darkglare",
+	},
+	{
+		itemID = 212750,
+		questID = 79359,
+		name = "Grimoire of the Ancient Observer",
+		source = sources.Raid,
+        bossName = EJ_GetEncounterInfo(818), -- Durumu the Forgotten
+		zoneID = 6622,
+		category = "Darkglare",
+	},
+	{
+		itemID = 212780,
+		questID = 79375,
+		name = "Grimoire of the Felbrute Tyrant",
+		source = sources.Raid,
+        bossName = EJ_GetEncounterInfo(1438), -- Archimonde
+		zoneID = 7545,
+		category = "Demonic Tyrant",
+	},
+	{
+		itemID = 212783,
+		questID = 79376,
+		name = "Grimoire of the Netherwalk Tyrant",
+		source = sources.Vendor,
+		vendorName = L["Gigi Gigavoid"],
+        zoneID = 7875,
+		category = "Demonic Tyrant",
+	},
+	{
+		itemID = 212778,
+		questID = 79373,
+		name = "Grimoire of the Vile Tyrant",
+        source = sources.Rare,
+        rareName = L["Radix"],
+        zoneID = 8899,
+		category = "Demonic Tyrant",
+	},
+	{
+		itemID = 212779,
+		questID = 79374,
+		name = "Grimoire of the Bloodrage Tyrant",
+        source = sources.Dungeon,
+        bossName = L["Ixallon the Soulbreaker"], -- Named Trash
+        zoneID = 8524,
+		category = "Demonic Tyrant",
 	},
 }
