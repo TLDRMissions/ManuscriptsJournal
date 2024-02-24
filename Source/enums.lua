@@ -51,6 +51,17 @@ addon.Enum.SJ.BUILD_9_1 = 39185
 addon.Enum.SJ.BUILD_9_1_5 = 40871
 addon.Enum.SJ.BUILD_9_2 = 42069
 
+addon.Enum.WarlockCategories = {}
+addon.Enum.WarlockCategories.Imp = 1
+addon.Enum.WarlockCategories.Voidwalker = 2
+addon.Enum.WarlockCategories.Sayaad = 3
+addon.Enum.WarlockCategories.Felhunter = 4
+addon.Enum.WarlockCategories.Felguard = 5
+addon.Enum.WarlockCategories.Infernal = 6
+addon.Enum.WarlockCategories.Darkglare = 7
+addon.Enum.WarlockCategories.Tyrant = 8
+addon.Enum.WarlockCategories.Doomguard = 9
+
 addon.Strings = {}
 addon.Strings.Drakes = {}
 do
@@ -120,3 +131,24 @@ addon.Strings.Zones[8] = C_Map.GetAreaInfo(13642) -- Dragon Isles
 addon.Strings.Fyrakk = {}
 addon.Strings.Fyrakk[1] = L["Disciples of Fyrakk"]
 addon.Strings.Fyrakk[2] = L["Secured Shipment"]
+
+addon.Strings.WarlockCategories = {}
+addon.Strings.WarlockCategories[1] = GetSpellInfo(688)
+addon.Strings.WarlockCategories[2] = GetSpellInfo(697)
+addon.Strings.WarlockCategories[3] = GetSpellInfo(366222)
+addon.Strings.WarlockCategories[4] = GetSpellInfo(691)
+addon.Strings.WarlockCategories[5] = GetSpellInfo(30146)
+addon.Strings.WarlockCategories[6] = GetSpellInfo(1122)
+addon.Strings.WarlockCategories[7] = GetSpellInfo(205180)
+addon.Strings.WarlockCategories[8] = GetSpellInfo(265187)
+addon.Strings.WarlockCategories[9] = GetSpellInfo(18540)
+
+addon.Enum.WarlockCategories.Imp = 1
+addon.Enum.WarlockCategories.Voidwalker = 2
+addon.Enum.WarlockCategories.Sayaad = 3
+addon.Enum.WarlockCategories.Felhunter = 4
+addon.Enum.WarlockCategories.Felguard = 5
+addon.Enum.WarlockCategories.Infernal = 6
+addon.Enum.WarlockCategories.Darkglare = 7
+addon.Enum.WarlockCategories.Tyrant = 8
+addon.Enum.WarlockCategories.Doomguard = 9

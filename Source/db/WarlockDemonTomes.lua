@@ -2,6 +2,7 @@ local addonName, addon = ...
 
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local sources = addon.Enum.Sources
+local category = addon.Enum.WarlockCategories
 
 addon.GrimoiresDB = {
 	{
@@ -11,7 +12,7 @@ addon.GrimoiresDB = {
         source = sources.Vendor,
         vendorName = L["Imp Mother Dyala"],
         zoneID = 7875,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 207295,
@@ -20,14 +21,14 @@ addon.GrimoiresDB = {
         source = sources.Vendor,
         vendorName = L["Vi'el"],
         zoneID = 618,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 129018,
 		questID = 76369,
 		name = "Grimoire of the Fel Imp",
         source = sources.Inscription,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 207297,
@@ -36,7 +37,7 @@ addon.GrimoiresDB = {
         source = sources.Dungeon,
         bossName = L["Pusillin"], -- Not listed as a boss in the EJ
         zoneID = 2557,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 207294,
@@ -44,7 +45,7 @@ addon.GrimoiresDB = {
 		name = "Grimoire of the Felfrost Imp",
         source = sources.ZoneDrop,
         zoneID = 5861,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 207114,
@@ -53,7 +54,7 @@ addon.GrimoiresDB = {
         source = sources.Vendor,
         vendorName = L["Aridormi"],
         zoneID = 7502,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 207111,
@@ -62,7 +63,7 @@ addon.GrimoiresDB = {
         source = sources.Raid,
         bossName = EJ_GetEncounterInfo(1560), -- Terestian Illhoof
 		zoneID = 3457,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 207296,
@@ -71,7 +72,7 @@ addon.GrimoiresDB = {
         source = sources.Rare,
         rareName = L["Matron Folnuna"],
         zoneID = 8574,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 207113,
@@ -79,7 +80,7 @@ addon.GrimoiresDB = {
 		name = "Grimoire of the Trickster Fel Imp",
         source = sources.Other,
         otherDescription = L["Time Rifts"],
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 207112,
@@ -88,14 +89,14 @@ addon.GrimoiresDB = {
         source = sources.Vendor,
         vendorName = L["Cupri"],
         zoneID = 3703,
-		category = "Imp",
+		category = category.Imp,
 	},
 	{
 		itemID = 139311,
 		questID = 76375,
 		name = "Grimoire of the Voidlord",
         source = sources.Inscription,
-		category = "Voidwalker",
+		category = category.Voidwalker,
 	},
 	{
 		itemID = 147117,
@@ -104,21 +105,21 @@ addon.GrimoiresDB = {
         source = sources.Dungeon,
         bossName = L["Hellblaze Temptress"], -- Named Trash
         zoneID = 8527,
-		category = "Sayaad",
+		category = category.Sayaad,
 	},
 	{
 		itemID = 147119,
 		questID = 76372,
 		name = "Grimoire of the Shadow Succubus",
         source = sources.Inscription,
-		category = "Sayaad",
+		category = category.Sayaad,
 	},
 	{
 		itemID = 139310,
 		questID = 76373,
 		name = "Grimoire of the Shivarra",
         source = sources.Inscription,
-		category = "Sayaad",
+		category = category.Sayaad,
 	},
 	{
 		itemID = 208051,
@@ -127,7 +128,7 @@ addon.GrimoiresDB = {
         source = sources.Raid,
         bossName = EJ_GetEncounterInfo(1987), -- Felhounds of Sargeras
 		zoneID = 8638,
-		category = "Felhunter",
+		category = category.Felhunter,
 	},
 	{
 		itemID = 208052,
@@ -135,7 +136,7 @@ addon.GrimoiresDB = {
 		name = "Grimoire of the Voracious Felmaw",
         source = sources.Other,
         otherDescription = L["Time Rifts"],
-		category = "Felhunter",
+		category = category.Felhunter,
 	},
 	{
 		itemID = 208050,
@@ -144,7 +145,7 @@ addon.GrimoiresDB = {
         source = sources.Chest,
         chestName = L["Singed Grimoire"],
         zoneID = 8638,
-		category = "Felhunter",
+		category = category.Felhunter,
 	},
 	{
 		itemID = 208048,
@@ -153,21 +154,21 @@ addon.GrimoiresDB = {
         source = sources.Chest,
         chestName = L["Torn Page"],
         zoneID = 8443,
-		category = "Felhunter",
+		category = category.Felhunter,
 	},
 	{
 		itemID = 139315,
 		questID = 76376,
 		name = "Grimoire of the Wrathguard",
         source = sources.Inscription,
-		category = "Felguard",
+		category = category.Felguard,
 	},
 	{
 		itemID = 139314,
 		questID = 76370,
 		name = "Grimoire of the Abyssal",
         source = sources.Inscription,
-		category = "Infernal"
+		category = category.Infernal,
 	},
 	{
 		itemID = 213015,
@@ -176,7 +177,7 @@ addon.GrimoiresDB = {
 		source = sources.Dungeon,
 		bossName = EJ_GetEncounterInfo(1979), -- Zuraal the Ascended
 		zoneID = 8910,
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 213017,
@@ -185,7 +186,7 @@ addon.GrimoiresDB = {
 		source = sources.Dungeon,
 		bossName = EJ_GetEncounterInfo(1838), -- Viz'aduum the Watcher
 		zoneID = 8443,
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 213014,
@@ -194,7 +195,7 @@ addon.GrimoiresDB = {
 		source = sources.Raid,
 		bossName = EJ_GetEncounterInfo(1985), -- Portal Keeper Hasabel
 		zoneID = 8638,
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 213016,
@@ -203,7 +204,7 @@ addon.GrimoiresDB = {
 		source = sources.Raid,
 		bossName = EJ_GetEncounterInfo(1861), -- Mistress Sassz'ine
 		zoneID = 8524,
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 212989,
@@ -212,7 +213,7 @@ addon.GrimoiresDB = {
 		source = sources.Chest,
 		chestName = "Carved Eye",
 		zoneID = 41, -- Deadwind Pass
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 212995,
@@ -221,7 +222,7 @@ addon.GrimoiresDB = {
 		source = sources.Chest,
 		chestName = "Carved Eye",
 		zoneID = 5695, -- Ahn'Quiraj - The Fallen Kingdom
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 212993,
@@ -230,7 +231,7 @@ addon.GrimoiresDB = {
 		source = sources.Chest,
 		chestName = "Carved Eye",
 		zoneID = 139, -- Eastern Plaguelands
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 212991,
@@ -239,7 +240,7 @@ addon.GrimoiresDB = {
 		source = sources.Chest,
 		chestName = "Carved Eye",
 		zoneID = 357, -- Feralas
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 212983,
@@ -248,7 +249,7 @@ addon.GrimoiresDB = {
 		source = sources.Chest,
 		chestName = "Carved Eye",
 		zoneID = 4, -- Blasted Lands
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 212984,
@@ -257,7 +258,7 @@ addon.GrimoiresDB = {
 		source = sources.Chest,
 		chestName = "Carved Eye",
 		zoneID = 14045, -- Tirisfal Glades
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 212750,
@@ -266,7 +267,7 @@ addon.GrimoiresDB = {
 		source = sources.Raid,
         bossName = EJ_GetEncounterInfo(818), -- Durumu the Forgotten
 		zoneID = 6622,
-		category = "Darkglare",
+		category = category.Darkglare,
 	},
 	{
 		itemID = 212780,
@@ -275,7 +276,7 @@ addon.GrimoiresDB = {
 		source = sources.Raid,
         bossName = EJ_GetEncounterInfo(1438), -- Archimonde
 		zoneID = 7545,
-		category = "Demonic Tyrant",
+		category = category.Tyrant,
 	},
 	{
 		itemID = 212783,
@@ -284,7 +285,7 @@ addon.GrimoiresDB = {
 		source = sources.Vendor,
 		vendorName = L["Gigi Gigavoid"],
         zoneID = 7875,
-		category = "Demonic Tyrant",
+		category = category.Tyrant,
 	},
 	{
 		itemID = 212778,
@@ -293,7 +294,7 @@ addon.GrimoiresDB = {
         source = sources.Rare,
         rareName = L["Radix"],
         zoneID = 8899,
-		category = "Demonic Tyrant",
+		category = category.Tyrant,
 	},
 	{
 		itemID = 212779,
@@ -302,6 +303,6 @@ addon.GrimoiresDB = {
         source = sources.Dungeon,
         bossName = L["Ixallon the Soulbreaker"], -- Named Trash
         zoneID = 8524,
-		category = "Demonic Tyrant",
+		category = category.Tyrant,
 	},
 }
