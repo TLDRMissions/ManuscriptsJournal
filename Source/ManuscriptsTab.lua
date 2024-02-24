@@ -199,7 +199,11 @@ do
         elseif source == addon.Enum.Sources.Vendor then
             GameTooltip:AddDoubleLine(db.vendorName, C_Map.GetAreaInfo(db.zoneID))
         elseif source == addon.Enum.Sources.Raid then
-            GameTooltip:AddLine(db.bossName)
+            if db.zoneID then
+                GameTooltip:AddDoubleLine(db.bossName, C_Map.GetAreaInfo(db.zoneID))
+            else
+                GameTooltip:AddLine(db.bossName)
+            end
         elseif source == addon.Enum.Sources.Chest then
             if db.zoneID then
                 GameTooltip:AddDoubleLine(db.chestName, C_Map.GetAreaInfo(db.zoneID))

@@ -42,6 +42,7 @@ L["Imp Mother Dyala"] = true
 L["Vi'el"] = true
 L["Aridormi"] = true
 L["Cupri"] = true
+L["Gigi Gigavoid"] = true
 
 -- Rare spawns
 L["Honey Smasher"] = true
@@ -158,6 +159,8 @@ L["Blue Terror"] = true
 L["Pyrachniss"] = true
 L["Shardwing"] = true
 L["Matron Folnuna"] = true
+L["Radix"] = true
+L["Ixallon the Soulbreaker"] = true
             
 L["Elemental Storms"] = true
 
