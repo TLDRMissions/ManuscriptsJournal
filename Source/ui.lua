@@ -49,6 +49,11 @@ function ParentMixin:OnLoad()
         tab.Disable = nop
         
         tab.OnSelect = function()
+            tab.LeftHighlight:Hide()
+            tab.MiddleHighlight:Hide()
+            tab.RightHighlight:Hide()
+            tab:SetHighlightLocked(true)
+            
             CollectionsJournalTitleText:SetText(self.tabName)
             hideHeirloomsExtras()
             
@@ -78,6 +83,11 @@ function ParentMixin:OnLoad()
             end
         end
         tab.OnDeselect = function()
+            tab.LeftHighlight:Show()
+            tab.MiddleHighlight:Show()
+            tab.RightHighlight:Show()
+            tab:SetHighlightLocked(false)
+            
             local selectedTabID = CollectionsJournal_GetTab(CollectionsJournal)
             CollectionsJournalTitleText:SetText(_G["CollectionsJournalTab"..selectedTabID]:GetText())
             showHeirloomsExtras()
@@ -151,6 +161,11 @@ hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
             journal:Hide()
         end
         showHeirloomsExtras()
+        
+        tab.LeftHighlight:Show()
+        tab.MiddleHighlight:Show()
+        tab.RightHighlight:Show()
+        tab:SetHighlightLocked(false)
     end
 end)
 
