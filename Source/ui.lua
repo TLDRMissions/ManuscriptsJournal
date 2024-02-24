@@ -8,6 +8,20 @@ local class = select(2, UnitClass("player"))
 addon.ParentMixin = {}
 local ParentMixin = addon.ParentMixin
 
+local function hideHeirloomsExtras()
+    HeirloomsJournalClassDropDown:Hide()
+    HeirloomsJournal.progressBar:Hide()
+    HeirloomsJournal.SearchBox:Hide()
+    HeirloomsJournal.FilterButton:Hide()
+end
+
+local function showHeirloomsExtras()
+    HeirloomsJournalClassDropDown:Show()
+    HeirloomsJournal.progressBar:Show()
+    HeirloomsJournal.SearchBox:Show()
+    HeirloomsJournal.FilterButton:Show()
+end
+
 local tab
 local selectedTab = 1
 function ParentMixin:OnLoad()
@@ -36,10 +50,7 @@ function ParentMixin:OnLoad()
         
         tab.OnSelect = function()
             CollectionsJournalTitleText:SetText(self.tabName)
-            HeirloomsJournalClassDropDown:Hide()
-            HeirloomsJournal.progressBar:Hide()
-            HeirloomsJournal.SearchBox:Hide()
-            HeirloomsJournal.FilterButton:Hide()
+            hideHeirloomsExtras()
             
             ManuscriptsSideTabsFrame:Show()
             for _, tab in pairs(self:GetAllTabs()) do
@@ -69,10 +80,7 @@ function ParentMixin:OnLoad()
         tab.OnDeselect = function()
             local selectedTabID = CollectionsJournal_GetTab(CollectionsJournal)
             CollectionsJournalTitleText:SetText(_G["CollectionsJournalTab"..selectedTabID]:GetText())
-            HeirloomsJournalClassDropDown:Show()
-            HeirloomsJournal.progressBar:Show()
-            HeirloomsJournal.SearchBox:Show()
-            HeirloomsJournal.FilterButton:Show()
+            showHeirloomsExtras()
             ManuscriptsSideTabsFrame:Hide()
             ShapeshiftsJournal:Hide()
             SoulshapesJournal:Hide()
@@ -142,6 +150,7 @@ hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
         for _, journal in pairs(ParentMixin:GetAllPanels()) do
             journal:Hide()
         end
+        showHeirloomsExtras()
     end
 end)
 
