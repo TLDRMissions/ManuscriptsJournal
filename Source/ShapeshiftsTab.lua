@@ -92,11 +92,7 @@ function ShapeshiftsMixin:SortShapeshiftsIntoEquipmentBuckets()
 	local equipBuckets = {};
     
     for _, shapeshiftData in pairs(addon.ShapeshiftDB) do
-        local collected = ShapeshiftsJournalAccountWideDB[shapeshiftData.questID]
-        if not collected then
-            ShapeshiftsJournalAccountWideDB[shapeshiftData.questID] = C_QuestLog.IsQuestFlaggedCompleted(shapeshiftData.questID)
-            collected = ShapeshiftsJournalAccountWideDB[shapeshiftData.questID]
-        end
+        local collected = self:IsCollected(shapeshiftData)
     		
     	if not equipBuckets[1] then
     		equipBuckets[1] = {}
