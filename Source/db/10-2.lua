@@ -45,6 +45,14 @@ local manuscripts = {
         source = sources.PvPSeason,
         achievementID = 19091, -- Season 3
 	},
+    {
+		category = drakes.WindingSlitherdrake,
+		name = "Highland Drake: Embodiment of the Draconic Gladiator",
+		itemID = 216710,
+        questID = 80014,
+        source = sources.PvPSeason,
+        achievementID = 19490, -- Season 4
+	},
 	{
 		category = drakes.WindingSlitherdrake,
 		name = "Winding Slitherdrake: Hairy Chin",
