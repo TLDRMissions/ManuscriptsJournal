@@ -117,6 +117,7 @@ addon.Strings.Sources[16] = L["PvP Seasonal"]
 addon.Strings.Sources[17] = BATTLE_PET_SOURCE_7
 addon.Strings.Sources[18] = C_QuestLog.GetTitleForQuestID(78203)
 addon.Strings.Sources[19] = BUG_CATEGORY2
+addon.Strings.Sources[20] = AUCTION_SUBCATEGORY_OTHER
 
 addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645) -- Ohn'aran
