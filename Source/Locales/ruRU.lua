@@ -37,6 +37,7 @@ L["Imp Mother Dyala"] = "Мать бесов Дьяла"
 L["Vi'el"] = "Ви'ел"
 L["Aridormi"] = "Аридорми"
 L["Cupri"] = "Купри"
+L["Gigi Gigavoid"] = "Гиги Гигабездна"
 
 -- Rare spawns
 L["Gethdazr"] = "Гетдазр"
