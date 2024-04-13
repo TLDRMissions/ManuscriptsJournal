@@ -95,6 +95,8 @@ local manuscripts = {
 		name = "Grotto Netherwing Drake: Black Scales",
 		itemID = 207776,
         questID = 77147,
+        source = sources.DragonRacingAchievement,
+        achievementID = 19478,
 	},
 	{
 		name = "Grotto Netherwing Drake: Double Finned Tail",
