@@ -17,6 +17,11 @@ L["Dragon Racing Achievement"] = "Драконьи гонки "..BATTLE_PET_SOUR
 L["Treasure Chest"] = "Сундук"
 L["PvP Seasonal"] = "PvP сезонный"
 
+L["Time Rifts"] = QuestUtils_GetQuestName(76984)
+QuestEventListener:AddCallback(76984, function()
+	L["Time Rifts"] = QuestUtils_GetQuestName(76984)
+end)
+
 -- Reputation and Friendship ranks
 L["Friend"] = "Друг"
 L["True Friend"] = "Настоящий друг"
@@ -37,6 +42,7 @@ L["Imp Mother Dyala"] = "Мать бесов Дьяла"
 L["Vi'el"] = "Ви'ел"
 L["Aridormi"] = "Аридорми"
 L["Cupri"] = "Купри"
+L["Gigi Gigavoid"] = "Гиги Гигабездна"
 
 -- Rare spawns
 L["Gethdazr"] = "Гетдазр"
@@ -200,5 +206,11 @@ L["Singed Grimoire"] = "Обугленный гримуар"
 L["Torn Page"] = "Оторванная страница"
 
 -- Fyrakk
-L["Disciples of Fyrakk"] = "Ученик Фиракка"
+L["Disciples of Fyrakk"] = QuestUtils_GetQuestName(74775).."; "..QuestUtils_GetQuestName(75239)
+QuestEventListener:AddCallback(74775, function()
+	L["Disciples of Fyrakk"] = QuestUtils_GetQuestName(74775).."; "..QuestUtils_GetQuestName(75239)
+end)
+QuestEventListener:AddCallback(75239, function()
+	L["Disciples of Fyrakk"] = QuestUtils_GetQuestName(74775).."; "..QuestUtils_GetQuestName(75239)
+end)
 L["Secured Shipment"] = "Защищенные ресурсы"
