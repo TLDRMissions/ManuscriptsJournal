@@ -138,6 +138,21 @@ local manuscripts = {
         questID = 79112,
         source = sources.WorldEvent,
     },
+    {
+        category = drakes.WindingSlitherdrake,
+        name = "Winding Slitherdrake: Void Scales",
+        itemID = 213561,
+        questID = 79690,
+        source = sources.Quest,
+        sourceQuestID = 79021,
+    },
+    {
+        category = drakes.CliffsideWylderdrake,
+        name = "Cliffside Wylderdrake: Midsummer Fire Festival Armor",
+        itemID = 224163,
+        questID = 82741,
+        source = sources.WorldEvent,
+    },
 }
 
 for k, v in pairs(manuscripts) do
