@@ -12,15 +12,46 @@ local GEM_SORT_ORDER = {
     addon.Enum.MOPRemixGemType.Prismatic,
 }
 
-local function GetNumSources()
-    return #addon.Strings.Sources
+local function restoreCJ()
+    if not CollectionsJournal:IsVisible() then
+        ToggleCollectionsJournal()
+        CollectionsJournalTitleText:SetText(MOPRemixGemsJournal.tabName)
+    end
 end
 
-local function GetSourceName(index)
-    return addon.Strings.Sources[index]
+local tinkerSlots = {"SHOULDERSLOT", "WRISTSLOT", "HANDSSLOT", "WAISTSLOT"}
+local currentlySelectedTinkerSlot = 1
+local function selectNextTinkerSlot()
+    for attempts = 1, #tinkerSlots do
+        currentlySelectedTinkerSlot = currentlySelectedTinkerSlot + 1
+        local slotName = tinkerSlots[currentlySelectedTinkerSlot]
+        if not slotName then
+            currentlySelectedTinkerSlot = 1
+            slotName = tinkerSlots[currentlySelectedTinkerSlot]
+        end
+        if GetInventoryItemID("player", GetInventorySlotInfo(slotName)) then
+            return GetInventorySlotInfo(slotName)
+        end
+    end
+    return nil
 end
 
-
+local prismaticSlots = {"CHESTSLOT", "LEGSSLOT", "NECKSLOT", "FINGER0SLOT", "FINGER1SLOT", "TRINKET0SLOT", "TRINKET1SLOT"}
+local currentlySelectedPrismaticSlot = 1
+local function selectNextPrismaticSlot()
+    for attempts = 1, #prismaticSlots do
+        currentlySelectedPrismaticSlot = currentlySelectedPrismaticSlot + 1
+        local slotName = prismaticSlots[currentlySelectedPrismaticSlot]
+        if not slotName then
+            currentlySelectedPrismaticSlot = 1
+            slotName = prismaticSlots[currentlySelectedPrismaticSlot]
+        end
+        if GetInventoryItemID("player", GetInventorySlotInfo(slotName)) then
+            return GetInventorySlotInfo(slotName)
+        end
+    end
+    return nil
+end
 
 function MOPRemixGemsJournal_OnEvent(self, event, ...)
 	if event == "BAG_UPDATE" then
@@ -53,18 +84,115 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
             throttleCache = GetExistingSocketInfo(1)
             throttle = GetTime()
             CloseSocketInfo()
-            ToggleCollectionsJournal()
+            restoreCJ()
         end
         if throttleCache then
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
             GameTooltip:SetItemByID(self.itemID)
             GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to unsocket all gems from equipped Helm")
+            GameTooltip:AddLine("Click to unsocket meta gem from equipped Helm")
         else
             GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
             GameTooltip:SetItemByID(self.itemID)
             GameTooltip:AddLine(" ")
             GameTooltip:AddLine("Click to equip to Helm")
+        end
+    elseif addon.itemIDToDB[self.itemID].category == addon.Enum.MOPRemixGemType.Cogwheel then
+        if GetTime() - throttle > 2 then
+            SocketInventoryItem(8)
+            throttleCache = GetExistingSocketInfo(1)
+            throttle = GetTime()
+            CloseSocketInfo()
+            restoreCJ()
+        end
+        if throttleCache then
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetItemByID(self.itemID)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("Click to unsocket cogwheel from equipped Boots")
+        else
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetItemByID(self.itemID)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("Click to equip to Boots")
+        end
+    elseif addon.itemIDToDB[self.itemID].category == addon.Enum.MOPRemixGemType.Tinker then
+        local slotName = tinkerSlots[currentlySelectedTinkerSlot]
+        if not slotName then
+            selectNextTinkerSlot()
+            slotName = tinkerSlots[currentlySelectedTinkerSlot]
+            if not slotName then
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+                GameTooltip:SetItemByID(self.itemID)
+                GameTooltip:Show()
+                return
+            end
+        end
+        local slotID = GetInventorySlotInfo(slotName)
+        
+        if GetTime() - throttle > 2 then
+            SocketInventoryItem(slotID)
+            throttleCache = true
+            for socketIndex = 1, GetNumSockets() do
+                if not GetExistingSocketInfo(socketIndex) then
+                    throttleCache = false
+                end
+            end
+            throttle = GetTime()
+            CloseSocketInfo()
+            restoreCJ()
+        end
+        if throttleCache then
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetItemByID(self.itemID)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("Click to unsocket all tinkers from equipped ".._G[slotName])
+            GameTooltip:AddLine("Right click to change slot")
+        else
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetItemByID(self.itemID)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("Click to equip to ".._G[slotName])
+            GameTooltip:AddLine("Right click to change slot")
+        end
+    elseif addon.itemIDToDB[self.itemID].category == addon.Enum.MOPRemixGemType.Prismatic then
+        local slotName = prismaticSlots[currentlySelectedPrismaticSlot]
+        if not slotName then
+            selectNextPrismaticSlot()
+            slotName = prismaticSlots[currentlySelectedPrismaticSlot]
+            if not slotName then
+                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+                GameTooltip:SetItemByID(self.itemID)
+                GameTooltip:Show()
+                return
+            end
+        end
+        local slotID = GetInventorySlotInfo(slotName)
+        
+        if GetTime() - throttle > 2 then
+            SocketInventoryItem(slotID)
+            throttleCache = true
+            for socketIndex = 1, GetNumSockets() do
+                if not GetExistingSocketInfo(socketIndex) then
+                    throttleCache = false
+                end
+            end
+            throttle = GetTime()
+            CloseSocketInfo()
+            restoreCJ()
+        end
+        if throttleCache then
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetItemByID(self.itemID)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("Click to unsocket all prismatic gems from equipped ".._G[slotName])
+            GameTooltip:AddLine("Right click to change slot")
+        else
+            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+            GameTooltip:SetItemByID(self.itemID)
+            GameTooltip:AddLine(" ")
+            GameTooltip:AddLine("Click to equip to ".._G[slotName])
+            GameTooltip:AddLine("Right click to change slot")
         end
     end
     GameTooltip:Show()
@@ -355,10 +483,11 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
     entry:SetAttribute("type", "macro")
     entry:RegisterForClicks("AnyDown")
     if data.category == addon.Enum.MOPRemixGemType.Meta then
+        if not GetInventoryItemID("player", 1) then return end
         SocketInventoryItem(1)
         if GetExistingSocketInfo(1) then
             CloseSocketInfo()
-            ToggleCollectionsJournal()
+            restoreCJ()
             entry:SetAttribute("macrotext", "/click ItemSocketingSocket1")
             entry:SetScript("PreClick", function()
                 if InCombatLockdown() then return end
@@ -371,14 +500,14 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
             entry:SetScript("PostClick", function()
                 if InCombatLockdown() then return end
                 CloseSocketInfo()
-                ToggleCollectionsJournal()
+                restoreCJ()
                 C_Timer.After(0.2, function()
                     self:FullRefreshIfVisible()
                 end)
             end)
         else
             CloseSocketInfo()
-            ToggleCollectionsJournal()
+            restoreCJ()
             entry:SetAttribute("macrotext", "")
             entry:SetScript("PreClick", nop)
             entry:SetScript("PostClick", function()
@@ -391,7 +520,7 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                             ClickSocketButton(1)
                             AcceptSockets()
                             CloseSocketInfo()
-                            ToggleCollectionsJournal()
+                            restoreCJ()
                             C_Timer.After(0.2, function()
                                 self:FullRefreshIfVisible()
                             end)
@@ -399,6 +528,176 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                         end
                     end
                 end
+            end)
+        end
+    elseif data.category == addon.Enum.MOPRemixGemType.Cogwheel then
+        if not GetInventoryItemID("player", 8) then return end
+        SocketInventoryItem(8)
+        if GetExistingSocketInfo(1) then
+            CloseSocketInfo()
+            restoreCJ()
+            entry:SetAttribute("macrotext", "/click ItemSocketingSocket1")
+            entry:SetScript("PreClick", function()
+                if InCombatLockdown() then return end
+                local itemID = entry.itemID
+                local data = addon.itemIDToDB[itemID]
+                if data.category == addon.Enum.MOPRemixGemType.Cogwheel then
+                    SocketInventoryItem(8)
+                end
+            end)
+            entry:SetScript("PostClick", function()
+                if InCombatLockdown() then return end
+                CloseSocketInfo()
+                restoreCJ()
+                C_Timer.After(0.2, function()
+                    self:FullRefreshIfVisible()
+                end)
+            end)
+        else
+            CloseSocketInfo()
+            restoreCJ()
+            entry:SetAttribute("macrotext", "")
+            entry:SetScript("PreClick", nop)
+            entry:SetScript("PostClick", function()
+                SocketInventoryItem(8)
+                for containerIndex = 0, 4 do
+                    for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
+                        if C_Container.GetContainerItemID(containerIndex, slotIndex) == entry.itemID then
+                            ClearCursor()
+                            C_Container.PickupContainerItem(containerIndex, slotIndex)
+                            ClickSocketButton(1)
+                            AcceptSockets()
+                            CloseSocketInfo()
+                            restoreCJ()
+                            C_Timer.After(0.2, function()
+                                self:FullRefreshIfVisible()
+                            end)
+                            return
+                        end
+                    end
+                end
+            end)
+        end
+    elseif data.category == addon.Enum.MOPRemixGemType.Tinker then
+        local slotID = GetInventorySlotInfo(tinkerSlots[currentlySelectedTinkerSlot])
+        if not slotID then return end
+        if not GetInventoryItemID("player", slotID) then return end
+        SocketInventoryItem(slotID)
+        local hasSpace = false
+        for socketIndex = 1, GetNumSockets() do
+            if not GetExistingSocketInfo(socketIndex) then
+                hasSpace = socketIndex
+                break
+            end
+        end
+        CloseSocketInfo()
+        restoreCJ()
+        if hasSpace then
+            entry:SetAttribute("macrotext", "")
+            entry:SetScript("PreClick", nop)
+            entry:SetScript("PostClick", function(...)
+                local slotID = GetInventorySlotInfo(tinkerSlots[currentlySelectedTinkerSlot])
+                SocketInventoryItem(slotID)
+                for containerIndex = 0, 4 do
+                    for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
+                        if C_Container.GetContainerItemID(containerIndex, slotIndex) == entry.itemID then
+                            ClearCursor()
+                            C_Container.PickupContainerItem(containerIndex, slotIndex)
+                            ClickSocketButton(hasSpace)
+                            AcceptSockets()
+                            CloseSocketInfo()
+                            restoreCJ()
+                            C_Timer.After(0.2, function()
+                                self:FullRefreshIfVisible()
+                            end)
+                            return
+                        end
+                    end
+                end
+            end)
+        else
+            entry:SetAttribute("macrotext", "/click [button:1] ItemSocketingSocket1\n/click [button:1] ItemSocketingSocket2\n/click [button:1] ItemSocketingSocket3")
+            entry:SetScript("PreClick", function(_, button)
+                local slotID = GetInventorySlotInfo(tinkerSlots[currentlySelectedTinkerSlot])
+                if InCombatLockdown() then return end
+                if button == "RightButton" then
+                    selectNextTinkerSlot()
+                    return
+                end
+                local itemID = entry.itemID
+                local data = addon.itemIDToDB[itemID]
+                if data.category == addon.Enum.MOPRemixGemType.Tinker then
+                    SocketInventoryItem(slotID)
+                end
+            end)
+            entry:SetScript("PostClick", function(...)
+                if InCombatLockdown() then return end
+                CloseSocketInfo()
+                restoreCJ()
+                C_Timer.After(0.2, function()
+                    self:FullRefreshIfVisible()
+                end)
+            end)
+        end
+    elseif data.category == addon.Enum.MOPRemixGemType.Prismatic then
+        local slotID = GetInventorySlotInfo(prismaticSlots[currentlySelectedPrismaticSlot])
+        if not slotID then return end
+        if not GetInventoryItemID("player", slotID) then return end
+        SocketInventoryItem(slotID)
+        local hasSpace = false
+        for socketIndex = 1, GetNumSockets() do
+            if not GetExistingSocketInfo(socketIndex) then
+                hasSpace = socketIndex
+                break
+            end
+        end
+        CloseSocketInfo()
+        restoreCJ()
+        if hasSpace then
+            entry:SetAttribute("macrotext", "")
+            entry:SetScript("PreClick", nop)
+            entry:SetScript("PostClick", function(...)
+                local slotID = GetInventorySlotInfo(prismaticSlots[currentlySelectedPrismaticSlot])
+                SocketInventoryItem(slotID)
+                for containerIndex = 0, 4 do
+                    for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
+                        if C_Container.GetContainerItemID(containerIndex, slotIndex) == entry.itemID then
+                            ClearCursor()
+                            C_Container.PickupContainerItem(containerIndex, slotIndex)
+                            ClickSocketButton(hasSpace)
+                            AcceptSockets()
+                            CloseSocketInfo()
+                            restoreCJ()
+                            C_Timer.After(0.2, function()
+                                self:FullRefreshIfVisible()
+                            end)
+                            return
+                        end
+                    end
+                end
+            end)
+        else
+            entry:SetAttribute("macrotext", "/click [button:1] ItemSocketingSocket1\n/click [button:1] ItemSocketingSocket2\n/click [button:1] ItemSocketingSocket3")
+            entry:SetScript("PreClick", function(_, button)
+                local slotID = GetInventorySlotInfo(prismaticSlots[currentlySelectedPrismaticSlot])
+                if InCombatLockdown() then return end
+                if button == "RightButton" then
+                    selectNextPrismaticSlot()
+                    return
+                end
+                local itemID = entry.itemID
+                local data = addon.itemIDToDB[itemID]
+                if data.category == addon.Enum.MOPRemixGemType.Prismatic then
+                    SocketInventoryItem(slotID)
+                end
+            end)
+            entry:SetScript("PostClick", function(...)
+                if InCombatLockdown() then return end
+                CloseSocketInfo()
+                restoreCJ()
+                C_Timer.After(0.2, function()
+                    self:FullRefreshIfVisible()
+                end)
             end)
         end
     end
