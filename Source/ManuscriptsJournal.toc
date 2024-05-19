@@ -53,6 +53,7 @@ db\10-2.lua
 db\Shapeshifts.lua
 db\Soulshapes.lua
 db\HexTomes.lua
+db\MOPRemixGems.lua
 db\PolymorphTomes.lua
 db\TameTomes.lua
 db\WarlockDemonTomes.lua

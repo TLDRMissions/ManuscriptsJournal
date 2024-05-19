@@ -8,14 +8,14 @@ local class = select(2, UnitClass("player"))
 addon.ParentMixin = {}
 local ParentMixin = addon.ParentMixin
 
-local function hideHeirloomsExtras()
+function ParentMixin:HideHeirloomsExtras()
     HeirloomsJournalClassDropDown:Hide()
     HeirloomsJournal.progressBar:Hide()
     HeirloomsJournal.SearchBox:Hide()
     HeirloomsJournal.FilterButton:Hide()
 end
 
-local function showHeirloomsExtras()
+function ParentMixin:ShowHeirloomsExtras()
     HeirloomsJournalClassDropDown:Show()
     HeirloomsJournal.progressBar:Show()
     HeirloomsJournal.SearchBox:Show()
@@ -55,7 +55,7 @@ function ParentMixin:OnLoad()
             tab:SetHighlightLocked(true)
             
             CollectionsJournalTitleText:SetText(self.tabName)
-            hideHeirloomsExtras()
+            ParentMixin:HideHeirloomsExtras()
             
             ManuscriptsSideTabsFrame:Show()
             for _, tab in pairs(self:GetAllTabs()) do
@@ -90,7 +90,7 @@ function ParentMixin:OnLoad()
             
             local selectedTabID = CollectionsJournal_GetTab(CollectionsJournal)
             CollectionsJournalTitleText:SetText(_G["CollectionsJournalTab"..selectedTabID]:GetText())
-            showHeirloomsExtras()
+            ParentMixin:ShowHeirloomsExtras()
             ManuscriptsSideTabsFrame:Hide()
             ShapeshiftsJournal:Hide()
             SoulshapesJournal:Hide()
@@ -160,7 +160,7 @@ hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
         for _, journal in pairs(ParentMixin:GetAllPanels()) do
             journal:Hide()
         end
-        showHeirloomsExtras()
+        ParentMixin:ShowHeirloomsExtras()
         
         tab.LeftHighlight:Show()
         tab.MiddleHighlight:Show()

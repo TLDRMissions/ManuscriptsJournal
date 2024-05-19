@@ -170,6 +170,37 @@
             <OnLeave inherit="prepend" function="ManuscriptsJournalSpellButton_OnExit" />
 		</Scripts>
 	</CheckButton>
+
+	<CheckButton name="MOPRemixGemSpellButtonTemplate" inherits="ManuscriptSpellButtonTemplate" hidden="true" motionScriptsWhileDisabled="true" virtual="true">
+		<Layers>
+			<Layer level="OVERLAY" textureSubLevel="2">
+				<Texture parentKey="bling" file="interface\cooldown\star4" alphaMode="ADD" alpha="0">
+					<Size x="70" y="70"/>
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+					<Color r="0.31373" g="0.627451" b="1.0"/>
+				</Texture>
+			</Layer>
+		</Layers>
+		
+		<Scripts>
+			<OnLoad>
+				CollectionsSpellButton_OnLoad(self, MOPRemixGemsJournal_UpdateButton)
+			</OnLoad>
+
+			<OnShow>
+				CollectionsSpellButton_OnShow(self);
+			</OnShow>
+			
+			<OnHide>
+				CollectionsSpellButton_OnHide(self);
+			</OnHide>
+
+			<OnEnter function="MOPRemixGemsJournalSpellButton_OnEnter"/>
+            <OnLeave inherit="prepend" function="MOPRemixGemsJournalSpellButton_OnExit" />
+		</Scripts>
+	</CheckButton>
     
     <StatusBar name="ManuscriptMountBarTemplate" virtual="true">
         <Size x="55" y="13"/>
@@ -265,4 +296,5 @@
     <Include file="GrimoiresTab.xml"/>
     <Include file="TameTomesTab.xml"/>
     <Include file="SideTabs.xml"/>
+    <Include file="MOPRemixGemsTab.xml"/>
 </Ui>

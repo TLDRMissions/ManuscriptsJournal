@@ -34,3 +34,7 @@ for _, tametomesData in pairs(addon.TameTomesDB) do
         addon.spellIDToDB[tametomesData.spellID] = tametomesData
     end
 end
+
+for _, gemData in pairs(addon.MOPRemixGemsDB) do
+    addon.itemIDToDB[gemData.itemID] = gemData
+end
