@@ -19,6 +19,20 @@ local function restoreCJ()
     end
 end
 
+local function suppressSocketInfoUpdate()
+    UIParent:UnregisterEvent("SOCKET_INFO_UPDATE")
+    if ItemSocketingFrame then
+        ItemSocketingFrame:UnregisterEvent("SOCKET_INFO_UPDATE")
+    end
+end
+
+local function restoreSocketInfoUpdate()
+    UIParent:RegisterEvent("SOCKET_INFO_UPDATE")
+    if ItemSocketingFrame then
+        ItemSocketingFrame:RegisterEvent("SOCKET_INFO_UPDATE")
+    end
+end
+
 local tinkerSlots = {"SHOULDERSLOT", "WRISTSLOT", "HANDSSLOT", "WAISTSLOT"}
 local currentlySelectedTinkerSlot = 1
 local function selectNextTinkerSlot()
@@ -77,25 +91,28 @@ end
 
 local throttle = GetTime()
 local throttleCache = false
+local currentlySwitching = false
 function MOPRemixGemsJournalSpellButton_OnEnter(self)
+    if currentlySwitching then return end
     local db = addon.itemIDToDB[self.itemID]
     
+    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    
     if not MOPRemixGemsMixin:IsCollected(db) then
+        GameTooltip:SetItemByID(self.itemID)
+        GameTooltip:Show()
         return
     end
     
-    UIParent:UnregisterEvent("SOCKET_INFO_UPDATE")
-    if ItemSocketingFrame then
-        ItemSocketingFrame:UnregisterEvent("SOCKET_INFO_UPDATE")
-    end
-    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    suppressSocketInfoUpdate()
+    
     if db.category == addon.Enum.MOPRemixGemType.Meta then
         if GetTime() - throttle > 2 then
             SocketInventoryItem(1)
             throttleCache = GetExistingSocketInfo(1)
             throttle = GetTime()
             CloseSocketInfo()
-            restoreCJ()
+            --restoreCJ()
         end
         if throttleCache then
             GameTooltip:SetItemByID(self.itemID)
@@ -112,7 +129,7 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
             throttleCache = GetExistingSocketInfo(1)
             throttle = GetTime()
             CloseSocketInfo()
-            restoreCJ()
+            --restoreCJ()
         end
         if throttleCache then
             GameTooltip:SetItemByID(self.itemID)
@@ -146,7 +163,7 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
                 end
                 throttle = GetTime()
                 CloseSocketInfo()
-                restoreCJ()
+                --restoreCJ()
             end
             if throttleCache then
                 GameTooltip:SetItemByID(self.itemID)
@@ -182,7 +199,7 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
                 end
                 throttle = GetTime()
                 CloseSocketInfo()
-                restoreCJ()
+                --restoreCJ()
             end
             if throttleCache then
                 GameTooltip:SetItemByID(self.itemID)
@@ -199,10 +216,7 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
     end
     GameTooltip:Show()
     addon.journalTooltipShown = true
-    UIParent:RegisterEvent("SOCKET_INFO_UPDATE")
-    if ItemSocketingFrame then
-        ItemSocketingFrame:RegisterEvent("SOCKET_INFO_UPDATE")
-    end
+    restoreSocketInfoUpdate()
 end
     
 function MOPRemixGemsJournalSpellButton_OnExit()
@@ -479,6 +493,8 @@ function MOPRemixGemsMixin:LayoutCurrentPage()
 end
 
 function MOPRemixGemsMixin:UpdateButtonActions(entry)
+    suppressSocketInfoUpdate()
+
     local data = addon.itemIDToDB[entry.itemID]
     entry:SetAttribute("type", "macro")
     entry:RegisterForClicks("AnyDown")
@@ -486,14 +502,13 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
         if not GetInventoryItemID("player", 1) then return end
         SocketInventoryItem(1)
         if GetExistingSocketInfo(1) then
-            CloseSocketInfo()
-            restoreCJ()
             entry:SetAttribute("macrotext", "/click ItemSocketingSocket1")
             entry:SetScript("PreClick", function()
                 if InCombatLockdown() then return end
                 local itemID = entry.itemID
                 local data = addon.itemIDToDB[itemID]
                 if data.category == addon.Enum.MOPRemixGemType.Meta then
+                    currentlySwitching = true
                     SocketInventoryItem(1)
                 end
             end)
@@ -501,16 +516,16 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 if InCombatLockdown() then return end
                 CloseSocketInfo()
                 restoreCJ()
-                C_Timer.After(0.2, function()
+                C_Timer.After(1, function()
+                    currentlySwitching = false
                     self:FullRefreshIfVisible()
                 end)
             end)
         else
-            CloseSocketInfo()
-            restoreCJ()
             entry:SetAttribute("macrotext", "")
             entry:SetScript("PreClick", nop)
             entry:SetScript("PostClick", function()
+                currentlySwitching = true
                 SocketInventoryItem(1)
                 for containerIndex = 0, 4 do
                     for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
@@ -521,7 +536,8 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                             AcceptSockets()
                             CloseSocketInfo()
                             restoreCJ()
-                            C_Timer.After(0.2, function()
+                            C_Timer.After(1, function()
+                                currentlySwitching = false
                                 self:FullRefreshIfVisible()
                             end)
                             return
@@ -534,31 +550,28 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
         if not GetInventoryItemID("player", 8) then return end
         SocketInventoryItem(8)
         if GetExistingSocketInfo(1) then
-            CloseSocketInfo()
-            restoreCJ()
             entry:SetAttribute("macrotext", "/click ItemSocketingSocket1")
             entry:SetScript("PreClick", function()
                 if InCombatLockdown() then return end
                 local itemID = entry.itemID
                 local data = addon.itemIDToDB[itemID]
                 if data.category == addon.Enum.MOPRemixGemType.Cogwheel then
+                    currentlySwitching = true
                     SocketInventoryItem(8)
                 end
             end)
             entry:SetScript("PostClick", function()
                 if InCombatLockdown() then return end
-                CloseSocketInfo()
-                restoreCJ()
-                C_Timer.After(0.2, function()
+                C_Timer.After(1, function()
+                    currentlySwitching = false
                     self:FullRefreshIfVisible()
                 end)
             end)
         else
-            CloseSocketInfo()
-            restoreCJ()
             entry:SetAttribute("macrotext", "")
             entry:SetScript("PreClick", nop)
             entry:SetScript("PostClick", function()
+                currentlySwitching = true
                 SocketInventoryItem(8)
                 for containerIndex = 0, 4 do
                     for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
@@ -569,7 +582,8 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                             AcceptSockets()
                             CloseSocketInfo()
                             restoreCJ()
-                            C_Timer.After(0.2, function()
+                            C_Timer.After(1, function()
+                                currentlySwitching = false
                                 self:FullRefreshIfVisible()
                             end)
                             return
@@ -590,13 +604,13 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 break
             end
         end
-        CloseSocketInfo()
-        restoreCJ()
+
         if hasSpace then
             entry:SetAttribute("macrotext", "")
             entry:SetScript("PreClick", nop)
             entry:SetScript("PostClick", function(...)
                 local slotID = GetInventorySlotInfo(tinkerSlots[currentlySelectedTinkerSlot])
+                currentlySwitching = true
                 SocketInventoryItem(slotID)
                 for containerIndex = 0, 4 do
                     for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
@@ -607,7 +621,8 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                             AcceptSockets()
                             CloseSocketInfo()
                             restoreCJ()
-                            C_Timer.After(0.2, function()
+                            C_Timer.After(1, function()
+                                currentlySwitching = false
                                 self:FullRefreshIfVisible()
                             end)
                             return
@@ -627,6 +642,7 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 local itemID = entry.itemID
                 local data = addon.itemIDToDB[itemID]
                 if data.category == addon.Enum.MOPRemixGemType.Tinker then
+                    currentlySwitching = true
                     SocketInventoryItem(slotID)
                 end
             end)
@@ -634,7 +650,8 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 if InCombatLockdown() then return end
                 CloseSocketInfo()
                 restoreCJ()
-                C_Timer.After(0.2, function()
+                C_Timer.After(1, function()
+                    currentlySwitching = false
                     self:FullRefreshIfVisible()
                 end)
             end)
@@ -651,13 +668,12 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 break
             end
         end
-        CloseSocketInfo()
-        restoreCJ()
         if hasSpace then
             entry:SetAttribute("macrotext", "")
             entry:SetScript("PreClick", nop)
             entry:SetScript("PostClick", function(...)
                 local slotID = GetInventorySlotInfo(prismaticSlots[currentlySelectedPrismaticSlot])
+                currentlySwitching = true
                 SocketInventoryItem(slotID)
                 for containerIndex = 0, 4 do
                     for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
@@ -668,7 +684,8 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                             AcceptSockets()
                             CloseSocketInfo()
                             restoreCJ()
-                            C_Timer.After(0.2, function()
+                            C_Timer.After(1, function()
+                                currentlySwitching = false
                                 self:FullRefreshIfVisible()
                             end)
                             return
@@ -688,6 +705,7 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 local itemID = entry.itemID
                 local data = addon.itemIDToDB[itemID]
                 if data.category == addon.Enum.MOPRemixGemType.Prismatic then
+                    currentlySwitching = true
                     SocketInventoryItem(slotID)
                 end
             end)
@@ -695,10 +713,12 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 if InCombatLockdown() then return end
                 CloseSocketInfo()
                 restoreCJ()
-                C_Timer.After(0.2, function()
+                C_Timer.After(1, function()
+                    currentlySwitching = false
                     self:FullRefreshIfVisible()
                 end)
             end)
         end
     end
+    restoreSocketInfoUpdate()
 end
