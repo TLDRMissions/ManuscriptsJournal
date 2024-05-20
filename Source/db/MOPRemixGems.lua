@@ -264,7 +264,43 @@ addon.MOPRemixGemsDB = {
 	},
 
 	{
+		itemID = 211110,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211102,
+		category = categories.Prismatic,
+	},
+	{
 		itemID = 220373,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211108,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211103,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211105,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211101,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211123,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 210714,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211109,
 		category = categories.Prismatic,
 	},
 	{
@@ -272,39 +308,11 @@ addon.MOPRemixGemsDB = {
 		category = categories.Prismatic,
 	},
 	{
-		itemID = 216643,
+		itemID = 211106,
 		category = categories.Prismatic,
 	},
 	{
-		itemID = 216644,
-		category = categories.Prismatic,
-	},
-	{
-		itemID = 220374,
-		category = categories.Prismatic,
-	},
-	{
-		itemID = 220370,
-		category = categories.Prismatic,
-	},
-	{
-		itemID = 220367,
-		category = categories.Prismatic,
-	},
-	{
-		itemID = 216641,
-		category = categories.Prismatic,
-	},
-	{
-		itemID = 216640,
-		category = categories.Prismatic,
-	},
-	{
-		itemID = 220368,
-		category = categories.Prismatic,
-	},
-	{
-		itemID = 220371,
+		itemID = 210681,
 		category = categories.Prismatic,
 	},
 	{
@@ -312,11 +320,75 @@ addon.MOPRemixGemsDB = {
 		category = categories.Prismatic,
 	},
 	{
+		itemID = 216644,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 216643,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 210715,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211107,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 216640,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 210716,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 210717,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211124,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 220370,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 210718,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 211125,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 216641,
+		category = categories.Prismatic,
+	},
+	{
 		itemID = 220372,
 		category = categories.Prismatic,
 	},
-    {
+	{
 		itemID = 216639,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 220374,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 220367,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 220371,
+		category = categories.Prismatic,
+	},
+	{
+		itemID = 220368,
 		category = categories.Prismatic,
 	},
 }
