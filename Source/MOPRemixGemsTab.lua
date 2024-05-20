@@ -78,7 +78,18 @@ end
 local throttle = GetTime()
 local throttleCache = false
 function MOPRemixGemsJournalSpellButton_OnEnter(self)
-    if addon.itemIDToDB[self.itemID].category == addon.Enum.MOPRemixGemType.Meta then
+    local db = addon.itemIDToDB[self.itemID]
+    
+    if not MOPRemixGemsMixin:IsCollected(db) then
+        return
+    end
+    
+    UIParent:UnregisterEvent("SOCKET_INFO_UPDATE")
+    if ItemSocketingFrame then
+        ItemSocketingFrame:UnregisterEvent("SOCKET_INFO_UPDATE")
+    end
+    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    if db.category == addon.Enum.MOPRemixGemType.Meta then
         if GetTime() - throttle > 2 then
             SocketInventoryItem(1)
             throttleCache = GetExistingSocketInfo(1)
@@ -87,17 +98,15 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
             restoreCJ()
         end
         if throttleCache then
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
             GameTooltip:SetItemByID(self.itemID)
             GameTooltip:AddLine(" ")
             GameTooltip:AddLine("Click to unsocket meta gem from equipped Helm")
         else
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
             GameTooltip:SetItemByID(self.itemID)
             GameTooltip:AddLine(" ")
             GameTooltip:AddLine("Click to equip to Helm")
         end
-    elseif addon.itemIDToDB[self.itemID].category == addon.Enum.MOPRemixGemType.Cogwheel then
+    elseif db.category == addon.Enum.MOPRemixGemType.Cogwheel then
         if GetTime() - throttle > 2 then
             SocketInventoryItem(8)
             throttleCache = GetExistingSocketInfo(1)
@@ -106,97 +115,94 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
             restoreCJ()
         end
         if throttleCache then
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
             GameTooltip:SetItemByID(self.itemID)
             GameTooltip:AddLine(" ")
             GameTooltip:AddLine("Click to unsocket cogwheel from equipped Boots")
         else
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
             GameTooltip:SetItemByID(self.itemID)
             GameTooltip:AddLine(" ")
             GameTooltip:AddLine("Click to equip to Boots")
         end
-    elseif addon.itemIDToDB[self.itemID].category == addon.Enum.MOPRemixGemType.Tinker then
+    elseif db.category == addon.Enum.MOPRemixGemType.Tinker then
         local slotName = tinkerSlots[currentlySelectedTinkerSlot]
         if not slotName then
             selectNextTinkerSlot()
             slotName = tinkerSlots[currentlySelectedTinkerSlot]
-            if not slotName then
-                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-                GameTooltip:SetItemByID(self.itemID)
-                GameTooltip:Show()
-                return
-            end
         end
-        local slotID = GetInventorySlotInfo(slotName)
         
-        if GetTime() - throttle > 2 then
-            SocketInventoryItem(slotID)
-            throttleCache = true
-            for socketIndex = 1, GetNumSockets() do
-                if not GetExistingSocketInfo(socketIndex) then
-                    throttleCache = false
-                end
-            end
-            throttle = GetTime()
-            CloseSocketInfo()
-            restoreCJ()
-        end
-        if throttleCache then
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+        if not slotName then
             GameTooltip:SetItemByID(self.itemID)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to unsocket all tinkers from equipped ".._G[slotName])
-            GameTooltip:AddLine("Right click to change slot")
+            GameTooltip:Show()
         else
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-            GameTooltip:SetItemByID(self.itemID)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to equip to ".._G[slotName])
-            GameTooltip:AddLine("Right click to change slot")
+            local slotID = GetInventorySlotInfo(slotName)
+            
+            if GetTime() - throttle > 2 then
+                SocketInventoryItem(slotID)
+                throttleCache = true
+                for socketIndex = 1, GetNumSockets() do
+                    if not GetExistingSocketInfo(socketIndex) then
+                        throttleCache = false
+                    end
+                end
+                throttle = GetTime()
+                CloseSocketInfo()
+                restoreCJ()
+            end
+            if throttleCache then
+                GameTooltip:SetItemByID(self.itemID)
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine("Click to unsocket all tinkers from equipped ".._G[slotName])
+                GameTooltip:AddLine("Right click to change slot")
+            else
+                GameTooltip:SetItemByID(self.itemID)
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine("Click to equip to ".._G[slotName])
+                GameTooltip:AddLine("Right click to change slot")
+            end
         end
-    elseif addon.itemIDToDB[self.itemID].category == addon.Enum.MOPRemixGemType.Prismatic then
+    elseif db.category == addon.Enum.MOPRemixGemType.Prismatic then
         local slotName = prismaticSlots[currentlySelectedPrismaticSlot]
         if not slotName then
             selectNextPrismaticSlot()
             slotName = prismaticSlots[currentlySelectedPrismaticSlot]
-            if not slotName then
-                GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-                GameTooltip:SetItemByID(self.itemID)
-                GameTooltip:Show()
-                return
-            end
+            
         end
-        local slotID = GetInventorySlotInfo(slotName)
-        
-        if GetTime() - throttle > 2 then
-            SocketInventoryItem(slotID)
-            throttleCache = true
-            for socketIndex = 1, GetNumSockets() do
-                if not GetExistingSocketInfo(socketIndex) then
-                    throttleCache = false
-                end
-            end
-            throttle = GetTime()
-            CloseSocketInfo()
-            restoreCJ()
-        end
-        if throttleCache then
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
+        if not slotName then
             GameTooltip:SetItemByID(self.itemID)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to unsocket all prismatic gems from equipped ".._G[slotName])
-            GameTooltip:AddLine("Right click to change slot")
         else
-            GameTooltip:SetOwner(self, "ANCHOR_RIGHT");
-            GameTooltip:SetItemByID(self.itemID)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to equip to ".._G[slotName])
-            GameTooltip:AddLine("Right click to change slot")
+            local slotID = GetInventorySlotInfo(slotName)
+            
+            if GetTime() - throttle > 2 then
+                SocketInventoryItem(slotID)
+                throttleCache = true
+                for socketIndex = 1, GetNumSockets() do
+                    if not GetExistingSocketInfo(socketIndex) then
+                        throttleCache = false
+                    end
+                end
+                throttle = GetTime()
+                CloseSocketInfo()
+                restoreCJ()
+            end
+            if throttleCache then
+                GameTooltip:SetItemByID(self.itemID)
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine("Click to unsocket all prismatic gems from equipped ".._G[slotName])
+                GameTooltip:AddLine("Right click to change slot")
+            else
+                GameTooltip:SetItemByID(self.itemID)
+                GameTooltip:AddLine(" ")
+                GameTooltip:AddLine("Click to equip to ".._G[slotName])
+                GameTooltip:AddLine("Right click to change slot")
+            end
         end
     end
     GameTooltip:Show()
     addon.journalTooltipShown = true
+    UIParent:RegisterEvent("SOCKET_INFO_UPDATE")
+    if ItemSocketingFrame then
+        ItemSocketingFrame:RegisterEvent("SOCKET_INFO_UPDATE")
+    end
 end
     
 function MOPRemixGemsJournalSpellButton_OnExit()
@@ -298,18 +304,12 @@ function MOPRemixGemsMixin:SortManuscriptsIntoEquipmentBuckets()
 	local equipBuckets = {};
     
     for _, data in pairs(addon.MOPRemixGemsDB) do
-        if self:IsCollected(data) then
-            local itemID = data.itemID
-  		    local category = data.category
-        
-  		    if category then
-                if not equipBuckets[category] then
-                    equipBuckets[category] = {}
-                end
-
-                table.insert(equipBuckets[category], itemID)
-            end
+        local category = data.category
+        if not equipBuckets[category] then
+            equipBuckets[category] = {}
         end
+
+        table.insert(equipBuckets[category], data.itemID)
 	end
 
 	return equipBuckets
