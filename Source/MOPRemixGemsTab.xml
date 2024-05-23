@@ -20,6 +20,18 @@
 					<Anchor point="BOTTOM" x="21" y="43"/>
 				</Anchors>
 			</Frame>
+            
+            <CheckButton parentKey="ItemButton1" inherits="MOPRemixGemsItemButtonTemplate"/>
+            <CheckButton parentKey="ItemButton2" inherits="MOPRemixGemsItemButtonTemplate"/>
+            <CheckButton parentKey="ItemButton3" inherits="MOPRemixGemsItemButtonTemplate"/>
+            <CheckButton parentKey="ItemButton4" inherits="MOPRemixGemsItemButtonTemplate"/>
+            <CheckButton parentKey="ItemButton5" inherits="MOPRemixGemsItemButtonTemplate"/>
+            <CheckButton parentKey="ItemButton6" inherits="MOPRemixGemsItemButtonTemplate"/>
+            <CheckButton parentKey="ItemButton7" inherits="MOPRemixGemsItemButtonTemplate"/>
+            
+            <CheckButton parentKey="SocketButton1" inherits="MOPRemixGemsSocketButtonTemplate, InsecureActionButtonTemplate"/>
+            <CheckButton parentKey="SocketButton2" inherits="MOPRemixGemsSocketButtonTemplate, InsecureActionButtonTemplate"/>
+            <CheckButton parentKey="SocketButton3" inherits="MOPRemixGemsSocketButtonTemplate, InsecureActionButtonTemplate"/>
 		</Frames>
 		<Scripts>
 			<OnLoad>
