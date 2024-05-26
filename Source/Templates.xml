@@ -137,18 +137,6 @@
 	</Frame>
 
 	<CheckButton name="ManuscriptSpellButtonTemplate" inherits="ManuscriptsSpellButtonTemplate" hidden="true" motionScriptsWhileDisabled="true" virtual="true">
-		<Layers>
-			<Layer level="OVERLAY" textureSubLevel="2">
-				<Texture parentKey="bling" file="interface\cooldown\star4" alphaMode="ADD" alpha="0">
-					<Size x="70" y="70"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-					<Color r="0.31373" g="0.627451" b="1.0"/>
-				</Texture>
-			</Layer>
-		</Layers>
-		
 		<Scripts>
 			<OnLoad>
 				CollectionsSpellButton_OnLoad(self, ManuscriptsJournal_UpdateButton)
@@ -172,15 +160,48 @@
 	</CheckButton>
 
 	<CheckButton name="MOPRemixGemSpellButtonTemplate" inherits="ManuscriptSpellButtonTemplate" hidden="true" motionScriptsWhileDisabled="true" virtual="true">
-		<Layers>
+		<Frames>
+            <Frame parentKey="shine">
+        		<Size x="37" y="37"/>
+        		<Layers>
+        			<Layer level="BACKGROUND">
+        				<Texture parentKey="1" file="Interface\ItemSocketingFrame\UI-ItemSockets" alphaMode="ADD" hidden="true">
+        					<Size x="13" y="13"/>
+        					<Anchors>
+        						<Anchor point="CENTER" x="0" y="0"/>
+        					</Anchors>
+        					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
+        				</Texture>
+        				<Texture parentKey="2" file="Interface\ItemSocketingFrame\UI-ItemSockets" alphaMode="ADD" hidden="true">
+        					<Size x="13" y="13"/>
+        					<Anchors>
+        						<Anchor point="CENTER" x="0" y="0"/>
+        					</Anchors>
+        					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
+        				</Texture>
+        				<Texture parentKey="3" file="Interface\ItemSocketingFrame\UI-ItemSockets" alphaMode="ADD" hidden="true">
+        					<Size x="13" y="13"/>
+        					<Anchors>
+        						<Anchor point="CENTER" x="0" y="0"/>
+        					</Anchors>
+        					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
+        				</Texture>
+        				<Texture parentKey="4" file="Interface\ItemSocketingFrame\UI-ItemSockets" alphaMode="ADD" hidden="true">
+        					<Size x="13" y="13"/>
+        					<Anchors>
+        						<Anchor point="CENTER" x="0" y="0"/>
+        					</Anchors>
+        					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
+        				</Texture>
+        			</Layer>
+        		</Layers>
+				<Anchors>
+					<Anchor point="CENTER" x="1" />
+				</Anchors>
+            </Frame>
+        </Frames>
+        <Layers>
 			<Layer level="OVERLAY" textureSubLevel="2">
-				<Texture parentKey="bling" file="interface\cooldown\star4" alphaMode="ADD" alpha="0">
-					<Size x="70" y="70"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-					<Color r="0.31373" g="0.627451" b="1.0"/>
-				</Texture>
                 <Texture parentKey="favorite" atlas="PetJournal-FavoritesIcon" useAtlasSize="true">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeKey="$parent.icon" x="-8" y="8"/>

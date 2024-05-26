@@ -40,6 +40,7 @@
 			<OnShow function="MOPRemixGemsJournal_OnShow"/>
 			<OnMouseWheel function="MOPRemixGemsJournal_OnMouseWheel"/>
             <OnEvent function="MOPRemixGemsJournal_OnEvent"/>
+            <OnUpdate function="MOPRemixGemsJournal_OnUpdate"/>
 		</Scripts>
 	</Frame>
 </Ui>

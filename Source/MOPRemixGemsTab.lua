@@ -106,12 +106,89 @@ function MOPRemixGemsJournal_UpdateButton(self)
 	self:GetParent():GetParent():UpdateButton(self);
 end
 
+-- Animted Shine Stuff adapted from UIParent to work with anonymous frames
+local SHINES_TO_ANIMATE = {}
+
+local function AnimatedShine_Start(shine, r, g, b)
+	if ( not tContains(SHINES_TO_ANIMATE, shine) ) then
+		shine.timer = 0;
+		tinsert(SHINES_TO_ANIMATE, shine);
+	end
+    shine.shine["1"]:Show();
+	shine.shine["2"]:Show();
+	shine.shine["3"]:Show();
+	shine.shine["4"]:Show();
+	if ( r ) then
+		shine.shine["1"]:SetVertexColor(r, g, b);
+		shine.shine["2"]:SetVertexColor(r, g, b);
+		shine.shine["3"]:SetVertexColor(r, g, b);
+		shine.shine["4"]:SetVertexColor(r, g, b);
+	end
+
+end
+
+local function AnimatedShine_Stop(shine)
+	tDeleteItem(SHINES_TO_ANIMATE, shine);
+	shine.shine["1"]:Hide();
+	shine.shine["2"]:Hide();
+	shine.shine["3"]:Hide();
+	shine.shine["4"]:Hide();
+end
+
+local function AnimatedShine_OnUpdate(elapsed)
+	local shine1, shine2, shine3, shine4;
+	local speed = 2.5;
+	local parent, distance;
+	for index, value in pairs(SHINES_TO_ANIMATE) do
+		shine1 = value.shine["1"]
+		shine2 = value.shine["2"]
+		shine3 = value.shine["3"]
+		shine4 = value.shine["4"]
+		value.timer = value.timer+elapsed;
+		if ( value.timer > speed*4 ) then
+			value.timer = 0;
+		end
+		parent = value.shine
+		distance = parent:GetWidth();
+		if ( value.timer <= speed  ) then
+			shine1:SetPoint("CENTER", parent, "TOPLEFT", value.timer/speed*distance, 0);
+			shine2:SetPoint("CENTER", parent, "BOTTOMRIGHT", -value.timer/speed*distance, 0);
+			shine3:SetPoint("CENTER", parent, "TOPRIGHT", 0, -value.timer/speed*distance);
+			shine4:SetPoint("CENTER", parent, "BOTTOMLEFT", 0, value.timer/speed*distance);
+		elseif ( value.timer <= speed*2 ) then
+			shine1:SetPoint("CENTER", parent, "TOPRIGHT", 0, -(value.timer-speed)/speed*distance);
+			shine2:SetPoint("CENTER", parent, "BOTTOMLEFT", 0, (value.timer-speed)/speed*distance);
+			shine3:SetPoint("CENTER", parent, "BOTTOMRIGHT", -(value.timer-speed)/speed*distance, 0);
+			shine4:SetPoint("CENTER", parent, "TOPLEFT", (value.timer-speed)/speed*distance, 0);
+		elseif ( value.timer <= speed*3 ) then
+			shine1:SetPoint("CENTER", parent, "BOTTOMRIGHT", -(value.timer-speed*2)/speed*distance, 0);
+			shine2:SetPoint("CENTER", parent, "TOPLEFT", (value.timer-speed*2)/speed*distance, 0);
+			shine3:SetPoint("CENTER", parent, "BOTTOMLEFT", 0, (value.timer-speed*2)/speed*distance);
+			shine4:SetPoint("CENTER", parent, "TOPRIGHT", 0, -(value.timer-speed*2)/speed*distance);
+		else
+			shine1:SetPoint("CENTER", parent, "BOTTOMLEFT", 0, (value.timer-speed*3)/speed*distance);
+			shine2:SetPoint("CENTER", parent, "TOPRIGHT", 0, -(value.timer-speed*3)/speed*distance);
+			shine3:SetPoint("CENTER", parent, "TOPLEFT", (value.timer-speed*3)/speed*distance, 0);
+			shine4:SetPoint("CENTER", parent, "BOTTOMRIGHT", -(value.timer-speed*3)/speed*distance, 0);
+		end
+	end
+end
+
+function MOPRemixGemsJournal_OnUpdate(self, elapsed)
+	AnimatedShine_OnUpdate(elapsed)
+end
+
 function MOPRemixGemsMixin:UpdateButton(button)
     addon.ParentMixin.UpdateButton(self, button)
     if ManuscriptsJournalMOPRemixGemsDB.favourites[button.itemID] then
         button.favorite:Show()
     else
         button.favorite:Hide()
+    end
+    if self:IsEquipped(addon.itemIDToDB[button.itemID]) then
+        AnimatedShine_Start(button)
+    else
+        AnimatedShine_Stop(button)
     end
 end
 
@@ -527,6 +604,24 @@ function MOPRemixGemsMixin:SortManuscriptsIntoEquipmentBuckets()
 	return equipBuckets
 end
 
+function MOPRemixGemsMixin:IsEquipped(data)
+    for inventoryIndex = 1, 14 do
+        local itemLink = GetInventoryItemLink("player", inventoryIndex)
+        if itemLink then
+            for socketIndex = 1, 3 do
+                local gemName, gemLink = C_Item.GetItemGem(itemLink, socketIndex)
+                if gemName then
+                    local itemID = C_Item.GetItemInfoInstant(gemLink)
+                    if itemID == data.itemID then
+                        return true
+                    end
+                end
+            end
+        end
+    end
+    return false
+end
+
 function MOPRemixGemsMixin:IsCollected(data)
     for containerIndex = 0, 4 do
         for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
@@ -535,7 +630,7 @@ function MOPRemixGemsMixin:IsCollected(data)
             end
         end
     end
-    return false
+    return self:IsEquipped(data)
 end
 
 -- Each manuscript button entry dimension
