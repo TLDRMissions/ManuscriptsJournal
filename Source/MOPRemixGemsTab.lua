@@ -130,39 +130,24 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
         return
     end
     
-    suppressSocketInfoUpdate()
-    
-    if db.category == addon.Enum.MOPRemixGemType.Meta then
+    if (db.category == addon.Enum.MOPRemixGemType.Meta) or (db.category == addon.Enum.MOPRemixGemType.Cogwheel) then
+        local slotID = db.category
         if GetTime() - throttle > 2 then
-            SocketInventoryItem(1)
-            throttleCache = GetExistingSocketInfo(1)
-            throttle = GetTime()
-            CloseSocketInfo()
+            local itemLink = GetInventoryItemLink("player", slotID)
+            if itemLink then
+                local gemName, gemLink = C_Item.GetItemGem(itemLink, 1)
+                throttleCache = gemLink
+                throttle = GetTime()
+            end
         end
         if throttleCache then
             GameTooltip:SetItemByID(self.itemID)
             GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to unsocket meta gem from equipped Helm")
+            GameTooltip:AddLine("Click to unsocket gem from equipped item")
         else
             GameTooltip:SetItemByID(self.itemID)
             GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to equip to Helm")
-        end
-    elseif db.category == addon.Enum.MOPRemixGemType.Cogwheel then
-        if GetTime() - throttle > 2 then
-            SocketInventoryItem(8)
-            throttleCache = GetExistingSocketInfo(1)
-            throttle = GetTime()
-            CloseSocketInfo()
-        end
-        if throttleCache then
-            GameTooltip:SetItemByID(self.itemID)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to unsocket cogwheel from equipped Boots")
-        else
-            GameTooltip:SetItemByID(self.itemID)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("Click to equip to Boots")
+            GameTooltip:AddLine("Click to equip to socket")
         end
     elseif db.category == addon.Enum.MOPRemixGemType.Tinker then
         GameTooltip:SetItemByID(self.itemID)
@@ -225,7 +210,6 @@ function MOPRemixGemsJournalSpellButton_OnEnter(self)
     end
     GameTooltip:Show()
     addon.journalTooltipShown = true
-    restoreSocketInfoUpdate()
 end
 
 local function hideItemButtonsIfNotMousedOver()
@@ -271,7 +255,7 @@ function MOPRemixGemsJournalItemButton_OnExit(button)
 end
 
 local itemButtonThrottle = GetTime()
-local itemButtonThrottleCache = false 
+local itemButtonThrottleCache = false
 function MOPRemixGemsJournalItemButton_OnEnter(button)
     local slotID = button.slotID
     GameTooltip:SetOwner(CollectionsJournal, "ANCHOR_RIGHT")
@@ -355,8 +339,8 @@ function MOPRemixGemsJournalSocketButton_PreClick(button)
     
     if hasGem then
         SocketInventoryItem(slotID)
-        print(button:GetAttribute("macrotext"))
     end
+    currentlySwitching = true
 end
   
 function MOPRemixGemsJournalSocketButton_PostClick(button)
@@ -390,6 +374,7 @@ function MOPRemixGemsJournalSocketButton_PostClick(button)
     CloseSocketInfo()
     restoreCJ()
     hideItemButtons()
+    currentlySwitching = false
 end
 
 local tab
@@ -720,170 +705,92 @@ end
 function MOPRemixGemsMixin:UpdateButtonActions(entry)
     if currentlySwitching then return end
     buttons[entry] = true
-    suppressSocketInfoUpdate()
 
     local data = addon.itemIDToDB[entry.itemID]
     entry:SetAttribute("type", "macro")
     entry:RegisterForClicks("AnyDown")
+    
+    local slotID
+    
     if data.category == addon.Enum.MOPRemixGemType.Meta then
-        if not GetInventoryItemID("player", 1) then return end
-        SocketInventoryItem(1)
-        if GetExistingSocketInfo(1) then
-            entry:SetAttribute("macrotext", "/stopmacro [combat]\n/click [button:1] ItemSocketingSocket1")
-            entry:SetScript("PreClick", function(_, button)
-                if InCombatLockdown() then return end
-                if button == "RightButton" then
-                    ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
-                    return
-                end
-                disableButtons()
-                local itemID = entry.itemID
-                local data = addon.itemIDToDB[itemID]
-                if data.category == addon.Enum.MOPRemixGemType.Meta then
-                    currentlySwitching = true
-                    SocketInventoryItem(1)
-                end
-            end)
-            entry:SetScript("PostClick", function(_, button)
-                entry:SetChecked(false)
-                if InCombatLockdown() then return end
-                if button == "RightButton" then
-                    self:FullRefreshIfVisible()
-                    return
-                end
-                CloseSocketInfo()
-                restoreCJ()
-                suppressSocketInfoUpdate()
-                C_Timer.After(1, function()
-                    currentlySwitching = false
-                    self:FullRefreshIfVisible()
-                    enableButtons()
-                    CloseSocketInfo()
-                    restoreCJ()
-                    restoreSocketInfoUpdate()
-                end)
-            end)
-        else
-            entry:SetAttribute("macrotext", "")
-            entry:SetScript("PreClick", function(_, button)
-                if button == "RightButton" then
-                    ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
-                    return
-                end
-                disableButtons()
-            end)
-            entry:SetScript("PostClick", function(_, button)
-                entry:SetChecked(false)
-                if button == "RightButton" then
-                    self:FullRefreshIfVisible()
-                    return
-                end
-                currentlySwitching = true
-                for containerIndex = 0, 4 do
-                    for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
-                        if C_Container.GetContainerItemID(containerIndex, slotIndex) == entry.itemID then
-                            SocketInventoryItem(1)
-                            ClearCursor()
-                            C_Container.PickupContainerItem(containerIndex, slotIndex)
-                            if CursorHasItem() then
-                                ClickSocketButton(1)
-                                AcceptSockets()
-                            end
-                            CloseSocketInfo()
-                            restoreCJ()
-                            suppressSocketInfoUpdate()
-                            C_Timer.After(1, function()
-                                currentlySwitching = false
-                                self:FullRefreshIfVisible()
-                                enableButtons()
-                                CloseSocketInfo()
-                                restoreCJ()
-                                restoreSocketInfoUpdate()
-                            end)
-                            return
-                        end
-                    end
-                end
-            end)
-        end
+        slotID = 1
     elseif data.category == addon.Enum.MOPRemixGemType.Cogwheel then
-        if not GetInventoryItemID("player", 8) then return end
-        SocketInventoryItem(8)
-        if GetExistingSocketInfo(1) then
-            entry:SetAttribute("macrotext", "/stopmacro [combat]\n/click [button:1] ItemSocketingSocket1")
-            entry:SetScript("PreClick", function(_, button)
-                if InCombatLockdown() then return end
-                if button == "RightButton" then
-                    ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
-                    return
-                end
-                disableButtons()
-                local itemID = entry.itemID
-                local data = addon.itemIDToDB[itemID]
-                if data.category == addon.Enum.MOPRemixGemType.Cogwheel then
+        slotID = 8
+    end
+    
+    if slotID then
+        if not GetInventoryItemID("player", slotID) then return end
+        local itemLink = GetInventoryItemLink("player", slotID)
+        if itemLink then
+            local gemName = C_Item.GetItemGem(itemLink, 1)
+            if gemName then
+                entry:SetAttribute("macrotext", "/stopmacro [combat]\n/click [button:1] ItemSocketingSocket1")
+                entry:SetScript("PreClick", function(_, button)
+                    if InCombatLockdown() then return end
+                    if button == "RightButton" then
+                        ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
+                        return
+                    end
+                    disableButtons()
+                    local itemID = entry.itemID
+                    local data = addon.itemIDToDB[itemID]
                     currentlySwitching = true
-                    SocketInventoryItem(8)
-                end
-            end)
-            entry:SetScript("PostClick", function(_, button)
-                entry:SetChecked(false)
-                if InCombatLockdown() then return end
-                if button == "RightButton" then
-                    self:FullRefreshIfVisible()
-                    return
-                end
-                CloseSocketInfo()
-                restoreCJ()
-                suppressSocketInfoUpdate()
-                C_Timer.After(1, function()
-                    currentlySwitching = false
-                    self:FullRefreshIfVisible()
-                    enableButtons()
+                    SocketInventoryItem(slotID)
+                end)
+                entry:SetScript("PostClick", function(_, button)
+                    entry:SetChecked(false)
+                    if InCombatLockdown() then return end
+                    if button == "RightButton" then
+                        self:FullRefreshIfVisible()
+                        return
+                    end
                     CloseSocketInfo()
                     restoreCJ()
-                    restoreSocketInfoUpdate()
+                    C_Timer.After(1, function()
+                        currentlySwitching = false
+                        self:FullRefreshIfVisible()
+                        enableButtons()
+                    end)
                 end)
-            end)
-        else
-            entry:SetAttribute("macrotext", "")
-            entry:SetScript("PreClick", function(_, button)
-                if button == "RightButton" then
-                    ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
-                    return
-                end
-                disableButtons()
-            end)
-            entry:SetScript("PostClick", function(_, button)
-                entry:SetChecked(false)
-                if button == "RightButton" then
-                    self:FullRefreshIfVisible()
-                    return
-                end
-                currentlySwitching = true
-                for containerIndex = 0, 4 do
-                    for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
-                        if C_Container.GetContainerItemID(containerIndex, slotIndex) == entry.itemID then
-                            SocketInventoryItem(8)
-                            ClearCursor()
-                            C_Container.PickupContainerItem(containerIndex, slotIndex)
-                            ClickSocketButton(1)
-                            AcceptSockets()
-                            CloseSocketInfo()
-                            restoreCJ()
-                            suppressSocketInfoUpdate()
-                            C_Timer.After(1, function()
-                                currentlySwitching = false
-                                self:FullRefreshIfVisible()
-                                enableButtons()
+            else
+                entry:SetAttribute("macrotext", "")
+                entry:SetScript("PreClick", function(_, button)
+                    if button == "RightButton" then
+                        ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
+                        return
+                    end
+                    disableButtons()
+                end)
+                entry:SetScript("PostClick", function(_, button)
+                    entry:SetChecked(false)
+                    if button == "RightButton" then
+                        self:FullRefreshIfVisible()
+                        return
+                    end
+                    currentlySwitching = true
+                    C_Timer.After(1, function()
+                        currentlySwitching = false
+                        self:FullRefreshIfVisible()
+                        enableButtons()
+                    end)
+                    for containerIndex = 0, 4 do
+                        for slotIndex = 1, C_Container.GetContainerNumSlots(containerIndex) do
+                            if C_Container.GetContainerItemID(containerIndex, slotIndex) == entry.itemID then
+                                SocketInventoryItem(slotID)
+                                ClearCursor()
+                                C_Container.PickupContainerItem(containerIndex, slotIndex)
+                                if CursorHasItem() then
+                                    ClickSocketButton(1)
+                                    AcceptSockets()
+                                end
                                 CloseSocketInfo()
                                 restoreCJ()
-                                restoreSocketInfoUpdate()
-                            end)
-                            return
+                                return
+                            end
                         end
                     end
-                end
-            end)
+                end)
+            end
         end
     else
         entry:SetAttribute("macrotext", "")
@@ -896,9 +803,6 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
         end)
         entry:SetScript("PostClick", nop)
     end
-    CloseSocketInfo()
-    restoreCJ()
-    restoreSocketInfoUpdate()
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
