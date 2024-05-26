@@ -181,6 +181,11 @@
 					</Anchors>
 					<Color r="0.31373" g="0.627451" b="1.0"/>
 				</Texture>
+                <Texture parentKey="favorite" atlas="PetJournal-FavoritesIcon" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="TOPLEFT" relativeKey="$parent.icon" x="-8" y="8"/>
+					</Anchors>
+				</Texture>
 			</Layer>
 		</Layers>
 		

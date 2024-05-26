@@ -35,7 +35,6 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-                local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 				self:OnLoad();
 			</OnLoad>
 			<OnShow function="MOPRemixGemsJournal_OnShow"/>

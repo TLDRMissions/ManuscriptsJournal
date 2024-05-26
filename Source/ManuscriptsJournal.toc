@@ -14,6 +14,7 @@
 ## LoadWith: Blizzard_Collections
 ## IconTexture: 254291
 ## SavedVariables: ManuscriptsJournalExportDB, ManuscriptsJournalFiltersDB, SoulshapesJournalFiltersDB, ShapeshiftsJournalAccountWideDB
+## SavedVariablesPerCharacter: ManuscriptsJournalMOPRemixGemsDB
 
 libs\LibStub\LibStub.lua
 libs\AceLocale-3.0\AceLocale-3.0.xml
