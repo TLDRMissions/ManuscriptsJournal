@@ -394,6 +394,7 @@ function MOPRemixGemsJournalSocketButton_PostClick(button)
     hideItemButtons()
 end
 
+local tab
 function MOPRemixGemsMixin:OnLoad()
 	self.manuscriptEntryFrames = {};
 	self.manuscriptHeaderFrames = {};
@@ -408,7 +409,7 @@ function MOPRemixGemsMixin:OnLoad()
     
     local function runOutOfCombat()
         MOPRemixGemsJournalInsecureTabButton = LibStub('SecureTabs-2.0'):Add(CollectionsJournal, self, self.tabName)
-        local tab = MOPRemixGemsJournalInsecureTabButton
+        tab = MOPRemixGemsJournalInsecureTabButton
         local secureTabButton = CreateFrame("Button", nil, CollectionsJournal, "SecureActionButtonTemplate")
         secureTabButton:SetAttribute("type", "click")
         secureTabButton:SetAttribute("clickbutton", CollectionsJournalTab4)
@@ -907,4 +908,15 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
     if not ManuscriptsJournalMOPRemixGemsDB then ManuscriptsJournalMOPRemixGemsDB = {} end
     
     if not ManuscriptsJournalMOPRemixGemsDB.favourites then ManuscriptsJournalMOPRemixGemsDB.favourites = {} end
+end)
+
+hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
+    if not tab then return end
+    if (tabID ~= CollectionsJournalTab4:GetID()) then
+        MOPRemixGemsJournal:Hide()
+        tab.LeftHighlight:Show()
+        tab.MiddleHighlight:Show()
+        tab.RightHighlight:Show()
+        tab:SetHighlightLocked(false)
+    end
 end)
