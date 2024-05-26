@@ -367,8 +367,6 @@ function MOPRemixGemsJournalSocketButton_PostClick(button)
     local gemItemID = button.gemItemID
     
     if hasGem then
-        CloseSocketInfo()
-        restoreCJ()
         C_Timer.After(1, function()
             MOPRemixGemsJournal:FullRefreshIfVisible()
         end)
@@ -381,8 +379,6 @@ function MOPRemixGemsJournalSocketButton_PostClick(button)
                     C_Container.PickupContainerItem(containerIndex, slotIndex)
                     ClickSocketButton(socketIndex)
                     AcceptSockets()
-                    CloseSocketInfo()
-                    restoreCJ()
                     C_Timer.After(1, function()
                         MOPRemixGemsJournal:FullRefreshIfVisible()
                     end)
@@ -391,6 +387,8 @@ function MOPRemixGemsJournalSocketButton_PostClick(button)
         end
     end
     
+    CloseSocketInfo()
+    restoreCJ()
     hideItemButtons()
 end
 
@@ -898,6 +896,8 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
         end)
         entry:SetScript("PostClick", nop)
     end
+    CloseSocketInfo()
+    restoreCJ()
     restoreSocketInfoUpdate()
 end
 
