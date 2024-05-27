@@ -100,6 +100,12 @@ function ParentMixin:OnLoad()
             TameTomesJournal:Hide()
         end
         self.Tab = tab
+        
+        RunNextFrame(function()
+            for _, panel in pairs(ParentMixin:GetAllPanels()) do
+                panel:SetPassThroughButtons("LeftButton")
+            end
+        end)
     end
     
     if InCombatLockdown() then
@@ -318,7 +324,7 @@ hooksecurefunc("ToggleCollectionsJournal", function(tab)
 end)
 
 function ParentMixin:GetAllPanels()
-    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal, TameTomesJournal}
+    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal, TameTomesJournal, MOPRemixGemsJournal}
 end
 
 function ParentMixin:GetAllTabs()
