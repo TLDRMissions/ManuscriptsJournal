@@ -819,8 +819,13 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
         if itemLink then
             local gemName = C_Item.GetItemGem(itemLink, 1)
             if gemName then
-                entry:SetAttribute("macrotext", "/stopmacro [combat]\n/click [button:1] ItemSocketingSocket1")
+                entry:SetAttribute("macrotext", "/stopmacro [combat]\n/click [button:1,nomod] ItemSocketingSocket1")
                 entry:SetScript("PreClick", function(_, button)
+                    if IsModifiedClick() then
+                  		local _, itemLink = GetItemInfo(entry.itemID)
+                  		HandleModifiedItemClick(itemLink)
+                        return
+                  	end
                     if InCombatLockdown() then return end
                     if button == "RightButton" then
                         ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
@@ -834,6 +839,7 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 end)
                 entry:SetScript("PostClick", function(_, button)
                     entry:SetChecked(false)
+                    if IsModifiedClick() then return end
                     if InCombatLockdown() then return end
                     if button == "RightButton" then
                         self:FullRefreshIfVisible()
@@ -850,6 +856,11 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
             else
                 entry:SetAttribute("macrotext", "")
                 entry:SetScript("PreClick", function(_, button)
+                    if IsModifiedClick() then
+                  		local _, itemLink = GetItemInfo(entry.itemID)
+                  		HandleModifiedItemClick(itemLink)
+                        return
+                  	end
                     if button == "RightButton" then
                         ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
                         return
@@ -858,6 +869,7 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
                 end)
                 entry:SetScript("PostClick", function(_, button)
                     entry:SetChecked(false)
+                    if IsModifiedClick() then return end
                     if button == "RightButton" then
                         self:FullRefreshIfVisible()
                         return
@@ -891,6 +903,11 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
         entry:SetAttribute("macrotext", "")
         entry:SetScript("PreClick", function(_, button)
             entry:SetChecked(false)
+            if IsModifiedClick() then
+          		local _, itemLink = GetItemInfo(entry.itemID)
+          		HandleModifiedItemClick(itemLink)
+                return
+          	end
             if button == "RightButton" then
                 ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID] = not ManuscriptsJournalMOPRemixGemsDB.favourites[entry.itemID]
                 self:FullRefreshIfVisible()

@@ -222,7 +222,7 @@
 			<OnHide>
 				CollectionsSpellButton_OnHide(self);
 			</OnHide>
-
+            
 			<OnEnter function="MOPRemixGemsJournalSpellButton_OnEnter"/>
             <OnLeave inherit="prepend" function="MOPRemixGemsJournalSpellButton_OnExit" />
 		</Scripts>
