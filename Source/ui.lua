@@ -9,17 +9,17 @@ addon.ParentMixin = {}
 local ParentMixin = addon.ParentMixin
 
 function ParentMixin:HideHeirloomsExtras()
-    HeirloomsJournalClassDropDown:Hide()
+    HeirloomsJournal.ClassDropdown:Hide()
     HeirloomsJournal.progressBar:Hide()
     HeirloomsJournal.SearchBox:Hide()
-    HeirloomsJournal.FilterButton:Hide()
+    HeirloomsJournal.FilterDropdown:Hide()
 end
 
 function ParentMixin:ShowHeirloomsExtras()
-    HeirloomsJournalClassDropDown:Show()
+    HeirloomsJournal.ClassDropdown:Show()
     HeirloomsJournal.progressBar:Show()
     HeirloomsJournal.SearchBox:Show()
-    HeirloomsJournal.FilterButton:Show()
+    HeirloomsJournal.FilterDropdown:Show()
 end
 
 local tab

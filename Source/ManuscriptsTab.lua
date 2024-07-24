@@ -2,6 +2,7 @@ local addonName, addon = ...
 
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+local FilterComponent = addon.FilterComponent
 
 local collectedManuscriptFilter = true
 local uncollectedManuscriptFilter = true
@@ -167,12 +168,12 @@ do
             if db.reputations then
                 local reputations = {}
                 for _, reputationID in ipairs(db.reputations) do
-                    local name = GetFactionInfoByID(reputationID)
+                    local name = C_Reputation.GetFactionDataByID(reputationID).name
                     table.insert(reputations, name)
                 end
                 add(reputations)
             else
-                local name = GetFactionInfoByID(db.reputation)
+                local name = C_Reputation.GetFactionDataByID(db.reputation).name
                 GameTooltip:AddLine(name)
             end
             if db.reputationRank then
@@ -181,7 +182,7 @@ do
                 GameTooltip:AddDoubleLine(L["Required Rank:"], db.friendshipRank)
             end
         elseif source == addon.Enum.Sources.Renown then
-            GameTooltip:AddDoubleLine(GetFactionInfoByID(db.renownFaction), RANK_COLON.." "..db.renownRank)
+            GameTooltip:AddDoubleLine(C_Reputation.GetFactionDataByID(db.renownFaction).name, RANK_COLON.." "..db.renownRank)
         elseif (source == addon.Enum.Sources.Achievement) or (source == addon.Enum.Sources.DragonRacingAchievement) or (source == addon.Enum.Sources.PvPSeason) then
             local _, name = GetAchievementInfo(db.achievementID)
             GameTooltip:AddLine(name)

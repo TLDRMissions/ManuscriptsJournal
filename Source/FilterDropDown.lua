@@ -14,6 +14,8 @@ addon.FilterComponent = EnumUtil.MakeEnum(
 	"CustomFunction" 		-- Calls the passed in function to initialize filters (for complex/special cases)
 );
 
+local FilterComponent = addon.FilterComponent
+
 --[[
 	Usage:
 
@@ -58,10 +60,10 @@ addon.FilterDropDownSystem = {};
 local FilterDropDownSystem = addon.FilterDropDownSystem
 
 function FilterDropDownSystem.Initialize(dropdown, filterSystem, level)
-	if level == 1 then
+    if level == 1 then
 		FilterDropDownSystem.SetUpDropDownLevel(dropdown, filterSystem, level);
 	else
-		for filterIndex, filterInfo in ipairs(filterSystem.filters) do
+        for filterIndex, filterInfo in ipairs(filterSystem.filters) do
 			if filterInfo.value == L_UIDROPDOWNMENU_MENU_VALUE and level == 2 then
 				local subMenuLayout = filterInfo.childrenInfo;
 				subMenuLayout.onUpdate = filterSystem.onUpdate;
@@ -86,7 +88,7 @@ end
 
 function FilterDropDownSystem.SetUpDropDownLevel(dropdown, filterSystem, level)
 	for filterIndex, filterInfo in ipairs(filterSystem.filters) do
-		if filterInfo.type == FilterComponent.TextButton then
+        if filterInfo.type == FilterComponent.TextButton then
 			local set = function()
 							filterInfo.set();
 							if filterSystem.onUpdate then
@@ -94,7 +96,7 @@ function FilterDropDownSystem.SetUpDropDownLevel(dropdown, filterSystem, level)
 							end
 						end
 			FilterDropDownSystem.AddTextButton(filterInfo.text, set, level, filterInfo.hideMenuOnClick);
-		elseif filterInfo.type == FilterComponent.Checkbox then
+        elseif filterInfo.type == FilterComponent.Checkbox then
 			local set = function(_, _, _, value)
 						filterInfo.set(value);
 						if filterSystem.onUpdate then
@@ -103,7 +105,7 @@ function FilterDropDownSystem.SetUpDropDownLevel(dropdown, filterSystem, level)
 					end
 			local isSet = function() return filterInfo.isSet(filterInfo.filter); end;
 			FilterDropDownSystem.AddCheckBoxButton(filterInfo.text, set, isSet, level, filterInfo.hideMenuOnClick);
-		elseif filterInfo.type == FilterComponent.Radio then
+        elseif filterInfo.type == FilterComponent.Radio then
 			local set = function(_, _, _, value)
 						filterInfo.set(value);
 
@@ -145,7 +147,7 @@ function FilterDropDownSystem.AddTextButton(text, set, level, hideMenuOnClick)
 		text = text,
 	};
 
-	LibDD:UIDropDownMenu_AddButton(textButtonInfo, level);
+    LibDD:UIDropDownMenu_AddButton(textButtonInfo, level);
 end
 
 function FilterDropDownSystem.AddTextButtonToFilterSystem(filterSystem, text, set, level, hideMenuOnClick)
@@ -169,7 +171,7 @@ function FilterDropDownSystem.AddCheckBoxButton(text, setChecked, isChecked, lev
 		checked = isChecked,
 	};
 
-	LibDD:UIDropDownMenu_AddButton(checkBoxInfo, level);
+    LibDD:UIDropDownMenu_AddButton(checkBoxInfo, level);
 end
 
 function FilterDropDownSystem.AddCheckBoxButtonToFilterSystem(filterSystem, text, setChecked, isChecked, level, hideMenuOnClick)

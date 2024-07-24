@@ -2,6 +2,7 @@ local addonName, addon = ...
 
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
+local FilterComponent = addon.FilterComponent
 
 local collectedSoulshapeFilter = true
 local uncollectedSoulshapeFilter = true
