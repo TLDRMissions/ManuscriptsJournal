@@ -168,10 +168,12 @@ hooksecurefunc("CollectionsJournal_SetTab", function(self, tabID)
         end
         ParentMixin:ShowHeirloomsExtras()
         
-        tab.LeftHighlight:Show()
-        tab.MiddleHighlight:Show()
-        tab.RightHighlight:Show()
-        tab:SetHighlightLocked(false)
+        if tab then
+            tab.LeftHighlight:Show()
+            tab.MiddleHighlight:Show()
+            tab.RightHighlight:Show()
+            tab:SetHighlightLocked(false)
+        end
     end
 end)
 
