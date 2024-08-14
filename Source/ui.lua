@@ -125,11 +125,11 @@ function ParentMixin:OnLoad()
         
         ManuscriptsSkillLineManuscriptsTab:SetNormalTexture(254288)
         ManuscriptsSkillLineDruidTab:SetNormalTexture(136036)
-        ManuscriptsSkillLineSoulshapesTab:SetNormalTexture(GetSpellTexture(310143))
-        ManuscriptsSkillLineShamanTab:SetNormalTexture(GetSpellTexture(51514))
-        ManuscriptsSkillLineMageTab:SetNormalTexture(GetSpellTexture(118))
-        ManuscriptsSkillLineWarlockTab:SetNormalTexture(GetSpellTexture(688))
-        ManuscriptsSkillLineHunterTab:SetNormalTexture(GetSpellTexture(1515))
+        ManuscriptsSkillLineSoulshapesTab:SetNormalTexture(C_Spell.GetSpellTexture(310143))
+        ManuscriptsSkillLineShamanTab:SetNormalTexture(C_Spell.GetSpellTexture(51514))
+        ManuscriptsSkillLineMageTab:SetNormalTexture(C_Spell.GetSpellTexture(118))
+        ManuscriptsSkillLineWarlockTab:SetNormalTexture(C_Spell.GetSpellTexture(688))
+        ManuscriptsSkillLineHunterTab:SetNormalTexture(C_Spell.GetSpellTexture(1515))
         
         if class == "DRUID" then
             ManuscriptsSkillLineManuscriptsTab:Show()
@@ -252,7 +252,7 @@ function ParentMixin:UpdateButton(button)
         end)
     elseif button.spellID then
         data = addon.spellIDToDB[button.spellID]
-        name, _, texture = GetSpellInfo(button.spellID)
+        name, _, texture = C_Spell.GetSpellInfo(button.spellID).name
         runLater()
     end
 end
@@ -268,7 +268,7 @@ function ParentMixin:OnManuscriptsUpdated()
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
-    local loaded, finished = IsAddOnLoaded(addonName)
+    local loaded, finished = C_AddOns.IsAddOnLoaded(addonName)
     if not finished then return end
     
     local ticker

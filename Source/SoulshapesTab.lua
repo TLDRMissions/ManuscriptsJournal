@@ -602,7 +602,7 @@ function SoulshapesMixin:UpdateButton(button)
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
-    local loaded, finished = IsAddOnLoaded(addonName)
+    local loaded, finished = C_AddOns.IsAddOnLoaded(addonName)
     if not finished then return end
     
     if not SoulshapesJournalFiltersDB then SoulshapesJournalFiltersDB = {} end

@@ -15,11 +15,11 @@ function TameTomesMixin:OnLoad()
     
     -- Refer to comments in PolymorphsMixin:OnLoad
     
-    local name = GetSpellInfo(1515)
+    local name = C_Spell.GetSpellInfo(1515).name
     self.tabName = name
     if not name then
         local ticker = C_Timer.NewTicker(1, function()
-            name = GetSpellInfo(1515)
+            name = C_Spell.GetSpellInfo(1515).name
             if name then
                 self.tabName = name
                 ticker:Cancel()
