@@ -140,15 +140,15 @@ addon.Strings.Fyrakk[1] = L["Disciples of Fyrakk"]
 addon.Strings.Fyrakk[2] = L["Secured Shipment"]
 
 addon.Strings.WarlockCategories = {}
-addon.Strings.WarlockCategories[1] = GetSpellInfo(688)
-addon.Strings.WarlockCategories[2] = GetSpellInfo(697)
-addon.Strings.WarlockCategories[3] = GetSpellInfo(366222)
-addon.Strings.WarlockCategories[4] = GetSpellInfo(691)
-addon.Strings.WarlockCategories[5] = GetSpellInfo(30146)
-addon.Strings.WarlockCategories[6] = GetSpellInfo(1122)
-addon.Strings.WarlockCategories[7] = GetSpellInfo(205180)
-addon.Strings.WarlockCategories[8] = GetSpellInfo(265187)
-addon.Strings.WarlockCategories[9] = GetSpellInfo(18540)
+addon.Strings.WarlockCategories[1] = C_Spell.GetSpellInfo(688).name
+addon.Strings.WarlockCategories[2] = C_Spell.GetSpellInfo(697).name
+addon.Strings.WarlockCategories[3] = C_Spell.GetSpellInfo(366222).name
+addon.Strings.WarlockCategories[4] = C_Spell.GetSpellInfo(691).name
+addon.Strings.WarlockCategories[5] = C_Spell.GetSpellInfo(30146).name
+addon.Strings.WarlockCategories[6] = C_Spell.GetSpellInfo(1122).name
+addon.Strings.WarlockCategories[7] = C_Spell.GetSpellInfo(205180).name
+addon.Strings.WarlockCategories[8] = C_Spell.GetSpellInfo(265187).name
+addon.Strings.WarlockCategories[9] = C_Spell.GetSpellInfo(18540).name
 
 addon.Enum.WarlockCategories.Imp = 1
 addon.Enum.WarlockCategories.Voidwalker = 2

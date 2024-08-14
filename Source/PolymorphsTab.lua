@@ -19,11 +19,11 @@ function PolymorphsMixin:OnLoad()
     -- which the spellbook frame tried to use later on
     -- Have to use the more... primitive version instead
     
-    local name = GetSpellInfo(118)
+    local name = C_Spell.GetSpellInfo(118).name
     self.tabName = name
     if not name then
         local ticker = C_Timer.NewTicker(1, function()
-            name = GetSpellInfo(118)
+            name = C_Spell.GetSpellInfo(118).name
             if name then
                 self.tabName = name
                 ticker:Cancel()

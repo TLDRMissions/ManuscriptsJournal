@@ -918,7 +918,7 @@ function MOPRemixGemsMixin:UpdateButtonActions(entry)
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
-    local loaded, finished = IsAddOnLoaded(addonName)
+    local loaded, finished = C_AddOns.IsAddOnLoaded(addonName)
     if not finished then return end
     
     if not ManuscriptsJournalMOPRemixGemsDB then ManuscriptsJournalMOPRemixGemsDB = {} end

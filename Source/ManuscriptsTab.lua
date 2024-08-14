@@ -693,7 +693,7 @@ function ManuscriptsJournalProgressBar_OnClick(self, barID)
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
-    local loaded, finished = IsAddOnLoaded(addonName)
+    local loaded, finished = C_AddOns.IsAddOnLoaded(addonName)
     if not finished then return end
     
     if not ManuscriptsJournalFiltersDB then ManuscriptsJournalFiltersDB = {} end
