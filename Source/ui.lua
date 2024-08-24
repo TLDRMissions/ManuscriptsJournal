@@ -102,6 +102,14 @@ function ParentMixin:OnLoad()
         self.Tab = tab
         
         RunNextFrame(function()
+            if InCombatLockdown() then
+                EventUtil.RegisterOnceFrameEventAndCallback("PLAYER_REGEN_ENABLED", function()
+                    for _, panel in pairs(ParentMixin:GetAllPanels()) do
+                        panel:SetPassThroughButtons("LeftButton")
+                    end
+                end)
+                return
+            end
             for _, panel in pairs(ParentMixin:GetAllPanels()) do
                 panel:SetPassThroughButtons("LeftButton")
             end
