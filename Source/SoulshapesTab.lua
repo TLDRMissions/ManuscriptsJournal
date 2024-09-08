@@ -126,7 +126,7 @@ end
 local function FactionFormatter(faction)
     local name
     if faction.id then
-        name = GetFactionInfoByID(faction.id)
+        name = C_Reputation.GetFactionDataByID(faction.id).name
     else
         name = faction.name
     end
