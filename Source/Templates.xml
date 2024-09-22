@@ -158,75 +158,6 @@
             <OnLeave inherit="prepend" function="ManuscriptsJournalSpellButton_OnExit" />
 		</Scripts>
 	</CheckButton>
-
-	<CheckButton name="MOPRemixGemSpellButtonTemplate" inherits="ManuscriptSpellButtonTemplate" hidden="true" motionScriptsWhileDisabled="true" virtual="true">
-		<Frames>
-            <Frame parentKey="shine">
-        		<Size x="37" y="37"/>
-        		<Layers>
-        			<Layer level="BACKGROUND">
-        				<Texture parentKey="1" file="Interface\ItemSocketingFrame\UI-ItemSockets" alphaMode="ADD" hidden="true">
-        					<Size x="13" y="13"/>
-        					<Anchors>
-        						<Anchor point="CENTER" x="0" y="0"/>
-        					</Anchors>
-        					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
-        				</Texture>
-        				<Texture parentKey="2" file="Interface\ItemSocketingFrame\UI-ItemSockets" alphaMode="ADD" hidden="true">
-        					<Size x="13" y="13"/>
-        					<Anchors>
-        						<Anchor point="CENTER" x="0" y="0"/>
-        					</Anchors>
-        					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
-        				</Texture>
-        				<Texture parentKey="3" file="Interface\ItemSocketingFrame\UI-ItemSockets" alphaMode="ADD" hidden="true">
-        					<Size x="13" y="13"/>
-        					<Anchors>
-        						<Anchor point="CENTER" x="0" y="0"/>
-        					</Anchors>
-        					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
-        				</Texture>
-        				<Texture parentKey="4" file="Interface\ItemSocketingFrame\UI-ItemSockets" alphaMode="ADD" hidden="true">
-        					<Size x="13" y="13"/>
-        					<Anchors>
-        						<Anchor point="CENTER" x="0" y="0"/>
-        					</Anchors>
-        					<TexCoords left="0.3984375" right="0.4453125" top="0.40234375" bottom="0.44921875"/>
-        				</Texture>
-        			</Layer>
-        		</Layers>
-				<Anchors>
-					<Anchor point="CENTER" x="1" />
-				</Anchors>
-            </Frame>
-        </Frames>
-        <Layers>
-			<Layer level="OVERLAY" textureSubLevel="2">
-                <Texture parentKey="favorite" atlas="PetJournal-FavoritesIcon" useAtlasSize="true">
-					<Anchors>
-						<Anchor point="TOPLEFT" relativeKey="$parent.icon" x="-8" y="8"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-		</Layers>
-		
-		<Scripts>
-			<OnLoad>
-				CollectionsSpellButton_OnLoad(self, MOPRemixGemsJournal_UpdateButton)
-			</OnLoad>
-
-			<OnShow>
-				CollectionsSpellButton_OnShow(self);
-			</OnShow>
-			
-			<OnHide>
-				CollectionsSpellButton_OnHide(self);
-			</OnHide>
-            
-			<OnEnter function="MOPRemixGemsJournalSpellButton_OnEnter"/>
-            <OnLeave inherit="prepend" function="MOPRemixGemsJournalSpellButton_OnExit" />
-		</Scripts>
-	</CheckButton>
     
     <StatusBar name="ManuscriptMountBarTemplate" virtual="true">
         <Size x="55" y="13"/>
@@ -314,46 +245,6 @@
 		</Scripts>
 	</CheckButton>
     
-    <CheckButton name="MOPRemixGemsItemButtonTemplate" inherits="ManuscriptsSpellButtonTemplate" hidden="true" virtual="true" frameStrata="TOOLTIP">
-         <Scripts>
-			<OnEvent function="nop"/>
-			<PreClick function="nop"/>
-            <PostClick>
-                self:SetChecked(false)
-            </PostClick>
-			<OnShow function="nop"/>
-			<OnHide function="nop"/>
-
-			<OnEnter function="MOPRemixGemsJournalItemButton_OnEnter"/>
-            <OnLeave function="MOPRemixGemsJournalItemButton_OnExit"/>
-		</Scripts>
-    </CheckButton>
-    
-    <CheckButton name="MOPRemixGemsSocketButtonTemplate" inherits="MOPRemixGemsItemButtonTemplate" virtual="true">
-        <Layers>
-			<Layer level="BORDER">
-				<Texture file="Interface\ItemSocketingFrame\UI-ItemSockets">
-					<Size x="72" y="74"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-					<TexCoords left="0.71875" right="1" top="0.7109375" bottom="1"/>
-				</Texture>
-				<Texture parentKey="Background" name="$parentBackground">
-					<Size x="43" y="44"/>
-					<Anchors>
-						<Anchor point="CENTER"/>
-					</Anchors>
-				</Texture>
-			</Layer>
-        </Layers>
-        <Scripts>
-            <OnEnter function="MOPRemixGemsJournalSocketButton_OnEnter"/>
-            <PreClick function="MOPRemixGemsJournalSocketButton_PreClick"/>
-            <PostClick function="MOPRemixGemsJournalSocketButton_PostClick"/>
-        </Scripts>
-    </CheckButton>
-    
     <Include file="ManuscriptsTab.xml"/>
     <Include file="ShapeshiftsTab.xml"/>
     <Include file="SoulshapesTab.xml"/>
@@ -361,6 +252,6 @@
     <Include file="PolymorphsTab.xml"/>
     <Include file="GrimoiresTab.xml"/>
     <Include file="TameTomesTab.xml"/>
+    <Include file="DirigibleTab.xml"/>
     <Include file="SideTabs.xml"/>
-    <Include file="MOPRemixGemsTab.xml"/>
 </Ui>

@@ -42,6 +42,11 @@
                     <Anchor point="TOPLEFT" relativeTo="ManuscriptsSkillLineManuscriptsTab" relativePoint="BOTTOMLEFT" x="0" y="-17"/>
                 </Anchors>
             </CheckButton>
+            <CheckButton name="ManuscriptsSkillLineDirigibleTab" inherits="ManuscriptSkillLineTabTemplate" id="8">
+                <Anchors>
+                    <Anchor point="TOPLEFT" relativeTo="ManuscriptsSkillLineManuscriptsTab" relativePoint="BOTTOMLEFT" x="0" y="-17"/>
+                </Anchors>
+            </CheckButton>
         </Frames>
     </Frame>
 </Ui>

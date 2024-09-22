@@ -43,6 +43,8 @@ L["Vi'el"] = true
 L["Aridormi"] = true
 L["Cupri"] = true
 L["Gigi Gigavoid"] = true
+L["Sir Finley"] = "Sir Finley Mrrgglton"
+L["Reno Jackson"] = true
 
 -- Rare spawns
 L["Honey Smasher"] = true

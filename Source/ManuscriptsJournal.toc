@@ -43,6 +43,7 @@ SpellIDs.lua
 db\init.lua
 db\RenewedProtoDrake.lua
 db\CliffsideWylderdrake.lua
+db\Dirigible.lua
 db\FlourishingWhimsydrake.lua
 db\GrottoNetherwingDrake.lua
 db\HighlandDrake.lua
