@@ -14,7 +14,6 @@
 ## LoadWith: Blizzard_Collections
 ## IconTexture: 254291
 ## SavedVariables: ManuscriptsJournalExportDB, ManuscriptsJournalFiltersDB, SoulshapesJournalFiltersDB, ShapeshiftsJournalAccountWideDB
-## SavedVariablesPerCharacter: ManuscriptsJournalMOPRemixGemsDB
 
 libs\LibStub\LibStub.lua
 libs\AceLocale-3.0\AceLocale-3.0.xml
@@ -54,7 +53,6 @@ db\10-2.lua
 db\Shapeshifts.lua
 db\Soulshapes.lua
 db\HexTomes.lua
-db\MOPRemixGems.lua
 db\PolymorphTomes.lua
 db\TameTomes.lua
 db\WarlockDemonTomes.lua

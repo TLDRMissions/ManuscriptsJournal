@@ -334,7 +334,7 @@ hooksecurefunc("ToggleCollectionsJournal", function(tab)
 end)
 
 function ParentMixin:GetAllPanels()
-    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal, TameTomesJournal, MOPRemixGemsJournal}
+    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal, TameTomesJournal}
 end
 
 function ParentMixin:GetAllTabs()

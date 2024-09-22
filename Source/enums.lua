@@ -62,12 +62,6 @@ addon.Enum.WarlockCategories.Darkglare = 7
 addon.Enum.WarlockCategories.Tyrant = 8
 addon.Enum.WarlockCategories.Doomguard = 9
 
-addon.Enum.MOPRemixGemType = {}
-addon.Enum.MOPRemixGemType.Meta = 1
-addon.Enum.MOPRemixGemType.Cogwheel = 2
-addon.Enum.MOPRemixGemType.Tinker = 3
-addon.Enum.MOPRemixGemType.Prismatic = 4
-
 addon.Strings = {}
 addon.Strings.Drakes = {}
 do
@@ -159,9 +153,3 @@ addon.Enum.WarlockCategories.Infernal = 6
 addon.Enum.WarlockCategories.Darkglare = 7
 addon.Enum.WarlockCategories.Tyrant = 8
 addon.Enum.WarlockCategories.Doomguard = 9
-
-addon.Strings.MOPRemixGemType = {}
-addon.Strings.MOPRemixGemType[1] = EMPTY_SOCKET_META
-addon.Strings.MOPRemixGemType[2] = COGWHEEL_GEM
-addon.Strings.MOPRemixGemType[3] = EMPTY_SOCKET_TINKER
-addon.Strings.MOPRemixGemType[4] = PRISMATIC_GEM
