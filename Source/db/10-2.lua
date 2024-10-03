@@ -44,6 +44,7 @@ local manuscripts = {
         questID = 78216,
         source = sources.PvPSeason,
         achievementID = 19091, -- Season 3
+        unobtainable = true,
 	},
     {
 		category = drakes.WindingSlitherdrake,
@@ -52,6 +53,7 @@ local manuscripts = {
         questID = 80014,
         source = sources.PvPSeason,
         achievementID = 19490, -- Season 4
+        unobtainable = true,
 	},
 	{
 		category = drakes.WindingSlitherdrake,
