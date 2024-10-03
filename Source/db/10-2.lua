@@ -21,6 +21,7 @@ local manuscripts = {
         questID = 78453,
         source = sources.Raid,
         bossName = L["Fyrakk"],
+        unobtainable = true,
 	},
     {
 		category = drakes.RenewedProtoDrake,
