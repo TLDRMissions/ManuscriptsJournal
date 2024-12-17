@@ -177,6 +177,7 @@ function ShapeshiftsMixin:LayoutCurrentPage()
                 if layoutData.itemID then
                     entry.itemID = layoutData.itemID
                 else
+                    entry.itemID = nil
                     entry.spellID = layoutData.spellID
                 end
 

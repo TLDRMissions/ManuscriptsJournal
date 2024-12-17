@@ -281,7 +281,9 @@ function ParentMixin:UpdateButton(button)
         end)
     elseif button.spellID then
         data = addon.spellIDToDB[button.spellID]
-        name, _, texture = C_Spell.GetSpellInfo(button.spellID).name
+        local info = C_Spell.GetSpellInfo(button.spellID)
+        name = info.name
+        texture = info.iconID
         runLater()
     end
 end

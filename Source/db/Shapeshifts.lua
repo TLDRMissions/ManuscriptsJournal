@@ -241,4 +241,11 @@ addon.ShapeshiftDB = {
 		name = "Mark of the Tideskipper",
         source = sources.Inscription,
 	},
+    {
+        spellID = 243616,
+        questID = 46319,
+        name = "Archdruid's Lunarwing Form",
+        source = sources.Quest,
+        sourceQuestID = 46319,
+    },
 }
