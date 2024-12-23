@@ -6,13 +6,7 @@ TameTomesMixin = CreateFromMixins(ShapeshiftsMixin)
 
 function TameTomesMixin:OnLoad()
     if select(2, UnitClass("player")) ~= "HUNTER" then return end
-	self.shapeshiftEntryFrames = {};
 
-	self.shapeshiftLayoutData = {};
-
-	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
-    if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
-    
     -- Refer to comments in PolymorphsMixin:OnLoad
     
     local name = C_Spell.GetSpellInfo(1515).name
@@ -30,32 +24,6 @@ function TameTomesMixin:OnLoad()
     addon.ParentMixin.OnLoad(self)
 end
 
-function TameTomesMixin:SortShapeshiftsIntoEquipmentBuckets()
-	-- Sort them into equipment buckets
-	local equipBuckets = {};
-    
-    for _, shapeshiftData in pairs(addon.TameTomesDB) do
-    	local itemID, spellID = shapeshiftData.itemID, shapeshiftData.spellID
-    		
-    	if not equipBuckets[1] then
-    		equipBuckets[1] = {}
-    	end
-
-        table.insert(equipBuckets[1], shapeshiftData)
-
-        if self:IsCollected(shapeshiftData) then
-            self.numKnownShapeshifts = self.numKnownShapeshifts + 1
-    	end
-    	self.numPossibleShapeshifts = self.numPossibleShapeshifts + 1
-	end
-
-	return equipBuckets;
-end
-
-function TameTomesMixin:IsCollected(data)
-    if data.questID then
-        return C_QuestLog.IsQuestFlaggedCompleted(data.questID)
-    else
-        return IsPlayerSpell(data.spellID)
-    end
+function TameTomesMixin:GetEntryDB()
+    return addon.TameTomesDB
 end

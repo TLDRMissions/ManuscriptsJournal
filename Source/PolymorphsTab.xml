@@ -2,7 +2,10 @@
     <Script file="PolymorphsTab.lua"/>
     
     <Frame name="PolymorphsJournal" parent="CollectionsJournal" mixin="PolymorphsMixin" setAllPoints="true" hidden="true">
-		<Frames>
+		<KeyValues>
+           <KeyValue key="tabName" value="Polymorphs Journal" />
+        </KeyValues>
+        <Frames>
 			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
 				<Layers>
 					<Layer level="BORDER" textureSubLevel="1">

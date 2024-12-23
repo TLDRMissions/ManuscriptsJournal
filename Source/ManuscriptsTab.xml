@@ -2,7 +2,14 @@
 	<Script file="ManuscriptsTab.lua"/>
 	
 	<Frame name="ManuscriptsJournal" parent="CollectionsJournal" mixin="ManuscriptsMixin" setAllPoints="true" hidden="true">
-		<Frames>
+		<KeyValues>
+	       <KeyValue key="usesSearch" value="true" type="boolean" />
+           <KeyValue key="tabName" value="Manuscripts Journal" />
+           <KeyValue key="usesBars" value="true" type="boolean" />
+           <KeyValue key="usesSourceFilter" value="true" type="boolean" />
+           <KeyValue key="usesHeader" value="true" type="boolean" />
+        </KeyValues>
+        <Frames>
             <StatusBar name="$parentProgressBar" parentKey="progressBar"> 
                 <Size x="408" y="18"/>
         		<Anchors>

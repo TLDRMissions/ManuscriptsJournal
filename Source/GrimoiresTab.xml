@@ -2,6 +2,10 @@
     <Script file="GrimoiresTab.lua"/>
     
     <Frame name="GrimoiresJournal" parent="CollectionsJournal" mixin="GrimoiresMixin" setAllPoints="true" hidden="true">
+		<KeyValues>
+           <KeyValue key="tabName" value="Grimoires Journal" />
+           <KeyValue key="usesHeader" value="true" type="boolean" />
+        </KeyValues>
 		<Frames>
 			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
 				<Layers>

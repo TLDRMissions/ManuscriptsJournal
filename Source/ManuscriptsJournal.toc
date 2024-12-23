@@ -13,7 +13,7 @@
 ## LoadOnDemand: 1
 ## LoadWith: Blizzard_Collections
 ## IconTexture: 254291
-## SavedVariables: ManuscriptsJournalExportDB, ManuscriptsJournalFiltersDB, SoulshapesJournalFiltersDB, ShapeshiftsJournalAccountWideDB
+## SavedVariables: ManuscriptsJournalExportDB, ManuscriptsJournalFiltersDB, SoulshapesJournalFiltersDB, ShapeshiftsJournalAccountWideDB, ShapeshiftsJournalFiltersDB
 
 libs\LibStub\LibStub.lua
 libs\AceLocale-3.0\AceLocale-3.0.xml

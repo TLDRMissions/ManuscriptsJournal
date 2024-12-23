@@ -13,6 +13,17 @@ addon.Enum.Drakes.GrottoNetherwingDrake = 6
 addon.Enum.Drakes.FlourishingWhimsydrake = 7
 addon.Enum.Drakes.All = 8
 
+addon.Enum.Shapeshifts = {}
+addon.Enum.Shapeshifts.Bear = 1
+addon.Enum.Shapeshifts.Cat = 2
+addon.Enum.Shapeshifts.Moonkin = 3
+addon.Enum.Shapeshifts.Tree = 4
+addon.Enum.Shapeshifts.Travel = 5
+addon.Enum.Shapeshifts.Aquatic = 6
+addon.Enum.Shapeshifts.Flight = 7
+addon.Enum.Shapeshifts.Other = 8
+addon.Enum.Shapeshifts.All = 9
+
 addon.Enum.Sources = {}
 addon.Enum.Sources.Rare = 1
 addon.Enum.Sources.Reputation = 2
@@ -95,6 +106,17 @@ do
     end)
 end
 addon.Strings.Drakes[8] = ACHIEVEMENTFRAME_FILTER_ALL
+
+addon.Strings.Shapeshifts = {}
+addon.Strings.Shapeshifts[1] = C_Spell.GetSpellName(5487)
+addon.Strings.Shapeshifts[2] = C_Spell.GetSpellName(768)
+addon.Strings.Shapeshifts[3] = C_Spell.GetSpellName(197625)
+addon.Strings.Shapeshifts[4] = C_Spell.GetSpellName(33891)
+addon.Strings.Shapeshifts[5] = C_Spell.GetSpellName(783)
+addon.Strings.Shapeshifts[6] = C_Spell.GetSpellName(276012)
+addon.Strings.Shapeshifts[7] = C_Spell.GetSpellName(165962)
+addon.Strings.Shapeshifts[8] = OTHER
+addon.Strings.Shapeshifts[9] = ACHIEVEMENTFRAME_FILTER_ALL
 
 addon.Strings.Sources = {}
 addon.Strings.Sources[1] = L["Rare Spawns"]

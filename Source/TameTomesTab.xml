@@ -2,7 +2,13 @@
     <Script file="TameTomesTab.lua"/>
     
     <Frame name="TameTomesJournal" parent="CollectionsJournal" mixin="TameTomesMixin" setAllPoints="true" hidden="true">
-		<Frames>
+		<KeyValues>
+	       <KeyValue key="usesSearch" value="true" type="boolean" />
+           <KeyValue key="tabName" value="Tame Tomes Journal" />
+           <KeyValue key="usesSourceFilter" value="true" type="boolean" />
+           <KeyValue key="usesHeader" value="true" type="boolean" />
+        </KeyValues>
+        <Frames>
 			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
 				<Layers>
 					<Layer level="BORDER" textureSubLevel="1">

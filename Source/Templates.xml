@@ -12,7 +12,13 @@
 					</Anchors>
 					<TexCoords left="0.04347826" right="0.95652173" top="0.04347826" bottom="0.95652173"/>
 				</Texture>
-
+                
+                <Texture parentKey="SwatchTexture" atlas="Forge-ColorSwatch" useAtlasSize="true">
+					<Anchors>
+						<Anchor point="CENTER"/>
+					</Anchors>
+				</Texture>
+                
 				<Texture parentKey="iconTextureUncollected" setAllPoints="true" alpha=".18" hidden="true" desaturated="true">
 					<Size x="42" y="41" />
 					<Anchors>

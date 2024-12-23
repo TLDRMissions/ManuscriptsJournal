@@ -2,6 +2,9 @@
     <Script file="HexTomesTab.lua"/>
     
     <Frame name="HexTomesJournal" parent="CollectionsJournal" mixin="HexTomesMixin" setAllPoints="true" hidden="true">
+        <KeyValues>
+           <KeyValue key="tabName" value="Hex Tomes Journal" />
+        </KeyValues>
 		<Frames>
 			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
 				<Layers>

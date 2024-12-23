@@ -1,214 +1,105 @@
 local addonName, addon = ...
 
--- Each manuscript button entry dimension
-local BUTTON_WIDTH = 208;
-local BUTTON_HEIGHT = 50;
+local SHAPESHIFT_SORT_ORDER = {
+    addon.Enum.Shapeshifts.Bear,
+    addon.Enum.Shapeshifts.Cat,
+    addon.Enum.Shapeshifts.Moonkin,
+    addon.Enum.Shapeshifts.Tree,
+    addon.Enum.Shapeshifts.Travel,
+    addon.Enum.Shapeshifts.Flight,
+    addon.Enum.Shapeshifts.Aquatic,
+    addon.Enum.Shapeshifts.All,
+}
 
--- Padding around each manuscript button
-local BUTTON_PADDING_X = 0;
-local BUTTON_PADDING_Y = 16;
-
--- The total height of a manuscript header
-local HEADER_HEIGHT = 37
-
--- Y padding before the first header of a page
-local FIRST_HEADER_Y_PADDING = 0;
--- Y padding before additional headers after the first header of a page
-local ADDITIONAL_HEADER_Y_PADDING = 16;
-
--- Max height of a page before starting a new page, when the view mode is in "all classes"
-local VIEW_MODE_FULL_PAGE_HEIGHT = 370;
--- Max width of a page before starting a new row
-local PAGE_WIDTH = 625;
-
--- The starting X offset of a page
-local START_OFFSET_X = 40;
--- The starting Y offset of a page
-local START_OFFSET_Y = -25;
-
--- Additional Y offset of a page when the view mode is in "all classes"
-local VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET = 0;
-
-local NEW_ROW_OPCODE = -1; -- Used to indicate that the layout should move to the next row
+local NUM_SHAPESHIFTS = 0
+for _ in pairs(addon.Enum.Shapeshifts) do
+    NUM_SHAPESHIFTS = NUM_SHAPESHIFTS + 1
+end
 
 -- Druid Shapeshifts tab
 
 ShapeshiftsMixin = CreateFromMixins(addon.ParentMixin)
 
+function ShapeshiftsMixin:GetNumCategories()
+    return NUM_SHAPESHIFTS
+end
+
+function ShapeshiftsMixin:GetAllCategory()
+    return addon.Enum.Shapeshifts.All
+end
+
+function ShapeshiftsMixin:GetSortOrder()
+    return SHAPESHIFT_SORT_ORDER
+end
+
+function ShapeshiftsMixin:GetCategoryStrings()
+    return addon.Strings.Shapeshifts
+end
+
+function ShapeshiftsMixin:GetEntryDB()
+    return addon.ShapeshiftDB
+end
+
+function ShapeshiftsMixin:GetFilterDB()
+    return ShapeshiftsJournalFiltersDB
+end
+
 function ShapeshiftsMixin:OnLoad()
     if select(2, UnitClass("player")) ~= "DRUID" then return end
-	self.shapeshiftEntryFrames = {};
-
-	self.shapeshiftLayoutData = {};
-
-	if not self.numKnownShapeshifts then self.numKnownShapeshifts = 0 end
-    if not self.numPossibleShapeshifts then self.numPossibleShapeshifts = 0 end
-    
     self.tabName = AUCTION_CATEGORY_GLYPHS
-    
-    self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED");
-    
+
     addon.ParentMixin.OnLoad(self)
     
     EventUtil.ContinueOnAddOnLoaded(addonName, function()
         if not ShapeshiftsJournalAccountWideDB then
             ShapeshiftsJournalAccountWideDB = {}
         end
+        if not ShapeshiftsJournalFiltersDB then
+            ShapeshiftsJournalFiltersDB = {}
+        end
         self:FullRefreshIfVisible()
     end)
 end
 
-function ShapeshiftsMixin:FullRefreshIfVisible()
-	self.needsDataRebuilt = true;
-	self:RefreshViewIfVisible();
-end
-
-function ShapeshiftsMixin:RefreshViewIfVisible()
-	if self:IsVisible() then
-		self:RefreshView();
-	else
-		self.needsRefresh = true;
-	end
-end
-
-function ShapeshiftsMixin:RebuildLayoutData()
-	if not self.needsDataRebuilt then
-		return;
-	end
-	self.needsDataRebuilt = false;
-
-	self.shapeshiftLayoutData = {};
-
-    self.numKnownShapeshifts = 0
-    self.numPossibleShapeshifts = 0
-
-	local equipBuckets = self:SortShapeshiftsIntoEquipmentBuckets();
-	self:SortEquipBucketsIntoPages(equipBuckets);
-	self.PagingFrame:SetMaxPages(math.max(#self.shapeshiftLayoutData, 1));
-end
-
-function ShapeshiftsMixin:SortShapeshiftsIntoEquipmentBuckets()
-	-- Sort them into equipment buckets
-	local equipBuckets = {};
-    
-    for _, shapeshiftData in pairs(addon.ShapeshiftDB) do
-        local collected = self:IsCollected(shapeshiftData)
-    		
-    	if not equipBuckets[1] then
-    		equipBuckets[1] = {}
-    	end
-
-    	table.insert(equipBuckets[1], shapeshiftData)
-
-        if collected then
-            self.numKnownShapeshifts = self.numKnownShapeshifts + 1
-    	end
-    	self.numPossibleShapeshifts = self.numPossibleShapeshifts + 1
-	end
-
-	return equipBuckets;
-end
-
-function ShapeshiftsMixin:SortEquipBucketsIntoPages(equipBuckets)
-	if not next(equipBuckets) then
-		return;
-	end
-
-	local currentPage = {};
-	local pageHeight = VIEW_MODE_FULL_PAGE_HEIGHT
-	local heightLeft = pageHeight;
-	local widthLeft = PAGE_WIDTH;
-
-    local equipBucket = equipBuckets[1];
-
-    if equipBucket then
-  		widthLeft = PAGE_WIDTH;
-  		heightLeft = heightLeft - HEADER_HEIGHT;
-
-    	-- Add buttons
-    	for i, itemID in ipairs(equipBucket) do
-    		if widthLeft < BUTTON_WIDTH + BUTTON_PADDING_X then
-    			-- Not enough room for another entry, try going to a new row
-    			widthLeft = PAGE_WIDTH;
-
-    			if heightLeft < BUTTON_HEIGHT + BUTTON_PADDING_Y then
-    				-- Not enough room for another row of entries, move to next page
-    				table.insert(self.shapeshiftLayoutData, currentPage);
-
-    				heightLeft = pageHeight - HEADER_HEIGHT;
-    				currentPage = {};
-    			else
-    				-- Room for another row
-    				table.insert(currentPage, NEW_ROW_OPCODE);
-    				heightLeft = heightLeft - BUTTON_HEIGHT - BUTTON_PADDING_Y;
-    			end
-    		end
-
-    		widthLeft = widthLeft - BUTTON_WIDTH - BUTTON_PADDING_X;
-    		table.insert(currentPage, itemID);
-    	end
-    end
-
-	table.insert(self.shapeshiftLayoutData, currentPage);
-end
-
-function ShapeshiftsMixin:LayoutCurrentPage()
-	local pageLayoutData = self.shapeshiftLayoutData[self.PagingFrame:GetCurrentPage()];
-
-	local numEntriesInUse = 0;
-	local numHeadersInUse = 0;
-
-	if pageLayoutData then
-		local offsetX = START_OFFSET_X;
-		local offsetY = START_OFFSET_Y;
-		offsetY = offsetY + VIEW_MODE_FULL_ADDITIONAL_Y_OFFSET;
-
-		for i, layoutData in ipairs(pageLayoutData) do
-			if layoutData == NEW_ROW_OPCODE then
-				assert(i ~= 1); -- Never want to start a new row first thing on a page, something is wrong with the page creator
-				offsetX = START_OFFSET_X;
-				offsetY = offsetY - BUTTON_HEIGHT - BUTTON_PADDING_Y;
-			elseif type(layoutData) == "string" then
-                print("error: header found when not expected")
-			else
-				-- Entry
-				numEntriesInUse = numEntriesInUse + 1;
-				local entry = self:AcquireFrame(self.shapeshiftEntryFrames, numEntriesInUse, "CHECKBUTTON", "ManuscriptSpellButtonTemplate");
-                if layoutData.itemID then
-                    entry.itemID = layoutData.itemID
-                else
-                    entry.itemID = nil
-                    entry.spellID = layoutData.spellID
-                end
-
-				if entry:IsVisible() then
-					-- If the button was already visible (going to a new page and being reused) we have to update the button immediately instead of deferring the update through the OnShown
-					self:UpdateButton(entry);
-				end
-
-				if i == 1 then
-					-- Continuation of a section from a previous page
-					-- Move everything down as if there was a header
-					offsetY = offsetY - HEADER_HEIGHT;
-				end
-
-				entry:SetPoint("TOPLEFT", self.iconsFrame, "TOPLEFT", offsetX, offsetY);
-
-				offsetX = offsetX + BUTTON_WIDTH + BUTTON_PADDING_X;
-			end
-		end
-	end
-
-	addon.ActivatePooledFrames(self.shapeshiftEntryFrames, numEntriesInUse);
-end
-
 function ShapeshiftsMixin:IsCollected(data)
-    local collected = C_QuestLog.IsQuestFlaggedCompleted(data.questID)
-    if collected and ShapeshiftsJournalAccountWideDB then
-        ShapeshiftsJournalAccountWideDB[data.questID] = collected
+    if data.questID then
+        local collected = C_QuestLog.IsQuestFlaggedCompleted(data.questID)
+        if collected and ShapeshiftsJournalAccountWideDB then
+            ShapeshiftsJournalAccountWideDB[data.questID] = collected
+        end
+        if (not collected) and ShapeshiftsJournalAccountWideDB and ShapeshiftsJournalAccountWideDB[data.questID] then
+            collected = true
+        end
+        return collected
     end
-    if (not collected) and ShapeshiftsJournalAccountWideDB and ShapeshiftsJournalAccountWideDB[data.questID] then
-        collected = true
+    
+    if data.artifactID then
+        local artifactAppearanceSetID, artifactAppearanceID, appearanceName, displayIndex, unlocked, failureDescription, uiCameraID, altHandCameraID, swatchColorR, swatchColorG, swatchColorB, modelOpacity, modelSaturation, obtainable = C_ArtifactUI.GetAppearanceInfoByID(data.artifactID)
+        return unlocked
     end
-    return collected
+    
+    if data.customizationID then
+        return self:IsAppearanceCollected(data.customizationID)
+    end
 end
+
+function ShapeshiftsMixin:IsAppearanceCollected(appearanceID)
+    return ShapeshiftsJournalAccountWideDB["aid"..appearanceID]
+end
+
+local noInfinite
+hooksecurefunc(C_BarberShop, "GetAvailableCustomizations", function()
+    if noInfinite then return end
+    noInfinite = true
+    local categories = C_BarberShop.GetAvailableCustomizations()
+    noInfinite = nil
+    for _, category in ipairs(categories) do
+        if spellShapeshiftFormID then
+            for _, option in ipairs(category.options) do
+                for _, choice in ipairs(option.choices) do
+                    ShapeshiftsJournalAccountWideDB["aid"..choice.id] = choice.isLocked
+                end
+            end
+        end
+    end
+end)

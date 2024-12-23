@@ -1,6 +1,9 @@
 <Ui>
     <Script file="DirigibleTab.lua"/>
     <Frame name="DirigibleJournal" parent="CollectionsJournal" mixin="DirigibleMixin" setAllPoints="true" hidden="true">
+    	<KeyValues>
+           <KeyValue key="tabName" value="Dirigible Journal" />
+        </KeyValues>
 		<Frames>
 			<Frame parentKey="iconsFrame" inherits="CollectionsBackgroundTemplate">
 				<Layers>

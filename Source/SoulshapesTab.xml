@@ -2,7 +2,13 @@
 	<Script file="SoulshapesTab.lua"/>
 	
 	<Frame name="SoulshapesJournal" parent="CollectionsJournal" mixin="SoulshapesMixin" setAllPoints="true" hidden="true">
-		<Frames>
+		<KeyValues>
+	       <KeyValue key="usesSearch" value="true" type="boolean" />
+           <KeyValue key="tabName" value="Soulshapes Journal" />
+           <KeyValue key="usesSourceFilter" value="true" type="boolean" />
+           <KeyValue key="spellButtonTemplate" value="SoulshapeSpellButtonTemplate" />
+        </KeyValues>
+        <Frames>
             <StatusBar name="$parentProgressBar" parentKey="progressBar"> 
                 <Size x="408" y="18"/>
         		<Anchors>
