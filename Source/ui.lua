@@ -682,7 +682,6 @@ function ParentMixin:UpdateButton(button)
     local data, name, texture
     
     local function runLater()
-        button.iconTexture:Show()
         button.SwatchTexture:Hide()
         
         if texture then
@@ -743,6 +742,7 @@ function ParentMixin:UpdateButton(button)
         runLater()
         
         button.iconTexture:Hide()
+        button.iconTextureUncollected:Hide()
         button.SwatchTexture:Show()
         
         button.SwatchTexture:SetVertexColor(swatchColorR, swatchColorG, swatchColorB, unlocked and 1.0 or .5)
