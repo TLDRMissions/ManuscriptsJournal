@@ -94,10 +94,10 @@ hooksecurefunc(C_BarberShop, "GetAvailableCustomizations", function()
     local categories = C_BarberShop.GetAvailableCustomizations()
     noInfinite = nil
     for _, category in ipairs(categories) do
-        if spellShapeshiftFormID then
+        if category.spellShapeshiftFormID then
             for _, option in ipairs(category.options) do
                 for _, choice in ipairs(option.choices) do
-                    ShapeshiftsJournalAccountWideDB["aid"..choice.id] = choice.isLocked
+                    ShapeshiftsJournalAccountWideDB["aid"..choice.id] = not choice.isLocked
                 end
             end
         end
