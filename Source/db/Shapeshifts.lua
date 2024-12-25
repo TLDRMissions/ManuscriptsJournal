@@ -189,7 +189,7 @@ addon.ShapeshiftDB = {
         category = shapeshifts.Cat,
     },
     {
-        artifactID = 439,
+        artifactID = 438,
         category = shapeshifts.Cat,
     },
     -- Primal Stalker
