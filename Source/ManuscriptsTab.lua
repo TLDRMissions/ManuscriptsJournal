@@ -105,6 +105,12 @@ do
             GameTooltip:AddLine(failureDescription)
             GameTooltip:Show()
             return
+        elseif db.name then
+            local name = db.name
+            if type(name) == "function" then
+                name = name()
+            end
+            GameTooltip:AddLine(name)
         end
         local source = db.source
         if source == nil then return end
@@ -179,7 +185,11 @@ do
         elseif source == addon.Enum.Sources.ZoneDrop then
             GameTooltip:AddLine(C_Map.GetAreaInfo(db.zoneID))
         elseif source == addon.Enum.Sources.Other then
-            GameTooltip:AddLine(db.otherDescription)
+            local other = db.otherDescription
+            if type(other) == "function" then
+                other = other()
+            end
+            GameTooltip:AddLine(other)
         else
             print(source)
         end

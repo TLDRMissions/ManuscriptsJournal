@@ -746,9 +746,12 @@ function ParentMixin:UpdateButton(button)
         button.SwatchTexture:Show()
         
         button.SwatchTexture:SetVertexColor(swatchColorR, swatchColorG, swatchColorB, unlocked and 1.0 or .5)
-    elseif data.icon then
-        texture = data.icon
+    elseif data.iconID then
+        texture = data.iconID
         name = data.name
+        if type(name) == "function" then
+            name = name()
+        end
         data = data
         
         runLater()

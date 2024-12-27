@@ -81,6 +81,10 @@ function ShapeshiftsMixin:IsCollected(data)
     if data.customizationID then
         return self:IsAppearanceCollected(data.customizationID)
     end
+    
+    if data.isCollected then
+        return data.isCollected()
+    end
 end
 
 function ShapeshiftsMixin:IsAppearanceCollected(appearanceID)

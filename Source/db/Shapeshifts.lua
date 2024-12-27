@@ -262,10 +262,26 @@ addon.ShapeshiftDB = {
     },
     -- 26 Druid of the Flame
     {
-        itemID = 122304,
-        name = "Fandral's Seed Pouch",
-        customizationID = 15379,
+        iconID = 317242,
+        name = function() return C_Spell.GetSpellName(427655) end, -- Druid of the Flame
         category = shapeshifts.Cat,
+        source = sources.Other,
+        otherDescription = function()
+                local toyCollected = PlayerHasToy(122304)
+                local transmogCollected = C_TransmogCollection.PlayerHasTransmog(69897) or C_TransmogCollection.PlayerHasTransmog(71466)
+                
+                local toyString = toyCollected and "|cff00ff00" or "|cffff0000"
+                local _, toyName = C_ToyBox.GetToyInfo(122304)
+                toyString = toyString .. toyName .. "|r"
+                
+                local transmogString = transmogCollected and "|cff00ff00" or "|cffff0000"
+                local transmogName = C_Item.GetItemNameByID(69897) or ""
+                transmogString = transmogString .. transmogName .. "|r"
+                return TOY .. ": " .. toyString .. ", or " .. TRANSMOGRIFICATION .. ": " .. transmogString
+            end,
+        isCollected = function()
+                return PlayerHasToy(122304) or C_TransmogCollection.PlayerHasTransmog(69897) or C_TransmogCollection.PlayerHasTransmog(71466)
+            end,
     },
     -- 27 Dreamsaber Blue
     {
