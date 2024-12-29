@@ -262,7 +262,7 @@ addon.ShapeshiftDB = {
     },
     -- 26 Druid of the Flame
     {
-        iconID = 317242,
+        icon = 317242,
         name = function() return C_Spell.GetSpellName(427655) end, -- Druid of the Flame
         category = shapeshifts.Cat,
         source = sources.Other,
