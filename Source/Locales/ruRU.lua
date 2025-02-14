@@ -38,8 +38,11 @@ L["Vi'el"] = "Ви'ел"
 L["Aridormi"] = "Аридорми"
 L["Cupri"] = "Купри"
 L["Gigi Gigavoid"] = "Гиги Гигабездна"
+L["Sir Finley"] = "Сэр Финли Мрргглтон"
+L["Reno Jackson"] = "Рено Джексон"
 
 -- Rare spawns
+L["Honey Smasher"] = "Медодав"
 L["Gethdazr"] = "Гетдазр"
 L["Corrupted Proto-Dragon"] = "Оскверненный протодракон"
 L["Diluu"] = "Дилуу"
@@ -152,6 +155,9 @@ L["Lady Shaz'ra"] = "Леди Шаз'ра"
 L["Blue Terror"] = "Синий Ужас"
 L["Pyrachniss"] = "Пирахнисс"
 L["Shardwing"] = "Шипокрыл"
+L["Matron Folnuna"] = "Госпожа Фолнуна"
+L["Radix"] = "Радикс"
+L["Ixallon the Soulbreaker"] = "Иксаллон Душегуб"
             
 L["Elemental Storms"] = "Буря Стихии"
 
