@@ -27,3 +27,11 @@ end
 function TameTomesMixin:GetEntryDB()
     return addon.TameTomesDB
 end
+
+function TameTomesMixin:IsCollected(data)
+    if data.questID then
+        return C_QuestLog.IsQuestFlaggedCompleted(data.questID)
+    else
+        return IsPlayerSpell(data.spellID)
+    end
+end
