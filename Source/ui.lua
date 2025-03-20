@@ -101,7 +101,7 @@ function ParentMixin:GetUncollectedFilter()
 end
 
 function ParentMixin:GetUnusableFilter()
-    return unusableFilter
+    return self.unusableFilter
 end
 
 function ParentMixin:SetCollectedFilter(checked)
