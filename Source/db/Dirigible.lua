@@ -10,6 +10,7 @@ addon.DirigibleDB = {
         name = "Delver's Dirigible Schematic: Void",
         source = sources.Other,
         otherDescription = "Zekvir T??",
+        unobtainable = true,
     },
 	{
         itemID = 224771,

@@ -69,6 +69,7 @@ db\HexTomes.lua
 db\PolymorphTomes.lua
 db\TameTomes.lua
 db\WarlockDemonTomes.lua
+db\11-1.lua
 db\final.lua
 
 Templates.xml
