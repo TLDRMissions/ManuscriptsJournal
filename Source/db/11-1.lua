@@ -56,16 +56,22 @@ local manuscripts = {
         questID = 82189,
         name = "Delver's Dirigible Schematic: Red Paint",
     },
-    --[[{
+    {
         itemID = 238837,
         questID = 86198,
         name = "Delver's Dirigible Schematic: Pale Paint",
+        source = sources.Renown,
+        renownFaction = 2688,
+        renownRank = 8,
     },
     {
         itemID = 238839,
         questID = 86199,
         name = "Delver's Dirigible Schematic: Arathi Decal",
-    },]]
+        source = sources.Renown,
+        renownFaction = 2688,
+        renownRank = 8,
+    },
     {
         itemID = 235688,
         questID = 82174,
