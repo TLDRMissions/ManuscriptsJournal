@@ -1,0 +1,9 @@
+<Ui>
+    <Script file="PepeTab.lua"/>
+    
+    <Frame name="PepeJournal" inherits="ManuscriptsJournalBase" mixin="PepeMixin" setAllPoints="true" hidden="true">
+		<KeyValues>
+           <KeyValue key="tabName" value="Pepe Journal" />
+        </KeyValues>
+	</Frame>
+</Ui>

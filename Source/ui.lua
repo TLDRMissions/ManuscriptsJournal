@@ -373,6 +373,7 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineWarlockTab.tooltip = GrimoiresJournal.tabName
         ManuscriptsSkillLineHunterTab.tooltip = TameTomesJournal.tabName
         ManuscriptsSkillLineDirigibleTab.tooltip = DirigibleJournal.tabName
+        ManuscriptsSkillLinePepeTab.tooltip = PepeJournal.tabName
         
         ManuscriptsSkillLineManuscriptsTab:SetNormalTexture(254288)
         ManuscriptsSkillLineDruidTab:SetNormalTexture(136036)
@@ -382,6 +383,7 @@ function ParentMixin:OnLoad()
         ManuscriptsSkillLineWarlockTab:SetNormalTexture(C_Spell.GetSpellTexture(688))
         ManuscriptsSkillLineHunterTab:SetNormalTexture(C_Spell.GetSpellTexture(1515))
         ManuscriptsSkillLineDirigibleTab:SetNormalTexture(6029241)
+        ManuscriptsSkillLinePepeTab:SetNormalTexture(1044996)
         
         ManuscriptsSkillLineManuscriptsTab:Show()
         
@@ -407,6 +409,8 @@ function ParentMixin:OnLoad()
         end
         
         ManuscriptsSkillLineDirigibleTab:Show()
+        
+        ManuscriptsSkillLinePepeTab:Show()
         
         local tabs = self:GetAllTabs()
         local filteredTabs = {}
@@ -503,33 +507,33 @@ function ParentMixin:SortEntriesIntoEquipmentBuckets()
         
         local include = false
         
-        if not self.usesSourceFilter then
-            include = true
-        else
+        if self.usesSourceFilter then
             if collected and self.collectedFilter then include = true end
             if entryData.source and (not collected) and (not entryData.unobtainable) and self.uncollectedFilter then include = true end
             if (not collected) and self.unusableFilter and ((not entryData.source) or entryData.unobtainable) then include = true end
-
-            if include and (self.searchText ~= "") then
+            
+            if not self:GetSourceFilter(entryData.source) then
                 include = false
-                local name = GetItemInfo(entryData.itemID)
-                local source = addon.Strings.Sources[entryData.source]
-                
-                if name and string.lower(name):find(string.lower(self.searchText)) then
-                    include = true
-                elseif source and string.lower(source):find(string.lower(self.searchText)) then
-                    include = true
-                elseif entryData.rareNames then
-                    for _, name in pairs(entryData.rareNames) do
-                        if string.lower(name):find(string.lower(self.searchText)) then
-                            include = true
-                        end
+            end
+        else
+            include = true
+        end
+
+        if include and self.usesSearch and (self.searchText ~= "") then
+            include = false
+            local name = GetItemInfo(entryData.itemID)
+            local source = addon.Strings.Sources[entryData.source]
+            
+            if name and string.lower(name):find(string.lower(self.searchText)) then
+                include = true
+            elseif source and string.lower(source):find(string.lower(self.searchText)) then
+                include = true
+            elseif entryData.rareNames then
+                for _, name in pairs(entryData.rareNames) do
+                    if string.lower(name):find(string.lower(self.searchText)) then
+                        include = true
                     end
                 end
-            end
-
-            if include and (not self:GetSourceFilter(entryData.source)) then
-                include = false
             end
         end
             
@@ -542,8 +546,8 @@ function ParentMixin:SortEntriesIntoEquipmentBuckets()
 
   			table.insert(equipBuckets[category], entryData)
 
-              if collected then
-                  self.numKnownEntries[category] = self.numKnownEntries[category] + 1
+            if collected then
+                self.numKnownEntries[category] = self.numKnownEntries[category] + 1
   			end
   			self.numPossibleEntries[category] = self.numPossibleEntries[category] + 1
         end
@@ -827,11 +831,11 @@ hooksecurefunc("ToggleCollectionsJournal", function(tab)
 end)
 
 function ParentMixin:GetAllPanels()
-    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal, TameTomesJournal, DirigibleJournal}
+    return {ManuscriptsJournal, ShapeshiftsJournal, SoulshapesJournal, HexTomesJournal, PolymorphsJournal, GrimoiresJournal, TameTomesJournal, DirigibleJournal, PepeJournal}
 end
 
 function ParentMixin:GetAllTabs()
-    return {ManuscriptsSkillLineManuscriptsTab, ManuscriptsSkillLineDruidTab, ManuscriptsSkillLineSoulshapesTab, ManuscriptsSkillLineShamanTab, ManuscriptsSkillLineMageTab, ManuscriptsSkillLineWarlockTab, ManuscriptsSkillLineHunterTab, ManuscriptsSkillLineDirigibleTab}
+    return {ManuscriptsSkillLineManuscriptsTab, ManuscriptsSkillLineDruidTab, ManuscriptsSkillLineSoulshapesTab, ManuscriptsSkillLineShamanTab, ManuscriptsSkillLineMageTab, ManuscriptsSkillLineWarlockTab, ManuscriptsSkillLineHunterTab, ManuscriptsSkillLineDirigibleTab, ManuscriptsSkillLinePepeTab}
 end
 
 function ParentMixin:GetPanelByTab(tab)
@@ -844,6 +848,7 @@ function ParentMixin:GetPanelByTab(tab)
         [ManuscriptsSkillLineWarlockTab] = GrimoiresJournal,
         [ManuscriptsSkillLineHunterTab] = TameTomesJournal,
         [ManuscriptsSkillLineDirigibleTab] = DirigibleJournal,
+        [ManuscriptsSkillLinePepeTab] = PepeJournal,
     }
     return panels[tab]
 end

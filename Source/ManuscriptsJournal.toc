@@ -1,4 +1,4 @@
-## Interface: 110105
+## Interface: 110107
 ## Title: Manuscripts Journal
 ## Title-ruRU: Журнал Манускриптов
 ## Title-zhCN: 观龙者手稿大全
@@ -66,6 +66,7 @@ db\10-2.lua
 db\Shapeshifts.lua
 db\Soulshapes.lua
 db\HexTomes.lua
+db\Pepe.lua
 db\PolymorphTomes.lua
 db\TameTomes.lua
 db\WarlockDemonTomes.lua
