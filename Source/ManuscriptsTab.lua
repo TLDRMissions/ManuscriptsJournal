@@ -145,6 +145,8 @@ do
             end
         elseif source == addon.Enum.Sources.Renown then
             GameTooltip:AddDoubleLine(C_Reputation.GetFactionDataByID(db.renownFaction).name, RANK_COLON.." "..db.renownRank)
+        elseif source == addon.Enum.Sources.Covenant then
+            GameTooltip:AddDoubleLine(C_Covenants.GetCovenantData(db.covenantID).name, RANK_COLON.." "..db.renownRank)
         elseif (source == addon.Enum.Sources.Achievement) or (source == addon.Enum.Sources.DragonRacingAchievement) or (source == addon.Enum.Sources.PvPSeason) then
             local _, name = GetAchievementInfo(db.achievementID)
             GameTooltip:AddLine(name)

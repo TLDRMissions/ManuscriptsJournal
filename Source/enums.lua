@@ -46,6 +46,7 @@ addon.Enum.Sources.Superbloom = 18
 addon.Enum.Sources.ZoneDrop = 19
 addon.Enum.Sources.Other = 20
 addon.Enum.Sources.Achievement = 21
+addon.Enum.Sources.Covenant = 22
 
 addon.Enum.Zones = {}
 addon.Enum.Zones.ohn = 1
@@ -123,7 +124,6 @@ addon.Strings.Sources = {}
 addon.Strings.Sources[1] = L["Rare Spawns"]
 addon.Strings.Sources[2] = REPUTATION
 addon.Strings.Sources[3] = COVENANT_SANCTUM_TAB_RENOWN
---addon.Strings.Sources[4] = BATTLE_PET_SOURCE_6
 addon.Strings.Sources[4] = INSCRIPTION
 addon.Strings.Sources[5] = TRACKER_HEADER_DUNGEON
 addon.Strings.Sources[6] = L["Grand Hunts"]
@@ -141,6 +141,8 @@ addon.Strings.Sources[17] = BATTLE_PET_SOURCE_7
 addon.Strings.Sources[18] = C_QuestLog.GetTitleForQuestID(78203)
 addon.Strings.Sources[19] = BUG_CATEGORY2
 addon.Strings.Sources[20] = AUCTION_SUBCATEGORY_OTHER
+addon.Strings.Sources[21] = BATTLE_PET_SOURCE_6
+addon.Strings.Sources[22] = GARRISON_TYPE_9_0_LANDING_PAGE_TITLE
 
 addon.Strings.Zones = {}
 addon.Strings.Zones[1] = C_Map.GetAreaInfo(13645) -- Ohn'aran
