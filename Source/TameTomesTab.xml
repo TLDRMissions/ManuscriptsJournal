@@ -6,7 +6,6 @@
 	       <KeyValue key="usesSearch" value="true" type="boolean" />
            <KeyValue key="tabName" value="Tame Tomes Journal" />
            <KeyValue key="usesSourceFilter" value="true" type="boolean" />
-           <KeyValue key="usesHeader" value="true" type="boolean" />
         </KeyValues>
 	</Frame>
 </Ui>

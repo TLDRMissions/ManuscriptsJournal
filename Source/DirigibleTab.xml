@@ -3,6 +3,7 @@
     <Frame name="DirigibleJournal" inherits="ManuscriptsJournalBase" mixin="DirigibleMixin" setAllPoints="true" hidden="true">
     	<KeyValues>
            <KeyValue key="tabName" value="Dirigible Journal" />
+           <KeyValue key="usesHeader" value="true" type="boolean" />
         </KeyValues>
 	</Frame>
 </Ui>

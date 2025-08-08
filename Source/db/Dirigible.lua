@@ -85,3 +85,7 @@ addon.DirigibleDB = {
         zoneID = 14771,
     },
 }
+
+for k, v in pairs(addon.DirigibleDB) do
+    v.category = 1
+end

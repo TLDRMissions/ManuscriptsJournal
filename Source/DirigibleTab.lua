@@ -16,3 +16,11 @@ end
 function DirigibleMixin:GetEntryDB()
     return addon.DirigibleDB
 end
+
+function DirigibleMixin:GetNumCategories()
+    return #addon.Strings.DirigibleCategories
+end
+
+function DirigibleMixin:GetCategoryStrings()
+    return addon.Strings.DirigibleCategories
+end

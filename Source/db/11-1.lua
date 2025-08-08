@@ -6,11 +6,6 @@ local zones = addon.Enum.Zones
 local drakes = addon.Enum.Drakes
 
 local manuscripts = {
-    {
-        itemID = 235696,
-        questID = 82193,
-        name = "Delver's Dirigible Schematic: Explorer Decal",
-    },
 	{
         itemID = 235687,
         questID = 82180,
@@ -18,6 +13,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Sir Finley"],
         zoneID = 14771,
+        category = 1,
     },
     {
         itemID = 235686,
@@ -26,6 +22,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Sir Finley"],
         zoneID = 14771,
+        category = 1,
     },
     {
         itemID = 235685,
@@ -34,6 +31,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Sir Finley"],
         zoneID = 14771,
+        category = 1,
     },
     {
         itemID = 235684,
@@ -42,6 +40,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Sir Finley"],
         zoneID = 14771,
+        category = 1,
     },
     {
         itemID = 235683,
@@ -50,11 +49,13 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Sir Finley"],
         zoneID = 14771,
+        category = 1,
     },
     {
         itemID = 235695,
         questID = 82189,
         name = "Delver's Dirigible Schematic: Red Paint",
+        category = 1,
     },
     {
         itemID = 238837,
@@ -63,6 +64,7 @@ local manuscripts = {
         source = sources.Renown,
         renownFaction = 2688,
         renownRank = 8,
+        category = 1,
     },
     {
         itemID = 238839,
@@ -71,51 +73,31 @@ local manuscripts = {
         source = sources.Renown,
         renownFaction = 2688,
         renownRank = 8,
-    },
-    {
-        itemID = 235688,
-        questID = 82174,
-        name = "Delver's Dirigible Schematic: Fan",
+        category = 1,
     },
     {
         itemID = 235698,
         questID = 82194,
         name = "Delver's Dirigible Schematic: Horde Decal",
+        category = 1,
     },
     {
         itemID = 235697,
         questID = 82192,
         name = "Delver's Dirigible Schematic: Alliance Decal",
-    },
-    {
-        itemID = 235689,
-        questID = 82186,
-        name = "Delver's Dirigible Schematic: Kite",
-    },
-    {
-        itemID = 235692,
-        questID = 82177,
-        name = "Delver's Dirigible Schematic: Thrusters",
-    },
-    {
-        itemID = 235690,
-        questID = 82169,
-        name = "Delver's Dirigible Schematic: Harpoon",
-    },
-    {
-        itemID = 235691,
-        questID = 82191,
-        name = "Delver's Dirigible Schematic: Yellow Paint",
+        category = 1,
     },
     {
         itemID = 235694,
         questID = 82117,
         name = "Delver's Dirigible Schematic: Blue Paint",
+        category = 1,
     },
     {
         itemID = 235693,
         questID = 82175,
         name = "Delver's Dirigible Schematic: Rocket",
+        category = 1,
     },
     
     -- Gob-trotter schematics
@@ -125,6 +107,7 @@ local manuscripts = {
         name =  "Delver's Gob-Trotter Schematic: Gold",
         source = sources.Achievement,
         achievementID = 41210,
+        category = 2,
     },
 	{
         itemID = 230217,
@@ -133,6 +116,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Reno Jackson"],
         zoneID = 14771,
+        category = 2,
     },
     {
         itemID = 230216,
@@ -141,6 +125,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Reno Jackson"],
         zoneID = 14771,
+        category = 2,
     },
     {
         itemID = 230219,
@@ -149,6 +134,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Reno Jackson"],
         zoneID = 14771,
+        category = 2,
     },
     {
         itemID = 230218,
@@ -157,6 +143,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Reno Jackson"],
         zoneID = 14771,
+        category = 2,
     },
     {
         itemID = 230220,
@@ -165,6 +152,7 @@ local manuscripts = {
         source = sources.Vendor,
         vendorName = L["Reno Jackson"],
         zoneID = 14771,
+        category = 2,
     },
     
 }

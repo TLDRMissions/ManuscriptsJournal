@@ -579,7 +579,7 @@ function ParentMixin:SortEquipBucketsIntoPages(equipBuckets)
         		end
 
         		-- Add header
-        		table.insert(currentPage, self:GetCategoryStrings()[category])
+                table.insert(currentPage, self:GetCategoryStrings()[category])
         		if #currentPage > 1 then
         			heightLeft = heightLeft - ADDITIONAL_HEADER_Y_PADDING - BUTTON_HEIGHT - BUTTON_PADDING_Y;
         		else

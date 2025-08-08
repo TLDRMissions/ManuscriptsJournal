@@ -169,6 +169,25 @@ addon.Strings.WarlockCategories[7] = C_Spell.GetSpellInfo(205180).name
 addon.Strings.WarlockCategories[8] = C_Spell.GetSpellInfo(265187).name
 addon.Strings.WarlockCategories[9] = C_Spell.GetSpellInfo(18540).name
 
+addon.Strings.DirigibleCategories = {}
+addon.Strings.DirigibleCategories[1] = ""
+addon.Strings.DirigibleCategories[2] = ""
+addon.Strings.DirigibleCategories[3] = ""
+do
+    local item1 = Item:CreateFromItemID(219391)
+    item1:ContinueOnItemLoad(function()
+        addon.Strings.DirigibleCategories[1] = item1:GetItemName() or ""
+    end)
+    local item2 = Item:CreateFromItemID(229974)
+    item2:ContinueOnItemLoad(function()
+        addon.Strings.DirigibleCategories[2] = item2:GetItemName() or "" 
+    end)
+    local item3 = Item:CreateFromItemID(238051)
+    item3:ContinueOnItemLoad(function()
+        addon.Strings.DirigibleCategories[3] = item3:GetItemName() or "" 
+    end)
+end
+
 addon.Enum.WarlockCategories.Imp = 1
 addon.Enum.WarlockCategories.Voidwalker = 2
 addon.Enum.WarlockCategories.Sayaad = 3
