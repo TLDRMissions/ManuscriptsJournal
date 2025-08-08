@@ -127,7 +127,10 @@ addon.PepeDB = {
 	},
    	{
 		itemID = 216907,
+		questID = 80093,
 		name = "A Tiny Plumed Tricorne",
-        source = sources.WorldEvent, -- Plunderstorm, cannot find a quest ID for this one
+		source = sources.Renown,
+		renownFaction = 2593,
+		renownRank = 24,
 	},
 }
