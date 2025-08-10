@@ -29,7 +29,9 @@ function TameTomesMixin:GetEntryDB()
 end
 
 function TameTomesMixin:IsCollected(data)
-    if data.questID then
+    if data.accountQuestID then
+        return C_QuestLog.IsQuestFlaggedCompletedOnAccount(data.accountQuestID)
+    elseif data.questID then
         return C_QuestLog.IsQuestFlaggedCompleted(data.questID)
     else
         return IsPlayerSpell(data.spellID)
