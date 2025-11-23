@@ -536,7 +536,7 @@ function ParentMixin:SortEntriesIntoEquipmentBuckets()
                 end
             end
         end
-            
+
         if include then
             local category = entryData.category
             if not category then category = 1 end

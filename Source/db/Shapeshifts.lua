@@ -414,7 +414,14 @@ addon.ShapeshiftDB = {
         zoneID = 14529,
         category = shapeshifts.Flight,
 	},
-    
+    {
+        spellID = 360548,
+        questID = 65047,
+        name = "Mark of the Nightwing Raven",
+        source = sources.Other,
+        otherDescription = L["Mark of the Nightwing Raven Description"],
+        category = shapeshifts.Flight,
+    },
     -- ==================
     -- AQUATIC FORM
     -- ==================

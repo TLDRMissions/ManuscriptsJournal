@@ -22,6 +22,8 @@ QuestEventListener:AddCallback(76984, function()
 	L["Time Rifts"] = QuestUtils_GetQuestName(76984)
 end)
 
+L["Mark of the Nightwing Raven Description"] = "Obtained using a Worgen Druid during the day from Celestine of the Harvest in Stormwind"
+
 -- Reputation and Friendship ranks
 L["Friend"] = true
 L["True Friend"] = true

@@ -46,7 +46,7 @@ end
 
 function ShapeshiftsMixin:OnLoad()
     if select(2, UnitClass("player")) ~= "DRUID" then return end
-    self.tabName = AUCTION_CATEGORY_GLYPHS
+    self.tabName = TUTORIAL_TITLE61_DRUID
 
     addon.ParentMixin.OnLoad(self)
     
