@@ -1,4 +1,4 @@
-## Interface: 110205
+## Interface: 110207
 ## Title: Manuscripts Journal
 ## Title-ruRU: Журнал Манускриптов
 ## Title-zhCN: 观龙者手稿大全
