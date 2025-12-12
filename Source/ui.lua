@@ -837,17 +837,17 @@ function ParentMixin:GetAllTabs()
     return {ManuscriptsSkillLineManuscriptsTab, ManuscriptsSkillLineDruidTab, ManuscriptsSkillLineSoulshapesTab, ManuscriptsSkillLineShamanTab, ManuscriptsSkillLineMageTab, ManuscriptsSkillLineWarlockTab, ManuscriptsSkillLineHunterTab, ManuscriptsSkillLineDirigibleTab, ManuscriptsSkillLinePepeTab}
 end
 
-local panels = {
-    [ManuscriptsSkillLineManuscriptsTab] = ManuscriptsJournal, 
-    [ManuscriptsSkillLineDruidTab] = ShapeshiftsJournal, 
-    [ManuscriptsSkillLineSoulshapesTab] = SoulshapesJournal, 
-    [ManuscriptsSkillLineShamanTab] = HexTomesJournal, 
-    [ManuscriptsSkillLineMageTab] = PolymorphsJournal, 
-    [ManuscriptsSkillLineWarlockTab] = GrimoiresJournal,
-    [ManuscriptsSkillLineHunterTab] = TameTomesJournal,
-    [ManuscriptsSkillLineDirigibleTab] = DirigibleJournal,
-    [ManuscriptsSkillLinePepeTab] = PepeJournal,
-}
 function ParentMixin:GetPanelByTab(t)
+    local panels = {
+        [ManuscriptsSkillLineManuscriptsTab] = ManuscriptsJournal, 
+        [ManuscriptsSkillLineDruidTab] = ShapeshiftsJournal, 
+        [ManuscriptsSkillLineSoulshapesTab] = SoulshapesJournal, 
+        [ManuscriptsSkillLineShamanTab] = HexTomesJournal, 
+        [ManuscriptsSkillLineMageTab] = PolymorphsJournal, 
+        [ManuscriptsSkillLineWarlockTab] = GrimoiresJournal,
+        [ManuscriptsSkillLineHunterTab] = TameTomesJournal,
+        [ManuscriptsSkillLineDirigibleTab] = DirigibleJournal,
+        [ManuscriptsSkillLinePepeTab] = PepeJournal,
+    }
     return panels[t]
 end
