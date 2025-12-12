@@ -87,7 +87,7 @@ function FilterDropDownSystem.Initialize(dropdown, filterSystem, level)
 end
 
 function FilterDropDownSystem.SetUpDropDownLevel(_, filterSystem, level) -- dropdown, filterSystem, level)
-	for filterIndex, filterInfo in ipairs(filterSystem.filters) do
+	for _, filterInfo in ipairs(filterSystem.filters) do
         if filterInfo.type == FilterComponent.TextButton then
 			local set = function()
 							filterInfo.set();
