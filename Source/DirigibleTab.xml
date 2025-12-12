@@ -4,6 +4,7 @@
     	<KeyValues>
            <KeyValue key="tabName" value="Dirigible Journal" />
            <KeyValue key="usesHeader" value="true" type="boolean" />
+           <KeyValue key="usesSourceFilter" value="true" type="boolean" />
         </KeyValues>
 	</Frame>
 </Ui>

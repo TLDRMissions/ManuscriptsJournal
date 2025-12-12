@@ -136,28 +136,7 @@
 				</Scripts>
 			</EditBox>
 
-			<DropDownToggleButton parentKey="FilterButton" inherits="UIResettableDropdownButtonTemplate" text="FILTER">
-				<Anchors>
-					<Anchor point="TOPRIGHT" x="-10" y="-34"/>
-				</Anchors>
-				<Scripts>
-					<OnLoad inherit="prepend">
-						self:SetResetFunction(function() self:GetParent():ResetFilters() end);
-					</OnLoad>
-					<OnMouseDown inherit="prepend">
-						local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
-                        LibDD:ToggleDropDownMenu(1, nil, self:GetParent().filterDropDown, self, 74, 15);
-					</OnMouseDown>
-				</Scripts>
-			</DropDownToggleButton>
 		</Frames>
-		<Scripts>
-			<OnLoad>
-                local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
-                self.filterDropDown = LibDD:Create_UIDropDownMenu(self:GetName().."FilterDropDown", self)
-                ManuscriptsJournalCollectedFilterDropDown_OnLoad(self.filterDropDown)
-				self:OnLoad();
-			</OnLoad>
-		</Scripts>
+
 	</Frame>
 </Ui>
