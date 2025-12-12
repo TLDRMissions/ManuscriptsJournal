@@ -1,6 +1,5 @@
 local addonName, addon = ...
 
-local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 local FilterComponent = addon.FilterComponent
 
@@ -296,8 +295,8 @@ function ParentMixin:OnLoad()
             self:HideHeirloomsExtras()
             
             ManuscriptsSideTabsFrame:Show()
-            for _, tab in pairs(self:GetAllTabs()) do
-                tab:SetChecked(selectedTab == tab:GetID())
+            for _, t in pairs(self:GetAllTabs()) do
+                t:SetChecked(selectedTab == t:GetID())
             end
             
             if (selectedTab == 2) and (class == "DRUID") then
@@ -414,18 +413,18 @@ function ParentMixin:OnLoad()
         
         local tabs = self:GetAllTabs()
         local filteredTabs = {}
-        for _, tab in ipairs(tabs) do
-            if tab:IsShown() then
-                table.insert(filteredTabs, tab)
+        for _, t in ipairs(tabs) do
+            if t:IsShown() then
+                table.insert(filteredTabs, t)
             end
         end
         table.sort(filteredTabs, function(a, b)
             return a:GetID() < b:GetID()
         end)
         filteredTabs[1]:SetPoint("TOPLEFT", ManuscriptsSideTabsFrame, "TOPRIGHT", 0, -36)
-        for i, tab in ipairs(filteredTabs) do
+        for i, t in ipairs(filteredTabs) do
             if i > 1 then
-                tab:SetPoint("TOPLEFT", filteredTabs[i-1], "BOTTOMLEFT", 0, -17)
+                t:SetPoint("TOPLEFT", filteredTabs[i-1], "BOTTOMLEFT", 0, -17)
             end
         end
     end)
@@ -529,8 +528,8 @@ function ParentMixin:SortEntriesIntoEquipmentBuckets()
             elseif source and string.lower(source):find(string.lower(self.searchText)) then
                 include = true
             elseif entryData.rareNames then
-                for _, name in pairs(entryData.rareNames) do
-                    if string.lower(name):find(string.lower(self.searchText)) then
+                for _, rareName in pairs(entryData.rareNames) do
+                    if string.lower(rareName):find(string.lower(self.searchText)) then
                         include = true
                     end
                 end
@@ -591,7 +590,7 @@ function ParentMixin:SortEquipBucketsIntoPages(equipBuckets)
             end
             
 			-- Add buttons
-			for i, data in ipairs(equipBucket) do
+			for _, data in ipairs(equipBucket) do
 				if widthLeft < BUTTON_WIDTH + BUTTON_PADDING_X then
 					-- Not enough room for another entry, try going to a new row
 					widthLeft = PAGE_WIDTH;
@@ -740,7 +739,7 @@ function ParentMixin:UpdateButton(button)
         texture = info.iconID
         runLater()
     elseif data.artifactID then
-        local artifactAppearanceSetID, artifactAppearanceID, appearanceName, displayIndex, unlocked, failureDescription, uiCameraID, altHandCameraID, swatchColorR, swatchColorG, swatchColorB, modelOpacity, modelSaturation, obtainable = C_ArtifactUI.GetAppearanceInfoByID(data.artifactID)
+        local _, _, appearanceName, _, unlocked, _, _, _, swatchColorR, swatchColorG, swatchColorB = C_ArtifactUI.GetAppearanceInfoByID(data.artifactID)
         
         name = appearanceName
         runLater()
@@ -773,7 +772,7 @@ function ParentMixin:OnManuscriptsUpdated()
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
-    local loaded, finished = C_AddOns.IsAddOnLoaded(addonName)
+    local _, finished = C_AddOns.IsAddOnLoaded(addonName)
     if not finished then return end
     
     local ticker
@@ -799,8 +798,8 @@ function addon.ActivatePooledFrames(framePool, numEntriesInUse)
 end
 
 local function deselectAndHideAll()
-    for _, tab in pairs(ParentMixin:GetAllTabs()) do
-        tab:SetChecked(false)
+    for _, t in pairs(ParentMixin:GetAllTabs()) do
+        t:SetChecked(false)
     end
     for _, panel in pairs(ParentMixin:GetAllPanels()) do
         panel:Hide()
@@ -818,8 +817,8 @@ function ManuscriptSkillLineTab_OnClick(self)
     page:EnableMouse(true)
 end
 
-hooksecurefunc("ToggleCollectionsJournal", function(tab)
-    if tab ~= nil then return end
+hooksecurefunc("ToggleCollectionsJournal", function(t)
+    if t ~= nil then return end
     if not CollectionsJournal then return end
     if not CollectionsJournal:IsShown() then return end
     for _, panel in pairs(ParentMixin:GetAllPanels()) do
@@ -838,17 +837,17 @@ function ParentMixin:GetAllTabs()
     return {ManuscriptsSkillLineManuscriptsTab, ManuscriptsSkillLineDruidTab, ManuscriptsSkillLineSoulshapesTab, ManuscriptsSkillLineShamanTab, ManuscriptsSkillLineMageTab, ManuscriptsSkillLineWarlockTab, ManuscriptsSkillLineHunterTab, ManuscriptsSkillLineDirigibleTab, ManuscriptsSkillLinePepeTab}
 end
 
-function ParentMixin:GetPanelByTab(tab)
-    local panels = {
-        [ManuscriptsSkillLineManuscriptsTab] = ManuscriptsJournal, 
-        [ManuscriptsSkillLineDruidTab] = ShapeshiftsJournal, 
-        [ManuscriptsSkillLineSoulshapesTab] = SoulshapesJournal, 
-        [ManuscriptsSkillLineShamanTab] = HexTomesJournal, 
-        [ManuscriptsSkillLineMageTab] = PolymorphsJournal, 
-        [ManuscriptsSkillLineWarlockTab] = GrimoiresJournal,
-        [ManuscriptsSkillLineHunterTab] = TameTomesJournal,
-        [ManuscriptsSkillLineDirigibleTab] = DirigibleJournal,
-        [ManuscriptsSkillLinePepeTab] = PepeJournal,
-    }
-    return panels[tab]
+local panels = {
+    [ManuscriptsSkillLineManuscriptsTab] = ManuscriptsJournal, 
+    [ManuscriptsSkillLineDruidTab] = ShapeshiftsJournal, 
+    [ManuscriptsSkillLineSoulshapesTab] = SoulshapesJournal, 
+    [ManuscriptsSkillLineShamanTab] = HexTomesJournal, 
+    [ManuscriptsSkillLineMageTab] = PolymorphsJournal, 
+    [ManuscriptsSkillLineWarlockTab] = GrimoiresJournal,
+    [ManuscriptsSkillLineHunterTab] = TameTomesJournal,
+    [ManuscriptsSkillLineDirigibleTab] = DirigibleJournal,
+    [ManuscriptsSkillLinePepeTab] = PepeJournal,
+}
+function ParentMixin:GetPanelByTab(t)
+    return panels[t]
 end

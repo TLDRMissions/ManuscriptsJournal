@@ -63,7 +63,7 @@ function FilterDropDownSystem.Initialize(dropdown, filterSystem, level)
     if level == 1 then
 		FilterDropDownSystem.SetUpDropDownLevel(dropdown, filterSystem, level);
 	else
-        for filterIndex, filterInfo in ipairs(filterSystem.filters) do
+        for _, filterInfo in ipairs(filterSystem.filters) do
 			if filterInfo.value == L_UIDROPDOWNMENU_MENU_VALUE and level == 2 then
 				local subMenuLayout = filterInfo.childrenInfo;
 				subMenuLayout.onUpdate = filterSystem.onUpdate;
@@ -72,7 +72,7 @@ function FilterDropDownSystem.Initialize(dropdown, filterSystem, level)
 			elseif level == 3 then
 				local secondLevelFilters = filterInfo.childrenInfo;
 				if secondLevelFilters then
-					for secondLevelFilterIndex, secondLevelFilterInfo in ipairs(secondLevelFilters.filters) do
+					for _, secondLevelFilterInfo in ipairs(secondLevelFilters.filters) do
 						if secondLevelFilterInfo.value == L_UIDROPDOWNMENU_MENU_VALUE then
 							local subMenuLayout = secondLevelFilterInfo.childrenInfo;
 							subMenuLayout.onUpdate = filterSystem.onUpdate;
@@ -86,7 +86,7 @@ function FilterDropDownSystem.Initialize(dropdown, filterSystem, level)
 	end
 end
 
-function FilterDropDownSystem.SetUpDropDownLevel(dropdown, filterSystem, level)
+function FilterDropDownSystem.SetUpDropDownLevel(_, filterSystem, level) -- dropdown, filterSystem, level)
 	for filterIndex, filterInfo in ipairs(filterSystem.filters) do
         if filterInfo.type == FilterComponent.TextButton then
 			local set = function()
@@ -218,14 +218,14 @@ function FilterDropDownSystem.AddDynamicFilterSet(filterSetInfo, level)
 	for i = 1, numFilters, 1 do
 		local validated = not filterSetInfo.filterValidation or filterSetInfo.filterValidation(i);
 		if validated then
-			local function GetFilterName(i)
+			local function GetFilterName(j)
 				if filterSetInfo.nameFunction then
-					return filterSetInfo.nameFunction(i);
+					return filterSetInfo.nameFunction(j);
 				end
 
 				if filterSetInfo.globalPrepend then
 					local offset = filterSetInfo.globalPrependOffset;
-					local globalPrepend = filterSetInfo.globalPrepend .. (offset and offset + i or i);
+					local globalPrepend = filterSetInfo.globalPrepend .. (offset and offset + j or j);
 					return _G[globalPrepend];
 				end
 				

@@ -3,7 +3,6 @@ local addonName, addon = ...
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName) 
 
 local sources = addon.Enum.Sources
-local zones = addon.Enum.Zones
 
 local manuscripts = {
     {
@@ -385,7 +384,7 @@ local manuscripts = {
     },
 }
 
-for k, v in pairs(manuscripts) do
+for _, v in pairs(manuscripts) do
     v.category = addon.Enum.Drakes.WindingSlitherdrake
     table.insert(addon.db, v)
 end

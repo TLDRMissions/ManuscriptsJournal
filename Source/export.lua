@@ -14,7 +14,7 @@ local function exportDB()
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
-    local loaded, finished = C_AddOns.IsAddOnLoaded(addonName)
+    local _, finished = C_AddOns.IsAddOnLoaded(addonName)
     if not finished then return end
     
     exportDB()

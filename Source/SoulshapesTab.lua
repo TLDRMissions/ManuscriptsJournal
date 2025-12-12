@@ -189,7 +189,7 @@ function SoulshapesJournalSpellButton_OnEnter(self)
     GameTooltip:Show()
 end
 
-function SoulshapesJournalSpellButton_OnClick(self, button)
+function SoulshapesJournalSpellButton_OnClick(self)
 	if IsModifiedClick() then
 		local _, itemLink = GetItemInfo(self.itemID)
 		HandleModifiedItemClick(itemLink)
@@ -341,7 +341,7 @@ function SoulshapesJournalSearchBox_OnTextChanged(self)
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
-    local loaded, finished = C_AddOns.IsAddOnLoaded(addonName)
+    local _, finished = C_AddOns.IsAddOnLoaded(addonName)
     if not finished then return end
     
     if not SoulshapesJournalFiltersDB then SoulshapesJournalFiltersDB = {} end

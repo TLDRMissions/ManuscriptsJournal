@@ -12,7 +12,8 @@ function TameTomesMixin:OnLoad()
     local name = C_Spell.GetSpellInfo(1515).name
     self.tabName = name
     if not name then
-        local ticker = C_Timer.NewTicker(1, function()
+        local ticker
+        ticker = C_Timer.NewTicker(1, function()
             name = C_Spell.GetSpellInfo(1515).name
             if name then
                 self.tabName = name

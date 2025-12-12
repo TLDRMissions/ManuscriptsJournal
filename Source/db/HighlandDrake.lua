@@ -522,7 +522,7 @@ local manuscripts = {
     },
 }
 
-for k, v in pairs(manuscripts) do
+for _, v in pairs(manuscripts) do
     v.category = addon.Enum.Drakes.HighlandDrake
     table.insert(addon.db, v)
 end

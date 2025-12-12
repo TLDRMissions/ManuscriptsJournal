@@ -74,7 +74,7 @@ function ShapeshiftsMixin:IsCollected(data)
     end
     
     if data.artifactID then
-        local artifactAppearanceSetID, artifactAppearanceID, appearanceName, displayIndex, unlocked, failureDescription, uiCameraID, altHandCameraID, swatchColorR, swatchColorG, swatchColorB, modelOpacity, modelSaturation, obtainable = C_ArtifactUI.GetAppearanceInfoByID(data.artifactID)
+        local _, _, _, _, unlocked = C_ArtifactUI.GetAppearanceInfoByID(data.artifactID)
         return unlocked
     end
     

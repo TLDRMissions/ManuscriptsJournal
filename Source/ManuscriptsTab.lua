@@ -101,7 +101,7 @@ do
         elseif db.spellID then
             GameTooltip:SetSpellByID(db.spellID)
         elseif db.artifactID then
-            local artifactAppearanceSetID, artifactAppearanceID, appearanceName, displayIndex, unlocked, failureDescription, uiCameraID, altHandCameraID, swatchColorR, swatchColorG, swatchColorB, modelOpacity, modelSaturation, obtainable = C_ArtifactUI.GetAppearanceInfoByID(db.artifactID)
+            local _, _, _, _, _, failureDescription = C_ArtifactUI.GetAppearanceInfoByID(db.artifactID)
             GameTooltip:AddLine(failureDescription)
             GameTooltip:Show()
             return
@@ -153,14 +153,16 @@ do
         elseif source == addon.Enum.Sources.Dungeon then
             GameTooltip:AddDoubleLine(db.bossName, C_Map.GetAreaInfo(db.zoneID))
         elseif (source == addon.Enum.Sources.Container) or (source == addon.Enum.Sources.DragonRacingContainer) then
-            local name, link = GetItemInfo(db.containerID)
+            local _, link = GetItemInfo(db.containerID)
             if link then
                 GameTooltip:AddLine(link)
             end
         elseif source == addon.Enum.Sources.Quest then
             GameTooltip:AddLine(C_QuestLog.GetTitleForQuestID(db.sourceQuestID))
         elseif source == addon.Enum.Sources.Inscription then
+            nop()
         elseif source == addon.Enum.Sources.Hunt then
+            nop()
         elseif source == addon.Enum.Sources.Vendor then
             GameTooltip:AddDoubleLine(db.vendorName, C_Map.GetAreaInfo(db.zoneID))
         elseif source == addon.Enum.Sources.Raid then
@@ -184,6 +186,7 @@ do
                 GameTooltip:AddLine(db.worldEventName)
             end
         elseif source == addon.Enum.Sources.Superbloom then
+            nop()
         elseif source == addon.Enum.Sources.ZoneDrop then
             GameTooltip:AddLine(C_Map.GetAreaInfo(db.zoneID))
         elseif source == addon.Enum.Sources.Other then
@@ -209,7 +212,7 @@ do
     end
 end
 
-function ManuscriptsJournalSpellButton_OnClick(self, button)
+function ManuscriptsJournalSpellButton_OnClick(self)
 	if IsModifiedClick() then
 		local _, itemLink = GetItemInfo(self.itemID)
 		HandleModifiedItemClick(itemLink)
@@ -234,7 +237,7 @@ function ManuscriptsMixin:OnLoad()
     addon.ParentMixin.OnLoad(self)
 end
 
-function ManuscriptsMixin:OnManuscriptsUpdated(unitTarget, castGUID, spellID)
+function ManuscriptsMixin:OnManuscriptsUpdated(unitTarget, _, spellID)
 	if unitTarget ~= "player" then return end
     if not addon.manuscriptSpellIDs[spellID] then return end
     C_Timer.After(2, function() self:FullRefreshIfVisible() end)
@@ -308,7 +311,7 @@ function ManuscriptsJournalProgressBar_OnClick(self, barID)
 end
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
-    local loaded, finished = C_AddOns.IsAddOnLoaded(addonName)
+    local _, finished = C_AddOns.IsAddOnLoaded(addonName)
     if not finished then return end
     
     if not ManuscriptsJournalFiltersDB then ManuscriptsJournalFiltersDB = {} end
