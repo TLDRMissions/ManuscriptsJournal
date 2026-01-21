@@ -93,10 +93,14 @@ function Lib:Update(panel, selection)
 
 				local close = frame.CloseButton
 				if close and not close.Relay then
-					local relay = CreateFrame('Button', '$parentSecureRelay', close, 'SecureActionButtonTemplate')
-					relay:SetAttribute('macrotext', format('/run HideUIPanel(%s)', (frame:GetParent() or frame):GetName()))
-					relay:RegisterForClicks('anyUp', 'anyDown')
-					relay:SetAttribute('type', 'macro')
+                    local relay = CreateFrame("Button", '$parentSecureRelay', close, "SecureHandlerClickTemplate")
+					--local relay = CreateFrame('Button', '$parentSecureRelay', close, 'SecureActionButtonTemplate')
+                    relay:SetFrameRef("parent", frame:GetParent() or frame)
+                    relay:SetAttribute("_onclick", [[
+                        local parent = self:GetFrameRef('parent')
+                        parent:Hide()
+                    ]])
+					--relay:SetAttribute('macrotext', format('/run HideUIPanel(%s)', (frame:GetParent() or frame):GetName()))
 					relay:SetAllPoints()
 
 					close.Relay = relay
