@@ -75,4 +75,11 @@ addon.TameTomesDB = {
         source = sources.Raid,
         bossName = L["Fyrakk"],
 	},
+    {
+        itemID = 264895,
+        questID = 87421,
+        name = "Trials of the Florafaun Hunter",
+        source = sources.Rare,
+        rareName = "Harandar Rares",
+    },
 }
