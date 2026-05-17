@@ -119,6 +119,9 @@ local manuscripts = {
 		name = "Grotto Netherwing Drake: Purple and Silver Armor",
 		itemID = 207757,
         questID = 77128,
+        source = sources.Vendor,
+        vendorName = L["Xydan"],
+        zoneID = 13862, 
 	},
 	{
 		name = "Grotto Netherwing Drake: Spiked Back",
@@ -142,6 +145,9 @@ local manuscripts = {
 		name = "Grotto Netherwing Drake: Violet Scales",
 		itemID = 211381,
         questID = 78878,
+        source = sources.Vendor,
+        vendorName = L["Xydan"],
+        zoneID = 13862, 
 	},
 	{
 		name = "Grotto Netherwing Drake: Volatile Pattern",

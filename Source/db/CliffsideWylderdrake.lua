@@ -444,7 +444,9 @@ local manuscripts = {
         name = "Cliffside Wylderdrake: Sleek Horns",
         itemID = 196993,
         questID = 69193,
-        --source = sources., 
+        source = sources.Vendor,
+        vendorName = L["Xydan"],
+        zoneID = 13862, 
     },
     {
         name = "Cliffside Wylderdrake: Horned Nose",

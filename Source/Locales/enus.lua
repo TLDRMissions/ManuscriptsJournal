@@ -47,6 +47,7 @@ L["Cupri"] = true
 L["Gigi Gigavoid"] = true
 L["Sir Finley"] = "Sir Finley Mrrgglton"
 L["Reno Jackson"] = true
+L["Xydan"] = "Xydan (Dragonflight Timewalking)"
 
 -- Rare spawns
 L["Honey Smasher"] = true

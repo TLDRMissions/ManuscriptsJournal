@@ -78,6 +78,9 @@ local manuscripts = {
 		name = "Flourishing Whimsydrake: Gold and Pink Armor",
 		itemID = 210478,
         questID = 78399,
+        source = sources.Vendor,
+        vendorName = L["Xydan"],
+        zoneID = 13862, 
 	},
 	{
 		name = "Flourishing Whimsydrake: Helmet",
