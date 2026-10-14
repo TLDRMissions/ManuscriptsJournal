@@ -153,7 +153,7 @@ do
         elseif source == addon.Enum.Sources.Dungeon then
             GameTooltip:AddDoubleLine(db.bossName, C_Map.GetAreaInfo(db.zoneID))
         elseif (source == addon.Enum.Sources.Container) or (source == addon.Enum.Sources.DragonRacingContainer) then
-            local _, link = GetItemInfo(db.containerID)
+            local _, link = C_Item.GetItemInfo(db.containerID)
             if link then
                 GameTooltip:AddLine(link)
             end
@@ -214,7 +214,7 @@ end
 
 function ManuscriptsJournalSpellButton_OnClick(self)
 	if IsModifiedClick() then
-		local _, itemLink = GetItemInfo(self.itemID)
+		local _, itemLink = C_Item.GetItemInfo(self.itemID)
 		HandleModifiedItemClick(itemLink)
 	end
 end

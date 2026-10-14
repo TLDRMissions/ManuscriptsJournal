@@ -191,7 +191,7 @@ end
 
 function SoulshapesJournalSpellButton_OnClick(self)
 	if IsModifiedClick() then
-		local _, itemLink = GetItemInfo(self.itemID)
+		local _, itemLink = C_Item.GetItemInfo(self.itemID)
 		HandleModifiedItemClick(itemLink)
 	end
 end

@@ -520,7 +520,7 @@ function ParentMixin:SortEntriesIntoEquipmentBuckets()
 
         if include and self.usesSearch and (self.searchText ~= "") then
             include = false
-            local name = GetItemInfo(entryData.itemID)
+            local name = C_Item.GetItemInfo(entryData.itemID)
             local source = addon.Strings.Sources[entryData.source]
             
             if name and string.lower(name):find(string.lower(self.searchText)) then
